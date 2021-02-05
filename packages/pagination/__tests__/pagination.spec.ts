@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { sleep } from '@element-plus/test-utils'
+import { sleep } from '@tongjiaoui-plus/test-utils'
 import Pagination from '../src/index'
 import { nextTick } from 'vue'
 

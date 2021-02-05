@@ -19,9 +19,9 @@
 
 <script lang="ts">
 import { defineComponent, watch, computed, ref } from 'vue'
-import TjSelect from '@element-plus/select'
-import TjOption from '@element-plus/option'
-import { t } from '@element-plus/locale'
+import TjSelect from '@tongjiaoui-plus/select'
+import TjOption from '@tongjiaoui-plus/option'
+import { t } from '@tongjiaoui-plus/locale'
 import isEqual from 'lodash/isEqual'
 import { usePagination } from './usePagination'
 

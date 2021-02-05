@@ -4,7 +4,7 @@ import {
   getCurrentInstance,
   watch,
 } from 'vue'
-import { getValueByPath, escapeRegexpString } from '@element-plus/utils/util'
+import { getValueByPath, escapeRegexpString } from '@tongjiaoui-plus/utils/util'
 import {
   selectKey, selectGroupKey,
   selectEvents,

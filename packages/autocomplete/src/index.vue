@@ -94,16 +94,16 @@ import {
   onMounted, onUpdated,
   nextTick, watch,
 } from 'vue'
-import { useAttrs } from '@element-plus/hooks'
+import { useAttrs } from '@tongjiaoui-plus/hooks'
 import { NOOP } from '@vue/shared'
 import debounce from 'lodash/debounce'
-import { ClickOutside } from '@element-plus/directives'
-import { generateId, isArray } from '@element-plus/utils/util'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import throwError from '@element-plus/utils/error'
-import TjInput from '@element-plus/input'
-import TjScrollbar from '@element-plus/scrollbar'
-import TjPopper from '@element-plus/popper'
+import { ClickOutside } from '@tongjiaoui-plus/directives'
+import { generateId, isArray } from '@tongjiaoui-plus/utils/util'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import throwError from '@tongjiaoui-plus/utils/error'
+import TjInput from '@tongjiaoui-plus/input'
+import TjScrollbar from '@tongjiaoui-plus/scrollbar'
+import TjPopper from '@tongjiaoui-plus/popper'
 
 import type { PropType } from 'vue'
 

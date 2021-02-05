@@ -58,20 +58,20 @@ import {
   computed, defineComponent, inject, h,
   reactive, ref, toRefs, watch,
 } from 'vue'
-import { t } from '@element-plus/locale'
-import TjButton from '@element-plus/button'
+import { t } from '@tongjiaoui-plus/locale'
+import TjButton from '@tongjiaoui-plus/button'
 import TransferPanel from './transfer-panel.vue'
 import { useComputedData } from './useComputedData'
 import { useCheckedChange } from './useCheckedChange'
 import { useMove } from './useMove'
 
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import { elFormItemKey } from '@element-plus/form'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import { elFormItemKey } from '@tongjiaoui-plus/form'
 
 import { LEFT_CHECK_CHANGE_EVENT, RIGHT_CHECK_CHANGE_EVENT } from './useCheckedChange'
 
 import type { PropType, VNode } from 'vue'
-import type { TjFormItemContext } from '@element-plus/form'
+import type { TjFormItemContext } from '@tongjiaoui-plus/form'
 import type {
   DataItem, Format, Key,
   Props, TargetOrder,

@@ -1,5 +1,5 @@
 import { nextTick, getCurrentInstance, unref } from 'vue'
-import { arrayFind } from '@element-plus/utils/util'
+import { arrayFind } from '@tongjiaoui-plus/utils/util'
 import useWatcher from './watcher'
 import { Table, Store, TableColumnCtx } from '../table.type'
 

@@ -1,5 +1,5 @@
 {
-  "name": "@element-plus/popper",
+  "name": "@tongjiaoui-plus/popper",
   "description": "This is a internal util repo for components like tooltip and others",
   "version": "0.0.0",
   "main": "dist/index.js",

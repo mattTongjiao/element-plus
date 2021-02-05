@@ -16,7 +16,9 @@ const runBuild = async () => {
   const pkgs = await getPackages()
   const inputs = pkgs
     .map(pkg => pkg.name)
-    .filter(name => name.includes('@element-plus') && !name.includes('utils'))
+    .filter(
+      name => name.includes('@tongjiaoui-plus') && !name.includes('utils'),
+    )
     .slice(process.argv[2], process.argv[3])
 
   build(inputs[index])
@@ -26,7 +28,7 @@ const runBuild = async () => {
     const inputOptions = {
       input: path.resolve(
         __dirname,
-        `../packages/${name.split('@element-plus/')[1]}/index.ts`,
+        `../packages/${name.split('@tongjiaoui-plus/')[1]}/index.ts`,
       ),
       plugins: [
         nodeResolve(),
@@ -48,13 +50,13 @@ const runBuild = async () => {
       external(id) {
         return (
           /^vue/.test(id) ||
-          /^@element-plus/.test(id) ||
+          /^@tongjiaoui-plus/.test(id) ||
           deps.some(k => new RegExp('^' + k).test(id))
         )
       },
     }
     const getOutFile = () => {
-      const compName = name.split('@element-plus/')[1]
+      const compName = name.split('@tongjiaoui-plus/')[1]
       if (noTjPrefixFile.test(name)) {
         return `lib/${compName}/index.js`
       }
@@ -64,9 +66,10 @@ const runBuild = async () => {
       format: 'es',
       file: getOutFile(),
       paths(id) {
-        if (/^@element-plus/.test(id)) {
-          if (noTjPrefixFile.test(id)) return id.replace('@element-plus', '..')
-          return id.replace('@element-plus/', '../tj-')
+        if (/^@tongjiaoui-plus/.test(id)) {
+          if (noTjPrefixFile.test(id))
+            return id.replace('@tongjiaoui-plus', '..')
+          return id.replace('@tongjiaoui-plus/', '../tj-')
         }
       },
     }

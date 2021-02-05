@@ -50,8 +50,8 @@ import {
   defineComponent,
   computed, nextTick, ref,
 } from 'vue'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import { isValidComponentSize } from '@element-plus/utils/validators'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
 import { useRadio, useRadioAttrs } from './useRadio'
 
 import type { PropType } from 'vue'

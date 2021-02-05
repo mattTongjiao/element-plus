@@ -1,11 +1,11 @@
 {
-  "name": "@element-plus/collapse",
+  "name": "@tongjiaoui-plus/collapse",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
     "mitt": "^2.1.0",
-    "@element-plus/utils": "^0.0.0"
+    "@tongjiaoui-plus/utils": "^0.0.0"
   },
   "peerDependencies": {
     "vue": "^3.0.5"

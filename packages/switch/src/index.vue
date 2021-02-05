@@ -58,9 +58,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, onMounted, ref, inject, nextTick, watch } from 'vue'
-import { elFormKey, elFormItemKey } from '@element-plus/form'
+import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
 
-import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 
 
 type ValueType = boolean | string | number;

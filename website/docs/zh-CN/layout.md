@@ -342,7 +342,7 @@
 Tongjiao UI 额外提供了一系列类名，用于在某些条件下隐藏元素。这些类名可以添加在任何 DOM 元素或自定义组件上。如果需要，请自行引入以下文件：
 
 ```js
-import 'element-plus/lib/theme-chalk/display.css'
+import 'tongjiaoui-plus/lib/theme-chalk/display.css'
 ```
 
 包含的类名及其含义为：

@@ -320,7 +320,7 @@ Tongjiao UI が完全にインポートされている場合、Vue.prototype に
 オンデマンドで `MessageBox` をインポートしたい場合:
 
 ```javascript
-import { TjMessageBox } from 'element-plus'
+import { TjMessageBox } from 'tongjiaoui-plus'
 ```
 
 対応するメソッドは以下の通り: 対応するメソッドは `TjMessageBox`, `TjMessageBox.alert`, `TjMessageBox.confirm`, `TjMessageBox.prompt` である。パラメータは上記と同じである。

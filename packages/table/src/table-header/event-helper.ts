@@ -1,6 +1,6 @@
 import { getCurrentInstance, ref } from 'vue'
-import { hasClass, addClass, removeClass } from '@element-plus/utils/dom'
-import isServer from '@element-plus/utils/isServer'
+import { hasClass, addClass, removeClass } from '@tongjiaoui-plus/utils/dom'
+import isServer from '@tongjiaoui-plus/utils/isServer'
 import { TableColumnCtx, Table } from '../table.type'
 import { TableHeaderProps } from './table-header'
 

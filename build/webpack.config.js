@@ -20,7 +20,7 @@ const plugins = [
   // new BundleAnalyzerPlugin(),
 ]
 
-const entry = path.resolve(__dirname, '../packages/element-plus/index.ts')
+const entry = path.resolve(__dirname, '../packages/tongjiaoui-plus/index.ts')
 
 if (!isFullMode) {
   externals.push(
@@ -44,7 +44,7 @@ const config = {
     publicPath: '/',
     filename: isFullMode ? 'index.full.js' : 'index.js',
     libraryTarget: 'umd',
-    library: 'ElementPlus',
+    library: 'TongjiaoUIPlus',
     umdNamedDefine: true,
     globalObject: "typeof self !== 'undefined' ? self : this",
   },

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import { EVENT_CODE } from '@element-plus/utils/aria'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
 import Tabs from '../src/tabs.vue'
 import TabPane from '../src/tab-pane.vue'
 import TabNav from '../src/tab-nav.vue'

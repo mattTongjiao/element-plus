@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import TimePicker from '../src/time-picker'
-import { triggerEvent } from '@element-plus/test-utils'
+import { triggerEvent } from '@tongjiaoui-plus/test-utils'
 import dayjs from 'dayjs'
 
 const _mount = (template: string, data, otherObj?) => mount({

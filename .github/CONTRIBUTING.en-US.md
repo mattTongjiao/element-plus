@@ -8,7 +8,7 @@ We are excited that you are interested in contributing to Tongjiao UI. Before su
 
 ## Issue Guidelines
 
-- Issues are exclusively for bug reports, feature requests and design-related topics. Other questions may be closed directly. If any questions come up when you are using Tongjiao UI, please hit [Discord](https://discord.link/ElementPlus) for help.
+- Issues are exclusively for bug reports, feature requests and design-related topics. Other questions may be closed directly. If any questions come up when you are using Tongjiao UI, please hit [Discord](https://discord.link/TongjiaoUIPlus) for help.
 
 - Before submitting an issue, please check if similar problems have already been issued.
 

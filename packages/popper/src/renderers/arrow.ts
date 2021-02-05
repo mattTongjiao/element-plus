@@ -1,5 +1,5 @@
 import { openBlock, createBlock, Comment } from 'vue'
-import { PatchFlags } from '@element-plus/utils/vnode'
+import { PatchFlags } from '@tongjiaoui-plus/utils/vnode'
 
 export default function renderArrow(showArrow: boolean) {
   return showArrow

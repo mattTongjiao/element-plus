@@ -40,7 +40,7 @@ stages:
           - script: yarn website-build
             displayName: 'Build website'
           - script: |
-              export DEPLOY_DOMAIN=https://preview-${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}-element-plus.surge.sh
+              export DEPLOY_DOMAIN=https://preview-${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}-tongjiaoui-plus.surge.sh
               echo "Deploy to $DEPLOY_DOMAIN"
               npx surge --project ./website-dist --domain $DEPLOY_DOMAIN
             displayName: 'Deploy Site'
@@ -48,7 +48,7 @@ stages:
               SURGE_LOGIN: $(SURGE_LOGIN)
               SURGE_TOKEN: $(SURGE_TOKEN)
           - script: |
-              export DEPLOY_DOMAIN=https://preview-${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}-element-plus.surge.sh
+              export DEPLOY_DOMAIN=https://preview-${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}-tongjiaoui-plus.surge.sh
               curl -X POST ${BOT_URL} -H 'Content-Type:application/json' --data-raw '{"botAction":"Preview", "pr":'${SYSTEM_PULLREQUEST_PULLREQUESTNUMBER}', "url":"'${DEPLOY_DOMAIN}'"}'
             displayName: 'Update PR comment'
             env:

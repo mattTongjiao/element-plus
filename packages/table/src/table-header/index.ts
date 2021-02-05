@@ -7,7 +7,7 @@ import {
   ref,
   h,
 } from 'vue'
-import TjCheckbox from '@element-plus/checkbox'
+import TjCheckbox from '@tongjiaoui-plus/checkbox'
 import FilterPanel from '../filter-panel.vue'
 import useLayoutObserver from '../layout-observer'
 import useEvent from './event-helper'

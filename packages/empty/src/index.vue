@@ -19,7 +19,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import ImgEmpty from './img-empty.vue'
-import { t } from '@element-plus/locale'
+import { t } from '@tongjiaoui-plus/locale'
 
 export default defineComponent({
   name: 'TjEmpty',

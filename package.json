@@ -1,5 +1,5 @@
 {
-  "name": "element-plus",
+  "name": "tongjiaoui-plus",
   "private": true,
   "version": "0.0.0-development",
   "scripts": {
@@ -125,9 +125,9 @@
   "description": "A Component Library for Vue3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/element-plus/element-plus.git"
+    "url": "https://github.com/tongjiaoui-plus/tongjiaoui-plus.git"
   },
-  "homepage": "https://element-plus.org",
+  "homepage": "https://tongjiaoui-plus.org",
   "license": "MIT",
   "dependencies": {
     "@popperjs/core": "^2.4.4",

@@ -14,20 +14,20 @@ Tongjiao UI 的 theme-chalk 使用 SCSS 编写，如果你的项目也使用了 
 
 ```html
 /* 改变主题色变量 */ $--color-primary: teal; /* 改变 icon 字体路径变量，必需 */
-$--font-path: '~element-plus/lib/theme-chalk/fonts'; @import
-"~element-plus/packages/theme-chalk/src/index";
+$--font-path: '~tongjiaoui-plus/lib/theme-chalk/fonts'; @import
+"~tongjiaoui-plus/packages/theme-chalk/src/index";
 ```
 
 之后，在项目的入口文件中，直接引入以上样式文件即可（无需引入 Tongjiao UI 编译好的 CSS 文件）：
 
 ```JS
 import Vue from 'vue'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 import './element-variables.scss'
 import App from './App.vue';
 
 const app = createApp(App)
-app.use(ElementPlus)
+app.use(TongjiaoUIPlus)
 ```
 
 :::tip
@@ -116,9 +116,9 @@ et
 ```javascript
 import { createApp } from 'vue'
 import '../theme/index.css'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 
-createApp(App).use(ElementPlus)
+createApp(App).use(TongjiaoUIPlus)
 ```
 
 #### <strong>搭配插件按需引入组件主题</strong>
@@ -131,7 +131,7 @@ createApp(App).use(ElementPlus)
     [
       "component",
       {
-        "libraryName": "element-plus",
+        "libraryName": "tongjiaoui-plus",
         "styleLibraryName": "~theme"
       }
     ]

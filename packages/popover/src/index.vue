@@ -1,15 +1,15 @@
 <script lang="ts">
 import { defineComponent, Fragment, createTextVNode, renderSlot, toDisplayString, createCommentVNode, withDirectives, Teleport, createVNode } from 'vue'
-import TjPopper from '@element-plus/popper'
-import { defaultProps, Effect } from '@element-plus/popper'
-import { renderPopper, renderTrigger, renderArrow } from '@element-plus/popper'
-import { ClickOutside } from '@element-plus/directives'
-import { warn } from '@element-plus/utils/error'
-import { renderBlock, renderIf, PatchFlags } from '@element-plus/utils/vnode'
+import TjPopper from '@tongjiaoui-plus/popper'
+import { defaultProps, Effect } from '@tongjiaoui-plus/popper'
+import { renderPopper, renderTrigger, renderArrow } from '@tongjiaoui-plus/popper'
+import { ClickOutside } from '@tongjiaoui-plus/directives'
+import { warn } from '@tongjiaoui-plus/utils/error'
+import { renderBlock, renderIf, PatchFlags } from '@tongjiaoui-plus/utils/vnode'
 import usePopover, { SHOW_EVENT, HIDE_EVENT } from './usePopover'
 
 import type { PropType } from 'vue'
-import type { TriggerType } from '@element-plus/popper'
+import type { TriggerType } from '@tongjiaoui-plus/popper'
 
 const emits = ['update:visible', 'after-enter', 'after-leave', SHOW_EVENT, HIDE_EVENT ]
 const NAME = 'TjPopover'

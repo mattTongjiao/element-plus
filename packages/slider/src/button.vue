@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts">
-import TjTooltip from '@element-plus/tooltip'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
+import TjTooltip from '@tongjiaoui-plus/tooltip'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
 import { defineComponent, reactive, toRefs } from 'vue'
 import { useSliderButton } from './useSliderButton'
 

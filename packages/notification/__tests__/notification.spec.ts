@@ -1,10 +1,10 @@
 import { VueWrapper } from '@vue/test-utils'
 import { h, ComponentPublicInstance, nextTick } from 'vue'
-import * as domExports from '@element-plus/utils/dom'
-import { EVENT_CODE } from '@element-plus/utils/aria'
+import * as domExports from '@tongjiaoui-plus/utils/dom'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
 import Notification from '../src/index.vue'
-import makeMount from '@element-plus/test-utils/make-mount'
-import { rAF } from '@element-plus/test-utils/tick'
+import makeMount from '@tongjiaoui-plus/test-utils/make-mount'
+import { rAF } from '@tongjiaoui-plus/test-utils/tick'
 
 const AXIOM = 'Rem is the best girl'
 

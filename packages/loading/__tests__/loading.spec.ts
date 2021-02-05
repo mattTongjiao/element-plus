@@ -3,7 +3,7 @@ import Loading from '../src/index'
 import TjInput from '../../input'
 import vLoading from '../src/directive'
 import { nextTick } from 'vue'
-import { sleep } from '@element-plus/test-utils'
+import { sleep } from '@tongjiaoui-plus/test-utils'
 
 function destroyLoadingInstance(loadingInstance) {
   if(!loadingInstance) return

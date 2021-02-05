@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import type { SFCWithInstall } from '@element-plus/utils/types'
+import type { SFCWithInstall } from '@tongjiaoui-plus/utils/types'
 import Upload from './src/index.vue'
 
 Upload.install = (app: App): void => {

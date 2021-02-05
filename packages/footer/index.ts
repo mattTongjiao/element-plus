@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import type { SFCWithInstall } from '@element-plus/utils/types'
+import type { SFCWithInstall } from '@tongjiaoui-plus/utils/types'
 import Footer from '../container/src/footer.vue'
 
 Footer.install = (app: App): void => {

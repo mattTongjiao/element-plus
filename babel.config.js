@@ -41,9 +41,9 @@ module.exports = {
         [
           'babel-plugin-module-resolver',
           {
-            root: ['element-plus'],
+            root: ['tongjiaoui-plus'],
             alias: {
-              '@element-plus': 'element-plus/lib',
+              '@tongjiaoui-plus': 'tongjiaoui-plus/lib',
             },
           },
         ],

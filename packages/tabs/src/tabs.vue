@@ -17,7 +17,7 @@ import {
   Component,
   Fragment,
 } from 'vue'
-import { EVENT_CODE } from '@element-plus/utils/aria'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
 import TabNav from './tab-nav.vue'
 
 type RefElement = Nullable<HTMLElement>

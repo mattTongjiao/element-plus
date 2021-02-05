@@ -215,14 +215,17 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref, PropType, inject, watch } from 'vue'
-import { t } from '@element-plus/locale'
-import { extractDateFormat, extractTimeFormat } from '@element-plus/time-picker'
-import { TimePickPanel } from '@element-plus/time-picker'
-import { ClickOutside } from '@element-plus/directives'
+import { t } from '@tongjiaoui-plus/locale'
+import {
+  extractDateFormat,
+  extractTimeFormat,
+} from '@tongjiaoui-plus/time-picker'
+import { TimePickPanel } from '@tongjiaoui-plus/time-picker'
+import { ClickOutside } from '@tongjiaoui-plus/directives'
 import dayjs, { Dayjs } from 'dayjs'
 import DateTable from './basic-date-table.vue'
-import TjInput from '@element-plus/input'
-import TjButton from '@element-plus/button'
+import TjInput from '@tongjiaoui-plus/input'
+import TjButton from '@tongjiaoui-plus/button'
 
 export default defineComponent({
   directives: { clickoutside: ClickOutside },

@@ -80,8 +80,8 @@ import {
 } from 'vue'
 import { Dayjs } from 'dayjs'
 import debounce from 'lodash/debounce'
-import { RepeatClick } from '@element-plus/directives'
-import TjScrollbar from '@element-plus/scrollbar'
+import { RepeatClick } from '@tongjiaoui-plus/directives'
+import TjScrollbar from '@tongjiaoui-plus/scrollbar'
 import { getTimeLists } from './useTimePicker'
 
 export default defineComponent({

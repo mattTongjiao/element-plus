@@ -28,8 +28,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: website-dist
-          GIT_CONFIG_NAME: ElementPlusBot
-          GIT_CONFIG_EMAIL: hello@element-plus.org
+          GIT_CONFIG_NAME: TongjiaoUIPlusBot
+          GIT_CONFIG_EMAIL: hello@tongjiaoui-plus.org
           COMMIT_MESSAGE: website deploy
 
       - name: Sync

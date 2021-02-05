@@ -14,9 +14,9 @@ import {
   addResizeListener,
   removeResizeListener,
   ResizableElement,
-} from '@element-plus/utils/resize-event'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { on, off } from '@element-plus/utils/dom'
+} from '@tongjiaoui-plus/utils/resize-event'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { on, off } from '@tongjiaoui-plus/utils/dom'
 import TabBar from './tab-bar.vue'
 import { NOOP, capitalize } from '@vue/shared'
 import { RootTabs, Pane } from './tabs.vue'

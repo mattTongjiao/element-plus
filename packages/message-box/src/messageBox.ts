@@ -1,7 +1,7 @@
 import { h, render } from 'vue'
 import MessageBoxConstructor from './index.vue'
-import isServer from '@element-plus/utils/isServer'
-import { isVNode, isString } from '@element-plus/utils/util'
+import isServer from '@tongjiaoui-plus/utils/isServer'
+import { isVNode, isString } from '@tongjiaoui-plus/utils/util'
 
 import type { ComponentPublicInstance, VNode } from 'vue'
 import type {

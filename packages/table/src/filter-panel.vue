@@ -93,12 +93,12 @@ import {
   WritableComputedRef,
   PropType,
 } from 'vue'
-import TjPopper from '@element-plus/popper'
-import { t } from '@element-plus/locale'
-import TjCheckbox from '@element-plus/checkbox'
-import TjCheckboxGroup from '@element-plus/checkbox-group'
-import TjScrollbar from '@element-plus/scrollbar'
-import { ClickOutside } from '@element-plus/directives'
+import TjPopper from '@tongjiaoui-plus/popper'
+import { t } from '@tongjiaoui-plus/locale'
+import TjCheckbox from '@tongjiaoui-plus/checkbox'
+import TjCheckboxGroup from '@tongjiaoui-plus/checkbox-group'
+import TjScrollbar from '@tongjiaoui-plus/scrollbar'
+import { ClickOutside } from '@tongjiaoui-plus/directives'
 
 import { Store, TableColumnCtx, TableHeader } from './table.type'
 

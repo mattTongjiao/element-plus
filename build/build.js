@@ -33,14 +33,14 @@ const defaultOpts = {
   external(id) {
     return (
       /^vue/.test(id) ||
-      /^@element-plus/.test(id) ||
+      /^@tongjiaoui-plus/.test(id) ||
       deps.some(k => new RegExp('^' + k).test(id))
     )
   },
 }
 
 const isPkg = id => {
-  return id.startsWith('@element-plus')
+  return id.startsWith('@tongjiaoui-plus')
 }
 
 const isExcluded = id => {
@@ -48,7 +48,7 @@ const isExcluded = id => {
 }
 
 const replacePrefix = (prefix, target) => {
-  return prefix + target.slice(14) // @element-plus/.length = 14
+  return prefix + target.slice(14) // @tongjiaoui-plus/.length = 14
 }
 
 const run = async (name, input, isRoot = false) => {

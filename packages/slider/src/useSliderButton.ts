@@ -1,5 +1,5 @@
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import { off, on } from '@element-plus/utils/dom'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import { off, on } from '@tongjiaoui-plus/utils/dom'
 import { computed, ComputedRef, inject, nextTick, ref, watch } from 'vue'
 import { ISliderButtonInitData, ISliderButtonProps, ISliderProvider } from './slider.type'
 

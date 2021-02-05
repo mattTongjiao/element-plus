@@ -126,17 +126,17 @@ import {
   onMounted,
   onUpdated,
 } from 'vue'
-import { useAttrs } from '@element-plus/hooks'
-import { UPDATE_MODEL_EVENT, VALIDATE_STATE_MAP } from '@element-plus/utils/constants'
-import { isObject, useGlobalConfig } from '@element-plus/utils/util'
-import isServer from '@element-plus/utils/isServer'
-import { isKorean } from '@element-plus/utils/isDef'
-import { isValidComponentSize } from '@element-plus/utils/validators'
-import { elFormKey, elFormItemKey } from '@element-plus/form'
+import { useAttrs } from '@tongjiaoui-plus/hooks'
+import { UPDATE_MODEL_EVENT, VALIDATE_STATE_MAP } from '@tongjiaoui-plus/utils/constants'
+import { isObject, useGlobalConfig } from '@tongjiaoui-plus/utils/util'
+import isServer from '@tongjiaoui-plus/utils/isServer'
+import { isKorean } from '@tongjiaoui-plus/utils/isDef'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
+import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
 import calcTextareaHeight from './calcTextareaHeight'
 
 import type { PropType } from 'vue'
-import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 
 type AutosizeProp = {
   minRows?: number

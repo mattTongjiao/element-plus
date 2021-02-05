@@ -4,25 +4,25 @@
       <div class="footer-main">
         <h4>{{ langConfig.links }}</h4>
         <a
-          href="https://github.com/element-plus/element-plus"
+          href="https://github.com/tongjiaoui-plus/tongjiaoui-plus"
           class="footer-main-link"
           target="_blank"
           >{{ langConfig.repo }}</a
         >
         <a
-          href="https://github.com/element-plus/element-plus/releases"
+          href="https://github.com/tongjiaoui-plus/tongjiaoui-plus/releases"
           class="footer-main-link"
           target="_blank"
           >{{ langConfig.changelog }}</a
         >
         <a
-          href="https://github.com/element-plus/element-plus/blob/dev/FAQ.md"
+          href="https://github.com/tongjiaoui-plus/tongjiaoui-plus/blob/dev/FAQ.md"
           class="footer-main-link"
           target="_blank"
           >{{ langConfig.faq }}</a
         >
         <a
-          href="https://github.com/element-plus/element-plus-starter"
+          href="https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter"
           class="footer-main-link"
           target="_blank"
           >{{ langConfig.starter }}</a
@@ -96,7 +96,10 @@
             <img src="../assets/images/qrcode.png" alt="" />
           </template>
         </tj-popover>
-        <a href="https://github.com/element-plus/element-plus" target="_blank">
+        <a
+          href="https://github.com/tongjiaoui-plus/tongjiaoui-plus"
+          target="_blank"
+        >
           <i class="doc-icon-github elementdoc"></i>
         </a>
       </div>

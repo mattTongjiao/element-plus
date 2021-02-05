@@ -16,7 +16,7 @@
 
 <script>
   import { defineComponent, h } from 'vue'
-  import { TjMessage } from 'element-plus'
+  import { TjMessage } from 'tongjiaoui-plus'
   export default defineComponent({
     setup() {
       return {
@@ -55,7 +55,7 @@
 
 <script>
   import { defineComponent } from 'vue'
-  import { TjMessage } from 'element-plus'
+  import { TjMessage } from 'tongjiaoui-plus'
   export default defineComponent({
     setup() {
       return {
@@ -101,7 +101,7 @@
 
 <script>
   import { defineComponent } from 'vue'
-  import { TjMessage } from 'element-plus'
+  import { TjMessage } from 'tongjiaoui-plus'
 
   export default defineComponent({
     setup() {
@@ -157,7 +157,7 @@
 
 <script>
   import { defineComponent } from 'vue'
-  import { TjMessage } from 'element-plus'
+  import { TjMessage } from 'tongjiaoui-plus'
   export default defineComponent({
     setup() {
       return {
@@ -188,7 +188,7 @@
 
 <script>
   import { defineComponent } from 'vue'
-  import { TjMessage } from 'element-plus'
+  import { TjMessage } from 'tongjiaoui-plus'
   export default defineComponent({
     setup() {
       return {
@@ -217,7 +217,7 @@ Tongjiao UI 为 `app.config.globalProperties` 添加了全局方法 \$message。
 ### 单独引用
 
 ```javascript
-import { TjMessage } from 'element-plus'
+import { TjMessage } from 'tongjiaoui-plus'
 ```
 
 此时调用方法为 `TjMessage(options)`。我们也为每个 type 定义了各自的方法，如 `TjMessage.success(options)`。并且可以调用 `TjMessage.closeAll()` 手动关闭所有实例。

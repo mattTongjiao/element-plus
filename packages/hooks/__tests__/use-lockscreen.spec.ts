@@ -1,5 +1,5 @@
 import { ref, nextTick } from 'vue'
-import { hasClass } from '@element-plus/utils/dom'
+import { hasClass } from '@tongjiaoui-plus/utils/dom'
 import useLockScreen from '../use-lockscreen'
 
 describe('useLockScreen', () => {

@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { defineComponent, computed, watch, provide, nextTick, toRefs } from 'vue'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import { isValidComponentSize } from '@element-plus/utils/validators'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
 import { useCheckboxGroup } from './useCheckbox'
 
 import type { PropType } from 'vue'

@@ -26,7 +26,7 @@ import {
   ref,
   Ref,
 } from 'vue'
-import { off, on } from '@element-plus/utils/dom'
+import { off, on } from '@tongjiaoui-plus/utils/dom'
 import { BAR_MAP, renderThumbStyle } from './util'
 
 export default defineComponent({

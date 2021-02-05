@@ -1,10 +1,10 @@
 import { computed, ref, watch, nextTick, onMounted } from 'vue'
 
-import isServer from '@element-plus/utils/isServer'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import PopupManager from '@element-plus/utils/popup-manager'
-import { clearTimer, isNumber } from '@element-plus/utils/util'
-import { useLockScreen, useRestoreActive, useModal } from '@element-plus/hooks'
+import isServer from '@tongjiaoui-plus/utils/isServer'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import PopupManager from '@tongjiaoui-plus/utils/popup-manager'
+import { clearTimer, isNumber } from '@tongjiaoui-plus/utils/util'
+import { useLockScreen, useRestoreActive, useModal } from '@tongjiaoui-plus/hooks'
 
 import type { Ref, CSSProperties } from 'vue'
 import type { SetupContext } from '@vue/runtime-core'

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Affix from '../src/index.vue'
-import { defineGetter, makeScroll } from '@element-plus/test-utils'
+import { defineGetter, makeScroll } from '@tongjiaoui-plus/test-utils'
 
 let clientHeightRestore = null
 

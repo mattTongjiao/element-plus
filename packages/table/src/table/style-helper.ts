@@ -2,7 +2,7 @@ import { onMounted, onUnmounted, computed, ref, watchEffect, watch } from 'vue'
 import {
   addResizeListener,
   removeResizeListener,
-} from '@element-plus/utils/resize-event'
+} from '@tongjiaoui-plus/utils/resize-event'
 import throttle from 'lodash/throttle'
 import { parseHeight } from '../util'
 import {
@@ -14,7 +14,7 @@ import {
   TableColumnCtx,
   fn,
 } from '../table.type'
-import { useGlobalConfig } from '@element-plus/utils/util'
+import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
 
 function useStyle(
   props: TableProps,

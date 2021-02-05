@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import type { SFCWithInstall } from '@element-plus/utils/types'
+import type { SFCWithInstall } from '@tongjiaoui-plus/utils/types'
 import MenuItem from '../menu/src/menuItem.vue'
 
 MenuItem.install = (app: App): void => {

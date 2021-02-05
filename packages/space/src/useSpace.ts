@@ -1,6 +1,6 @@
 import { ref, computed, watch, isVNode } from 'vue'
-import { isValidComponentSize } from '@element-plus/utils/validators'
-import { isNumber, isArray, isString } from '@element-plus/utils/util'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
+import { isNumber, isArray, isString } from '@tongjiaoui-plus/utils/util'
 
 import type { PropType, ExtractPropTypes, CSSProperties, VNodeChild } from 'vue'
 

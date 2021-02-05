@@ -63,9 +63,9 @@ import {
   computed,
   ref,
 } from 'vue'
-import { Overlay } from '@element-plus/overlay'
-import { useDialog } from '@element-plus/dialog'
-import { TrapFocus } from '@element-plus/directives'
+import { Overlay } from '@tongjiaoui-plus/overlay'
+import { useDialog } from '@tongjiaoui-plus/dialog'
+import { TrapFocus } from '@tongjiaoui-plus/directives'
 
 import type { PropType, SetupContext } from 'vue'
 

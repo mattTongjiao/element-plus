@@ -62,7 +62,7 @@ EOF
 
 cat > $DIRNAME/package.json <<EOF
 {
-  "name": "@element-plus/$INPUT_NAME",
+  "name": "@tongjiaoui-plus/$INPUT_NAME",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",

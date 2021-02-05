@@ -1,6 +1,6 @@
 import { onMounted, onUpdated, onBeforeUnmount, ref, watch, Ref } from 'vue'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { on, off } from '@element-plus/utils/dom'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { on, off } from '@tongjiaoui-plus/utils/dom'
 import TreeStore from './tree-store'
 
 interface UseKeydownOption {

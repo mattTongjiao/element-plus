@@ -32,10 +32,10 @@ import {
   computed, defineComponent, getCurrentInstance,
   inject, ref,
 } from 'vue'
-import TjScrollbar from '@element-plus/scrollbar'
+import TjScrollbar from '@tongjiaoui-plus/scrollbar'
 import TjCascaderNode from './node.vue'
-import { t } from '@element-plus/locale'
-import { generateId } from '@element-plus/utils/util'
+import { t } from '@tongjiaoui-plus/locale'
+import { generateId } from '@tongjiaoui-plus/utils/util'
 import {
   CascaderNode,
   CASCADER_PANEL_INJECTION_KEY,

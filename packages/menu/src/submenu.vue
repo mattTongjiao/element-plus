@@ -106,10 +106,10 @@ import {
   vShow,
   h,
 } from 'vue'
-import TjCollapseTransition from '@element-plus/collapse-transition'
+import TjCollapseTransition from '@tongjiaoui-plus/collapse-transition'
 import { ISubmenuProps, RootMenuProvider, SubMenuProvider } from './menu'
 import useMenu from './useMenu'
-import TjPopper from '@element-plus/popper'
+import TjPopper from '@tongjiaoui-plus/popper'
 
 export default defineComponent({
   name: 'TjSubmenu',

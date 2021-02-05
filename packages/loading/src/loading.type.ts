@@ -1,4 +1,4 @@
-import type { Ref, VNode } from 'vue'
+import type { Ref, VNode } from '@tongjiaoui-plus/loading/src/node_modules/vue'
 
 export type ILoadingOptions = {
     parent?: ILoadingParentElement

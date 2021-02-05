@@ -320,7 +320,7 @@ If Tongjiao UI is fully imported, it will add the following global methods for `
 If you prefer importing `MessageBox` on demand:
 
 ```javascript
-import { TjMessageBox } from 'element-plus'
+import { TjMessageBox } from 'tongjiaoui-plus'
 ```
 
 The corresponding methods are: `TjMessageBox`, `TjMessageBox.alert`, `TjMessageBox.confirm` and `TjMessageBox.prompt`. The parameters are the same as above.

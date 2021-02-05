@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import { sleep } from '@element-plus/test-utils'
+import { sleep } from '@tongjiaoui-plus/test-utils'
 
 import Menu from '../src/menu.vue'
 import MenuGroup from '../src/menuItemGroup.vue'

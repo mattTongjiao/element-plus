@@ -266,7 +266,7 @@ success, warning, info, error の 4 種類を提供しています。
 ### ローカルインポート
 
 ```javascript
-import { TjNotification } from 'element-plus'
+import { TjNotification } from 'tongjiaoui-plus'
 ```
 
 この場合は `TjNotification(options)` を呼び出す必要があります。また、`TjNotification.success(options)`のように、異なるタイプのメソッドも登録しています。すべてのインスタンスを手動で閉じるには、`TjNotification.closeAll()` を呼び出すことができます。

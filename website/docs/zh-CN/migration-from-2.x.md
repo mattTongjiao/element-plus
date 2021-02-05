@@ -6,4 +6,4 @@
 
 以下是不兼容更新的列表
 
-本文档有待完善，目前请参考这里的 [不兼容更新列表](https://github.com/element-plus/element-plus/issues/162)。
+本文档有待完善，目前请参考这里的 [不兼容更新列表](https://github.com/tongjiaoui-plus/tongjiaoui-plus/issues/162)。

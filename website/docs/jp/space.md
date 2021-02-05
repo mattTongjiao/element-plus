@@ -211,7 +211,7 @@ Sometimes we want something more than blank space, so we have (spacer) to help u
 
 <script>
   import { h, resolveComponent } from 'vue'
-  import { TjDivider } from 'element-plus'
+  import { TjDivider } from 'tongjiaoui-plus'
   export default {
     data() {
       return {

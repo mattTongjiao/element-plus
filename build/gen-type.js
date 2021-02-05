@@ -8,23 +8,23 @@ const outsideImport = /import .* from '..\/(.*?)\/src\/.*/
 // global.d.ts
 fs.copyFileSync(
   path.resolve(__dirname, '../typings/vue-shim.d.ts'),
-  path.resolve(__dirname, '../lib/element-plus.d.ts'),
+  path.resolve(__dirname, '../lib/tongjiaoui-plus.d.ts'),
 )
 // index.d.ts
 const newIndexPath = path.resolve(__dirname, '../lib/index.d.ts')
 fs.copyFileSync(
-  path.resolve(__dirname, '../lib/element-plus/index.d.ts'),
+  path.resolve(__dirname, '../lib/tongjiaoui-plus/index.d.ts'),
   newIndexPath,
 )
 const index = fs.readFileSync(newIndexPath)
 const newIndex = index
   .toString()
-  .replace(/@element-plus\//g, './tj-')
+  .replace(/@tongjiaoui-plus\//g, './tj-')
   .replace('tj-utils', 'utils')
 fs.writeFileSync(newIndexPath, newIndex)
 
 // remove ep
-fs.rmdirSync(path.resolve(__dirname, '../lib/element-plus'), {
+fs.rmdirSync(path.resolve(__dirname, '../lib/tongjiaoui-plus'), {
   recursive: true,
 })
 
@@ -48,12 +48,12 @@ fs.readdirSync(libDirPath).forEach(comp => {
           path.resolve(__dirname, '../lib', newCompName, 'index.d.ts'),
         )
         .toString()
-      if (outsideImport.test(imp) || imp.includes('@element-plus/')) {
+      if (outsideImport.test(imp) || imp.includes('@tongjiaoui-plus/')) {
         const newImp = imp
           .replace(outsideImport, (i, c) => {
             return i.replace(`../${c}`, `../tj-${c}`)
           })
-          .replace('@element-plus/', '../tj-')
+          .replace('@tongjiaoui-plus/', '../tj-')
           .replace('tj-utils', 'utils')
         fs.writeFileSync(
           path.resolve(__dirname, '../lib', newCompName, 'index.d.ts'),
@@ -72,12 +72,12 @@ fs.readdirSync(libDirPath).forEach(comp => {
     if (fs.lstatSync(srcPath).isDirectory()) {
       fs.readdir(srcPath, 'utf-8', (err, data) => {
         if (err) return
-        // replace all @element-plus in src/*.d.ts
+        // replace all @tongjiaoui-plus in src/*.d.ts
         data.forEach(f => {
           if (!fs.lstatSync(path.resolve(srcPath, f)).isDirectory()) {
             const imp = fs.readFileSync(path.resolve(srcPath, f)).toString()
-            if (imp.includes('@element-plus/')) {
-              const newImp = imp.replace(/@element-plus\//g, '../../tj-')
+            if (imp.includes('@tongjiaoui-plus/')) {
+              const newImp = imp.replace(/@tongjiaoui-plus\//g, '../../tj-')
               fs.writeFileSync(path.resolve(srcPath, f), newImp)
             }
           }

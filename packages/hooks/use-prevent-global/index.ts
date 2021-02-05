@@ -1,5 +1,5 @@
 import { watch } from 'vue'
-import { on, off } from '@element-plus/utils/dom'
+import { on, off } from '@tongjiaoui-plus/utils/dom'
 
 import type { Ref } from 'vue'
 

@@ -61,10 +61,10 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs } from 'vue'
-import { t } from '@element-plus/locale'
-import TjCheckbox from '@element-plus/checkbox'
-import TjCheckboxGroup from '@element-plus/checkbox-group'
-import TjInput from '@element-plus/input'
+import { t } from '@tongjiaoui-plus/locale'
+import TjCheckbox from '@tongjiaoui-plus/checkbox'
+import TjCheckboxGroup from '@tongjiaoui-plus/checkbox-group'
+import TjInput from '@tongjiaoui-plus/input'
 import { useCheck, CHECKED_CHANGE_EVENT } from './useCheck'
 
 export default defineComponent({

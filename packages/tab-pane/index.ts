@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import type { SFCWithInstall } from '@element-plus/utils/types'
+import type { SFCWithInstall } from '@tongjiaoui-plus/utils/types'
 import TabPane from '../tabs/src/tab-pane.vue'
 
 TabPane.install = (app: App): void => {

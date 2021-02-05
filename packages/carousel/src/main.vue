@@ -74,7 +74,7 @@ import throttle from 'lodash/throttle'
 import {
   addResizeListener,
   removeResizeListener,
-} from '@element-plus/utils/resize-event'
+} from '@tongjiaoui-plus/utils/resize-event'
 import { ICarouselProps, CarouselItem, InjectCarouselScope } from './carousel'
 
 export default defineComponent({

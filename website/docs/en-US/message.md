@@ -201,7 +201,7 @@ Tongjiao UI has added a global method `$message` for `app.config.globalPropertie
 ### Local import
 
 ```javascript
-import { TjMessage } from 'element-plus'
+import { TjMessage } from 'tongjiaoui-plus'
 ```
 
 In this case you should call `TjMessage(options)`. We have also registered methods for different types, e.g. `TjMessage.success(options)`. You can call `TjMessage.closeAll()` to manually close all the instances.

@@ -5,21 +5,21 @@
 Installer Tongjiao UI via npm est recommandé, il fonctionne parfaitement avec [webpack](https://webpack.js.org/).
 
 ```shell
-npm install element-plus --save
+npm install tongjiaoui-plus --save
 ```
 
 ### CDN
 
-Obtenez la dernière version via [unpkg.com/element-plus](https://unpkg.com/element-plus/), et importez le JavaScript et le CSS dans votre page.
+Obtenez la dernière version via [unpkg.com/tongjiaoui-plus](https://unpkg.com/tongjiaoui-plus/), et importez le JavaScript et le CSS dans votre page.
 
 ```html
 <!-- import du CSS -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/element-plus/lib/theme-chalk/index.css"
+  href="https://unpkg.com/tongjiaoui-plus/lib/theme-chalk/index.css"
 />
 <!-- import du JavaScript -->
-<script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
+<script src="https://unpkg.com/tongjiaoui-plus/lib/index.full.js"></script>
 ```
 
 :::tip

@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { t } from '@element-plus/locale'
-import TjInput from '@element-plus/input'
+import { t } from '@tongjiaoui-plus/locale'
+import TjInput from '@tongjiaoui-plus/input'
 import { usePagination } from './usePagination'
 
 export default defineComponent({

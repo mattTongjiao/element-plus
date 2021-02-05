@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import type { SFCWithInstall } from '@element-plus/utils/types'
+import type { SFCWithInstall } from '@tongjiaoui-plus/utils/types'
 import BreadcrumbItem from '../breadcrumb/src/item.vue'
 
 BreadcrumbItem.install = (app: App): void => {

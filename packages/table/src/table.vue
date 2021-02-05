@@ -254,8 +254,8 @@
 <script lang="ts">
 import { defineComponent, getCurrentInstance, computed } from 'vue'
 import { createStore } from './store/helper'
-import { t } from '@element-plus/locale'
-import { Mousewheel } from '@element-plus/directives'
+import { t } from '@tongjiaoui-plus/locale'
+import { Mousewheel } from '@tongjiaoui-plus/directives'
 import TableLayout from './table-layout'
 import TableHeader from './table-header/index'
 import TableBody from './table-body/index'

@@ -4,11 +4,11 @@ Cette page vous guidera tout le long de l'installation d'Tongjiao UI au sein d'u
 
 ### Use vue-cli@4.5
 
-Nous fournissons un [plugin Element](https://github.com/element-plus/vue-cli-plugin-element-plus) pour vue-cli@4.5, que vous pouvez utiliser pour créer rapidement un projet basé sur Element.
+Nous fournissons un [plugin Element](https://github.com/tongjiaoui-plus/vue-cli-plugin-tongjiaoui-plus) pour vue-cli@4.5, que vous pouvez utiliser pour créer rapidement un projet basé sur Element.
 
 ### Utiliser le Starter Kit
 
-Nous fournissons un [template de projet](https://github.com/element-plus/element-plus-starter) pour débuter rapidement, and also a Vite [template](https://github.com/element-plus/element-plus-vite-starter). Pour les utilisateurs Laravel, il est aussi possible d'utiliser ce [template](https://github.com/element-plus/element-plus-in-laravtj-starter). VOus pouvez les télécharger directement.
+Nous fournissons un [template de projet](https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter) pour débuter rapidement, and also a Vite [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-vite-starter). Pour les utilisateurs Laravel, il est aussi possible d'utiliser ce [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-in-laravtj-starter). VOus pouvez les télécharger directement.
 
 Si vous préférer vous passer de template, voyez la section suivante.
 
@@ -22,12 +22,12 @@ Dans main.js:
 
 ```javascript
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/lib/theme-chalk/index.css'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
+import 'tongjiaoui-plus/lib/theme-chalk/index.css'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus)
+app.use(TongjiaoUIPlus)
 app.mount('#app')
 ```
 
@@ -51,11 +51,11 @@ module.exports = {
     [
       'import',
       {
-        libraryName: 'element-plus',
+        libraryName: 'tongjiaoui-plus',
         customStyleName: name => {
           // En raison de l'existence de "customStyleName", "style : true" ne sera pas efficace.
           // Donc si vous voulez utiliser le fichier source `.scss`, il vous suffit de remplacer le nom de l'extension `.css` par `.scss`.
-          return `element-plus/lib/theme-chalk/${name}.css`
+          return `tongjiaoui-plus/lib/theme-chalk/${name}.css`
         },
       },
     ],
@@ -67,7 +67,7 @@ Ensuite, si vous n'avez besoin que de Button et Select, éditez main.js comme su
 
 ```javascript
 import { createApp } from 'vue'
-import { TjButton, TjSelect } from 'element-plus'
+import { TjButton, TjSelect } from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -82,7 +82,7 @@ app.component(TjSelect.name, TjSelect)
 app.mount('#app')
 ```
 
-Exemple complet (liste complète des composants dans [reference](https://github.com/element-plus/element-plus/tree/dev/packages)):
+Exemple complet (liste complète des composants dans [reference](https://github.com/tongjiaoui-plus/tongjiaoui-plus/tree/dev/packages)):
 
 ```javascript
 import { createApp } from 'vue'
@@ -171,7 +171,7 @@ import {
   TjMessage,
   TjMessageBox,
   TjNotification,
-} from 'element-plus'
+} from 'tongjiaoui-plus'
 
 const components = [
   TjAlert,
@@ -281,18 +281,18 @@ Import total d'Element：
 
 ```js
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus, { size: 'small', zIndex: 3000 })
+app.use(TongjiaoUIPlus, { size: 'small', zIndex: 3000 })
 ```
 
 Import partiel d'Element：
 
 ```js
 import { createApp } from 'vue'
-import { TjButton } from 'element-plus'
+import { TjButton } from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)

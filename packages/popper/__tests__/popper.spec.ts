@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
 import * as Vue from 'vue'
 import * as popperExports from '@popperjs/core'
-import { rAF } from '@element-plus/test-utils/tick'
+import { rAF } from '@tongjiaoui-plus/test-utils/tick'
 import TjPopper from '../src/index.vue'
 
 import type { VueWrapper } from '@vue/test-utils'
-import PopupManager from '@element-plus/utils/popup-manager'
+import PopupManager from '@tongjiaoui-plus/utils/popup-manager'
 
 type UnknownProps = Record<string, unknown>
 

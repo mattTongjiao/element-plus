@@ -1,13 +1,13 @@
 import { watch, isRef } from 'vue'
 
-import getScrollBarWidth from '@element-plus/utils/scrollbar-width'
-import throwError from '@element-plus/utils/error'
+import getScrollBarWidth from '@tongjiaoui-plus/utils/scrollbar-width'
+import throwError from '@tongjiaoui-plus/utils/error'
 import {
   addClass,
   removeClass,
   hasClass,
   getStyle,
-} from '@element-plus/utils/dom'
+} from '@tongjiaoui-plus/utils/dom'
 
 import type { Ref } from 'vue'
 

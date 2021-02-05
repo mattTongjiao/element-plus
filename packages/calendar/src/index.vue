@@ -42,9 +42,9 @@
 </template>
 
 <script lang="ts">
-import { t } from '@element-plus/locale'
-import TjButton from '@element-plus/button'
-import TjButtonGroup from '@element-plus/button-group'
+import { t } from '@tongjiaoui-plus/locale'
+import TjButton from '@tongjiaoui-plus/button'
+import TjButtonGroup from '@tongjiaoui-plus/button-group'
 import DateTable from './date-table.vue'
 import { ref, ComputedRef, PropType, computed, defineComponent } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'

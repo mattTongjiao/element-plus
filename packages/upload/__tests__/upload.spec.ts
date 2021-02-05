@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { on } from '@element-plus/utils/dom'
+import { on } from '@tongjiaoui-plus/utils/dom'
 import { EVENT_CODE } from '../../utils/aria'
 
 import makeMount from '../../test-utils/make-mount'

@@ -231,10 +231,10 @@ ${this.codepen.style}
         'ipt src="//unpkg.com/vue@next"></scr' +
         'ipt>' +
         '\n<scr' +
-        `ipt src="//unpkg.com/element-plus/lib/index.full.js"></scr` +
+        `ipt src="//unpkg.com/tongjiaoui-plus/lib/index.full.js"></scr` +
         'ipt>'
       let htmlTpl = `${resourcesTpl}\n<div id="app">\n${html.trim()}\n</div>`
-      let cssTpl = `@import url("//unpkg.com/element-plus/lib/theme-chalk/index.css");\n${(
+      let cssTpl = `@import url("//unpkg.com/tongjiaoui-plus/lib/theme-chalk/index.css");\n${(
         style || ''
       ).trim()}\n`
       let jsTpl = script
@@ -246,12 +246,12 @@ ${this.codepen.style}
               (s, s1) => `const ${s1} = Vue`,
             )
             .replace(
-              /import ({.*}) from 'element-plus'/g,
-              (s, s1) => `const ${s1} = ElementPlus`,
+              /import ({.*}) from 'tongjiaoui-plus'/g,
+              (s, s1) => `const ${s1} = TongjiaoUIPlus`,
             )
         : 'var Main = {}'
       jsTpl +=
-        '\n;const app = Vue.createApp(Main);\napp.use(ElementPlus);\napp.mount("#app")'
+        '\n;const app = Vue.createApp(Main);\napp.use(TongjiaoUIPlus);\napp.mount("#app")'
       const data = {
         js: jsTpl,
         css: cssTpl,

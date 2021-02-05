@@ -47,7 +47,7 @@ import {
   RegisterMenuItem,
   SubMenuProvider,
 } from './menu'
-import Menubar from '@element-plus/utils/menu/menu-bar'
+import Menubar from '@tongjiaoui-plus/utils/menu/menu-bar'
 import TjMenuCollapseTransition from './menu-collapse-transition.vue'
 import useMenuColor from './useMenuColor'
 

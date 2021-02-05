@@ -7,25 +7,25 @@ import {
   reactive,
 } from 'vue'
 import mitt from 'mitt'
-import { UPDATE_MODEL_EVENT, CHANGE_EVENT } from '@element-plus/utils/constants'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { t } from '@element-plus/locale'
-import isServer from '@element-plus/utils/isServer'
-import scrollIntoView from '@element-plus/utils/scroll-into-view'
+import { UPDATE_MODEL_EVENT, CHANGE_EVENT } from '@tongjiaoui-plus/utils/constants'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { t } from '@tongjiaoui-plus/locale'
+import isServer from '@tongjiaoui-plus/utils/isServer'
+import scrollIntoView from '@tongjiaoui-plus/utils/scroll-into-view'
 import lodashDebounce from 'lodash/debounce'
-import { isKorean } from '@element-plus/utils/isDef'
+import { isKorean } from '@tongjiaoui-plus/utils/isDef'
 import {
   getValueByPath,
   isIE,
   isEdge,
   useGlobalConfig,
-} from '@element-plus/utils/util'
-import { elFormKey, elFormItemKey } from '@element-plus/form'
+} from '@tongjiaoui-plus/utils/util'
+import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
 import isEqual from 'lodash/isEqual'
 import { isObject, toRawType } from '@vue/shared'
 
 import type { ComponentPublicInstance } from 'vue'
-import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 
 export function useSelectStates(props) {
   const selectEmitter = mitt()

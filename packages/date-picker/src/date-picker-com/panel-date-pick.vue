@@ -158,12 +158,12 @@ import {
   extractDateFormat,
   extractTimeFormat,
   TimePickPanel,
-} from '@element-plus/time-picker'
-import { t } from '@element-plus/locale'
-import TjInput from '@element-plus/input'
-import { ClickOutside } from '@element-plus/directives'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import TjButton from '@element-plus/button'
+} from '@tongjiaoui-plus/time-picker'
+import { t } from '@tongjiaoui-plus/locale'
+import TjInput from '@tongjiaoui-plus/input'
+import { ClickOutside } from '@tongjiaoui-plus/directives'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import TjButton from '@tongjiaoui-plus/button'
 import dayjs, { Dayjs } from 'dayjs'
 import DateTable from './basic-date-table.vue'
 import MonthTable from './basic-month-table.vue'

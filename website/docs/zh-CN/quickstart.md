@@ -4,11 +4,11 @@
 
 ### 使用 vue-cli@4.5
 
-我们为新版的 vue-cli 准备了相应的 [Tongjiao UI 插件](https://github.com/element-plus/vue-cli-plugin-element-plus)，你可以用它们快速地搭建一个基于 Tongjiao UI 的项目。
+我们为新版的 vue-cli 准备了相应的 [Tongjiao UI 插件](https://github.com/tongjiaoui-plus/vue-cli-plugin-tongjiaoui-plus)，你可以用它们快速地搭建一个基于 Tongjiao UI 的项目。
 
 ### 使用 Starter Kit
 
-我们提供了通用的[项目模板](https://github.com/element-plus/element-plus-starter)，你可以直接使用，另外我们还提供了 Vite [模板](https://github.com/element-plus/element-plus-vite-starter)。对于 Laravel 用户，我们也准备了相应的[模板](https://github.com/element-plus/element-plus-in-laravtj-starter)，同样可以直接下载使用。
+我们提供了通用的[项目模板](https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter)，你可以直接使用，另外我们还提供了 Vite [模板](https://github.com/tongjiaoui-plus/tongjiaoui-plus-vite-starter)。对于 Laravel 用户，我们也准备了相应的[模板](https://github.com/tongjiaoui-plus/tongjiaoui-plus-in-laravtj-starter)，同样可以直接下载使用。
 
 如果不希望使用我们提供的模板，请继续阅读。
 
@@ -22,12 +22,12 @@
 
 ```javascript
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/lib/theme-chalk/index.css'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
+import 'tongjiaoui-plus/lib/theme-chalk/index.css'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus)
+app.use(TongjiaoUIPlus)
 app.mount('#app')
 ```
 
@@ -57,11 +57,11 @@ module.exports = {
     [
       'import',
       {
-        libraryName: 'element-plus',
+        libraryName: 'tongjiaoui-plus',
         customStyleName: name => {
           // 由于 customStyleName 在配置中被声明的原因，`style: true` 会被直接忽略掉，
           // 如果你需要使用 scss 源文件，把文件结尾的扩展名从 `.css` 替换成 `.scss` 就可以了
-          return `element-plus/lib/theme-chalk/${name}.css`
+          return `tongjiaoui-plus/lib/theme-chalk/${name}.css`
         },
       },
     ],
@@ -73,7 +73,7 @@ module.exports = {
 
 ```javascript
 import { createApp } from 'vue'
-import { TjButton, TjSelect } from 'element-plus'
+import { TjButton, TjSelect } from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -88,7 +88,7 @@ app.component(TjSelect.name, TjSelect)
 app.mount('#app')
 ```
 
-完整组件列表和引入方式（完整组件列表以 [reference](https://github.com/element-plus/element-plus/tree/dev/packages) 为准）
+完整组件列表和引入方式（完整组件列表以 [reference](https://github.com/tongjiaoui-plus/tongjiaoui-plus/tree/dev/packages) 为准）
 
 ```javascript
 import { createApp } from 'vue'
@@ -177,7 +177,7 @@ import {
   TjMessage,
   TjMessageBox,
   TjNotification,
-} from 'element-plus'
+} from 'tongjiaoui-plus'
 
 const components = [
   TjAlert,
@@ -287,18 +287,18 @@ plugins.forEach(plugin => {
 
 ```js
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus, { size: 'small', zIndex: 3000 })
+app.use(TongjiaoUIPlus, { size: 'small', zIndex: 3000 })
 ```
 
 按需引入 Element：
 
 ```js
 import { createApp } from 'vue'
-import { TjButton } from 'element-plus'
+import { TjButton } from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)

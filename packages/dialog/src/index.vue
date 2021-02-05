@@ -62,10 +62,10 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { TrapFocus } from '@element-plus/directives'
-import { isValidWidthUnit } from '@element-plus/utils/validators'
+import { TrapFocus } from '@tongjiaoui-plus/directives'
+import { isValidWidthUnit } from '@tongjiaoui-plus/utils/validators'
 
-import { Overlay } from '@element-plus/overlay'
+import { Overlay } from '@tongjiaoui-plus/overlay'
 import {
   default as useDialog,
   CLOSE_EVENT,

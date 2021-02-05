@@ -14,20 +14,20 @@ Este sitio, le permitirá obtener una vista previa del tema con un nuevo color e
 
 ```html
 /* Color del tema */ $--color-primary: teal; /* Ubicación de la fuente,
-obligatoria */ $--font-path: '~element-plus/lib/theme-chalk/fonts'; @import
-"~element-plus/packages/theme-chalk/src/index";
+obligatoria */ $--font-path: '~tongjiaoui-plus/lib/theme-chalk/fonts'; @import
+"~tongjiaoui-plus/packages/theme-chalk/src/index";
 ```
 
 Entonces, en el archivo principal del proyecto, importe este archivo de estilos en lugar de los estilos de Element:
 
 ```JS
 import Vue from 'vue'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 import './element-variables.scss'
 import App from './App.vue';
 
 const app = createApp(App)
-app.use(ElementPlus)
+app.use(TongjiaoUIPlus)
 ```
 
 :::tip
@@ -116,9 +116,9 @@ Importing your own theme is just like importing the default theme, only this tim
 ```javascript
 import { createApp } from 'vue'
 import '../theme/index.css'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 
-createApp(App).use(ElementPlus)
+createApp(App).use(TongjiaoUIPlus)
 ```
 
 #### <strong>Importar un tema de componente bajo demanda</strong>
@@ -131,7 +131,7 @@ Si esta utilizando `babel-plugin-component` para importar bajo demanda, solo deb
     [
       "component",
       {
-        "libraryName": "element-plus",
+        "libraryName": "tongjiaoui-plus",
         "styleLibraryName": "~theme"
       }
     ]

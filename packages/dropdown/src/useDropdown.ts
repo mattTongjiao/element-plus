@@ -1,7 +1,7 @@
 import { inject, computed, ref } from 'vue'
-import { generateId, useGlobalConfig } from '@element-plus/utils/util'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { on, addClass } from '@element-plus/utils/dom'
+import { generateId, useGlobalConfig } from '@tongjiaoui-plus/utils/util'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { on, addClass } from '@tongjiaoui-plus/utils/dom'
 import { ITjDropdownInstance } from './dropdown'
 
 export const useDropdown = () => {

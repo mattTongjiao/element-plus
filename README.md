@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.org/package/element-plus">
-    <img src="https://img.shields.io/npm/v/element-plus.svg">
+  <a href="https://www.npmjs.org/package/tongjiaoui-plus">
+    <img src="https://img.shields.io/npm/v/tongjiaoui-plus.svg">
   </a>
-  <a href="https://npmcharts.com/compare/element-plus?minimal=true">
-    <img src="http://img.shields.io/npm/dm/element-plus.svg">
+  <a href="https://npmcharts.com/compare/tongjiaoui-plus?minimal=true">
+    <img src="http://img.shields.io/npm/dm/tongjiaoui-plus.svg">
   </a>
   <br>
 </p>
@@ -21,7 +21,7 @@
 
 This project is still under heavy development. Feel free to join us and make your first pull request.
 
-[![Edit element-plus](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/element-plus-ncxnt?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit tongjiaoui-plus](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/tongjiaoui-plus-ncxnt?fontsize=14&hidenavigation=1&theme=dark)
 
 <br/>
 <p align="center">
@@ -49,11 +49,11 @@ This project is still under heavy development. Feel free to join us and make you
 
 ## Documentation
 
-You can find for more details, API, and other docs on [https://element-plus.org](https://element-plus.org/)
+You can find for more details, API, and other docs on [https://tongjiaoui-plus.org](https://tongjiaoui-plus.org/)
 
-国内[加速镜像站点](https://element-plus.gitee.io/)
+国内[加速镜像站点](https://tongjiaoui-plus.gitee.io/)
 
-Join our [Discord](https://discord.link/ElementPlus) to start communicating with everybody.
+Join our [Discord](https://discord.link/TongjiaoUIPlus) to start communicating with everybody.
 
 ## Bootstrap project
 
@@ -84,7 +84,7 @@ $ yarn website-dev:play
 
 ## Component migration process
 
-1. Convert the item in https://github.com/element-plus/element-plus/projects/1 to an issue
+1. Convert the item in https://github.com/tongjiaoui-plus/tongjiaoui-plus/projects/1 to an issue
 2. Assign yourself to the issue
 3. Author your component by generating new component command below
 4. Migrate tests and docs

@@ -8,7 +8,7 @@ Nous sommes ravis que vous souhaitiez contribuer à Tongjiao UI. Avant de soumet
 
 ## Concernant les issues
 
-- Les issues concernent exclusivement les bugs, les demandes de fonctionnalités et les sujets liés à la conception. Les questions concernant d'autres sujets peuvent être fermées directement. Si vous avez des questions à propos de l'utilisation d'Tongjiao UI, veuillez vous rendre sur [Discord](https://discord.link/ElementPlus) pour obtenir de l'aide.
+- Les issues concernent exclusivement les bugs, les demandes de fonctionnalités et les sujets liés à la conception. Les questions concernant d'autres sujets peuvent être fermées directement. Si vous avez des questions à propos de l'utilisation d'Tongjiao UI, veuillez vous rendre sur [Discord](https://discord.link/TongjiaoUIPlus) pour obtenir de l'aide.
 
 - Avant de soumettre une issue, veuillez vérifier si des problèmes similaires n'ont pas déjà été signalés.
 

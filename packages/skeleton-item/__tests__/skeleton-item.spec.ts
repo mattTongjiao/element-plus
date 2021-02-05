@@ -1,4 +1,4 @@
-import makeMount from '@element-plus/test-utils/make-mount'
+import makeMount from '@tongjiaoui-plus/test-utils/make-mount'
 import SkeletonItem from '../src/index.vue'
 
 describe('<skeleton-item />', () => {

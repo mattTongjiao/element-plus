@@ -44,9 +44,9 @@
 </template>
 
 <script lang="ts">
-import { hasClass } from '@element-plus/utils/dom'
-import { rangeArr } from '@element-plus/time-picker'
-import { coerceTruthyValueToArray } from '@element-plus/utils/util'
+import { hasClass } from '@tongjiaoui-plus/utils/dom'
+import { rangeArr } from '@tongjiaoui-plus/time-picker'
+import { coerceTruthyValueToArray } from '@tongjiaoui-plus/utils/util'
 import { defineComponent, computed, PropType } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 

@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import { Option } from '@element-plus/select'
+import { Option } from '@tongjiaoui-plus/select'
 
 Option.install = (app: App): void => {
   app.component(Option.name, Option)

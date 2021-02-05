@@ -24,16 +24,16 @@ import TjCascaderMenu from './menu.vue'
 import Store from './store'
 import Node from './node'
 import isEqual from 'lodash/isEqual'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { UPDATE_MODEL_EVENT, CHANGE_EVENT } from '@element-plus/utils/constants'
-import isServer from '@element-plus/utils/isServer'
-import scrollIntoView from '@element-plus/utils/scroll-into-view'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { UPDATE_MODEL_EVENT, CHANGE_EVENT } from '@tongjiaoui-plus/utils/constants'
+import isServer from '@tongjiaoui-plus/utils/isServer'
+import scrollIntoView from '@tongjiaoui-plus/utils/scroll-into-view'
 import {
   arrayFlat,
   coerceTruthyValueToArray,
   deduplicate,
   isEmpty,
-} from '@element-plus/utils/util'
+} from '@tongjiaoui-plus/utils/util'
 import { CommonProps, useCascaderConfig } from './config'
 import {
   checkNode,

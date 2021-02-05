@@ -5,21 +5,21 @@
 Installing with npm is recommended and it works seamlessly with [webpack](https://webpack.js.org/).
 
 ```shell
-npm install element-plus --save
+npm install tongjiaoui-plus --save
 ```
 
 ### CDN
 
-Get the latest version from [unpkg.com/element-plus](https://unpkg.com/element-plus/) , and import JavaScript and CSS file in your page.
+Get the latest version from [unpkg.com/tongjiaoui-plus](https://unpkg.com/tongjiaoui-plus/) , and import JavaScript and CSS file in your page.
 
 ```html
 <!-- import CSS -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/element-plus/lib/theme-chalk/index.css"
+  href="https://unpkg.com/tongjiaoui-plus/lib/theme-chalk/index.css"
 />
 <!-- import JavaScript -->
-<script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
+<script src="https://unpkg.com/tongjiaoui-plus/lib/index.full.js"></script>
 ```
 
 :::tip

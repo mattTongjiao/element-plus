@@ -4,7 +4,7 @@ import {
   shallowRef,
   watchEffect,
 } from 'vue'
-import { entries } from '@element-plus/utils/util'
+import { entries } from '@tongjiaoui-plus/utils/util'
 
 interface Params {
   excludeListeners?: boolean

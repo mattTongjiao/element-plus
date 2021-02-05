@@ -201,7 +201,7 @@
 ### ローカルインポート
 
 ```javascript
-import { TjMessage } from 'element-plus'
+import { TjMessage } from 'tongjiaoui-plus'
 ```
 
 この場合は `TjMessage(options)` を呼び出す必要があります。また、`TjMessage.success(options)`のように、異なるタイプのメソッドも登録しています。すべてのインスタンスを手動で閉じるには、`TjMessage.closeAll()`を呼び出すことができます。

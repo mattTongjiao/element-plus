@@ -14,20 +14,20 @@ Tongjiao UI のテーマカラーを変更したいなら、[テーマプレビ�
 
 ```html
 /* theme color */ $--color-primary: teal; /* icon font path, required */
-$--font-path: '~element-plus/lib/theme-chalk/fonts'; @import
-"~element-plus/packages/theme-chalk/src/index";
+$--font-path: '~tongjiaoui-plus/lib/theme-chalk/fonts'; @import
+"~tongjiaoui-plus/packages/theme-chalk/src/index";
 ```
 
 そして、プロジェクトのエントリーファイルで、Tongjiao UI の内蔵 CSS の代わりにこのスタイルファイルをインポートします。:
 
 ```JS
 import Vue from 'vue'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 import './element-variables.scss'
 import App from './App.vue';
 
 const app = createApp(App)
-app.use(ElementPlus)
+app.use(TongjiaoUIPlus)
 ```
 
 :::tip
@@ -116,9 +116,9 @@ et
 ```javascript
 import { createApp } from 'vue'
 import '../theme/index.css'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 
-createApp(App).use(ElementPlus)
+createApp(App).use(TongjiaoUIPlus)
 ```
 
 #### <strong>コンポーネントテーマをオンデマンドでインポート</strong>
@@ -131,7 +131,7 @@ createApp(App).use(ElementPlus)
     [
       "component",
       {
-        "libraryName": "element-plus",
+        "libraryName": "tongjiaoui-plus",
         "styleLibraryName": "~theme"
       }
     ]

@@ -57,10 +57,10 @@ import {
   onMounted,
   ComponentPublicInstance,
 } from 'vue'
-import { on, addClass, removeClass } from '@element-plus/utils/dom'
-import TjButton from '@element-plus/button'
-import TjButtonGroup from '@element-plus/button-group'
-import TjPopper from '@element-plus/popper'
+import { on, addClass, removeClass } from '@tongjiaoui-plus/utils/dom'
+import TjButton from '@tongjiaoui-plus/button'
+import TjButtonGroup from '@tongjiaoui-plus/button-group'
+import TjPopper from '@tongjiaoui-plus/popper'
 import { useDropdown } from './useDropdown'
 
 export default defineComponent({

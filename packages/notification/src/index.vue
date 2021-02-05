@@ -48,8 +48,8 @@
 <script lang="ts">
 import { defineComponent, computed, ref, onMounted, onBeforeUnmount } from 'vue'
 // notificationVM is an alias of vue.VNode
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { on, off } from '@element-plus/utils/dom'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { on, off } from '@tongjiaoui-plus/utils/dom'
 
 import type { PropType } from 'vue'
 import type { NotificationVM } from './notification.type'

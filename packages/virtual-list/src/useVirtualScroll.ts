@@ -1,7 +1,7 @@
 import { ref, computed, watch } from 'vue'
-import isServer from '@element-plus/utils/isServer'
-import { $ } from '@element-plus/utils/util'
-import throwError from '@element-plus/utils/error'
+import isServer from '@tongjiaoui-plus/utils/isServer'
+import { $ } from '@tongjiaoui-plus/utils/util'
+import throwError from '@tongjiaoui-plus/utils/error'
 
 export type Direction = 'h' | 'v'
 export type Alignment = 'head' | 'center' | 'tail'

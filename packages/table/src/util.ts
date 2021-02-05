@@ -1,9 +1,9 @@
-import { PopperInstance, IPopperOptions } from '@element-plus/popper'
-import { getValueByPath } from '@element-plus/utils/util'
-import { off, on } from '@element-plus/utils/dom'
+import { PopperInstance, IPopperOptions } from '@tongjiaoui-plus/popper'
+import { getValueByPath } from '@tongjiaoui-plus/utils/util'
+import { off, on } from '@tongjiaoui-plus/utils/dom'
 import { createPopper } from '@popperjs/core'
 import { AnyObject, TableColumnCtx } from './table.type'
-import PopupManager from '@element-plus/utils/popup-manager'
+import PopupManager from '@tongjiaoui-plus/utils/popup-manager'
 
 export const getCell = function(event: Event): HTMLElement {
   let cell = event.target as HTMLElement

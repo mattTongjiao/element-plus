@@ -59,15 +59,15 @@ import {
   onMounted,
   onUpdated,
 } from 'vue'
-import { RepeatClick } from '@element-plus/directives'
-import TjInput from '@element-plus/input'
-import { useGlobalConfig } from '@element-plus/utils/util'
-import { isValidComponentSize } from '@element-plus/utils/validators'
-import { elFormKey, elFormItemKey } from '@element-plus/form'
+import { RepeatClick } from '@tongjiaoui-plus/directives'
+import TjInput from '@tongjiaoui-plus/input'
+import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
+import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
 import { toRawType } from '@vue/shared'
 
 import type { PropType } from 'vue'
-import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 
 interface IData {
   currentValue: number | string

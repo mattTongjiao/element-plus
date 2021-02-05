@@ -1,5 +1,5 @@
 {
-  "name": "@element-plus/badge",
+  "name": "@tongjiaoui-plus/badge",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -7,7 +7,7 @@
     "vue": "^3.0.5"
   },
   "devDependencies": {
-    "@element-plus/button": "^0.0.0",
+    "@tongjiaoui-plus/button": "^0.0.0",
     "@vue/test-utils": "^2.0.0-beta.3"
   }
 }

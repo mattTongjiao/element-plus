@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts">
-import { t } from '@element-plus/locale'
-import { coerceTruthyValueToArray } from '@element-plus/utils/util'
+import { t } from '@tongjiaoui-plus/locale'
+import { coerceTruthyValueToArray } from '@tongjiaoui-plus/utils/util'
 
 import { defineComponent, computed, ref, PropType } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
@@ -169,10 +169,12 @@ export default defineComponent({
           cell.inRange =
             (props.minDate &&
               calTime.isSameOrAfter(props.minDate, 'day') &&
-              calEndDate && calTime.isSameOrBefore(calEndDate, 'day')) ||
+              calEndDate &&
+              calTime.isSameOrBefore(calEndDate, 'day')) ||
             (props.minDate &&
               calTime.isSameOrBefore(props.minDate, 'day') &&
-              calEndDate && calTime.isSameOrAfter(calEndDate, 'day'))
+              calEndDate &&
+              calTime.isSameOrAfter(calEndDate, 'day'))
 
           if (props.minDate?.isSameOrAfter(calEndDate)) {
             cell.start = calEndDate && calTime.isSame(calEndDate, 'day')

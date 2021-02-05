@@ -1,7 +1,7 @@
 import { h, getCurrentInstance, computed } from 'vue'
 import useEvents from './events-helper'
 import useStyles from './styles-helper'
-import { arrayFindIndex } from '@element-plus/utils/util'
+import { arrayFindIndex } from '@tongjiaoui-plus/utils/util'
 import { getRowIdentity } from '../util'
 import { TableBodyProps } from './table-body'
 import { RenderRowData, AnyObject, Table } from '../table.type'

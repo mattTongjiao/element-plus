@@ -272,7 +272,7 @@ Tongjiao UI 为 `app.config.globalProperties` 添加了全局方法 `$notify`。
 ### 单独引用
 
 ```javascript
-import { TjNotification } from 'element-plus'
+import { TjNotification } from 'tongjiaoui-plus'
 ```
 
 此时调用方法为 `TjNotification(options)`。我们也为每个 type 定义了各自的方法，如 `TjNotification.success(options)`。并且可以调用 `TjNotification.closeAll()` 手动关闭所有实例。

@@ -266,7 +266,7 @@ Tongjiao UI has added a global method `$notify` for `app.config.globalProperties
 ### Local import
 
 ```javascript
-import { TjNotification } from 'element-plus'
+import { TjNotification } from 'tongjiaoui-plus'
 ```
 
 In this case you should call `TjNotification(options)`. We have also registered methods for different types, e.g. `TjNotification.success(options)`. You can call `TjNotification.closeAll()` to manually close all the instances.

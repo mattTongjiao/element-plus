@@ -162,7 +162,7 @@ Muestra una animación de pantalla completa mientras se cargan los datos
 Puede invocar el componente con un servicio. Importe el servicio:
 
 ```javascript
-import { TjLoading } from 'element-plus'
+import { TjLoading } from 'tongjiaoui-plus'
 ```
 
 Invocar:

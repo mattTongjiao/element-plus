@@ -162,7 +162,7 @@
 サービスで Loading を呼び出すこともできます。Loading サービスをインポートします:
 
 ```javascript
-import { TjLoading } from 'element-plus'
+import { TjLoading } from 'tongjiaoui-plus'
 ```
 
 呼び出す:

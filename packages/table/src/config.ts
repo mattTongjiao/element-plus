@@ -1,5 +1,5 @@
-import { getPropByPath } from '@element-plus/utils/util'
-import TjCheckbox from '@element-plus/checkbox'
+import { getPropByPath } from '@tongjiaoui-plus/utils/util'
+import TjCheckbox from '@tongjiaoui-plus/checkbox'
 import { h } from 'vue'
 import { Store, TreeNode, AnyObject, TableColumnCtx } from './table.type'
 

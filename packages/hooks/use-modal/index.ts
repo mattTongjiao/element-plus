@@ -1,7 +1,7 @@
 import { watch } from 'vue'
-import { on } from '@element-plus/utils/dom'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import isServer from '@element-plus/utils/isServer'
+import { on } from '@tongjiaoui-plus/utils/dom'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import isServer from '@tongjiaoui-plus/utils/isServer'
 
 import type { Ref, ComputedRef } from 'vue'
 

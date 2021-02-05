@@ -40,11 +40,11 @@
 import { defineComponent, computed, ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import { isString } from '@vue/shared'
 import throttle from 'lodash/throttle'
-import { useAttrs } from '@element-plus/hooks'
-import isServer from '@element-plus/utils/isServer'
-import { on, off, getScrollContainer, isInContainer } from '@element-plus/utils/dom'
-import { t } from '@element-plus/locale'
-import ImageViewer from '@element-plus/image-viewer'
+import { useAttrs } from '@tongjiaoui-plus/hooks'
+import isServer from '@tongjiaoui-plus/utils/isServer'
+import { on, off, getScrollContainer, isInContainer } from '@tongjiaoui-plus/utils/dom'
+import { t } from '@tongjiaoui-plus/locale'
+import ImageViewer from '@tongjiaoui-plus/image-viewer'
 import type { PropType } from 'vue'
 
 const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined

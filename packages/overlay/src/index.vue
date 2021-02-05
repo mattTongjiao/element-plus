@@ -1,6 +1,6 @@
 <script lang="ts">
 import { createVNode, defineComponent, renderSlot, h } from 'vue'
-import { PatchFlags } from '@element-plus/utils/vnode'
+import { PatchFlags } from '@tongjiaoui-plus/utils/vnode'
 
 export default defineComponent({
   name: 'TjOverlay',

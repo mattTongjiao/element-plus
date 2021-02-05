@@ -30,8 +30,8 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import { useGlobalConfig } from '@element-plus/utils/util'
-import { isValidComponentSize } from '@element-plus/utils/validators'
+import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
 
 import type { PropType } from 'vue'
 

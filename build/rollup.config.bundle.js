@@ -11,7 +11,7 @@ const vue = require('rollup-plugin-vue')
 
 export default [
   {
-    input: path.resolve(__dirname, '../packages/element-plus/index.ts'),
+    input: path.resolve(__dirname, '../packages/tongjiaoui-plus/index.ts'),
     output: {
       format: 'es',
       file: 'lib/index.esm.js',
@@ -27,21 +27,14 @@ export default [
       }),
       typescript({
         tsconfigOverride: {
-          'include': [
-            'packages/**/*',
-            'typings/vue-shim.d.ts',
-          ],
-          'exclude': [
-            'node_modules',
-            'packages/**/__tests__/*',
-          ],
+          include: ['packages/**/*', 'typings/vue-shim.d.ts'],
+          exclude: ['node_modules', 'packages/**/__tests__/*'],
         },
         abortOnError: false,
       }),
     ],
     external(id) {
-      return /^vue/.test(id)
-        || deps.some(k => new RegExp('^' + k).test(id))
+      return /^vue/.test(id) || deps.some(k => new RegExp('^' + k).test(id))
     },
   },
 ]

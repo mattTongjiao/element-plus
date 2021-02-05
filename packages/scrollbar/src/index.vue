@@ -29,8 +29,8 @@
 import {
   addResizeListener,
   removeResizeListener,
-} from '@element-plus/utils/resize-event'
-import { toObject } from '@element-plus/utils/util'
+} from '@tongjiaoui-plus/utils/resize-event'
+import { toObject } from '@tongjiaoui-plus/utils/util'
 import {
   computed,
   defineComponent,

@@ -15,20 +15,24 @@ const deps = Object.keys(pkg.dependencies)
 const vue = require('./plugin.js')
 const inputs = getPackagesSync()
   .map(pkg => pkg.name)
-  .filter(name =>
-    name.includes('@element-plus') &&
-    !name.includes('transition') &&
-    !name.includes('utils'),
+  .filter(
+    name =>
+      name.includes('@tongjiaoui-plus') &&
+      !name.includes('transition') &&
+      !name.includes('utils'),
   )
 
 export default inputs.map(name => ({
-  input: path.resolve(__dirname, `../packages/${name.split('@element-plus/')[1]}/index.ts`),
+  input: path.resolve(
+    __dirname,
+    `../packages/${name.split('@tongjiaoui-plus/')[1]}/index.ts`,
+  ),
   output: {
     format: 'es',
-    file: `lib/${name.split('@element-plus/')[1]}/index.js`,
+    file: `lib/${name.split('@tongjiaoui-plus/')[1]}/index.js`,
     paths(id) {
-      if (/^@element-plus/.test(id)) {
-        return id.replace('@element-plus', '..')
+      if (/^@tongjiaoui-plus/.test(id)) {
+        return id.replace('@tongjiaoui-plus', '..')
       }
     },
   },
@@ -47,10 +51,7 @@ export default inputs.map(name => ({
         compilerOptions: {
           declaration: false,
         },
-        'exclude': [
-          'node_modules',
-          '__tests__',
-        ],
+        exclude: ['node_modules', '__tests__'],
       },
       abortOnError: false,
       clean: true,
@@ -62,8 +63,10 @@ export default inputs.map(name => ({
     }),
   ],
   external(id) {
-    return /^vue/.test(id)
-      || /^@element-plus/.test(id)
-      || deps.some(k => new RegExp('^' + k).test(id))
+    return (
+      /^vue/.test(id) ||
+      /^@tongjiaoui-plus/.test(id) ||
+      deps.some(k => new RegExp('^' + k).test(id))
+    )
   },
 }))

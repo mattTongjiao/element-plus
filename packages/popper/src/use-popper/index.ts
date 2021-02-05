@@ -8,8 +8,8 @@ import {
   isArray,
   isString,
   $,
-} from '@element-plus/utils/util'
-import PopupManager from '@element-plus/utils/popup-manager'
+} from '@tongjiaoui-plus/utils/util'
+import PopupManager from '@tongjiaoui-plus/utils/popup-manager'
 
 import usePopperOptions from './popper-options'
 

@@ -49,7 +49,7 @@ import {
 } from 'vue'
 import { IMenuItemProps, RootMenuProvider, SubMenuProvider } from './menu'
 import useMenu from './useMenu'
-import TjTooltip from '@element-plus/tooltip'
+import TjTooltip from '@tongjiaoui-plus/tooltip'
 
 export default defineComponent({
   name: 'TjMenuItem',

@@ -78,10 +78,10 @@ import {
   nextTick,
   PropType,
 } from 'vue'
-import { rafThrottle, isFirefox } from '@element-plus/utils/util'
-import { on, off } from '@element-plus/utils/dom'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { t } from '@element-plus/locale'
+import { rafThrottle, isFirefox } from '@tongjiaoui-plus/utils/util'
+import { on, off } from '@tongjiaoui-plus/utils/dom'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { t } from '@tongjiaoui-plus/locale'
 
 const Mode = {
   CONTAIN: {

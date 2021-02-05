@@ -87,8 +87,8 @@
 import { defineComponent, ref } from 'vue'
 import { NOOP } from '@vue/shared'
 
-import { t } from '@element-plus/locale'
-import TjProgress from '@element-plus/progress'
+import { t } from '@tongjiaoui-plus/locale'
+import TjProgress from '@tongjiaoui-plus/progress'
 
 import type { PropType } from 'vue'
 

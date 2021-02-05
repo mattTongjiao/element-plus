@@ -342,7 +342,7 @@ Bootstrap のレスポンシブデザインを例にとると、xs, sm, md, lg, 
 さらに、Tongjiao UI は、特定の条件下で要素を隠すための一連のクラスを提供します。これらのクラスは、任意の DOM 要素やカスタムコンポーネントに追加することができます。これらのクラスを使用するには、以下の CSS ファイルをインポートする必要があります。
 
 ```js
-import 'element-plus/lib/theme-chalk/display.css'
+import 'tongjiaoui-plus/lib/theme-chalk/display.css'
 ```
 
 クラス:

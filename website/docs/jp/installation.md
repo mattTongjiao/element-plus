@@ -5,21 +5,21 @@
 npm でインストールが推奨されており、[webpack](https://webpack.js.org/) でシームレスに動作します。
 
 ```shell
-npm install element-plus --save
+npm install tongjiaoui-plus --save
 ```
 
 ### CDN
 
-[unpkg.com/element-plus](https://unpkg.com/element-plus/) から最新版を手に入れ、ページに Javascript と CSS ファイルをインポートすれば動作します。
+[unpkg.com/tongjiaoui-plus](https://unpkg.com/tongjiaoui-plus/) から最新版を手に入れ、ページに Javascript と CSS ファイルをインポートすれば動作します。
 
 ```html
 <!-- import CSS -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/element-plus/lib/theme-chalk/index.css"
+  href="https://unpkg.com/tongjiaoui-plus/lib/theme-chalk/index.css"
 />
 <!-- import JavaScript -->
-<script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
+<script src="https://unpkg.com/tongjiaoui-plus/lib/index.full.js"></script>
 ```
 
 :::tip

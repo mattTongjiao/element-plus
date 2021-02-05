@@ -48,7 +48,7 @@ import { useNodeExpandEventBroadcast } from './model/useNodeExpandEventBroadcast
 import { useDragNodeHandler } from './model/useDragNode'
 import { useKeydown } from './model/useKeydown'
 import Node from './model/node'
-import { t } from '@element-plus/locale'
+import { t } from '@tongjiaoui-plus/locale'
 import {
   TreeComponentProps,
   TreeNodeData,

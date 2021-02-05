@@ -4,11 +4,11 @@
 
 ### vue-cli@4.5 を使う
 
-私達は vue-cli@4.5 のために [Tongjiao UI plugin](https://github.com/element-plus/vue-cli-plugin-element-plus) 提供しており, 簡単に Tongjiao UI ベースのプロジェクトを構築出来ます。
+私達は vue-cli@4.5 のために [Tongjiao UI plugin](https://github.com/tongjiaoui-plus/vue-cli-plugin-tongjiaoui-plus) 提供しており, 簡単に Tongjiao UI ベースのプロジェクトを構築出来ます。
 
 ### スターターキットを使う
 
-私達は一般的なツール[project template](https://github.com/element-plus/element-plus-starter) があります。 直接ダウンロードして使うことが出来ます。
+私達は一般的なツール[project template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter) があります。 直接ダウンロードして使うことが出来ます。
 
 これらのツールを使いたくない場合は、以下の記事を御覧ください。
 
@@ -22,12 +22,12 @@ main.js:
 
 ```javascript
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/lib/theme-chalk/index.css'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
+import 'tongjiaoui-plus/lib/theme-chalk/index.css'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus)
+app.use(TongjiaoUIPlus)
 app.mount('#app')
 ```
 
@@ -51,11 +51,11 @@ module.exports = {
     [
       'import',
       {
-        libraryName: 'element-plus',
+        libraryName: 'tongjiaoui-plus',
         customStyleName: name => {
           // `customStyleName` が存在するため、`style: true` は有効になりません。
           // そのため、`.scss` のソースファイルを使いたい場合は、拡張子を `.css` から `.scss` に置き換えるだけです。
-          return `element-plus/lib/theme-chalk/${name}.css`
+          return `tongjiaoui-plus/lib/theme-chalk/${name}.css`
         },
       },
     ],
@@ -67,7 +67,7 @@ module.exports = {
 
 ```javascript
 import { createApp } from 'vue'
-import { TjButton, TjSelect } from 'element-plus'
+import { TjButton, TjSelect } from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -82,7 +82,7 @@ app.component(TjSelect.name, TjSelect)
 app.mount('#app')
 ```
 
-全ての例 (コンポーネントリストのリファレンスは [reference](https://github.com/element-plus/element-plus/tree/dev/packages) を御覧ください)
+全ての例 (コンポーネントリストのリファレンスは [reference](https://github.com/tongjiaoui-plus/tongjiaoui-plus/tree/dev/packages) を御覧ください)
 
 ```javascript
 import { createApp } from 'vue'
@@ -171,7 +171,7 @@ import {
   TjMessage,
   TjMessageBox,
   TjNotification,
-} from 'element-plus'
+} from 'tongjiaoui-plus'
 
 const components = [
   TjAlert,
@@ -281,18 +281,18 @@ Tongjiao UI を完全にインポート：
 
 ```js
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus, { size: 'small', zIndex: 3000 })
+app.use(TongjiaoUIPlus, { size: 'small', zIndex: 3000 })
 ```
 
 Tongjiao UI を部分的にインポート：
 
 ```js
 import { createApp } from 'vue'
-import { TjButton } from 'element-plus'
+import { TjButton } from 'tongjiaoui-plus'
 import App from './App.vue'
 
 const app = createApp(App)

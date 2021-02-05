@@ -1,6 +1,6 @@
 import { nextTick, ref, isRef, Ref } from 'vue'
-import scrollbarWidth from '@element-plus/utils/scrollbar-width'
-import isServer from '@element-plus/utils/isServer'
+import scrollbarWidth from '@tongjiaoui-plus/utils/scrollbar-width'
+import isServer from '@tongjiaoui-plus/utils/isServer'
 import { parseHeight } from './util'
 import { AnyObject, Table, Store, TableHeader, TableColumnCtx } from './table.type'
 

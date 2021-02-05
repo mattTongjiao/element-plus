@@ -19,8 +19,8 @@
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import throttle from 'lodash/throttle'
-import { on, off } from '@element-plus/utils/dom'
-import { easeInOutCubic } from '@element-plus/utils/animation'
+import { on, off } from '@tongjiaoui-plus/utils/dom'
+import { easeInOutCubic } from '@tongjiaoui-plus/utils/animation'
 
 interface ITjBacktopProps {
   visibilityHeight: number

@@ -15,7 +15,10 @@ import {
   onUnmounted,
 } from 'vue'
 import mitt, { Emitter } from 'mitt'
-import { UPDATE_MODEL_EVENT, CHANGE_EVENT } from '@element-plus/utils/constants'
+import {
+  UPDATE_MODEL_EVENT,
+  CHANGE_EVENT,
+} from '@tongjiaoui-plus/utils/constants'
 
 export interface CollapseProvider {
   activeNames: Ref

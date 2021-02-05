@@ -5,7 +5,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { addClass, removeClass } from '@element-plus/utils/dom'
+import { addClass, removeClass } from '@tongjiaoui-plus/utils/dom'
 
 export default defineComponent({
   name: 'TjCollapseTransition',

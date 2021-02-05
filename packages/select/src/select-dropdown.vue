@@ -21,7 +21,7 @@ import {
   addResizeListener,
   removeResizeListener,
   ResizableElement,
-} from '@element-plus/utils/resize-event'
+} from '@tongjiaoui-plus/utils/resize-event'
 import { selectKey } from './token'
 
 export default defineComponent({

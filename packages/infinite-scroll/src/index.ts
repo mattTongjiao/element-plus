@@ -1,9 +1,9 @@
 import { nextTick } from 'vue'
 import { isFunction } from '@vue/shared'
 import throttle from 'lodash/throttle'
-import { entries } from '@element-plus/utils/util'
-import { getScrollContainer, getOffsetTopDistance } from '@element-plus/utils/dom'
-import throwError from '@element-plus/utils/error'
+import { entries } from '@tongjiaoui-plus/utils/util'
+import { getScrollContainer, getOffsetTopDistance } from '@tongjiaoui-plus/utils/dom'
+import throwError from '@tongjiaoui-plus/utils/error'
 import type { ObjectDirective, ComponentPublicInstance } from 'vue'
 
 export const SCOPE = 'TjInfiniteScroll'

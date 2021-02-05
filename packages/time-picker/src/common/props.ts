@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { isValidComponentSize } from '@element-plus/utils/validators'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
 export const defaultProps = {
   name: {
     type: [Array, String],

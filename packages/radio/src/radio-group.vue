@@ -22,14 +22,14 @@ import {
   toRefs,
   watch,
 } from 'vue'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import { isValidComponentSize } from '@element-plus/utils/validators'
-import { elFormItemKey } from '@element-plus/form'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
+import { elFormItemKey } from '@tongjiaoui-plus/form'
 import radioGroupKey from './token'
 
 import type { PropType } from 'vue'
-import type { TjFormItemContext } from '@element-plus/form'
+import type { TjFormItemContext } from '@tongjiaoui-plus/form'
 
 export default defineComponent({
   name: 'TjRadioGroup',

@@ -210,7 +210,7 @@
 
 <script>
   import { h, resolveComponent } from 'vue'
-  import { TjDivider } from 'element-plus'
+  import { TjDivider } from 'tongjiaoui-plus'
   export default {
     data() {
       return {

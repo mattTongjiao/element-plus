@@ -162,7 +162,7 @@ Show a full screen animation while loading data.
 You can also invoke Loading with a service. Import Loading service:
 
 ```javascript
-import { TjLoading } from 'element-plus'
+import { TjLoading } from 'tongjiaoui-plus'
 ```
 
 Invoke it:

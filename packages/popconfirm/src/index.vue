@@ -33,8 +33,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
-import TjButton from '@element-plus/button'
-import TjPopper from '@element-plus/popper'
+import TjButton from '@tongjiaoui-plus/button'
+import TjPopper from '@tongjiaoui-plus/popper'
 import { t } from '../../locale'
 
 export default defineComponent({

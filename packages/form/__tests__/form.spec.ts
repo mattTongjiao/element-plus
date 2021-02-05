@@ -2,10 +2,10 @@ import { nextTick } from 'vue'
 import { mount, VueWrapper } from '@vue/test-utils'
 import Form from '../src/form.vue'
 import FormItem from '../src/form-item.vue'
-import installStyle from '@element-plus/test-utils/style-plugin'
-import Input from '@element-plus/input/src/index.vue'
-import Checkbox from '@element-plus/checkbox/src/checkbox.vue'
-import CheckboxGroup from '@element-plus/checkbox/src/checkbox-group.vue'
+import installStyle from '@tongjiaoui-plus/test-utils/style-plugin'
+import Input from '@tongjiaoui-plus/input/src/index.vue'
+import Checkbox from '@tongjiaoui-plus/checkbox/src/checkbox.vue'
+import CheckboxGroup from '@tongjiaoui-plus/checkbox/src/checkbox-group.vue'
 
 type Methods = Record<string, () => any>
 function mountForm<D, M extends Methods, C>(

@@ -14,20 +14,20 @@ The above website enables you to preview theme of a new theme color in real-time
 
 ```html
 /* theme color */ $--color-primary: teal; /* icon font path, required */
-$--font-path: '~element-plus/lib/theme-chalk/fonts'; @import
-"~element-plus/packages/theme-chalk/src/index";
+$--font-path: '~tongjiaoui-plus/lib/theme-chalk/fonts'; @import
+"~tongjiaoui-plus/packages/theme-chalk/src/index";
 ```
 
 Then in the entry file of your project, import this style file instead of Element's built CSS:
 
 ```JS
 import Vue from 'vue'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 import './element-variables.scss'
 import App from './App.vue';
 
 const app = createApp(App)
-app.use(ElementPlus)
+app.use(TongjiaoUIPlus)
 ```
 
 :::tip
@@ -116,9 +116,9 @@ Importing your own theme is just like importing the default theme, only this tim
 ```javascript
 import { createApp } from 'vue'
 import '../theme/index.css'
-import ElementPlus from 'element-plus'
+import TongjiaoUIPlus from 'tongjiaoui-plus'
 
-createApp(App).use(ElementPlus)
+createApp(App).use(TongjiaoUIPlus)
 ```
 
 #### <strong>Import component theme on demand</strong>
@@ -131,7 +131,7 @@ If you are using `babel-plugin-component` for on-demand import, just modify `.ba
     [
       "component",
       {
-        "libraryName": "element-plus",
+        "libraryName": "tongjiaoui-plus",
         "styleLibraryName": "~theme"
       }
     ]

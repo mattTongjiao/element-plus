@@ -1,5 +1,5 @@
-import { addClass, removeClass } from '@element-plus/utils/dom'
-import isServer from '@element-plus/utils/isServer'
+import { addClass, removeClass } from '@tongjiaoui-plus/utils/dom'
+import isServer from '@tongjiaoui-plus/utils/isServer'
 import { defineComponent, getCurrentInstance, h, PropType, watch, onUnmounted } from 'vue'
 import { hColgroup } from '../h-helper'
 import useLayoutObserver from '../layout-observer'

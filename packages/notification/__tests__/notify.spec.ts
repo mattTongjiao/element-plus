@@ -1,6 +1,6 @@
 import { nextTick, h } from 'vue'
 import Notification, { closeAll } from '../src/notify'
-import { rAF } from '@element-plus/test-utils/tick'
+import { rAF } from '@tongjiaoui-plus/test-utils/tick'
 import type { INotificationHandle } from '../src/notification.type'
 
 const selector = '.tj-notification'

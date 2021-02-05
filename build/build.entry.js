@@ -1,5 +1,5 @@
 /* eslint-disable */
 
-const run = require('./build');
+const run = require('./build')
 
-run('index.js', './packages/element-plus', true)
+run('index.js', './packages/tongjiaoui-plus', true)

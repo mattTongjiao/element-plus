@@ -49,7 +49,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
 import { useCheckbox, useCheckboxGroup } from './useCheckbox'
 
 export default defineComponent({

@@ -60,8 +60,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import { isValidComponentSize } from '@element-plus/utils/validators'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
 import { useCheckbox } from './useCheckbox'
 
 export default defineComponent({

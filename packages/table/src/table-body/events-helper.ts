@@ -1,5 +1,5 @@
 import { getCurrentInstance, ref, h } from 'vue'
-import { getStyle, hasClass } from '@element-plus/utils/dom'
+import { getStyle, hasClass } from '@tongjiaoui-plus/utils/dom'
 import { createTablePopper, getCell, getColumnByCell } from '../util'
 import debounce from 'lodash/debounce'
 import { TableBodyProps } from './table-body'

@@ -34,7 +34,7 @@ import {
 import {
   autoprefixer,
   PartialCSSStyleDeclaration,
-} from '@element-plus/utils/util'
+} from '@tongjiaoui-plus/utils/util'
 import { InjectCarouselScope, ICarouselItemProps } from './carousel'
 
 const CARD_SCALE = 0.83

@@ -307,7 +307,7 @@
 如果单独引入 `MessageBox`：
 
 ```javascript
-import { TjMessageBox } from 'element-plus'
+import { TjMessageBox } from 'tongjiaoui-plus'
 ```
 
 那么对应于上述四个全局方法的调用方法依次为：TjMessageBox, TjMessageBox.alert, TjMessageBox.confirm 和 TjMessageBox.prompt，调用参数与全局方法相同。

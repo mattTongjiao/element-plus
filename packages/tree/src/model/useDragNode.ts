@@ -1,6 +1,6 @@
 import mitt, { Emitter } from 'mitt'
 import { inject, provide, ref } from 'vue'
-import { addClass, removeClass } from '@element-plus/utils/dom'
+import { addClass, removeClass } from '@tongjiaoui-plus/utils/dom'
 import Node from './node'
 
 interface TreeNode {

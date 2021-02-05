@@ -1,4 +1,4 @@
-import { CommonPicker } from '@element-plus/time-picker'
+import { CommonPicker } from '@tongjiaoui-plus/time-picker'
 import { mount } from '@vue/test-utils'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'

@@ -10,7 +10,7 @@ import {
 } from 'vue'
 import { cellStarts } from '../config'
 import { mergeOptions, compose } from '../util'
-import TjCheckbox from '@element-plus/checkbox'
+import TjCheckbox from '@tongjiaoui-plus/checkbox'
 import { TableColumnCtx, TableColumn } from '../table.type'
 import useWatcher from './watcher-helper'
 import useRender from './render-helper'

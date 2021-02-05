@@ -1,6 +1,6 @@
 import { App } from 'vue'
 import Space from './src/index'
-import type { SFCWithInstall } from '@element-plus/utils/types'
+import type { SFCWithInstall } from '@tongjiaoui-plus/utils/types'
 
 Space.install = (app: App): void => {
   app.component(Space.name, Space)

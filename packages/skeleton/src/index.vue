@@ -27,8 +27,8 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import SkeletonItem from '@element-plus/skeleton-item'
-import { useThrottleRender } from '@element-plus/hooks'
+import SkeletonItem from '@tongjiaoui-plus/skeleton-item'
+import { useThrottleRender } from '@tongjiaoui-plus/hooks'
 
 export default defineComponent({
   name: 'TjSkeleton',

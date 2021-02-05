@@ -89,7 +89,7 @@
 </template>
 
 <script lang="ts">
-import { t } from '@element-plus/locale'
+import { t } from '@tongjiaoui-plus/locale'
 import MonthTable from './basic-month-table.vue'
 import dayjs, { Dayjs } from 'dayjs'
 import { defineComponent, computed, ref, PropType, watch, inject } from 'vue'

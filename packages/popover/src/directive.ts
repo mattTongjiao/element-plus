@@ -1,5 +1,5 @@
 import type { DirectiveBinding, VNode, ObjectDirective } from 'vue'
-import { on } from '@element-plus/utils/dom'
+import { on } from '@tongjiaoui-plus/utils/dom'
 
 interface PopoverInstance {
   events: Record<string, EventListenerOrEventListenerObject>

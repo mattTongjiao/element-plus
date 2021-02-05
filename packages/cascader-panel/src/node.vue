@@ -62,8 +62,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, inject, h } from 'vue'
-import TjCheckbox from '@element-plus/checkbox'
-import TjRadio from '@element-plus/radio'
+import TjCheckbox from '@tongjiaoui-plus/checkbox'
+import TjRadio from '@tongjiaoui-plus/radio'
 import {
   CascaderNode,
   CASCADER_PANEL_INJECTION_KEY,

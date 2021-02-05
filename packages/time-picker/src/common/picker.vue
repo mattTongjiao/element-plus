@@ -125,13 +125,13 @@ import {
   provide,
 } from 'vue'
 import dayjs from 'dayjs'
-import { ClickOutside } from '@element-plus/directives'
-import TjInput from '@element-plus/input'
-import TjPopper from '@element-plus/popper'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { useGlobalConfig } from '@element-plus/utils/util'
-import { elFormKey, elFormItemKey } from '@element-plus/form'
-import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
+import { ClickOutside } from '@tongjiaoui-plus/directives'
+import TjInput from '@tongjiaoui-plus/input'
+import TjPopper from '@tongjiaoui-plus/popper'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
+import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 import { defaultProps } from './props'
 
 interface PickerOptions {

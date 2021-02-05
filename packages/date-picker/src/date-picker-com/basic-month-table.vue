@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts">
-import { hasClass } from '@element-plus/utils/dom'
-import { coerceTruthyValueToArray } from '@element-plus/utils/util'
-import { rangeArr } from '@element-plus/time-picker'
-import { t } from '@element-plus/locale'
+import { hasClass } from '@tongjiaoui-plus/utils/dom'
+import { coerceTruthyValueToArray } from '@tongjiaoui-plus/utils/util'
+import { rangeArr } from '@tongjiaoui-plus/time-picker'
+import { t } from '@tongjiaoui-plus/locale'
 import dayjs, { Dayjs } from 'dayjs'
 
 import { defineComponent, computed, ref, PropType } from 'vue'
@@ -112,10 +112,12 @@ export default defineComponent({
           cell.inRange =
             (props.minDate &&
               calTime.isSameOrAfter(props.minDate, 'month') &&
-              calEndDate && calTime.isSameOrBefore(calEndDate, 'month')) ||
+              calEndDate &&
+              calTime.isSameOrBefore(calEndDate, 'month')) ||
             (props.minDate &&
               calTime.isSameOrBefore(props.minDate, 'month') &&
-              calEndDate && calTime.isSameOrAfter(calEndDate, 'month'))
+              calEndDate &&
+              calTime.isSameOrAfter(calEndDate, 'month'))
 
           if (props.minDate?.isSameOrAfter(calEndDate)) {
             cell.start = calEndDate && calTime.isSame(calEndDate, 'month')

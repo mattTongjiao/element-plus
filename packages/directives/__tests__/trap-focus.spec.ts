@@ -1,6 +1,6 @@
 import { nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
-import * as Aria from '@element-plus/utils/aria'
+import * as Aria from '@tongjiaoui-plus/utils/aria'
 
 const isVisibleMock = jest
   .spyOn(Aria, 'isVisible')

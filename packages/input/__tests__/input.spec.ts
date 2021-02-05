@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { mount } from '@vue/test-utils'
-import { sleep, defineGetter } from '@element-plus/test-utils'
+import { sleep, defineGetter } from '@tongjiaoui-plus/test-utils'
 import Input from '../src/index.vue'
 
 const _mount = options => mount({

@@ -6,13 +6,13 @@ import {
   watch,
 } from 'vue'
 import { toTypeString } from '@vue/shared'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import { useGlobalConfig } from '@element-plus/utils/util'
-import { PartialReturnType } from '@element-plus/utils/types'
-import { elFormKey, elFormItemKey } from '@element-plus/form'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
+import { PartialReturnType } from '@tongjiaoui-plus/utils/types'
+import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
 import { ICheckboxGroupInstance, ICheckboxProps } from './checkbox.type'
 
-import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 
 export const useCheckboxGroup = () => {
   const ELEMENT = useGlobalConfig()

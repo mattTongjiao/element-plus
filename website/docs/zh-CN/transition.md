@@ -151,9 +151,9 @@ Tongjiao UI 内应用在部分组件的过渡动画，你也可以直接使用�
 
 ```js
 // fade/zoom 等
-import 'element-plus/lib/theme-chalk/base.css'
+import 'tongjiaoui-plus/lib/theme-chalk/base.css'
 // collapse 展开折叠
-import { TjCollapseTransition } from 'element-plus'
+import { TjCollapseTransition } from 'tongjiaoui-plus'
 import Vue from 'vue'
 
 Vue.component(TjCollapseTransition.name, TjCollapseTransition)

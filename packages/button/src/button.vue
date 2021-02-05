@@ -25,12 +25,12 @@
 
 <script lang="ts">
 import { computed, inject, defineComponent } from 'vue'
-import { useGlobalConfig } from '@element-plus/utils/util'
-import { isValidComponentSize } from '@element-plus/utils/validators'
-import { elFormKey, elFormItemKey } from '@element-plus/form'
+import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
+import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
+import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
 
 import type { PropType } from 'vue'
-import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 
 type IButtonType = PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text' | 'default'>
 type IButtonNativeType = PropType<'button' | 'submit' | 'reset'>

@@ -32,8 +32,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
-import TjSelect from '@element-plus/select'
-import TjOption from '@element-plus/option'
+import TjSelect from '@tongjiaoui-plus/select'
+import TjOption from '@tongjiaoui-plus/option'
 interface Time {
   hours: number
   minutes: number

@@ -18,7 +18,7 @@ import {
   addResizeListener,
   removeResizeListener,
   ResizableElement,
-} from '@element-plus/utils/resize-event'
+} from '@tongjiaoui-plus/utils/resize-event'
 
 export default defineComponent({
   name: 'TjLabelWrap',

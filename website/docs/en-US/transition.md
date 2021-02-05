@@ -151,9 +151,9 @@ For collapse effect, use the `tj-collapse-transition` component.
 
 ```js
 // fade/zoom
-import 'element-plus/lib/theme-chalk/base.css'
+import 'tongjiaoui-plus/lib/theme-chalk/base.css'
 // collapse
-import { TjCollapseTransition } from 'element-plus'
+import { TjCollapseTransition } from 'tongjiaoui-plus'
 import Vue from 'vue'
 
 Vue.component(TjCollapseTransition.name, TjCollapseTransition)

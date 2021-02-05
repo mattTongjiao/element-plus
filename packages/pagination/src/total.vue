@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { t } from '@element-plus/locale'
+import { t } from '@tongjiaoui-plus/locale'
 
 export default defineComponent({
   name: 'Total',

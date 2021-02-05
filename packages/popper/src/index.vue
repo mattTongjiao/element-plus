@@ -13,14 +13,14 @@ import {
   withDirectives,
 } from 'vue'
 
-import throwError from '@element-plus/utils/error'
-import { PatchFlags, renderBlock } from '@element-plus/utils/vnode'
+import throwError from '@tongjiaoui-plus/utils/error'
+import { PatchFlags, renderBlock } from '@tongjiaoui-plus/utils/vnode'
 
 import usePopper from './use-popper/index'
 import defaultProps from './use-popper/defaults'
 
 import { renderPopper, renderTrigger, renderArrow } from './renderers'
-import { ClickOutside } from '@element-plus/directives'
+import { ClickOutside } from '@tongjiaoui-plus/directives'
 
 const compName = 'TjPopper'
 const UPDATE_VISIBLE_EVENT = 'update:visible'

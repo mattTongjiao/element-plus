@@ -58,7 +58,7 @@ function genInlineComponentText(template, script) {
     )
   }
   let demoComponentContent = `
-    ${(compiled.code).replace('return function render','function render')}
+    ${compiled.code.replace('return function render', 'function render')}
   `
   // todo: 这里采用了硬编码有待改进
   script = script.trim()
@@ -66,7 +66,10 @@ function genInlineComponentText(template, script) {
     script = script
       .replace(/export\s+default/, 'const democomponentExport =')
       .replace(/import ({.*}) from 'vue'/g, (s, s1) => `const ${s1} = Vue`)
-      .replace(/import ({.*}) from 'element-plus'/g, (s, s1) => `const ${s1} = require('element-plus')`)
+      .replace(
+        /import ({.*}) from 'tongjiaoui-plus'/g,
+        (s, s1) => `const ${s1} = require('tongjiaoui-plus')`,
+      )
   } else {
     script = 'const democomponentExport = {}'
   }

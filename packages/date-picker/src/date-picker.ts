@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import { DEFAULT_FORMATS_DATE, DEFAULT_FORMATS_DATEPICKER } from '@element-plus/time-picker'
-import { CommonPicker, defaultProps } from '@element-plus/time-picker'
+import { DEFAULT_FORMATS_DATE, DEFAULT_FORMATS_DATEPICKER } from '@tongjiaoui-plus/time-picker'
+import { CommonPicker, defaultProps } from '@tongjiaoui-plus/time-picker'
 import DatePickPanel from './date-picker-com/panel-date-pick.vue'
 import DateRangePickPanel from './date-picker-com/panel-date-range.vue'
 import MonthRangePickPanel from './date-picker-com/panel-month-range.vue'

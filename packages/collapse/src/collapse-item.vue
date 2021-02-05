@@ -50,8 +50,8 @@
 <script lang="ts">
 import { defineComponent, PropType, inject, computed, ref } from 'vue'
 import { CollapseProvider } from './collapse'
-import { generateId } from '@element-plus/utils/util'
-import TjCollapseTransition from '@element-plus/collapse-transition'
+import { generateId } from '@tongjiaoui-plus/utils/util'
+import TjCollapseTransition from '@tongjiaoui-plus/collapse-transition'
 
 export default defineComponent({
   name: 'TjCollapseItem',

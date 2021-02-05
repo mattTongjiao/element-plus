@@ -88,8 +88,8 @@ import {
   PropType,
   ComponentInternalInstance,
 } from 'vue'
-import TjCollapseTransition from '@element-plus/collapse-transition'
-import TjCheckbox from '@element-plus/checkbox'
+import TjCollapseTransition from '@tongjiaoui-plus/collapse-transition'
+import TjCheckbox from '@tongjiaoui-plus/checkbox'
 import NodeContent from './tree-node-content.vue'
 import { getNodeKey as getNodeKeyUtil } from './model/util'
 import { useNodeExpandEventBroadcast } from './model/useNodeExpandEventBroadcast'

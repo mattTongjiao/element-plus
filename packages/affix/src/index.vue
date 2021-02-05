@@ -16,11 +16,11 @@ import {
   ref,
   watch,
 } from 'vue'
-import { getScrollContainer, off, on } from '@element-plus/utils/dom'
+import { getScrollContainer, off, on } from '@tongjiaoui-plus/utils/dom'
 import {
   addResizeListener,
   removeResizeListener,
-} from '@element-plus/utils/resize-event'
+} from '@tongjiaoui-plus/utils/resize-event'
 
 type Position = 'top' | 'bottom'
 

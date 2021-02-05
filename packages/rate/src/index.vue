@@ -50,11 +50,11 @@ import {
   PropType,
 } from 'vue'
 import { isObject, isArray } from '@vue/shared'
-import { hasClass } from '@element-plus/utils/dom'
-import { EVENT_CODE } from '@element-plus/utils/aria'
-import { elFormKey } from '@element-plus/form'
+import { hasClass } from '@tongjiaoui-plus/utils/dom'
+import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
+import { elFormKey } from '@tongjiaoui-plus/form'
 
-import type { TjFormContext } from '@element-plus/form'
+import type { TjFormContext } from '@tongjiaoui-plus/form'
 
 export default defineComponent({
   name: 'TjRate',

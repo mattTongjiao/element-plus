@@ -1,14 +1,14 @@
 import { defineComponent, h, ref } from 'vue'
-import TjPopper from '@element-plus/popper'
-import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
-import throwError from '@element-plus/utils/error'
+import TjPopper from '@tongjiaoui-plus/popper'
+import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
+import throwError from '@tongjiaoui-plus/utils/error'
 
 import type { PropType } from 'vue'
 import type {
   Effect,
   Placement,
   Options,
-} from '@element-plus/popper'
+} from '@tongjiaoui-plus/popper'
 
 /**
  * TjTooltip

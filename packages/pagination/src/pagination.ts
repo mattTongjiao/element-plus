@@ -1,5 +1,5 @@
 import { ComputedRef } from 'vue'
-import { AnyFunction } from '@element-plus/utils/types'
+import { AnyFunction } from '@tongjiaoui-plus/utils/types'
 
 export interface IPagination {
   currentPage?: ComputedRef<number>

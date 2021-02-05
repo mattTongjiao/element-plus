@@ -1,5 +1,5 @@
 import { createVNode, h, reactive, ref, render, toRefs, Transition, VNode, vShow, withCtx, withDirectives } from 'vue'
-import { removeClass } from '@element-plus/utils/dom'
+import { removeClass } from '@tongjiaoui-plus/utils/dom'
 import type { ILoadingCreateComponentParams, ILoadingInstance } from './loading.type'
 
 export function createLoadingComponent({
