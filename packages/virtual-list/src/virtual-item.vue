@@ -1,20 +1,17 @@
 <template>
-  <div ref="itemRef" class="el-vl__item">
-    <slot>
-    </slot>
+  <div ref="itemRef" class="tj-vl__item">
+    <slot> </slot>
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent, onMounted, onUpdated, ref } from 'vue'
 
 // import type { PropType } from 'vue'
 // import type { Direction } from './useVirtualScroll'
 
 export default defineComponent({
-  name: 'ElVirtualListItem',
-  props: {
-
-  },
+  name: 'TjVirtualListItem',
+  props: {},
   setup() {
     // init here
     const itemRef = ref<HTMLElement>()
@@ -32,5 +29,4 @@ export default defineComponent({
   },
 })
 </script>
-<style scoped>
-</style>
+<style scoped></style>

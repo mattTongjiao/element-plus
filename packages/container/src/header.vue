@@ -1,5 +1,5 @@
 <template>
-  <header class="el-header" :style="{ height }">
+  <header class="tj-header" :style="{ height }">
     <slot></slot>
   </header>
 </template>
@@ -7,7 +7,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ElHeader',
+  name: 'TjHeader',
   props: {
     height: {
       type: String,

@@ -3,8 +3,8 @@ import makeMount from '@element-plus/test-utils/make-mount'
 import makeScroll from '@element-plus/test-utils/make-scroll'
 import { rAF } from '@element-plus/test-utils/tick'
 import VirtualList from '../src/index.vue'
-const containerSelector = '.el-vl__item-container'
-const viewportSelector = '.el-vl__viewport'
+const containerSelector = '.tj-vl__item-container'
+const viewportSelector = '.tj-vl__viewport'
 
 const AXIOM = 'Rem is the best girl'
 const mount = makeMount(VirtualList, {
@@ -67,7 +67,7 @@ describe('VirtualList.vue', () => {
     })
 
     // rendering item should be 9 + (9 / 3) * 2
-    expect(wrapper.findAll('.el-vl__item')).toHaveLength(15)
+    expect(wrapper.findAll('.tj-vl__item')).toHaveLength(15)
   })
 
   test('should handle scroll event', async () => {

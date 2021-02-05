@@ -10,24 +10,13 @@ Alert components are non-overlay elements in the page that does not disappear au
 
 ```html
 <template>
-  <el-alert
-    title="success alert"
-    type="success">
-  </el-alert>
-  <el-alert
-    title="info alert"
-    type="info">
-  </el-alert>
-  <el-alert
-    title="warning alert"
-    type="warning">
-  </el-alert>
-  <el-alert
-    title="error alert"
-    type="error">
-  </el-alert>
+  <tj-alert title="success alert" type="success"> </tj-alert>
+  <tj-alert title="info alert" type="info"> </tj-alert>
+  <tj-alert title="warning alert" type="warning"> </tj-alert>
+  <tj-alert title="error alert" type="error"> </tj-alert>
 </template>
 ```
+
 :::
 
 ### Theme
@@ -35,30 +24,16 @@ Alert components are non-overlay elements in the page that does not disappear au
 Alert provide two different themes, `light` and `dark`.
 
 :::demo Set `effect` to change theme, default is `light`.
+
 ```html
 <template>
-  <el-alert
-    title="success alert"
-    type="success"
-    effect="dark">
-  </el-alert>
-  <el-alert
-    title="info alert"
-    type="info"
-    effect="dark">
-  </el-alert>
-  <el-alert
-    title="warning alert"
-    type="warning"
-    effect="dark">
-  </el-alert>
-  <el-alert
-    title="error alert"
-    type="error"
-    effect="dark">
-  </el-alert>
+  <tj-alert title="success alert" type="success" effect="dark"> </tj-alert>
+  <tj-alert title="info alert" type="info" effect="dark"> </tj-alert>
+  <tj-alert title="warning alert" type="warning" effect="dark"> </tj-alert>
+  <tj-alert title="error alert" type="error" effect="dark"> </tj-alert>
 </template>
 ```
+
 :::
 
 ### Customizable close button
@@ -69,21 +44,12 @@ Customize the close button as texts or other symbols.
 
 ```html
 <template>
-  <el-alert
-    title="unclosable alert"
-    type="success"
-    :closable="false">
-  </el-alert>
-  <el-alert
-    title="customized close-text"
-    type="info"
-    close-text="Gotcha">
-  </el-alert>
-  <el-alert
-    title="alert with callback"
-    type="warning"
-    @close="hello">
-  </el-alert>
+  <tj-alert title="unclosable alert" type="success" :closable="false">
+  </tj-alert>
+  <tj-alert title="customized close-text" type="info" close-text="Gotcha">
+  </tj-alert>
+  <tj-alert title="alert with callback" type="warning" @close="hello">
+  </tj-alert>
 </template>
 
 <script>
@@ -91,15 +57,16 @@ Customize the close button as texts or other symbols.
   export default defineComponent({
     setup() {
       const hello = () => {
-        alert('Hello World!');
+        alert('Hello World!')
       }
       return {
-        hello
+        hello,
       }
-    }
+    },
   })
 </script>
 ```
+
 :::
 
 ### With icon
@@ -110,28 +77,13 @@ Displaying an icon improves readability.
 
 ```html
 <template>
-  <el-alert
-    title="success alert"
-    type="success"
-    show-icon>
-  </el-alert>
-  <el-alert
-    title="info alert"
-    type="info"
-    show-icon>
-  </el-alert>
-  <el-alert
-    title="warning alert"
-    type="warning"
-    show-icon>
-  </el-alert>
-  <el-alert
-    title="error alert"
-    type="error"
-    show-icon>
-  </el-alert>
+  <tj-alert title="success alert" type="success" show-icon> </tj-alert>
+  <tj-alert title="info alert" type="info" show-icon> </tj-alert>
+  <tj-alert title="warning alert" type="warning" show-icon> </tj-alert>
+  <tj-alert title="error alert" type="error" show-icon> </tj-alert>
 </template>
 ```
+
 :::
 
 ## Centered text
@@ -142,32 +94,13 @@ Use the `center` attribute to center the text.
 
 ```html
 <template>
-  <el-alert
-    title="success alert"
-    type="success"
-    center
-    show-icon>
-  </el-alert>
-  <el-alert
-    title="info alert"
-    type="info"
-    center
-    show-icon>
-  </el-alert>
-  <el-alert
-    title="warning alert"
-    type="warning"
-    center
-    show-icon>
-  </el-alert>
-  <el-alert
-    title="error alert"
-    type="error"
-    center
-    show-icon>
-  </el-alert>
+  <tj-alert title="success alert" type="success" center show-icon> </tj-alert>
+  <tj-alert title="info alert" type="info" center show-icon> </tj-alert>
+  <tj-alert title="warning alert" type="warning" center show-icon> </tj-alert>
+  <tj-alert title="error alert" type="error" center show-icon> </tj-alert>
 </template>
 ```
+
 :::
 
 ### With description
@@ -178,13 +111,15 @@ Description includes a message with more detailed information.
 
 ```html
 <template>
-  <el-alert
+  <tj-alert
     title="with description"
     type="success"
-    description="This is a description.">
-  </el-alert>
+    description="This is a description."
+  >
+  </tj-alert>
 </template>
 ```
+
 :::
 
 ### With icon and description
@@ -193,54 +128,61 @@ Description includes a message with more detailed information.
 
 ```html
 <template>
-  <el-alert
+  <tj-alert
     title="success alert"
     type="success"
     description="more text description"
-    show-icon>
-  </el-alert>
-  <el-alert
+    show-icon
+  >
+  </tj-alert>
+  <tj-alert
     title="info alert"
     type="info"
     description="more text description"
-    show-icon>
-  </el-alert>
-  <el-alert
+    show-icon
+  >
+  </tj-alert>
+  <tj-alert
     title="warning alert"
     type="warning"
     description="more text description"
-    show-icon>
-  </el-alert>
-  <el-alert
+    show-icon
+  >
+  </tj-alert>
+  <tj-alert
     title="error alert"
     type="error"
     description="more text description"
-    show-icon>
-  </el-alert>
+    show-icon
+  >
+  </tj-alert>
 </template>
 ```
+
 :::
 
 ### Attributes
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| title     | title         | string | — | — |
-| type | Component type | string | success/warning/info/error | info |
-| description | Descriptive text. Can also be passed with the default slot | string | — | — |
-| closable | If closable or not | boolean | — | true |
-| center | Whether to center the text | boolean | — | false |
-| close-text | Customized close button text | string | — | — |
-| show-icon | If a type icon is displayed | boolean | — | false |
-| effect | Choose theme  | string | light/dark | light |
+
+| Attribute   | Description                                                | Type    | Accepted Values            | Default |
+| ----------- | ---------------------------------------------------------- | ------- | -------------------------- | ------- |
+| title       | title                                                      | string  | —                          | —       |
+| type        | Component type                                             | string  | success/warning/info/error | info    |
+| description | Descriptive text. Can also be passed with the default slot | string  | —                          | —       |
+| closable    | If closable or not                                         | boolean | —                          | true    |
+| center      | Whether to center the text                                 | boolean | —                          | false   |
+| close-text  | Customized close button text                               | string  | —                          | —       |
+| show-icon   | If a type icon is displayed                                | boolean | —                          | false   |
+| effect      | Choose theme                                               | string  | light/dark                 | light   |
 
 ### Slot
 
-| Name | Description |
-|------|--------|
-| — | description |
+| Name  | Description                |
+| ----- | -------------------------- |
+| —     | description                |
 | title | content of the Alert title |
 
 ### Events
-| Event Name | Description | Parameters |
-|---------- |-------- |---------- |
-| close | fires when alert is closed | — |
+
+| Event Name | Description                | Parameters |
+| ---------- | -------------------------- | ---------- |
+| close      | fires when alert is closed | —          |

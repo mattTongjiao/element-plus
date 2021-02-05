@@ -92,7 +92,7 @@ const usePopup = (props: Readonly<Props>, doClose: () => void, rootRef = 'root')
       )
 
       if (merProps.lockScroll) {
-        state.withoutHiddenClass = !hasClass(document.body, 'el-popup-parent--hidden')
+        state.withoutHiddenClass = !hasClass(document.body, 'tj-popup-parent--hidden')
         if (state.withoutHiddenClass) {
           state.bodyPaddingRight = document.body.style.paddingRight
           state.computedBodyPaddingRight = parseInt(getStyle(document.body, 'paddingRight'), 10)
@@ -103,7 +103,7 @@ const usePopup = (props: Readonly<Props>, doClose: () => void, rootRef = 'root')
         if (scrollBarWidth > 0 && (bodyHasOverflow || bodyOverflowY === 'scroll') && state.withoutHiddenClass) {
           document.body.style.paddingRight = state.computedBodyPaddingRight + scrollBarWidth + 'px'
         }
-        addClass(document.body, 'el-popup-parent--hidden')
+        addClass(document.body, 'tj-popup-parent--hidden')
       }
     }
 
@@ -166,7 +166,7 @@ const usePopup = (props: Readonly<Props>, doClose: () => void, rootRef = 'root')
   const restoreBodyStyle = () => {
     if (props.modal && state.withoutHiddenClass) {
       document.body.style.paddingRight = state.bodyPaddingRight
-      removeClass(document.body, 'el-popup-parent--hidden')
+      removeClass(document.body, 'tj-popup-parent--hidden')
     }
     state.withoutHiddenClass = true
   }

@@ -1,36 +1,36 @@
 <template>
   <button
     :class="[
-      'el-button',
-      type ? 'el-button--' + type : '',
-      buttonSize ? 'el-button--' + buttonSize : '',
+      'tj-button',
+      type ? 'tj-button--' + type : '',
+      buttonSize ? 'tj-button--' + buttonSize : '',
       {
         'is-disabled': buttonDisabled,
         'is-loading': loading,
         'is-plain': plain,
         'is-round': round,
-        'is-circle': circle
-      }
+        'is-circle': circle,
+      },
     ]"
     :disabled="buttonDisabled || loading"
     :autofocus="autofocus"
     :type="nativeType"
     @click="handleClick"
   >
-    <i v-if="loading" class="el-icon-loading"></i>
+    <i v-if="loading" class="tj-icon-loading"></i>
     <i v-if="icon && !loading" :class="icon"></i>
     <span v-if="$slots.default"><slot></slot></span>
   </button>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { computed, inject, defineComponent } from 'vue'
 import { useGlobalConfig } from '@element-plus/utils/util'
 import { isValidComponentSize } from '@element-plus/utils/validators'
 import { elFormKey, elFormItemKey } from '@element-plus/form'
 
 import type { PropType } from 'vue'
-import type { ElFormContext, ElFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
 
 type IButtonType = PropType<'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text' | 'default'>
 type IButtonNativeType = PropType<'button' | 'submit' | 'reset'>
@@ -51,7 +51,7 @@ interface IButtonProps {
 type EmitFn = (evt: Event) => void
 
 export default defineComponent({
-  name: 'ElButton',
+  name: 'TjButton',
 
   props: {
     type: {
@@ -97,8 +97,8 @@ export default defineComponent({
   setup(props, ctx) {
     const $ELEMENT = useGlobalConfig()
 
-    const elForm = inject(elFormKey, {} as ElFormContext)
-    const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
+    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
     const buttonSize = computed(() => {
       return props.size || elFormItem.size || $ELEMENT.size

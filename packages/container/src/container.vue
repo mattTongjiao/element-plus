@@ -1,5 +1,5 @@
 <template>
-  <section class="el-container" :class="{'is-vertical': isVertical}">
+  <section class="tj-container" :class="{ 'is-vertical': isVertical }">
     <slot></slot>
   </section>
 </template>
@@ -7,7 +7,7 @@
 import { defineComponent, computed, VNode, Component } from 'vue'
 
 export default defineComponent({
-  name: 'ElContainer',
+  name: 'TjContainer',
   props: {
     direction: {
       type: String,
@@ -25,7 +25,7 @@ export default defineComponent({
         const vNodes: VNode[] = slots.default()
         return vNodes.some(vNode => {
           const tag = (vNode.type as Component).name
-          return tag === 'ElHeader' || tag === 'ElFooter'
+          return tag === 'TjHeader' || tag === 'TjFooter'
         })
       } else {
         return false

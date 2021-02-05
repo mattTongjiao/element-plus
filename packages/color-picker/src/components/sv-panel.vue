@@ -1,17 +1,17 @@
 <template>
   <div
-    class="el-color-svpanel"
+    class="tj-color-svpanel"
     :style="{
-      backgroundColor: background
+      backgroundColor: background,
     }"
   >
-    <div class="el-color-svpanel__white"></div>
-    <div class="el-color-svpanel__black"></div>
+    <div class="tj-color-svpanel__white"></div>
+    <div class="tj-color-svpanel__black"></div>
     <div
-      class="el-color-svpanel__cursor"
+      class="tj-color-svpanel__cursor"
       :style="{
         top: cursorTop + 'px',
-        left: cursorLeft + 'px'
+        left: cursorLeft + 'px',
       }"
     >
       <div></div>
@@ -26,7 +26,7 @@ import type Color from '../color'
 import draggable from '../draggable'
 
 export default defineComponent({
-  name: 'ElSlPanel',
+  name: 'TjSlPanel',
 
   props: {
     color: {

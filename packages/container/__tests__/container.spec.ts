@@ -20,14 +20,14 @@ describe('Container.vue', () => {
   test('vertical', () => {
     const TestComponent = {
       template: `
-        <el-container>
-          <el-header></el-header>
-          <el-main></el-main>
-        </el-container>`,
+        <tj-container>
+          <tj-header></tj-header>
+          <tj-main></tj-main>
+        </tj-container>`,
       components: {
-        'el-container': Container,
-        'el-header': Header,
-        'el-main': Main,
+        'tj-container': Container,
+        'tj-header': Header,
+        'tj-main': Main,
       },
     }
 
@@ -38,14 +38,14 @@ describe('Container.vue', () => {
   test('direction', () => {
     const TestComponent = {
       template: `
-        <el-container :direction="direction">
-          <el-header></el-header>
-          <el-main></el-main>
-        </el-container>`,
+        <tj-container :direction="direction">
+          <tj-header></tj-header>
+          <tj-main></tj-main>
+        </tj-container>`,
       components: {
-        'el-container': Container,
-        'el-header': Header,
-        'el-main': Main,
+        'tj-container': Container,
+        'tj-header': Header,
+        'tj-main': Main,
       },
       data() {
         return {
@@ -65,7 +65,7 @@ describe('Container.vue', () => {
 describe('Header', () => {
   test('create header', () => {
     const wrapper = mount(Header)
-    expect(wrapper.classes()).toContain('el-header')
+    expect(wrapper.classes()).toContain('tj-header')
   })
 
   test('header height', () => {
@@ -82,7 +82,7 @@ describe('Header', () => {
 describe('Aside', () => {
   test('aside create', () => {
     const wrapper = mount(Aside)
-    expect(wrapper.classes()).toContain('el-aside')
+    expect(wrapper.classes()).toContain('tj-aside')
   })
 
   test('aside width', () => {
@@ -99,14 +99,14 @@ describe('Aside', () => {
 describe('Main', () => {
   test('main create', () => {
     const wrapper = mount(Main)
-    expect(wrapper.classes()).toContain('el-main')
+    expect(wrapper.classes()).toContain('tj-main')
   })
 })
 
 describe('Footer', () => {
   test('footer create', () => {
     const wrapper = mount(Footer)
-    expect(wrapper.classes()).toContain('el-footer')
+    expect(wrapper.classes()).toContain('tj-footer')
   })
 
   test('footer height', () => {

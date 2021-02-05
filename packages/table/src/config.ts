@@ -1,5 +1,5 @@
 import { getPropByPath } from '@element-plus/utils/util'
-import ElCheckbox from '@element-plus/checkbox'
+import TjCheckbox from '@element-plus/checkbox'
 import { h } from 'vue'
 import { Store, TreeNode, AnyObject, TableColumnCtx } from './table.type'
 
@@ -12,7 +12,7 @@ export const cellStarts = {
     minWidth: 48,
     realWidth: 48,
     order: '',
-    className: 'el-table-column--selection',
+    className: 'tj-table-column--selection',
   },
   expand: {
     width: 48,
@@ -36,7 +36,7 @@ export const cellForced = {
       function isDisabled() {
         return store.states.data.value && store.states.data.value.length === 0
       }
-      return h(ElCheckbox, {
+      return h(TjCheckbox, {
         disabled: isDisabled(),
         indeterminate:
           store.states.selection.value.length > 0 &&
@@ -56,7 +56,7 @@ export const cellForced = {
       store: Store
       $index: string
     }) {
-      return h(ElCheckbox, {
+      return h(TjCheckbox, {
         disabled: column.selectable
           ? !column.selectable.call(null, row, $index)
           : false,
@@ -102,9 +102,9 @@ export const cellForced = {
     renderCell: function({ row: row_, store: store_ }) {
       const store = store_ as Store
       const row = row_ as AnyObject
-      const classes = ['el-table__expand-icon']
+      const classes = ['tj-table__expand-icon']
       if (store.states.expandRows.value.indexOf(row) > -1) {
-        classes.push('el-table__expand-icon--expanded')
+        classes.push('tj-table__expand-icon--expanded')
       }
       const callback = function(e) {
         e.stopPropagation()
@@ -118,14 +118,14 @@ export const cellForced = {
         },
         [
           h('i', {
-            class: 'el-icon el-icon-arrow-right',
+            class: 'tj-icon tj-icon-arrow-right',
           }),
         ],
       )
     },
     sortable: false,
     resizable: false,
-    className: 'el-table__expand-column',
+    className: 'tj-table__expand-column',
   },
 }
 
@@ -163,19 +163,19 @@ export function treeCellPrefix({
   if (treeNode.indent) {
     ele.push(
       h('span', {
-        class: 'el-table__indent',
+        class: 'tj-table__indent',
         style: { 'padding-left': treeNode.indent + 'px' },
       }),
     )
   }
   if (typeof treeNode.expanded === 'boolean' && !treeNode.noLazyChildren) {
     const expandClasses = [
-      'el-table__expand-icon',
-      treeNode.expanded ? 'el-table__expand-icon--expanded' : '',
+      'tj-table__expand-icon',
+      treeNode.expanded ? 'tj-table__expand-icon--expanded' : '',
     ]
-    let iconClasses = ['el-icon-arrow-right']
+    let iconClasses = ['tj-icon-arrow-right']
     if (treeNode.loading) {
-      iconClasses = ['el-icon-loading']
+      iconClasses = ['tj-icon-loading']
     }
 
     ele.push(
@@ -195,7 +195,7 @@ export function treeCellPrefix({
   } else {
     ele.push(
       h('span', {
-        class: 'el-table__placeholder',
+        class: 'tj-table__placeholder',
       }),
     )
   }

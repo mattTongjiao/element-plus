@@ -1,13 +1,13 @@
 <template>
-  <el-popper
+  <tj-popper
     ref="popper"
     v-model:visible="popperVisible"
     manual-mode
     placement="bottom-start"
-    :popper-class="`el-cascader__dropdown ${popperClass}`"
+    :popper-class="`tj-cascader__dropdown ${popperClass}`"
     :popper-options="popperOptions"
     :stop-popper-mouse-event="false"
-    transition="el-zoom-in-top"
+    transition="tj-zoom-in-top"
     :gpu-acceleration="false"
     effect="light"
     pure
@@ -17,16 +17,16 @@
       <div
         v-clickoutside:[popperPaneRef]="() => togglePopperVisible(false)"
         :class="[
-          'el-cascader',
-          realSize && `el-cascader--${realSize}`,
-          { 'is-disabled': isDisabled }
+          'tj-cascader',
+          realSize && `tj-cascader--${realSize}`,
+          { 'is-disabled': isDisabled },
         ]"
         @click="() => togglePopperVisible(readonly ? undefined : true)"
         @keydown="handleKeyDown"
         @mouseenter="inputHover = true"
         @mouseleave="inputHover = false"
       >
-        <el-input
+        <tj-input
           ref="input"
           v-model.trim="inputValue"
           :placeholder="placeholder"
@@ -43,24 +43,24 @@
             <i
               v-if="clearBtnVisible"
               key="clear"
-              class="el-input__icon el-icon-circle-close"
+              class="tj-input__icon tj-icon-circle-close"
               @click.stop="handleClear"
             ></i>
             <i
               v-else
               key="arrow-down"
               :class="[
-                'el-input__icon',
-                'el-icon-arrow-down',
-                popperVisible && 'is-reverse'
+                'tj-input__icon',
+                'tj-icon-arrow-down',
+                popperVisible && 'is-reverse',
               ]"
               @click.stop="togglePopperVisible()"
             ></i>
           </template>
-        </el-input>
+        </tj-input>
 
-        <div v-if="multiple" ref="tagWrapper" class="el-cascader__tags">
-          <el-tag
+        <div v-if="multiple" ref="tagWrapper" class="tj-cascader__tags">
+          <tj-tag
             v-for="tag in presentTags"
             :key="tag.key"
             type="info"
@@ -71,23 +71,23 @@
             @close="deleteTag(tag)"
           >
             <span>{{ tag.text }}</span>
-          </el-tag>
+          </tj-tag>
           <input
             v-if="filterable && !isDisabled"
             v-model.trim="searchInputValue"
             type="text"
-            class="el-cascader__search-input"
+            class="tj-cascader__search-input"
             :placeholder="presentText ? '' : placeholder"
             @input="e => handleInput(searchInputValue, e)"
             @click.stop="togglePopperVisible(true)"
             @keydown.delete="handleDelete"
-          >
+          />
         </div>
       </div>
     </template>
 
     <template #default>
-      <el-cascader-panel
+      <tj-cascader-panel
         v-show="!filtering"
         ref="panel"
         v-model="checkedValue"
@@ -98,49 +98,51 @@
         @expand-change="handleExpandChange"
         @close="togglePopperVisible(false)"
       />
-      <el-scrollbar
+      <tj-scrollbar
         v-if="filterable"
         v-show="filtering"
         ref="suggestionPanel"
         tag="ul"
-        class="el-cascader__suggestion-panel"
-        view-class="el-cascader__suggestion-list"
+        class="tj-cascader__suggestion-panel"
+        view-class="tj-cascader__suggestion-list"
       >
         <template v-if="suggestions.length">
           <li
             v-for="item in suggestions"
             :key="item.uid"
             :class="[
-              'el-cascader__suggestion-item',
-              item.checked && 'is-checked'
+              'tj-cascader__suggestion-item',
+              item.checked && 'is-checked',
             ]"
             :tabindex="-1"
             @click="handleSuggestionClick(item)"
           >
             <span>{{ item.text }}</span>
-            <i v-if="item.checked" class="el-icon-check"></i>
+            <i v-if="item.checked" class="tj-icon-check"></i>
           </li>
         </template>
         <slot v-else name="empty">
-          <li class="el-cascader__empty-text">{{ t('el.cascader.noMatch') }}</li>
+          <li class="tj-cascader__empty-text">
+            {{ t('el.cascader.noMatch') }}
+          </li>
         </slot>
-      </el-scrollbar>
+      </tj-scrollbar>
     </template>
-  </el-popper>
+  </tj-popper>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import {
   computed, defineComponent,
   inject, nextTick,
   onMounted, onBeforeUnmount,
   Ref, ref, watch,
 } from 'vue'
-import ElCascaderPanel from '@element-plus/cascader-panel'
-import ElInput from '@element-plus/input'
-import ElPopper from '@element-plus/popper'
-import ElScrollbar from '@element-plus/scrollbar'
-import ElTag from '@element-plus/tag'
+import TjCascaderPanel from '@element-plus/cascader-panel'
+import TjInput from '@element-plus/input'
+import TjPopper from '@element-plus/popper'
+import TjScrollbar from '@element-plus/scrollbar'
+import TjTag from '@element-plus/tag'
 import { ClickOutside as Clickoutside } from '@element-plus/directives'
 import { t } from '@element-plus/locale'
 import { isPromise } from '@vue/shared'
@@ -155,7 +157,7 @@ import { elFormKey, elFormItemKey } from '@element-plus/form'
 import { CommonProps } from '@element-plus/cascader-panel'
 
 import type { ComputedRef, PropType } from 'vue'
-import type { ElFormContext, ElFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
 import type { CascaderValue, CascaderNode, Tag } from '@element-plus/cascader-panel'
 
 const DEFAULT_INPUT_HEIGHT = 40
@@ -183,14 +185,14 @@ const popperOptions = {
 }
 
 export default defineComponent({
-  name: 'ElCascader',
+  name: 'TjCascader',
 
   components: {
-    ElCascaderPanel,
-    ElInput,
-    ElPopper,
-    ElScrollbar,
-    ElTag,
+    TjCascaderPanel,
+    TjInput,
+    TjPopper,
+    TjScrollbar,
+    TjTag,
   },
 
   directives: {
@@ -252,8 +254,8 @@ export default defineComponent({
     let pressDeleteCount = 0
 
     const $ELEMENT = useGlobalConfig()
-    const elForm = inject(elFormKey, {} as ElFormContext)
-    const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
+    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
     const popper = ref(null)
     const input = ref(null)
@@ -408,9 +410,9 @@ export default defineComponent({
       let firstNode = null
 
       if (filtering.value && suggestionPanel.value) {
-        firstNode = suggestionPanel.value.$el.querySelector('.el-cascader__suggestion-item')
+        firstNode = suggestionPanel.value.$el.querySelector('.tj-cascader__suggestion-item')
       } else {
-        firstNode = panel.value?.$el.querySelector('.el-cascader-node[tabindex="-1"]')
+        firstNode = panel.value?.$el.querySelector('.tj-cascader-node[tabindex="-1"]')
       }
 
       if (firstNode) {
@@ -421,18 +423,18 @@ export default defineComponent({
 
     const updateStyle = () => {
       const inputInner = input.value.input
-      const tagWrapperEl = tagWrapper.value
-      const suggestionPanelEl = suggestionPanel.value?.$el
+      const tagWrapperTj = tagWrapper.value
+      const suggestionPanelTj = suggestionPanel.value?.$el
 
       if (isServer || !inputInner) return
 
-      if (suggestionPanelEl) {
-        const suggestionList = suggestionPanelEl.querySelector('.el-cascader__suggestion-list')
+      if (suggestionPanelTj) {
+        const suggestionList = suggestionPanelTj.querySelector('.tj-cascader__suggestion-list')
         suggestionList.style.minWidth = inputInner.offsetWidth + 'px'
       }
 
-      if (tagWrapperEl) {
-        const { offsetHeight } = tagWrapperEl
+      if (tagWrapperTj) {
+        const { offsetHeight } = tagWrapperTj
         const height = Math.max(offsetHeight + 6, inputInitialHeight) + 'px'
         inputInner.style.height = height
         updatePopperPosition()
@@ -532,9 +534,9 @@ export default defineComponent({
     )
 
     onMounted(() => {
-      const inputEl = input.value.$el
-      inputInitialHeight = inputEl?.offsetHeight || INPUT_HEIGHT_MAP[realSize.value] || DEFAULT_INPUT_HEIGHT
-      addResizeListener(inputEl, updateStyle)
+      const inputTj = input.value.$el
+      inputInitialHeight = inputTj?.offsetHeight || INPUT_HEIGHT_MAP[realSize.value] || DEFAULT_INPUT_HEIGHT
+      addResizeListener(inputTj, updateStyle)
     })
 
     onBeforeUnmount(() => {

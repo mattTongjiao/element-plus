@@ -1,11 +1,31 @@
-<script lang='ts'>
-import { h, defineComponent, ref, onMounted, onUpdated, provide, watch, nextTick, getCurrentInstance, ComputedRef, PropType, Ref, ComponentInternalInstance, VNode, Component, Fragment } from 'vue'
+<script lang="ts">
+import {
+  h,
+  defineComponent,
+  ref,
+  onMounted,
+  onUpdated,
+  provide,
+  watch,
+  nextTick,
+  getCurrentInstance,
+  ComputedRef,
+  PropType,
+  Ref,
+  ComponentInternalInstance,
+  VNode,
+  Component,
+  Fragment,
+} from 'vue'
 import { EVENT_CODE } from '@element-plus/utils/aria'
 import TabNav from './tab-nav.vue'
 
 type RefElement = Nullable<HTMLElement>
 
-type BeforeLeave = (newTabName: string, oldTabName: string) => void | Promise<void> | boolean
+type BeforeLeave = (
+  newTabName: string,
+  oldTabName: string,
+) => void | Promise<void> | boolean
 
 export interface IETabsProps {
   type: string
@@ -45,7 +65,7 @@ export interface Pane {
 export type UpdatePaneStateCallback = (pane: Pane) => void
 
 export default defineComponent({
-  name: 'ElTabs',
+  name: 'TjTabs',
   components: { TabNav },
   props: {
     type: {
@@ -73,7 +93,14 @@ export default defineComponent({
     },
     stretch: Boolean,
   },
-  emits: ['tab-click', 'edit', 'tab-remove', 'tab-add', 'input', 'update:modelValue'],
+  emits: [
+    'tab-click',
+    'edit',
+    'tab-remove',
+    'tab-add',
+    'input',
+    'update:modelValue',
+  ],
   setup(props: IETabsProps, ctx) {
     const nav$ = ref<typeof TabNav>(null)
     const currentName = ref(props.modelValue || props.activeName || '0')
@@ -90,13 +117,19 @@ export default defineComponent({
       paneStatesMap[pane.uid] = pane
     })
 
-    watch(() => props.activeName, modelValue => {
-      setCurrentName(modelValue)
-    })
+    watch(
+      () => props.activeName,
+      modelValue => {
+        setCurrentName(modelValue)
+      },
+    )
 
-    watch(() => props.modelValue, modelValue => {
-      setCurrentName(modelValue)
-    })
+    watch(
+      () => props.modelValue,
+      modelValue => {
+        setCurrentName(modelValue)
+      },
+    )
 
     watch(currentName, () => {
       if (nav$.value) {
@@ -109,14 +142,16 @@ export default defineComponent({
       setPaneInstances(true)
     })
 
-    const getPaneInstanceFromSlot = (vnode: VNode, paneInstanceList: ComponentInternalInstance[] = []) => {
-
+    const getPaneInstanceFromSlot = (
+      vnode: VNode,
+      paneInstanceList: ComponentInternalInstance[] = [],
+    ) => {
       Array.from((vnode.children || []) as ArrayLike<VNode>).forEach(node => {
         let type = node.type
         type = (type as Component).name || type
-        if (type === 'ElTabPane' && node.component) {
+        if (type === 'TjTabPane' && node.component) {
           paneInstanceList.push(node.component)
-        } else if(type === Fragment || type === 'template') {
+        } else if (type === Fragment || type === 'template') {
           getPaneInstanceFromSlot(node, paneInstanceList)
         }
       })
@@ -124,19 +159,28 @@ export default defineComponent({
     }
 
     const setPaneInstances = (isForceUpdate = false) => {
-      if(ctx.slots.default) {
+      if (ctx.slots.default) {
         const children = instance.subTree.children
 
-        const content = Array.from(children as ArrayLike<VNode>).find(({ props }) => {
-          return props.class === 'el-tabs__content'
-        })
+        const content = Array.from(children as ArrayLike<VNode>).find(
+          ({ props }) => {
+            return props.class === 'tj-tabs__content'
+          },
+        )
 
-        if(!content) return
+        if (!content) return
 
-        const paneInstanceList: Pane[] = getPaneInstanceFromSlot(content).map(paneComponent => {
-          return paneStatesMap[paneComponent.uid]
-        })
-        const panesChanged = !(paneInstanceList.length === panes.value.length && paneInstanceList.every((pane, index) => pane.uid === panes.value[index].uid))
+        const paneInstanceList: Pane[] = getPaneInstanceFromSlot(content).map(
+          paneComponent => {
+            return paneStatesMap[paneComponent.uid]
+          },
+        )
+        const panesChanged = !(
+          paneInstanceList.length === panes.value.length &&
+          paneInstanceList.every(
+            (pane, index) => pane.uid === panes.value[index].uid,
+          )
+        )
 
         if (isForceUpdate || panesChanged) {
           panes.value = paneInstanceList
@@ -153,16 +197,19 @@ export default defineComponent({
     }
 
     const setCurrentName = value => {
-      if(currentName.value !== value && props.beforeLeave) {
+      if (currentName.value !== value && props.beforeLeave) {
         const before = props.beforeLeave(value, currentName.value)
-        if(before && (before as Promise<void>).then) {
-          (before as Promise<void>).then(() => {
-            changeCurrentName(value)
-            nav$.value && nav$.value.removeFocus()
-          }, () => {
-            // ignore promise rejection in `before-leave` hook
-          })
-        } else if(before !== false) {
+        if (before && (before as Promise<void>).then) {
+          ;(before as Promise<void>).then(
+            () => {
+              changeCurrentName(value)
+              nav$.value && nav$.value.removeFocus()
+            },
+            () => {
+              // ignore promise rejection in `before-leave` hook
+            },
+          )
+        } else if (before !== false) {
           changeCurrentName(value)
         }
       } else {
@@ -171,13 +218,13 @@ export default defineComponent({
     }
 
     const handleTabClick = (tab, tabName, event) => {
-      if(tab.props.disabled) return
+      if (tab.props.disabled) return
       setCurrentName(tabName)
       ctx.emit('tab-click', tab, event)
     }
 
     const handleTabRemove = (pane, ev) => {
-      if(pane.props.disabled) return
+      if (pane.props.disabled) return
       ev.stopPropagation()
       ctx.emit('edit', pane.props.name, 'remove')
       ctx.emit('tab-remove', pane.props.name)
@@ -204,10 +251,9 @@ export default defineComponent({
       currentName,
       panes,
     }
-
   },
 
-  render(){
+  render() {
     let {
       type,
       handleTabClick,
@@ -221,44 +267,48 @@ export default defineComponent({
       stretch,
     } = this
 
-    const newButton = editable || addable ? h(
-      'span',
-      {
-        class: 'el-tabs__new-tab',
-        tabindex: '0',
-        onClick: handleTabAdd,
-        onKeydown: ev => { if (ev.code === EVENT_CODE.enter) { handleTabAdd() }},
-      },
-      [h('i', { class: 'el-icon-plus' })],
-    ) : null
+    const newButton =
+      editable || addable
+        ? h(
+            'span',
+            {
+              class: 'tj-tabs__new-tab',
+              tabindex: '0',
+              onClick: handleTabAdd,
+              onKeydown: ev => {
+                if (ev.code === EVENT_CODE.enter) {
+                  handleTabAdd()
+                }
+              },
+            },
+            [h('i', { class: 'tj-icon-plus' })],
+          )
+        : null
 
     const header = h(
       'div',
       {
-        class: ['el-tabs__header', `is-${tabPosition}`],
+        class: ['tj-tabs__header', `is-${tabPosition}`],
       },
       [
         newButton,
-        h(
-          TabNav,
-          {
-            currentName,
-            editable,
-            type,
-            panes,
-            stretch,
-            ref: 'nav$',
-            onTabClick: handleTabClick,
-            onTabRemove: handleTabRemove,
-          },
-        ),
+        h(TabNav, {
+          currentName,
+          editable,
+          type,
+          panes,
+          stretch,
+          ref: 'nav$',
+          onTabClick: handleTabClick,
+          onTabRemove: handleTabRemove,
+        }),
       ],
     )
 
     const panels = h(
       'div',
       {
-        class: 'el-tabs__content',
+        class: 'tj-tabs__content',
       },
       this.$slots?.default(),
     )
@@ -267,10 +317,10 @@ export default defineComponent({
       'div',
       {
         class: {
-          'el-tabs': true,
-          'el-tabs--card': type === 'card',
-          [`el-tabs--${tabPosition}`]: true,
-          'el-tabs--border-card': type === 'border-card',
+          'tj-tabs': true,
+          'tj-tabs--card': type === 'card',
+          [`tj-tabs--${tabPosition}`]: true,
+          'tj-tabs--border-card': type === 'border-card',
         },
       },
       tabPosition !== 'bottom' ? [header, panels] : [panels, header],

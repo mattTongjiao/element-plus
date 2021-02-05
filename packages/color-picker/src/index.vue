@@ -1,5 +1,5 @@
 <template>
-  <el-popper
+  <tj-popper
     ref="popper"
     v-model:visible="showPicker"
     effect="light"
@@ -7,20 +7,15 @@
     trigger="click"
     :show-arrow="false"
     :offset="0"
-    transition="el-zoom-in-top"
+    transition="tj-zoom-in-top"
     :gpu-acceleration="false"
-    :popper-class="`el-color-picker__panel el-color-dropdown ${popperClass}`"
+    :popper-class="`tj-color-picker__panel tj-color-dropdown ${popperClass}`"
     :stop-popper-mouse-event="false"
   >
     <template #default>
       <div v-click-outside="hide">
-        <div class="el-color-dropdown__main-wrapper">
-          <hue-slider
-            ref="hue"
-            class="hue-slider"
-            :color="color"
-            vertical
-          />
+        <div class="tj-color-dropdown__main-wrapper">
+          <hue-slider ref="hue" class="hue-slider" :color="color" vertical />
           <sv-panel ref="svPanel" :color="color" />
         </div>
         <alpha-slider v-if="showAlpha" ref="alpha" :color="color" />
@@ -30,9 +25,9 @@
           :color="color"
           :colors="predefine"
         />
-        <div class="el-color-dropdown__btns">
-          <span class="el-color-dropdown__value">
-            <el-input
+        <div class="tj-color-dropdown__btns">
+          <span class="tj-color-dropdown__value">
+            <tj-input
               v-model="customInput"
               :validate-event="false"
               size="mini"
@@ -40,49 +35,58 @@
               @blur="handleConfirm"
             />
           </span>
-          <el-button
+          <tj-button
             size="mini"
             type="text"
-            class="el-color-dropdown__link-btn"
+            class="tj-color-dropdown__link-btn"
             @click="clear"
           >
             {{ t('el.colorpicker.clear') }}
-          </el-button>
-          <el-button
+          </tj-button>
+          <tj-button
             plain
             size="mini"
-            class="el-color-dropdown__btn"
+            class="tj-color-dropdown__btn"
             @click="confirmValue"
           >
             {{ t('el.colorpicker.confirm') }}
-          </el-button>
+          </tj-button>
         </div>
       </div>
     </template>
     <template #trigger>
       <div
         :class="[
-          'el-color-picker',
+          'tj-color-picker',
           colorDisabled ? 'is-disabled' : '',
-          colorSize ? `el-color-picker--${ colorSize }` : ''
+          colorSize ? `tj-color-picker--${colorSize}` : '',
         ]"
       >
-        <div v-if="colorDisabled" class="el-color-picker__mask"></div>
-        <div class="el-color-picker__trigger" @click="handleTrigger">
-          <span class="el-color-picker__color" :class="{ 'is-alpha': showAlpha }">
+        <div v-if="colorDisabled" class="tj-color-picker__mask"></div>
+        <div class="tj-color-picker__trigger" @click="handleTrigger">
+          <span
+            class="tj-color-picker__color"
+            :class="{ 'is-alpha': showAlpha }"
+          >
             <span
-              class="el-color-picker__color-inner"
+              class="tj-color-picker__color-inner"
               :style="{
-                backgroundColor: displayedColor
+                backgroundColor: displayedColor,
               }"
             ></span>
-            <span v-if="!modelValue && !showPanelColor" class="el-color-picker__empty el-icon-close"></span>
+            <span
+              v-if="!modelValue && !showPanelColor"
+              class="tj-color-picker__empty tj-icon-close"
+            ></span>
           </span>
-          <span v-show="modelValue || showPanelColor" class="el-color-picker__icon el-icon-arrow-down"></span>
+          <span
+            v-show="modelValue || showPanelColor"
+            class="tj-color-picker__icon tj-icon-arrow-down"
+          ></span>
         </div>
       </div>
     </template>
-  </el-popper>
+  </tj-popper>
 </template>
 
 <script lang="ts">
@@ -95,14 +99,14 @@ import SvPanel from './components/sv-panel.vue'
 import HueSlider from './components/hue-slider.vue'
 import AlphaSlider from './components/alpha-slider.vue'
 import Predefine from './components/predefine.vue'
-import ElPopper from '@element-plus/popper'
-import ElButton from '@element-plus/button'
-import ElInput from '@element-plus/input'
+import TjPopper from '@element-plus/popper'
+import TjButton from '@element-plus/button'
+import TjInput from '@element-plus/input'
 import { t } from '@element-plus/locale'
 import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
 import { useGlobalConfig } from '@element-plus/utils/util'
 import { isValidComponentSize } from '@element-plus/utils/validators'
-import type { ElFormContext, ElFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
 import { elFormItemKey, elFormKey } from '@element-plus/form'
 import debounce from 'lodash/debounce'
 
@@ -117,14 +121,14 @@ export const useOptions = () => {
 }
 
 export default defineComponent({
-  name: 'ElColorPicker',
+  name: 'TjColorPicker',
   components: {
-    ElPopper,
-    ElInput,
+    TjPopper,
+    TjInput,
     SvPanel,
     HueSlider,
     AlphaSlider,
-    ElButton,
+    TjButton,
     Predefine,
   },
   directives: {
@@ -145,8 +149,8 @@ export default defineComponent({
   emits: ['change', 'active-change', UPDATE_MODEL_EVENT],
   setup(props, { emit }) {
     const ELEMENT = useGlobalConfig()
-    const elForm = inject(elFormKey, {} as ElFormContext)
-    const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
+    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
     const hue = ref(null)
     const svPanel = ref(null)

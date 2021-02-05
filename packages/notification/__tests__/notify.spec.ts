@@ -3,7 +3,7 @@ import Notification, { closeAll } from '../src/notify'
 import { rAF } from '@element-plus/test-utils/tick'
 import type { INotificationHandle } from '../src/notification.type'
 
-const selector = '.el-notification'
+const selector = '.tj-notification'
 
 describe('Notification on command', () => {
 
@@ -74,7 +74,7 @@ describe('Notification on command', () => {
   test('it should be able to render all types notification', () => {
     for (const type of ['success', 'warning', 'error', 'info'] as const) {
       Notification[type]()
-      expect(document.querySelector(`.el-icon-${type}`)).toBeDefined()
+      expect(document.querySelector(`.tj-icon-${type}`)).toBeDefined()
     }
   })
 })

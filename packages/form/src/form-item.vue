@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="el-form-item"
-    :class="formItemClass"
-  >
+  <div class="tj-form-item" :class="formItemClass">
     <LabelWrap
       :is-auto-width="labelStyle.width === 'auto'"
       :update-all="elForm.labelWidth === 'auto'"
@@ -10,27 +7,23 @@
       <label
         v-if="label || $slots.label"
         :for="labelFor"
-        class="el-form-item__label"
+        class="tj-form-item__label"
         :style="labelStyle"
       >
         <slot name="label">{{ label + elForm.labelSuffix }}</slot>
       </label>
     </LabelWrap>
-    <div class="el-form-item__content" :style="contentStyle">
+    <div class="tj-form-item__content" :style="contentStyle">
       <slot></slot>
-      <transition name="el-zoom-in-top">
-        <slot
-          v-if="shouldShowError"
-          name="error"
-          :error="validateMessage"
-        >
+      <transition name="tj-zoom-in-top">
+        <slot v-if="shouldShowError" name="error" :error="validateMessage">
           <div
-            class="el-form-item__error"
+            class="tj-form-item__error"
             :class="{
-              'el-form-item__error--inline':
+              'tj-form-item__error--inline':
                 typeof inlineMessage === 'boolean'
                   ? inlineMessage
-                  : elForm.inlineMessage || false
+                  : elForm.inlineMessage || false,
             }"
           >
             {{ validateMessage }}
@@ -66,11 +59,11 @@ import mitt from 'mitt'
 import { elFormKey, elFormItemKey, elFormEvents } from './token'
 
 import type { PropType } from 'vue'
-import type { ElFormContext, ValidateFieldCallback } from './token'
+import type { TjFormContext, ValidateFieldCallback } from './token'
 
 export default defineComponent({
-  name: 'ElFormItem',
-  componentName: 'ElFormItem',
+  name: 'TjFormItem',
+  componentName: 'TjFormItem',
   components: {
     LabelWrap,
   },
@@ -103,7 +96,7 @@ export default defineComponent({
     const formItemMitt = mitt()
     const $ELEMENT = useGlobalConfig()
 
-    const elForm = inject(elFormKey, {} as ElFormContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
     const validateState = ref('')
     const validateMessage = ref('')
     const validateDisabled = ref(false)
@@ -113,8 +106,8 @@ export default defineComponent({
     const vm = getCurrentInstance()
     const isNested = computed(() => {
       let parent = vm.parent
-      while (parent && parent.type.name !== 'ElForm') {
-        if (parent.type.name === 'ElFormItem') {
+      while (parent && parent.type.name !== 'TjForm') {
+        if (parent.type.name === 'TjFormItem') {
           return true
         }
         parent = parent.parent
@@ -356,14 +349,14 @@ export default defineComponent({
 
     const formItemClass = computed(() => [
       {
-        'el-form-item--feedback': elForm.statusIcon,
+        'tj-form-item--feedback': elForm.statusIcon,
         'is-error': validateState.value === 'error',
         'is-validating': validateState.value === 'validating',
         'is-success': validateState.value === 'success',
         'is-required': isRequired.value || props.required,
         'is-no-asterisk': elForm.hideRequiredAsterisk,
       },
-      sizeClass.value ? 'el-form-item--' + sizeClass.value : '',
+      sizeClass.value ? 'tj-form-item--' + sizeClass.value : '',
     ])
 
     const shouldShowError = computed(() => {

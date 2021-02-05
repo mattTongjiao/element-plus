@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, Fragment, createTextVNode, renderSlot, toDisplayString, createCommentVNode, withDirectives, Teleport, createVNode } from 'vue'
-import ElPopper from '@element-plus/popper'
+import TjPopper from '@element-plus/popper'
 import { defaultProps, Effect } from '@element-plus/popper'
 import { renderPopper, renderTrigger, renderArrow } from '@element-plus/popper'
 import { ClickOutside } from '@element-plus/directives'
@@ -12,14 +12,14 @@ import type { PropType } from 'vue'
 import type { TriggerType } from '@element-plus/popper'
 
 const emits = ['update:visible', 'after-enter', 'after-leave', SHOW_EVENT, HIDE_EVENT ]
-const NAME = 'ElPopover'
+const NAME = 'TjPopover'
 
-const _hoist = { key: 0, class: 'el-popover__title', role: 'title' }
+const _hoist = { key: 0, class: 'tj-popover__title', role: 'title' }
 
 export default defineComponent({
   name: NAME,
   components: {
-    ElPopper,
+    TjPopper,
   },
   props: {
     ...defaultProps,
@@ -81,8 +81,8 @@ export default defineComponent({
     } = this
 
     const kls = [
-      this.content ? 'el-popover--plain' : '',
-      'el-popover',
+      this.content ? 'tj-popover--plain' : '',
+      'tj-popover',
       popperClass,
     ].join(' ')
 

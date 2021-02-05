@@ -10,10 +10,10 @@ import SubMenu from '../src/submenu.vue'
 const _mount = (template: string, options = {}) =>
   mount({
     components: {
-      'el-menu': Menu,
-      'el-menu-item-group': MenuGroup,
-      'el-menu-item': MenuItem,
-      'el-submenu': SubMenu,
+      'tj-menu': Menu,
+      'tj-menu-item-group': MenuGroup,
+      'tj-menu-item': MenuItem,
+      'tj-submenu': SubMenu,
     },
     template,
     ...options,
@@ -22,10 +22,10 @@ const _mount = (template: string, options = {}) =>
 describe('menu', () => {
   test('create', async () => {
     const wrapper = _mount(
-      `<el-menu>
-        <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
-        <el-menu-item index="2" ref="item2">订单管理</el-menu-item>
-      </el-menu>`,
+      `<tj-menu>
+        <tj-menu-item index="1" ref="item1">处理中心</tj-menu-item>
+        <tj-menu-item index="2" ref="item2">订单管理</tj-menu-item>
+      </tj-menu>`,
     )
     const item1 = await wrapper.findComponent({ ref: 'item1' })
     const item2 = await wrapper.findComponent({ ref: 'item2' })
@@ -38,13 +38,13 @@ describe('menu', () => {
   })
   test('background-color', async () => {
     const wrapper = _mount(
-      `<el-menu default-active="2"
+      `<tj-menu default-active="2"
         background-color="#f00"
         text-color="#000"
         active-text-color="#0f0">
-        <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
-        <el-menu-item index="2" ref="item2">订单管理</el-menu-item>
-      </el-menu>`,
+        <tj-menu-item index="1" ref="item1">处理中心</tj-menu-item>
+        <tj-menu-item index="2" ref="item2">订单管理</tj-menu-item>
+      </tj-menu>`,
     )
     const instance = wrapper.vm.$el
     const item1 = await wrapper.findComponent({ ref: 'item1' })
@@ -60,10 +60,10 @@ describe('menu', () => {
   })
   test('menu-item click', async () => {
     const wrapper = _mount(
-      `<el-menu>
-        <el-menu-item @click="onMenuItemClick" index="1" ref="item1">处理中心</el-menu-item>
-        <el-menu-item index="2" ref="item2">订单管理</el-menu-item>
-      </el-menu>`,
+      `<tj-menu>
+        <tj-menu-item @click="onMenuItemClick" index="1" ref="item1">处理中心</tj-menu-item>
+        <tj-menu-item index="2" ref="item2">订单管理</tj-menu-item>
+      </tj-menu>`,
       {
         data() {
           return {
@@ -88,10 +88,10 @@ describe('menu', () => {
   })
   test('menu-item disabled', async () => {
     const wrapper = _mount(
-      `<el-menu default-active="2">
-        <el-menu-item index="1" ref="item1" disabled>处理中心</el-menu-item>
-        <el-menu-item index="2" ref="item2">订单管理</el-menu-item>
-      </el-menu>`,
+      `<tj-menu default-active="2">
+        <tj-menu-item index="1" ref="item1" disabled>处理中心</tj-menu-item>
+        <tj-menu-item index="2" ref="item2">订单管理</tj-menu-item>
+      </tj-menu>`,
     )
     const item1 = await wrapper.findComponent({ ref: 'item1' })
     const item2 = await wrapper.findComponent({ ref: 'item2' })
@@ -103,34 +103,34 @@ describe('menu', () => {
   test('open method', async () => {
     const wrapper = _mount(
       `<div>
-          <el-menu
+          <tj-menu
             ref="menu"
             default-active="2"
-            class="el-menu-vertical-demo"
+            class="tj-menu-vertical-demo"
           >
-            <el-submenu index="1">
+            <tj-submenu index="1">
               <template #title>
-                <i class="el-icon-location"></i>
+                <i class="tj-icon-location"></i>
                 <span>导航一</span>
               </template>
-              <el-menu-item-group>
+              <tj-menu-item-group>
                 <template #title>分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
-              </el-menu-item-group>
-              <el-submenu index="1-4">
+                <tj-menu-item index="1-1">选项1</tj-menu-item>
+                <tj-menu-item index="1-2">选项2</tj-menu-item>
+              </tj-menu-item-group>
+              <tj-menu-item-group title="分组2">
+                <tj-menu-item index="1-3">选项3</tj-menu-item>
+              </tj-menu-item-group>
+              <tj-submenu index="1-4">
                 <template #title>选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-              </el-submenu>
-            </el-submenu>
-            <el-menu-item index="2">
-              <i class="el-icon-menu"></i>
+                <tj-menu-item index="1-4-1">选项1</tj-menu-item>
+              </tj-submenu>
+            </tj-submenu>
+            <tj-menu-item index="2">
+              <i class="tj-icon-menu"></i>
               <template #title>导航二</template>
-            </el-menu-item>
-          </el-menu>
+            </tj-menu-item>
+          </tj-menu>
           <button @click="open"></button>
         </div>
       `,
@@ -142,7 +142,7 @@ describe('menu', () => {
         },
       },
     )
-    const elSubmenu = wrapper.findComponent({ name: 'ElSubmenu' })
+    const elSubmenu = wrapper.findComponent({ name: 'TjSubmenu' })
     const button = wrapper.find('button')
     button.trigger('click')
     await nextTick()
@@ -154,10 +154,10 @@ describe('menu', () => {
 describe('default active', () => {
   test('normal active', async () => {
     const wrapper = _mount(
-      `<el-menu default-active="2">
-        <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
-        <el-menu-item index="2" ref="item2">订单管理</el-menu-item>
-      </el-menu>`,
+      `<tj-menu default-active="2">
+        <tj-menu-item index="1" ref="item1">处理中心</tj-menu-item>
+        <tj-menu-item index="2" ref="item2">订单管理</tj-menu-item>
+      </tj-menu>`,
     )
     const item1 = await wrapper.findComponent({ ref: 'item1' })
     const item2 = await wrapper.findComponent({ ref: 'item2' })
@@ -169,10 +169,10 @@ describe('default active', () => {
   })
   test('dynamic active', async () => {
     const wrapper = _mount(
-      `<el-menu :default-active="active">
-        <el-menu-item index="1" ref="item1">active watch处理中心</el-menu-item>
-        <el-menu-item index="2" ref="item2">active watch订单管理</el-menu-item>
-      </el-menu>`,
+      `<tj-menu :default-active="active">
+        <tj-menu-item index="1" ref="item1">active watch处理中心</tj-menu-item>
+        <tj-menu-item index="2" ref="item2">active watch订单管理</tj-menu-item>
+      </tj-menu>`,
       {
         data() {
           return {
@@ -190,16 +190,16 @@ describe('default active', () => {
   test('vertical submenu item active', async () => {
     const wrapper = _mount(
       `<div>
-        <el-menu default-active="2-2" mode="vertical">
-          <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
-          <el-submenu index="2" ref="submenu">
+        <tj-menu default-active="2-2" mode="vertical">
+          <tj-menu-item index="1" ref="item1">处理中心</tj-menu-item>
+          <tj-submenu index="2" ref="submenu">
             <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2" ref="submenuItem2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-          </el-submenu>
-          <el-menu-item index="3">订单管理</el-menu-item>
-        </el-menu>
+            <tj-menu-item index="2-1">选项1</tj-menu-item>
+            <tj-menu-item index="2-2" ref="submenuItem2">选项2</tj-menu-item>
+            <tj-menu-item index="2-3">选项3</tj-menu-item>
+          </tj-submenu>
+          <tj-menu-item index="3">订单管理</tj-menu-item>
+        </tj-menu>
       </div>`,
     )
     const submenu = await wrapper.findComponent({ ref: 'submenu' })
@@ -212,16 +212,16 @@ describe('default active', () => {
   test('horizontal submenu item active', async () => {
     const wrapper = _mount(
       `<div>
-        <el-menu default-active="2-2">
-          <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
-          <el-submenu index="2" ref="submenu">
+        <tj-menu default-active="2-2">
+          <tj-menu-item index="1" ref="item1">处理中心</tj-menu-item>
+          <tj-submenu index="2" ref="submenu">
             <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2" ref="submenuItem2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-          </el-submenu>
-          <el-menu-item index="3">订单管理</el-menu-item>
-        </el-menu>
+            <tj-menu-item index="2-1">选项1</tj-menu-item>
+            <tj-menu-item index="2-2" ref="submenuItem2">选项2</tj-menu-item>
+            <tj-menu-item index="2-3">选项3</tj-menu-item>
+          </tj-submenu>
+          <tj-menu-item index="3">订单管理</tj-menu-item>
+        </tj-menu>
       </div>`,
     )
     const submenu = await wrapper.findComponent({ ref: 'submenu' })
@@ -236,20 +236,20 @@ describe('default active', () => {
 describe('submenu', () => {
   test('toggle', async () => {
     const wrapper = _mount(
-      `<el-menu>
-        <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
-        <el-submenu index="2" ref="submenu">
+      `<tj-menu>
+        <tj-menu-item index="1" ref="item1">处理中心</tj-menu-item>
+        <tj-submenu index="2" ref="submenu">
           <template slot="title">我的工作台</template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2" ref="submenuItem2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="3">订单管理</el-menu-item>
-      </el-menu>`,
+          <tj-menu-item index="2-1">选项1</tj-menu-item>
+          <tj-menu-item index="2-2" ref="submenuItem2">选项2</tj-menu-item>
+          <tj-menu-item index="2-3">选项3</tj-menu-item>
+        </tj-submenu>
+        <tj-menu-item index="3">订单管理</tj-menu-item>
+      </tj-menu>`,
     )
     const submenu = await wrapper.findComponent({ ref: 'submenu' })
     const submenuItem2 = await wrapper.findComponent({ ref: 'submenuItem2' })
-    submenu.vm.$el.querySelector('.el-submenu__title').click()
+    submenu.vm.$el.querySelector('.tj-submenu__title').click()
     await nextTick()
     expect(submenu.classes()).toContain('is-opened')
     submenuItem2.trigger('click')
@@ -261,21 +261,21 @@ describe('submenu', () => {
   })
   test('default opened', async () => {
     const wrapper = _mount(
-      `<el-menu :default-openeds="defaultOpeneds">
-        <el-menu-item index="1">default opened处理中心</el-menu-item>
-        <el-submenu index="2" ref="submenu1">
+      `<tj-menu :default-openeds="defaultOpeneds">
+        <tj-menu-item index="1">default opened处理中心</tj-menu-item>
+        <tj-submenu index="2" ref="submenu1">
           <template slot="title">default opened我的工作台</template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2" ref="submenu1Item2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-        </el-submenu>
-        <el-submenu index="3" ref="submenu2">
+          <tj-menu-item index="2-1">选项1</tj-menu-item>
+          <tj-menu-item index="2-2" ref="submenu1Item2">选项2</tj-menu-item>
+          <tj-menu-item index="2-3">选项3</tj-menu-item>
+        </tj-submenu>
+        <tj-submenu index="3" ref="submenu2">
           <template slot="title">default opened订单管理</template>
-          <el-menu-item index="3-1">选项1</el-menu-item>
-          <el-menu-item index="3-2" ref="submenu2Item2">选项2</el-menu-item>
-          <el-menu-item index="3-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-menu>`,
+          <tj-menu-item index="3-1">选项1</tj-menu-item>
+          <tj-menu-item index="3-2" ref="submenu2Item2">选项2</tj-menu-item>
+          <tj-menu-item index="3-3">选项3</tj-menu-item>
+        </tj-submenu>
+      </tj-menu>`,
       {
         data() {
           return {
@@ -297,16 +297,16 @@ describe('submenu', () => {
   })
   test('disabled', async () => {
     const wrapper = _mount(
-      `<el-menu>
-        <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
-        <el-submenu index="2" ref="submenu" disabled>
+      `<tj-menu>
+        <tj-menu-item index="1" ref="item1">处理中心</tj-menu-item>
+        <tj-submenu index="2" ref="submenu" disabled>
           <template slot="title">我的工作台</template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2" ref="submenuItem2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="3">订单管理</el-menu-item>
-      </el-menu>`,
+          <tj-menu-item index="2-1">选项1</tj-menu-item>
+          <tj-menu-item index="2-2" ref="submenuItem2">选项2</tj-menu-item>
+          <tj-menu-item index="2-3">选项3</tj-menu-item>
+        </tj-submenu>
+        <tj-menu-item index="3">订单管理</tj-menu-item>
+      </tj-menu>`,
       {
         data() {
           return {
@@ -325,42 +325,42 @@ describe('submenu', () => {
 describe('other', () => {
   test('disabled', async () => {
     const wrapper = _mount(
-      `<el-menu unique-opened default-active="2-2">
-        <el-menu-item index="1">处理中心</el-menu-item>
-        <el-submenu index="2" ref="submenu1">
+      `<tj-menu unique-opened default-active="2-2">
+        <tj-menu-item index="1">处理中心</tj-menu-item>
+        <tj-submenu index="2" ref="submenu1">
           <template slot="title">我的工作台</template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2" ref="submenu1Item2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-        </el-submenu>
-        <el-submenu index="3" ref="submenu2">
+          <tj-menu-item index="2-1">选项1</tj-menu-item>
+          <tj-menu-item index="2-2" ref="submenu1Item2">选项2</tj-menu-item>
+          <tj-menu-item index="2-3">选项3</tj-menu-item>
+        </tj-submenu>
+        <tj-submenu index="3" ref="submenu2">
           <template slot="title">订单管理</template>
-          <el-menu-item index="3-1">选项1</el-menu-item>
-          <el-menu-item index="3-2" ref="submenu2Item2">选项2</el-menu-item>
-          <el-menu-item index="3-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-menu>`,
+          <tj-menu-item index="3-1">选项1</tj-menu-item>
+          <tj-menu-item index="3-2" ref="submenu2Item2">选项2</tj-menu-item>
+          <tj-menu-item index="3-3">选项3</tj-menu-item>
+        </tj-submenu>
+      </tj-menu>`,
     )
     const submenu2 = await wrapper.findComponent({ ref: 'submenu2' })
-    submenu2.vm.$el.querySelector('.el-submenu__title').click()
+    submenu2.vm.$el.querySelector('.tj-submenu__title').click()
     await nextTick()
     const submenu1 = await wrapper.findComponent({ ref: 'submenu1' })
     expect(submenu1.classes().includes('is-opened')).toBeFalsy()
   })
   test('horizontal mode', async () => {
     const wrapper = _mount(
-      `<el-menu mode="horizontal">
-        <el-menu-item index="1">处理中心</el-menu-item>
-        <el-submenu index="2" ref="submenu">
+      `<tj-menu mode="horizontal">
+        <tj-menu-item index="1">处理中心</tj-menu-item>
+        <tj-submenu index="2" ref="submenu">
           <template slot="title">我的工作台</template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2" ref="submenuItem2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="3">订单管理</el-menu-item>
-      </el-menu>`,
+          <tj-menu-item index="2-1">选项1</tj-menu-item>
+          <tj-menu-item index="2-2" ref="submenuItem2">选项2</tj-menu-item>
+          <tj-menu-item index="2-3">选项3</tj-menu-item>
+        </tj-submenu>
+        <tj-menu-item index="3">订单管理</tj-menu-item>
+      </tj-menu>`,
     )
-    expect(wrapper.classes()).toContain('el-menu--horizontal')
+    expect(wrapper.classes()).toContain('tj-menu--horizontal')
     const submenu = await wrapper.findComponent({ ref: 'submenu' })
 
     submenu.trigger('mouseenter')
@@ -373,35 +373,35 @@ describe('other', () => {
   })
   test('menu group', async () => {
     const wrapper = _mount(
-      `<el-menu mode="vertical" default-active="1">
-        <el-menu-item-group title="分组一" ref="group1">
-          <el-menu-item index="1"><i class="el-icon-message"></i>导航一</el-menu-item>
-          <el-menu-item index="2"><i class="el-icon-message"></i>导航二</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="5">
+      `<tj-menu mode="vertical" default-active="1">
+        <tj-menu-item-group title="分组一" ref="group1">
+          <tj-menu-item index="1"><i class="tj-icon-message"></i>导航一</tj-menu-item>
+          <tj-menu-item index="2"><i class="tj-icon-message"></i>导航二</tj-menu-item>
+        </tj-menu-item-group>
+        <tj-submenu index="5">
           <template slot="title">导航五</template>
-          <el-menu-item-group title="分组二">
-            <el-menu-item index="5-1">选项1</el-menu-item>
-            <el-menu-item index="5-2">选项2</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-      </el-menu>`,
+          <tj-menu-item-group title="分组二">
+            <tj-menu-item index="5-1">选项1</tj-menu-item>
+            <tj-menu-item index="5-2">选项2</tj-menu-item>
+          </tj-menu-item-group>
+        </tj-submenu>
+      </tj-menu>`,
     )
     const group1 = await wrapper.findComponent({ ref: 'group1' })
     expect(
-      group1.vm.$el.querySelector('.el-menu-item-group__title').innerHTML,
+      group1.vm.$el.querySelector('.tj-menu-item-group__title').innerHTML,
     ).toEqual('分组一')
   })
   test('dynamic menus, issue 9092', async () => {
     const wrapper = _mount(
-      `<el-menu :default-active="active">
-        <el-menu-item
+      `<tj-menu :default-active="active">
+        <tj-menu-item
           v-for="menu in menus"
           :index="menu.name"
           :key="menu.name">
           {{menu.description}}
-        </el-menu-item>
-      </el-menu>`,
+        </tj-menu-item>
+      </tj-menu>`,
       {
         data() {
           return {
@@ -420,7 +420,7 @@ describe('other', () => {
     ]
     await nextTick()
     expect(
-      instance.$el.querySelector('.el-menu-item.is-active').innerHTML,
+      instance.$el.querySelector('.tj-menu-item.is-active').innerHTML,
     ).toEqual('new')
   })
 })

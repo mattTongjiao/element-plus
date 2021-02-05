@@ -7,32 +7,32 @@
     :aria-expanded="inExpandingPath"
     :tabindex="expandable ? -1 : null"
     :class="[
-      'el-cascader-node',
+      'tj-cascader-node',
       checkStrictly && 'is-selectable',
       inExpandingPath && 'in-active-path',
       inCheckedPath && 'in-checked-path',
       node.checked && 'is-active',
-      !expandable && 'is-disabled'
+      !expandable && 'is-disabled',
     ]"
     @mouseenter="handleHoverExpand"
     @focus="handleHoverExpand"
     @click="handleClick"
   >
     <!-- prefix -->
-    <el-checkbox
+    <tj-checkbox
       v-if="multiple"
-      :model-value="node.checked"
+      :modtj-value="node.checked"
       :indeterminate="node.indeterminate"
       :disabled="isDisabled"
       @click.stop
-      @update:model-value="handleCheck"
+      @update:modtj-value="handleCheck"
     />
-    <el-radio
+    <tj-radio
       v-else-if="checkStrictly"
-      :model-value="checkedNodeId"
+      :modtj-value="checkedNodeId"
       :label="node.uid"
       :disabled="isDisabled"
-      @update:model-value="handleCheck"
+      @update:modtj-value="handleCheck"
       @click.stop
     >
       <!--
@@ -40,24 +40,30 @@
         do not use empty fragment here for https://github.com/vuejs/vue-next/pull/2485
       -->
       <span></span>
-    </el-radio>
-    <i v-else-if="isLeaf && node.checked" class="el-icon-check el-cascader-node__prefix"></i>
+    </tj-radio>
+    <i
+      v-else-if="isLeaf && node.checked"
+      class="tj-icon-check tj-cascader-node__prefix"
+    ></i>
 
     <!-- content -->
     <node-content />
 
     <!-- postfix -->
     <template v-if="!isLeaf">
-      <i v-if="node.loading" class="el-icon-loading el-cascader-node__postfix"></i>
-      <i v-else class="el-icon-arrow-right el-cascader-node__postfix"></i>
+      <i
+        v-if="node.loading"
+        class="tj-icon-loading tj-cascader-node__postfix"
+      ></i>
+      <i v-else class="tj-icon-arrow-right tj-cascader-node__postfix"></i>
     </template>
   </li>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, inject, h } from 'vue'
-import ElCheckbox from '@element-plus/checkbox'
-import ElRadio from '@element-plus/radio'
+import TjCheckbox from '@element-plus/checkbox'
+import TjRadio from '@element-plus/radio'
 import {
   CascaderNode,
   CASCADER_PANEL_INJECTION_KEY,
@@ -66,11 +72,11 @@ import {
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElCascaderNode',
+  name: 'TjCascaderNode',
 
   components: {
-    ElCheckbox,
-    ElRadio,
+    TjCheckbox,
+    TjRadio,
     NodeContent: {
       render () {
         const { node, panel } = this.$parent
@@ -78,7 +84,7 @@ export default defineComponent({
         const { renderLabelFn } = panel
         return h(
           'span',
-          { class: 'el-cascader-node__label' },
+          { class: 'tj-cascader-node__label' },
           renderLabelFn ? renderLabelFn({ node, data }) : label,
         )
       },

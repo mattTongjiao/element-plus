@@ -1,43 +1,39 @@
 <template>
-  <li class="el-timeline-item">
-    <div class="el-timeline-item__tail"></div>
+  <li class="tj-timeline-item">
+    <div class="tj-timeline-item__tail"></div>
 
     <div
       v-if="!$slots.dot"
-      class="el-timeline-item__node"
+      class="tj-timeline-item__node"
       :class="[
-        `el-timeline-item__node--${size || ''}`,
-        `el-timeline-item__node--${type || ''}`
+        `tj-timeline-item__node--${size || ''}`,
+        `tj-timeline-item__node--${type || ''}`,
       ]"
       :style="{
-        backgroundColor: color
+        backgroundColor: color,
       }"
     >
-      <i
-        v-if="icon"
-        class="el-timeline-item__icon"
-        :class="icon"
-      ></i>
+      <i v-if="icon" class="tj-timeline-item__icon" :class="icon"></i>
     </div>
-    <div v-if="$slots.dot" class="el-timeline-item__dot">
+    <div v-if="$slots.dot" class="tj-timeline-item__dot">
       <slot name="dot"></slot>
     </div>
 
-    <div class="el-timeline-item__wrapper">
+    <div class="tj-timeline-item__wrapper">
       <div
         v-if="!hideTimestamp && placement === 'top'"
-        class="el-timeline-item__timestamp is-top"
+        class="tj-timeline-item__timestamp is-top"
       >
         {{ timestamp }}
       </div>
 
-      <div class="el-timeline-item__content">
+      <div class="tj-timeline-item__content">
         <slot></slot>
       </div>
 
       <div
         v-if="!hideTimestamp && placement === 'bottom'"
-        class="el-timeline-item__timestamp is-bottom"
+        class="tj-timeline-item__timestamp is-bottom"
       >
         {{ timestamp }}
       </div>
@@ -45,21 +41,21 @@
   </li>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { inject, defineComponent } from 'vue'
 
 interface ITimeLineItemProps {
-    timestamp: string
-    hideTimestamp: boolean
-    placement: string
-    type: string
-    color: string
-    size: string
-    icon: string
+  timestamp: string
+  hideTimestamp: boolean
+  placement: string
+  type: string
+  color: string
+  size: string
+  icon: string
 }
 
 export default defineComponent({
-  name: 'ElTimelineItem',
+  name: 'TjTimelineItem',
   props: {
     timestamp: {
       type: String,

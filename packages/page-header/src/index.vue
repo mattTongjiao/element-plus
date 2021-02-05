@@ -1,22 +1,22 @@
 <template>
-  <div class="el-page-header">
-    <div class="el-page-header__left" @click="handleClick">
-      <i class="el-icon-back"></i>
-      <div class="el-page-header__title">
+  <div class="tj-page-header">
+    <div class="tj-page-header__left" @click="handleClick">
+      <i class="tj-icon-back"></i>
+      <div class="tj-page-header__title">
         <slot name="title">{{ title }}</slot>
       </div>
     </div>
-    <div class="el-page-header__content">
+    <div class="tj-page-header__content">
       <slot name="content">{{ content }}</slot>
     </div>
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import { t } from '@element-plus/locale'
 
 export default defineComponent({
-  name: 'ElPageHeader',
+  name: 'TjPageHeader',
   props: {
     title: {
       type: String,
@@ -29,7 +29,6 @@ export default defineComponent({
   },
   emits: ['back'],
   setup(props, { emit }) {
-
     function handleClick() {
       emit('back')
     }

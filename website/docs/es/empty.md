@@ -7,8 +7,9 @@ Placeholder hints for empty states.
 :::demo
 
 ```html
-<el-empty description="descrição"></el-empty>
+<tj-empty description="descrição"></tj-empty>
 ```
+
 :::
 
 ### Custom image
@@ -18,8 +19,11 @@ Use `image` prop to set image URL.
 :::demo
 
 ```html
-<el-empty image="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"></el-empty>
+<tj-empty
+  image="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+></tj-empty>
 ```
+
 :::
 
 ### Image size
@@ -29,8 +33,9 @@ Use `image-size` prop to control image size.
 :::demo
 
 ```html
-<el-empty :image-size="200"></el-empty>
+<tj-empty :image-size="200"></tj-empty>
 ```
+
 :::
 
 ### Bottom content
@@ -38,24 +43,27 @@ Use `image-size` prop to control image size.
 Use the default slot to insert content at the bottom.
 
 :::demo
+
 ```html
-<el-empty>
-  <el-button type="primary">Button</el-button>
-</el-empty>
+<tj-empty>
+  <tj-button type="primary">Button</tj-button>
+</tj-empty>
 ```
+
 :::
 
 ### Empty Attributes
-| Attribute       | Description      | Type         | Acceptable Value    | Default Value   |
-|-------------  |---------------- |---------------- |---------------------- |-------- |
-| image          | image URL       | string  |          —             |    —     |
-| image-size    | image size (width)  | number | — |    —  |
-| description  | description    | string  |    —  |  — |
+
+| Attribute   | Description        | Type   | Acceptable Value | Default Value |
+| ----------- | ------------------ | ------ | ---------------- | ------------- |
+| image       | image URL          | string | —                | —             |
+| image-size  | image size (width) | number | —                | —             |
+| description | description        | string | —                | —             |
 
 ### Empty Slots
 
-| Name | Description |
-|------|--------|
-| default | Custom bottom content  |
-| image | Custom image     |
-| description | Custom description     |
+| Name        | Description           |
+| ----------- | --------------------- |
+| default     | Custom bottom content |
+| image       | Custom image          |
+| description | Custom description    |

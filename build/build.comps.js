@@ -10,7 +10,7 @@ if (!compPath) {
   process.exit(1)
 }
 
-const outPutPrefix = ['hooks', 'directives'].some((p) => compPath.includes(p)) ? '' : 'el-';
+const outPutPrefix = ['hooks', 'directives'].some((p) => compPath.includes(p)) ? '' : 'tj-';
 const compName = compPath.split('/').pop()
 
 run(`${outPutPrefix}${compName}/index.js`, compPath)

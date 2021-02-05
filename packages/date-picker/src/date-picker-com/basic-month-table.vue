@@ -1,10 +1,16 @@
 <template>
-  <table class="el-month-table" @click="handleMonthTableClick" @mousemove="handleMouseMove">
+  <table
+    class="tj-month-table"
+    @click="handleMonthTableClick"
+    @mousemove="handleMouseMove"
+  >
     <tbody>
       <tr v-for="(row, key) in rows" :key="key">
         <td v-for="(cell, key_) in row" :key="key_" :class="getCellStyle(cell)">
           <div>
-            <a class="cell">{{ t('el.datepicker.months.' + months[cell.text]) }}</a>
+            <a class="cell">{{
+              t('el.datepicker.months.' + months[cell.text])
+            }}</a>
           </div>
         </td>
       </tr>
@@ -19,19 +25,16 @@ import { rangeArr } from '@element-plus/time-picker'
 import { t } from '@element-plus/locale'
 import dayjs, { Dayjs } from 'dayjs'
 
-import {
-  defineComponent,
-  computed,
-  ref,
-  PropType,
-} from 'vue'
+import { defineComponent, computed, ref, PropType } from 'vue'
 
 const datesInMonth = (year, month) => {
-  const firstDay = dayjs().startOf('month').month(month).year(year)
+  const firstDay = dayjs()
+    .startOf('month')
+    .month(month)
+    .year(year)
   const numOfDays = firstDay.daysInMonth()
   return rangeArr(numOfDays).map(n => firstDay.add(n, 'day').toDate())
 }
-
 
 export default defineComponent({
   props: {
@@ -66,8 +69,14 @@ export default defineComponent({
   emits: ['changerange', 'pick', 'select'],
 
   setup(props, ctx) {
-    const months = ref(props.date.locale('en').localeData().monthsShort().map(_=>_.toLowerCase()))
-    const tableRows = ref([ [], [], [] ])
+    const months = ref(
+      props.date
+        .locale('en')
+        .localeData()
+        .monthsShort()
+        .map(_ => _.toLowerCase()),
+    )
+    const tableRows = ref([[], [], []])
     const lastRow = ref(null)
     const lastColumn = ref(null)
     const rows = computed(() => {
@@ -93,24 +102,20 @@ export default defineComponent({
           cell.type = 'normal'
 
           const index = i * 4 + j
-          const calTime =  props.date.startOf('year').month(index)
+          const calTime = props.date.startOf('year').month(index)
 
-          const calEndDate = props.rangeState.endDate || props.maxDate
-            || props.rangeState.selecting && props.minDate
+          const calEndDate =
+            props.rangeState.endDate ||
+            props.maxDate ||
+            (props.rangeState.selecting && props.minDate)
 
-          cell.inRange = (
-            props.minDate &&
-              calTime.isSameOrAfter(props.minDate, 'month')
-            && (
-              calEndDate &&
-                calTime.isSameOrBefore(calEndDate, 'month')
-            )) || (
-            props.minDate &&
-            calTime.isSameOrBefore(props.minDate, 'month')
-            && (
-              calEndDate &&
-              calTime.isSameOrAfter(calEndDate, 'month')
-            ))
+          cell.inRange =
+            (props.minDate &&
+              calTime.isSameOrAfter(props.minDate, 'month') &&
+              calEndDate && calTime.isSameOrBefore(calEndDate, 'month')) ||
+            (props.minDate &&
+              calTime.isSameOrBefore(props.minDate, 'month') &&
+              calEndDate && calTime.isSameOrAfter(calEndDate, 'month'))
 
           if (props.minDate?.isSameOrAfter(calEndDate)) {
             cell.start = calEndDate && calTime.isSame(calEndDate, 'month')
@@ -142,7 +147,10 @@ export default defineComponent({
       style.disabled = props.disabledDate
         ? datesInMonth(year, month).every(props.disabledDate)
         : false
-      style.current = coerceTruthyValueToArray(props.parsedValue).findIndex(date => date.year() === year && date.month() === month) >= 0
+      style.current =
+        coerceTruthyValueToArray(props.parsedValue).findIndex(
+          date => date.year() === year && date.month() === month,
+        ) >= 0
       style.today = today.getFullYear() === year && today.getMonth() === month
 
       if (cell.inRange) {
@@ -227,6 +235,5 @@ export default defineComponent({
       months,
     }
   },
-
 })
 </script>

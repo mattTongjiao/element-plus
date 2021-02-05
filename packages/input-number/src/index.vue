@@ -1,8 +1,8 @@
 <template>
   <div
     :class="[
-      'el-input-number',
-      inputNumberSize ? 'el-input-number--' + inputNumberSize : '',
+      'tj-input-number',
+      inputNumberSize ? 'tj-input-number--' + inputNumberSize : '',
       { 'is-disabled': inputNumberDisabled },
       { 'is-without-controls': !controls },
       { 'is-controls-right': controlsAtRight },
@@ -12,26 +12,26 @@
     <span
       v-if="controls"
       v-repeat-click="decrease"
-      class="el-input-number__decrease"
+      class="tj-input-number__decrease"
       role="button"
       :class="{ 'is-disabled': minDisabled }"
       @keydown.enter="decrease"
     >
-      <i :class="`el-icon-${controlsAtRight ? 'arrow-down' : 'minus'}`"></i>
+      <i :class="`tj-icon-${controlsAtRight ? 'arrow-down' : 'minus'}`"></i>
     </span>
     <span
       v-if="controls"
       v-repeat-click="increase"
-      class="el-input-number__increase"
+      class="tj-input-number__increase"
       role="button"
       :class="{ 'is-disabled': maxDisabled }"
       @keydown.enter="increase"
     >
-      <i :class="`el-icon-${controlsAtRight ? 'arrow-up' : 'plus'}`"></i>
+      <i :class="`tj-icon-${controlsAtRight ? 'arrow-up' : 'plus'}`"></i>
     </span>
-    <el-input
+    <tj-input
       ref="input"
-      :model-value="displayValue"
+      :modtj-value="displayValue"
       :placeholder="placeholder"
       :disabled="inputNumberDisabled"
       :size="inputNumberSize"
@@ -60,14 +60,14 @@ import {
   onUpdated,
 } from 'vue'
 import { RepeatClick } from '@element-plus/directives'
-import ElInput from '@element-plus/input'
+import TjInput from '@element-plus/input'
 import { useGlobalConfig } from '@element-plus/utils/util'
 import { isValidComponentSize } from '@element-plus/utils/validators'
 import { elFormKey, elFormItemKey } from '@element-plus/form'
 import { toRawType } from '@vue/shared'
 
 import type { PropType } from 'vue'
-import type { ElFormContext, ElFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
 
 interface IData {
   currentValue: number | string
@@ -75,9 +75,9 @@ interface IData {
 }
 
 export default defineComponent({
-  name: 'ElInputNumber',
+  name: 'TjInputNumber',
   components: {
-    ElInput,
+    TjInput,
   },
   directives: {
     RepeatClick,
@@ -132,8 +132,8 @@ export default defineComponent({
   emits: ['update:modelValue', 'change', 'input', 'blur', 'focus'],
   setup(props, { emit }) {
     const ELEMENT = useGlobalConfig()
-    const elForm = inject(elFormKey, {} as ElFormContext)
-    const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
+    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
     const input = ref(null)
     const data = reactive<IData>({

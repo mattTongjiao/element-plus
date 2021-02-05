@@ -3,7 +3,7 @@
     v-if="shouldBeRender"
     v-show="active"
     :id="`pane-${paneName}`"
-    class="el-tab-pane"
+    class="tj-tab-pane"
     role="tabpanel"
     :aria-hidden="!active"
     :aria-labelledby="`tab-${paneName}`"
@@ -11,12 +11,12 @@
     <slot></slot>
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent, ref, computed, inject, getCurrentInstance } from 'vue'
 import { RootTabs, UpdatePaneStateCallback, IEPaneProps } from './tabs.vue'
 
 export default defineComponent({
-  name: 'ElTabPane',
+  name: 'TjTabPane',
   props: {
     label: {
       type: String,
@@ -37,7 +37,7 @@ export default defineComponent({
     const updatePaneState = inject<UpdatePaneStateCallback>('updatePaneState')
 
     if (!rootTabs || !updatePaneState) {
-      throw new Error(`ElTabPane must use with ElTabs`)
+      throw new Error(`TjTabPane must use with TjTabs`)
     }
 
     const isClosable = computed(() => {
@@ -57,7 +57,7 @@ export default defineComponent({
     })
 
     const shouldBeRender = computed(() => {
-      return (!props.lazy || loaded.value) || active.value
+      return !props.lazy || loaded.value || active.value
     })
 
     const instance = getCurrentInstance()

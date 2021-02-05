@@ -1,5 +1,5 @@
 <template>
-  <aside class="el-aside" :style="{ width }">
+  <aside class="tj-aside" :style="{ width }">
     <slot></slot>
   </aside>
 </template>
@@ -7,7 +7,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ElAside',
+  name: 'TjAside',
   props: {
     width: {
       type: String,

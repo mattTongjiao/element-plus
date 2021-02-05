@@ -1,36 +1,30 @@
 <template>
-  <el-scrollbar
+  <tj-scrollbar
     :id="menuId"
     tag="ul"
     role="menu"
-    class="el-cascader-menu"
-    wrap-class="el-cascader-menu__wrap"
-    :view-class="[
-      'el-cascader-menu__list',
-      isEmpty && 'is-empty'
-    ]"
+    class="tj-cascader-menu"
+    wrap-class="tj-cascader-menu__wrap"
+    :view-class="['tj-cascader-menu__list', isEmpty && 'is-empty']"
     @mousemove="handleMouseMove"
     @mouseleave="clearHoverZone"
   >
-    <el-cascader-node
+    <tj-cascader-node
       v-for="node in nodes"
       :key="node.uid"
       :node="node"
       :menu-id="menuId"
       @expand="handleExpand"
     />
-    <div
-      v-if="isEmpty"
-      class="el-cascader-menu__empty-text"
-    >
+    <div v-if="isEmpty" class="tj-cascader-menu__empty-text">
       {{ t('el.cascader.noData') }}
     </div>
     <svg
       v-else-if="panel.isHoverMenu"
       ref="hoverZone"
-      class="el-cascader-menu__hover-zone"
+      class="tj-cascader-menu__hover-zone"
     />
-  </el-scrollbar>
+  </tj-scrollbar>
 </template>
 
 <script lang="ts">
@@ -38,8 +32,8 @@ import {
   computed, defineComponent, getCurrentInstance,
   inject, ref,
 } from 'vue'
-import ElScrollbar from '@element-plus/scrollbar'
-import ElCascaderNode from './node.vue'
+import TjScrollbar from '@element-plus/scrollbar'
+import TjCascaderNode from './node.vue'
 import { t } from '@element-plus/locale'
 import { generateId } from '@element-plus/utils/util'
 import {
@@ -50,11 +44,11 @@ import {
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElCascaderMenu',
+  name: 'TjCascaderMenu',
 
   components: {
-    ElScrollbar,
-    ElCascaderNode,
+    TjScrollbar,
+    TjCascaderNode,
   },
 
   props: {
@@ -131,6 +125,4 @@ export default defineComponent({
     }
   },
 })
-
 </script>
-

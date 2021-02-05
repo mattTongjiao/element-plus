@@ -4,74 +4,64 @@ Displays a global notification message at a corner of the page.
 
 ### Basic usage
 
-:::demo Element Plus has registered the `$notify` method and it receives an object as its parameter. In the simplest case, you can set the `title` field and the` message` field for the title and body of the notification. By default, the notification automatically closes after 4500ms, but by setting `duration` you can control its duration. Specifically, if set to `0`, it will not close automatically. Note that `duration` receives a `Number` in milliseconds.
+:::demo Tongjiao UI has registered the `$notify` method and it receives an object as its parameter. In the simplest case, you can set the `title` field and the`message` field for the title and body of the notification. By default, the notification automatically closes after 4500ms, but by setting `duration` you can control its duration. Specifically, if set to `0`, it will not close automatically. Note that `duration` receives a `Number` in milliseconds.
 
 ```html
 <template>
-  <el-button
-    plain
-    @click="open1">
+  <tj-button plain @click="open1">
     Closes automatically
-  </el-button>
-  <el-button
-    plain
-    @click="open2">
+  </tj-button>
+  <tj-button plain @click="open2">
     Won't close automatically
-    </el-button>
+  </tj-button>
 </template>
 
 <script>
-  import { h } from 'vue';
+  import { h } from 'vue'
 
   export default {
     methods: {
       open1() {
         this.$notify({
           title: 'Title',
-          message: h('i', { style: 'color: teal' }, 'This is a reminder')
-        });
+          message: h('i', { style: 'color: teal' }, 'This is a reminder'),
+        })
       },
 
       open2() {
         this.$notify({
           title: 'Prompt',
           message: 'This is a message that does not automatically close',
-          duration: 0
-        });
-      }
-    }
+          duration: 0,
+        })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### With types
 
 We provide four types: success, warning, info and error.
 
-:::demo Element Plus provides four notification types: `success`, `warning`, `info` and `error`. They are set by the `type` field, and other values will be ignored. We also registered methods for these types that can be invoked directly like `open3` and `open4` without passing a `type` field.
+:::demo Tongjiao UI provides four notification types: `success`, `warning`, `info` and `error`. They are set by the `type` field, and other values will be ignored. We also registered methods for these types that can be invoked directly like `open3` and `open4` without passing a `type` field.
+
 ```html
 <template>
-  <el-button
-    plain
-    @click="open1">
+  <tj-button plain @click="open1">
     Success
-  </el-button>
-  <el-button
-    plain
-    @click="open2">
+  </tj-button>
+  <tj-button plain @click="open2">
     Warning
-  </el-button>
-  <el-button
-    plain
-    @click="open3">
+  </tj-button>
+  <tj-button plain @click="open3">
     Info
-  </el-button>
-  <el-button
-    plain
-    @click="open4">
+  </tj-button>
+  <tj-button plain @click="open4">
     Error
-  </el-button>
+  </tj-button>
 </template>
 
 <script>
@@ -81,35 +71,36 @@ We provide four types: success, warning, info and error.
         this.$notify({
           title: 'Success',
           message: 'This is a success message',
-          type: 'success'
-        });
+          type: 'success',
+        })
       },
 
       open2() {
         this.$notify({
           title: 'Warning',
           message: 'This is a warning message',
-          type: 'warning'
-        });
+          type: 'warning',
+        })
       },
 
       open3() {
         this.$notify.info({
           title: 'Info',
-          message: 'This is an info message'
-        });
+          message: 'This is an info message',
+        })
       },
 
       open4() {
         this.$notify.error({
           title: 'Error',
-          message: 'This is an error message'
-        });
-      }
-    }
+          message: 'This is an error message',
+        })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Custom position
@@ -117,28 +108,21 @@ We provide four types: success, warning, info and error.
 Notification can emerge from any corner you like.
 
 :::demo The `position` attribute defines which corner Notification slides in. It can be `top-right`, `top-left`, `bottom-right` or `bottom-left`. Defaults to `top-right`.
+
 ```html
 <template>
-  <el-button
-    plain
-    @click="open1">
+  <tj-button plain @click="open1">
     Top Right
-  </el-button>
-  <el-button
-    plain
-    @click="open2">
+  </tj-button>
+  <tj-button plain @click="open2">
     Bottom Right
-  </el-button>
-  <el-button
-    plain
-    @click="open3">
+  </tj-button>
+  <tj-button plain @click="open3">
     Bottom Left
-  </el-button>
-  <el-button
-    plain
-    @click="open4">
+  </tj-button>
+  <tj-button plain @click="open4">
     Top Left
-  </el-button>
+  </tj-button>
 </template>
 
 <script>
@@ -147,37 +131,38 @@ Notification can emerge from any corner you like.
       open1() {
         this.$notify({
           title: 'Custom Position',
-          message: 'I\'m at the top right corner'
-        });
+          message: "I'm at the top right corner",
+        })
       },
 
       open2() {
         this.$notify({
           title: 'Custom Position',
-          message: 'I\'m at the bottom right corner',
-          position: 'bottom-right'
-        });
+          message: "I'm at the bottom right corner",
+          position: 'bottom-right',
+        })
       },
 
       open3() {
         this.$notify({
           title: 'Custom Position',
-          message: 'I\'m at the bottom left corner',
-          position: 'bottom-left'
-        });
+          message: "I'm at the bottom left corner",
+          position: 'bottom-left',
+        })
       },
 
       open4() {
         this.$notify({
           title: 'Custom Position',
-          message: 'I\'m at the top left corner',
-          position: 'top-left'
-        });
-      }
-    }
+          message: "I'm at the top left corner",
+          position: 'top-left',
+        })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### With offset
@@ -185,13 +170,12 @@ Notification can emerge from any corner you like.
 Customize Notification's offset from the edge of the screen.
 
 :::demo Set the `offset` attribute to customize Notification's offset from the edge of the screen. Note that every Notification instance of the same moment should have the same offset.
+
 ```html
 <template>
-  <el-button
-    plain
-    @click="open">
+  <tj-button plain @click="open">
     Notification with offset
-  </el-button>
+  </tj-button>
 </template>
 
 <script>
@@ -201,26 +185,27 @@ Customize Notification's offset from the edge of the screen.
         this.$notify.success({
           title: 'Success',
           message: 'This is a success message',
-          offset: 100
-        });
-      }
-    }
+          offset: 100,
+        })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Use HTML string
+
 `message` supports HTML string.
 
 :::demo Set `dangerouslyUseHTMLString` to true and `message` will be treated as an HTML string.
+
 ```html
 <template>
-  <el-button
-    plain
-    @click="open">
+  <tj-button plain @click="open">
     Use HTML String
-  </el-button>
+  </tj-button>
 </template>
 
 <script>
@@ -230,13 +215,14 @@ Customize Notification's offset from the edge of the screen.
         this.$notify({
           title: 'HTML String',
           dangerouslyUseHTMLString: true,
-          message: '<strong>This is <i>HTML</i> string</strong>'
-        });
-      }
-    }
+          message: '<strong>This is <i>HTML</i> string</strong>',
+        })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 :::warning
@@ -248,13 +234,12 @@ Although `message` property supports HTML strings, dynamically rendering arbitra
 It is possible to hide the close button
 
 :::demo Set the `showClose` attribute to `false` so the notification cannot be closed by the user.
+
 ```html
 <template>
-  <el-button
-    plain
-    @click="open">
+  <tj-button plain @click="open">
     Hide close button
-    </el-button>
+  </tj-button>
 </template>
 
 <script>
@@ -264,44 +249,47 @@ It is possible to hide the close button
         this.$notify.success({
           title: 'Info',
           message: 'This is a message without close button',
-          showClose: false
-        });
-      }
-    }
+          showClose: false,
+        })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Global method
 
-Element Plus has added a global method `$notify` for `app.config.globalProperties`. So in a vue instance you can call `Notification` like what we did in this page.
+Tongjiao UI has added a global method `$notify` for `app.config.globalProperties`. So in a vue instance you can call `Notification` like what we did in this page.
 
 ### Local import
 
 ```javascript
-import { ElNotification } from 'element-plus';
+import { TjNotification } from 'element-plus'
 ```
 
-In this case you should call `ElNotification(options)`. We have also registered methods for different types, e.g. `ElNotification.success(options)`. You can call `ElNotification.closeAll()` to manually close all the instances.
+In this case you should call `TjNotification(options)`. We have also registered methods for different types, e.g. `TjNotification.success(options)`. You can call `TjNotification.closeAll()` to manually close all the instances.
 
 ### Options
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| title | title | string | — | — |
-| message | description text | string/Vue.VNode | — | — |
-| dangerouslyUseHTMLString | whether `message` is treated as HTML string | boolean | — | false |
-| type | notification type | string | success/warning/info/error | — |
-| iconClass | custom icon's class. It will be overridden by `type` | string | — | — |
-| customClass | custom class name for Notification | string | — | — |
-| duration | duration before close. It will not automatically close if set 0 | number | — | 4500 |
-| position | custom position | string | top-right/top-left/bottom-right/bottom-left | top-right |
-| showClose | whether to show a close button | boolean | — | true |
-| onClose | callback function when closed | function | — | — |
-| onClick | callback function when notification clicked | function | — | — |
-| offset | offset from the top edge of the screen. Every Notification instance of the same moment should have the same offset | number | — | 0 |
+
+| Attribute                | Description                                                                                                        | Type             | Accepted Values                             | Default   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------ | ---------------- | ------------------------------------------- | --------- |
+| title                    | title                                                                                                              | string           | —                                           | —         |
+| message                  | description text                                                                                                   | string/Vue.VNode | —                                           | —         |
+| dangerouslyUseHTMLString | whether `message` is treated as HTML string                                                                        | boolean          | —                                           | false     |
+| type                     | notification type                                                                                                  | string           | success/warning/info/error                  | —         |
+| iconClass                | custom icon's class. It will be overridden by `type`                                                               | string           | —                                           | —         |
+| customClass              | custom class name for Notification                                                                                 | string           | —                                           | —         |
+| duration                 | duration before close. It will not automatically close if set 0                                                    | number           | —                                           | 4500      |
+| position                 | custom position                                                                                                    | string           | top-right/top-left/bottom-right/bottom-left | top-right |
+| showClose                | whether to show a close button                                                                                     | boolean          | —                                           | true      |
+| onClose                  | callback function when closed                                                                                      | function         | —                                           | —         |
+| onClick                  | callback function when notification clicked                                                                        | function         | —                                           | —         |
+| offset                   | offset from the top edge of the screen. Every Notification instance of the same moment should have the same offset | number           | —                                           | 0         |
 
 ### Methods
+
 `Notification` and `this.$notify` returns the current Notification instance. To manually close the instance, you can call `close` on it.
 | Method | Description |
 | ---- | ---- |

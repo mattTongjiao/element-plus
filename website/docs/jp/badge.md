@@ -9,67 +9,69 @@
 :::demo 量は `value` で定義します。`value` は `Number` または `String` を受け入れる。
 
 ```html
-<el-badge :value="12" class="item">
-  <el-button size="small">comments</el-button>
-</el-badge>
-<el-badge :value="3" class="item">
-  <el-button size="small">replies</el-button>
-</el-badge>
-<el-badge :value="1" class="item" type="primary">
-  <el-button size="small">comments</el-button>
-</el-badge>
-<el-badge :value="2" class="item" type="warning">
-  <el-button size="small">replies</el-button>
-</el-badge>
+<tj-badge :value="12" class="item">
+  <tj-button size="small">comments</tj-button>
+</tj-badge>
+<tj-badge :value="3" class="item">
+  <tj-button size="small">replies</tj-button>
+</tj-badge>
+<tj-badge :value="1" class="item" type="primary">
+  <tj-button size="small">comments</tj-button>
+</tj-badge>
+<tj-badge :value="2" class="item" type="warning">
+  <tj-button size="small">replies</tj-button>
+</tj-badge>
 
-<el-dropdown trigger="click">
-  <span class="el-dropdown-link">
-    Click Me<i class="el-icon-caret-bottom el-icon--right"></i>
+<tj-dropdown trigger="click">
+  <span class="tj-dropdown-link">
+    Click Me<i class="tj-icon-caret-bottom tj-icon--right"></i>
   </span>
   <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item class="clearfix">
+    <tj-dropdown-menu>
+      <tj-dropdown-item class="clearfix">
         comments
-        <el-badge class="mark" :value="12" />
-      </el-dropdown-item>
-      <el-dropdown-item class="clearfix">
+        <tj-badge class="mark" :value="12" />
+      </tj-dropdown-item>
+      <tj-dropdown-item class="clearfix">
         replies
-        <el-badge class="mark" :value="3" />
-      </el-dropdown-item>
-    </el-dropdown-menu>
+        <tj-badge class="mark" :value="3" />
+      </tj-dropdown-item>
+    </tj-dropdown-menu>
   </template>
-</el-dropdown>
+</tj-dropdown>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### 最大値
 
 最大値をカスタマイズすることができます。
 
-:::demo 最大値はプロパティ `max` で定義され `Number` である。value` が `Number` である場合にのみ動作することに注意すること。
+:::demo 最大値はプロパティ `max` で定義され `Number` である。value`が`Number` である場合にのみ動作することに注意すること。
 
 ```html
-<el-badge :value="200" :max="99" class="item">
-  <el-button size="small">comments</el-button>
-</el-badge>
-<el-badge :value="100" :max="10" class="item">
-  <el-button size="small">replies</el-button>
-</el-badge>
+<tj-badge :value="200" :max="99" class="item">
+  <tj-button size="small">comments</tj-button>
+</tj-badge>
+<tj-badge :value="100" :max="10" class="item">
+  <tj-button size="small">replies</tj-button>
+</tj-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### カスタマイズ
@@ -79,20 +81,21 @@
 :::demo `value` が `String` の場合、カスタマイズしたテキストを表示することができる。
 
 ```html
-<el-badge value="new" class="item">
-  <el-button size="small">comments</el-button>
-</el-badge>
-<el-badge value="hot" class="item">
-  <el-button size="small">replies</el-button>
-</el-badge>
+<tj-badge value="new" class="item">
+  <tj-button size="small">comments</tj-button>
+</tj-badge>
+<tj-badge value="hot" class="item">
+  <tj-button size="small">replies</tj-button>
+</tj-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### 小さな赤い点
@@ -102,25 +105,31 @@
 :::demo 属性 `is-dot` を用いる。`Boolean` である。
 
 ```html
-<el-badge is-dot class="item">query</el-badge>
-<el-badge is-dot class="item">
-  <el-button class="share-button" icon="el-icon-share" type="primary"></el-button>
-</el-badge>
+<tj-badge is-dot class="item">query</tj-badge>
+<tj-badge is-dot class="item">
+  <tj-button
+    class="share-button"
+    icon="tj-icon-share"
+    type="primary"
+  ></tj-button>
+</tj-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### 属性
-| Attribute     | Description     | Type            | Accepted Values       | Default |
-|-------------  |---------------- |---------------- |---------------------- |-------- |
-| value         | 表示値   | string, number  |          —            |    —    |
-| max           | 最大値を超えると '{max}+' を表示します。`value` が `Number` の場合にのみ動作します。   | number  |         —              |     —    |
-| is-dot        | 小さな点が表示されている場合 | boolean   |    —           |  false  |
-| hidden        | かくしbadge    | boolean         |          —            |  false  |
-| type          | ボタンタイプ     | string          | primary / success / warning / danger / info |   —  |
+
+| Attribute | Description                                                                          | Type           | Accepted Values                             | Default |
+| --------- | ------------------------------------------------------------------------------------ | -------------- | ------------------------------------------- | ------- |
+| value     | 表示値                                                                               | string, number | —                                           | —       |
+| max       | 最大値を超えると '{max}+' を表示します。`value` が `Number` の場合にのみ動作します。 | number         | —                                           | —       |
+| is-dot    | 小さな点が表示されている場合                                                         | boolean        | —                                           | false   |
+| hidden    | かくし badge                                                                         | boolean        | —                                           | false   |
+| type      | ボタンタイプ                                                                         | string         | primary / success / warning / danger / info | —       |

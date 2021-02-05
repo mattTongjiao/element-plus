@@ -4,7 +4,7 @@ import TimeSelect from '../src/time-select.vue'
 
 const _mount = (template: string, data, otherObj?) => mount({
   components: {
-    'el-time-select': TimeSelect,
+    'tj-time-select': TimeSelect,
   },
   template,
   data,
@@ -19,18 +19,18 @@ afterEach(() => {
 
 describe('TimeSelect', () => {
   it('create', async () => {
-    const wrapper = _mount(`<el-time-select
+    const wrapper = _mount(`<tj-time-select
     :style="{color:'red'}"
     class="customClass"
   />`, () => ({
       readonly: true }))
-    const outterInput = wrapper.find('.el-select')
+    const outterInput = wrapper.find('.tj-select')
     expect(outterInput.classes()).toContain('customClass')
     expect(outterInput.attributes().style).toBeDefined()
   })
 
   it('set default value', async () => {
-    const wrapper = _mount(`<el-time-select
+    const wrapper = _mount(`<tj-time-select
     v-model="value"
   />`, () => ({ value: '14:30' }))
     const input = wrapper.find('input')
@@ -42,7 +42,7 @@ describe('TimeSelect', () => {
   })
 
   it('set minTime', async () => {
-    const wrapper = _mount(`<el-time-select
+    const wrapper = _mount(`<tj-time-select
     minTime='14:30'
     />`, () => ({}))
     const input = wrapper.find('input')
@@ -55,7 +55,7 @@ describe('TimeSelect', () => {
   })
 
   it('set maxTime', async () => {
-    const wrapper = _mount(`<el-time-select
+    const wrapper = _mount(`<tj-time-select
     maxTime='14:30'
     />`, () => ({}))
     const input = wrapper.find('input')

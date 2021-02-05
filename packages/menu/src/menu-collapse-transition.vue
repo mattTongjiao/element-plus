@@ -8,7 +8,7 @@ import { defineComponent } from 'vue'
 import { addClass, removeClass, hasClass } from '@element-plus/utils/dom'
 
 export default defineComponent({
-  name: 'ElMenuCollapseTransition',
+  name: 'TjMenuCollapseTransition',
   setup() {
     return {
       on: {
@@ -17,28 +17,28 @@ export default defineComponent({
         },
 
         enter(el) {
-          addClass(el, 'el-opacity-transition')
+          addClass(el, 'tj-opacity-transition')
           el.style.opacity = 1
         },
 
         afterEnter(el) {
-          removeClass(el, 'el-opacity-transition')
+          removeClass(el, 'tj-opacity-transition')
           el.style.opacity = ''
         },
 
         beforeLeave(el) {
           if (!el.dataset) el.dataset = {}
 
-          if (hasClass(el, 'el-menu--collapse')) {
-            removeClass(el, 'el-menu--collapse')
+          if (hasClass(el, 'tj-menu--collapse')) {
+            removeClass(el, 'tj-menu--collapse')
             el.dataset.oldOverflow = el.style.overflow
             el.dataset.scrollWidth = el.clientWidth
-            addClass(el, 'el-menu--collapse')
+            addClass(el, 'tj-menu--collapse')
           } else {
-            addClass(el, 'el-menu--collapse')
+            addClass(el, 'tj-menu--collapse')
             el.dataset.oldOverflow = el.style.overflow
             el.dataset.scrollWidth = el.clientWidth
-            removeClass(el, 'el-menu--collapse')
+            removeClass(el, 'tj-menu--collapse')
           }
 
           el.style.width = el.scrollWidth + 'px'

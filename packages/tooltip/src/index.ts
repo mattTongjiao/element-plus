@@ -1,5 +1,5 @@
 import { defineComponent, h, ref } from 'vue'
-import ElPopper from '@element-plus/popper'
+import TjPopper from '@element-plus/popper'
 import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
 import throwError from '@element-plus/utils/error'
 
@@ -11,15 +11,15 @@ import type {
 } from '@element-plus/popper'
 
 /**
- * ElTooltip
+ * TjTooltip
  * Tooltip is essentially an upper layer for Popper, due to popper has already implemented so many functionalities and Popper is essentially a component shared internally
  * Tooltip also does the API translation work for popper.
  * Tooltip shares the exact same API which v2 has, so that the user should be able to
  */
 export default defineComponent({
-  name: 'ElTooltip',
+  name: 'TjTooltip',
   components: {
-    ElPopper,
+    TjPopper,
   },
   props: {
     effect: {
@@ -82,7 +82,7 @@ export default defineComponent({
     },
     transition: {
       type: String,
-      default: 'el-fade-in-linear',
+      default: 'tj-fade-in-linear',
     },
     trigger: {
       type: [String, Array] as PropType<string | string[]>,
@@ -101,7 +101,7 @@ export default defineComponent({
   setup(props, ctx) {
     // when manual mode is true, v-model must be passed down
     if (props.manual && typeof props.modelValue === 'undefined') {
-      throwError('[ElTooltip]', 'You need to pass a v-model to el-tooltip when `manual` is true')
+      throwError('[TjTooltip]', 'You need to pass a v-model to tj-tooltip when `manual` is true')
     }
 
     const popper = ref(null)
@@ -141,7 +141,7 @@ export default defineComponent({
       stopPopperMouseEvent,
     } = this
     const popper = h(
-      ElPopper,
+      TjPopper,
       {
         ref: 'popper',
         appendToBody: true,
@@ -158,7 +158,7 @@ export default defineComponent({
         stopPopperMouseEvent,
         transition,
         trigger,
-        popperOptions, // Breakings!: Once popperOptions is provided, the whole popper is under user's control, ElPopper nolonger generates the default options for popper, this is by design if the user wants the full control on @PopperJS, read the doc @https://popper.js.org/docs/v2/
+        popperOptions, // Breakings!: Once popperOptions is provided, the whole popper is under user's control, TjPopper nolonger generates the default options for popper, this is by design if the user wants the full control on @PopperJS, read the doc @https://popper.js.org/docs/v2/
         visible: this.modelValue,
         'onUpdate:visible': onUpdateVisible,
       },

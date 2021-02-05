@@ -4,8 +4,8 @@ import BreadcrumbItem from '../src/item.vue'
 
 const _mount = (template: string) => mount({
   components: {
-    'el-breadcrumb': Breadcrumb,
-    'el-breadcrumb-item': BreadcrumbItem,
+    'tj-breadcrumb': Breadcrumb,
+    'tj-breadcrumb-item': BreadcrumbItem,
   },
   template,
 }, {
@@ -19,35 +19,35 @@ const _mount = (template: string) => mount({
 describe('Breadcrumb.vue', () => {
   test('separator', () => {
     const wrapper = _mount(`
-      <el-breadcrumb separator="?">
-        <el-breadcrumb-item>A</el-breadcrumb-item>
-      </el-breadcrumb>
+      <tj-breadcrumb separator="?">
+        <tj-breadcrumb-item>A</tj-breadcrumb-item>
+      </tj-breadcrumb>
     `)
-    expect(wrapper.find('.el-breadcrumb__separator').text()).toBe('?')
+    expect(wrapper.find('.tj-breadcrumb__separator').text()).toBe('?')
   })
 
   test('separatorClass', () => {
     const wrapper = _mount(`
-      <el-breadcrumb separator="?" separatorClass="test">
-        <el-breadcrumb-item>A</el-breadcrumb-item>
-      </el-breadcrumb>
+      <tj-breadcrumb separator="?" separatorClass="test">
+        <tj-breadcrumb-item>A</tj-breadcrumb-item>
+      </tj-breadcrumb>
     `)
-    expect(wrapper.find('.el-breadcrumb__separator').text()).toBe('')
-    expect(wrapper.find('.el-breadcrumb__separator').classes()).toContain('test')
+    expect(wrapper.find('.tj-breadcrumb__separator').text()).toBe('')
+    expect(wrapper.find('.tj-breadcrumb__separator').classes()).toContain('test')
   })
 
   test('to', () => {
     const wrapper = _mount(`
-      <el-breadcrumb separator="?" separatorClass="test">
-        <el-breadcrumb-item to="/index">A</el-breadcrumb-item>
-      </el-breadcrumb>
+      <tj-breadcrumb separator="?" separatorClass="test">
+        <tj-breadcrumb-item to="/index">A</tj-breadcrumb-item>
+      </tj-breadcrumb>
     `)
-    expect(wrapper.find('.el-breadcrumb__inner').classes()).toContain('is-link')
+    expect(wrapper.find('.tj-breadcrumb__inner').classes()).toContain('is-link')
   })
 
   test('single', () => {
-    const wrapper = _mount('<el-breadcrumb-item>A</el-breadcrumb-item>')
-    expect(wrapper.find('.el-breadcrumb__inner').text()).toBe('A')
-    expect(wrapper.find('.el-breadcrumb__separator').text()).toBe('')
+    const wrapper = _mount('<tj-breadcrumb-item>A</tj-breadcrumb-item>')
+    expect(wrapper.find('.tj-breadcrumb__inner').text()).toBe('A')
+    expect(wrapper.find('.tj-breadcrumb__separator').text()).toBe('')
   })
 })

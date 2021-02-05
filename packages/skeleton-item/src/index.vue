@@ -1,5 +1,5 @@
 <template>
-  <div :class="['el-skeleton__item', `el-skeleton__${variant}`]">
+  <div :class="['tj-skeleton__item', `tj-skeleton__${variant}`]">
     <img-placeholder v-if="variant === 'image'" />
   </div>
 </template>
@@ -11,7 +11,7 @@ import type { Variants } from './constants'
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElSkeletonItem',
+  name: 'TjSkeletonItem',
   components: {
     [ImgPlaceholder.name]: ImgPlaceholder,
   },

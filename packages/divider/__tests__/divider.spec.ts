@@ -19,7 +19,7 @@ describe('Divider.vue', () => {
         direction: 'vertical',
       },
     })
-    expect(wrapper.classes()).toContain('el-divider--vertical')
+    expect(wrapper.classes()).toContain('tj-divider--vertical')
   })
 
   test('contentPosition', () => {
@@ -31,7 +31,7 @@ describe('Divider.vue', () => {
         contentPosition: 'right',
       },
     })
-    expect(wrapper.find('.el-divider__text').classes()).toContain('is-right')
+    expect(wrapper.find('.tj-divider__text').classes()).toContain('is-right')
   })
 
   test('customClass', () => {

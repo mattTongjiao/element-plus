@@ -36,4 +36,3 @@ jobs:
         env:
           TRIGGERSYNCURL: ${{ secrets.TRIGGERSYNCURL }}
         run: curl "$TRIGGERSYNCURL"
-

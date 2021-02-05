@@ -8,11 +8,11 @@
     <slot></slot>
     <i
       v-if="closable"
-      class="el-tag__close el-icon-close"
+      class="tj-tag__close tj-icon-close"
       @click="handleClose"
     ></i>
   </span>
-  <transition v-else name="el-zoom-in-center">
+  <transition v-else name="tj-zoom-in-center">
     <span
       :class="classes"
       :style="{ backgroundColor: color }"
@@ -21,14 +21,14 @@
       <slot></slot>
       <i
         v-if="closable"
-        class="el-tag__close el-icon-close"
+        class="tj-tag__close tj-icon-close"
         @click="handleClose"
       ></i>
     </span>
   </transition>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useGlobalConfig } from '@element-plus/utils/util'
 import { isValidComponentSize } from '@element-plus/utils/validators'
@@ -36,7 +36,7 @@ import { isValidComponentSize } from '@element-plus/utils/validators'
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElTag',
+  name: 'TjTag',
   props: {
     closable: Boolean,
     type: {
@@ -71,10 +71,10 @@ export default defineComponent({
     const classes = computed(() => {
       const { type, hit, effect } = props
       return [
-        'el-tag',
-        type ? `el-tag--${type}` : '',
-        tagSize.value ? `el-tag--${tagSize.value}` : '',
-        effect ? `el-tag--${effect}` : '',
+        'tj-tag',
+        type ? `tj-tag--${type}` : '',
+        tagSize.value ? `tj-tag--${tagSize.value}` : '',
+        effect ? `tj-tag--${effect}` : '',
         hit && 'is-hit',
       ]
     })

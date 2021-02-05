@@ -1,56 +1,48 @@
 <template>
-  <el-popper
+  <tj-popper
     v-model:visible="visible"
     trigger="click"
     effect="light"
-    popper-class="el-popover"
+    popper-class="tj-popover"
     append-to-body
   >
-    <div class="el-popconfirm">
-      <p class="el-popconfirm__main">
+    <div class="tj-popconfirm">
+      <p class="tj-popconfirm__main">
         <i
           v-if="!hideIcon"
           :class="icon"
-          class="el-popconfirm__icon"
-          :style="{color: iconColor}"
+          class="tj-popconfirm__icon"
+          :style="{ color: iconColor }"
         ></i>
         {{ title }}
       </p>
-      <div class="el-popconfirm__action">
-        <el-button
-          size="mini"
-          :type="cancelButtonType"
-          @click="cancel"
-        >
+      <div class="tj-popconfirm__action">
+        <tj-button size="mini" :type="cancelButtonType" @click="cancel">
           {{ cancelButtonText_ }}
-        </el-button>
-        <el-button
-          size="mini"
-          :type="confirmButtonType"
-          @click="confirm"
-        >
+        </tj-button>
+        <tj-button size="mini" :type="confirmButtonType" @click="confirm">
           {{ confirmButtonText_ }}
-        </el-button>
+        </tj-button>
       </div>
     </div>
     <template #trigger>
       <slot name="reference"></slot>
     </template>
-  </el-popper>
+  </tj-popper>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
-import ElButton from '@element-plus/button'
-import ElPopper from '@element-plus/popper'
+import TjButton from '@element-plus/button'
+import TjPopper from '@element-plus/popper'
 import { t } from '../../locale'
 
 export default defineComponent({
-  name: 'ElPopconfirm',
+  name: 'TjPopconfirm',
 
   components: {
-    ElButton,
-    ElPopper,
+    TjButton,
+    TjPopper,
   },
 
   props: {
@@ -73,7 +65,7 @@ export default defineComponent({
     },
     icon: {
       type: String,
-      default: 'el-icon-question',
+      default: 'tj-icon-question',
     },
     iconColor: {
       type: String,
@@ -84,8 +76,8 @@ export default defineComponent({
       default: false,
     },
   },
-  emits:['confirm','cancel'],
-  setup(props,{ emit }){
+  emits: ['confirm', 'cancel'],
+  setup(props, { emit }) {
     const visible = ref(false)
     const confirm = () => {
       visible.value = false

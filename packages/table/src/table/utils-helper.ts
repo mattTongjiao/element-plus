@@ -26,7 +26,7 @@ function useUtils(store: Store, layout: TableLayout, shouldUpdateHeight: Compute
   }
   const doLayout = () => {
     if (shouldUpdateHeight.value) {
-      layout.updateElsHeight()
+      layout.updateTjsHeight()
     }
     layout.updateColumnsWidth()
   }

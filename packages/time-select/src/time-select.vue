@@ -1,5 +1,5 @@
 <template>
-  <el-select
+  <tj-select
     v-model="value"
     :disabled="!editable"
     :clearable="clearable"
@@ -9,15 +9,15 @@
     default-first-option
     filterable
     @change="
-      (value) => {
+      value => {
         $emit('change', value)
         $emit('update:modelValue', value)
       }
     "
-    @blur="(event) => $emit('blur', event)"
-    @focus="(event) => $emit('focus', event)"
+    @blur="event => $emit('blur', event)"
+    @focus="event => $emit('focus', event)"
   >
-    <el-option
+    <tj-option
       v-for="item in items"
       :key="item.value"
       :label="item.value"
@@ -25,15 +25,15 @@
       :disabled="item.disabled"
     />
     <template #prefix>
-      <i :class="`el-input__icon ${prefixIcon}`"></i>
+      <i :class="`tj-input__icon ${prefixIcon}`"></i>
     </template>
-  </el-select>
+  </tj-select>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
-import ElSelect from '@element-plus/select'
-import ElOption from '@element-plus/option'
+import TjSelect from '@element-plus/select'
+import TjOption from '@element-plus/option'
 interface Time {
   hours: number
   minutes: number
@@ -82,9 +82,9 @@ const nextTime = (time: string, step: string): string => {
 }
 
 export default defineComponent({
-  name: 'ElTimeSelect',
+  name: 'TjTimeSelect',
 
-  components: { ElSelect, ElOption },
+  components: { TjSelect, TjOption },
   model: {
     prop: 'value',
     event: 'change',
@@ -102,7 +102,8 @@ export default defineComponent({
     size: {
       type: String,
       default: '',
-      validator: (value: string) => !value || ['medium', 'small', 'mini'].indexOf(value) !== -1,
+      validator: (value: string) =>
+        !value || ['medium', 'small', 'mini'].indexOf(value) !== -1,
     },
     placeholder: {
       type: String,
@@ -134,11 +135,11 @@ export default defineComponent({
     },
     prefixIcon: {
       type: String,
-      default: 'el-icon-time',
+      default: 'tj-icon-time',
     },
     clearIcon: {
       type: String,
-      default: 'el-icon-circle-close',
+      default: 'tj-icon-circle-close',
     },
   },
   emits: ['change', 'blur', 'focus', 'update:modelValue'],

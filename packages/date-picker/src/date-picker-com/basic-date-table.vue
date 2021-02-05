@@ -2,7 +2,7 @@
   <table
     cellspacing="0"
     cellpadding="0"
-    class="el-date-table"
+    class="tj-date-table"
     :class="{ 'is-week-mode': selectionMode === 'week' }"
     @click="handleClick"
     @mousemove="handleMouseMove"
@@ -10,12 +10,14 @@
     <tbody>
       <tr>
         <th v-if="showWeekNumber">{{ t('el.datepicker.week') }}</th>
-        <th v-for="(week, key) in WEEKS" :key="key">{{ t('el.datepicker.weeks.' + week) }}</th>
+        <th v-for="(week, key) in WEEKS" :key="key">
+          {{ t('el.datepicker.weeks.' + week) }}
+        </th>
       </tr>
       <tr
         v-for="(row, key) in rows"
         :key="key"
-        class="el-date-table__row"
+        class="tj-date-table__row"
         :class="{ current: isWeekActive(row[1]) }"
       >
         <td
@@ -36,17 +38,9 @@
 
 <script lang="ts">
 import { t } from '@element-plus/locale'
-import {
-  coerceTruthyValueToArray,
-} from '@element-plus/utils/util'
+import { coerceTruthyValueToArray } from '@element-plus/utils/util'
 
-
-import {
-  defineComponent,
-  computed,
-  ref,
-  PropType,
-} from 'vue'
+import { defineComponent, computed, ref, PropType } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 
 export default defineComponent({
@@ -92,11 +86,15 @@ export default defineComponent({
     // data
     const lastRow = ref(null)
     const lastColumn = ref(null)
-    const tableRows = ref([ [], [], [], [], [], [] ])
+    const tableRows = ref([[], [], [], [], [], []])
 
     // todo better way to get Day.js locale object
     const firstDayOfWeek = (props.date as any).$locale().weekStart || 7
-    const WEEKS_CONSTANT = props.date.locale('en').localeData().weekdaysShort().map(_=>_.toLowerCase())
+    const WEEKS_CONSTANT = props.date
+      .locale('en')
+      .localeData()
+      .weekdaysShort()
+      .map(_ => _.toLowerCase())
 
     const offsetDay = computed(() => {
       // Sunday 7(0), cal the left and right offset days, 3217654, such as Monday is -1, the is to adjust the position of the first two rows of dates
@@ -109,21 +107,29 @@ export default defineComponent({
     })
 
     const WEEKS = computed(() => {
-      return WEEKS_CONSTANT.concat(WEEKS_CONSTANT).slice(firstDayOfWeek, firstDayOfWeek + 7)
+      return WEEKS_CONSTANT.concat(WEEKS_CONSTANT).slice(
+        firstDayOfWeek,
+        firstDayOfWeek + 7,
+      )
     })
 
-    const rows = computed(() =>  {
+    const rows = computed(() => {
       // TODO: refactory rows / getCellClasses
       const startOfMonth = props.date.startOf('month')
       const startOfMonthDay = startOfMonth.day() || 7 // day of first day
       const dateCountOfMonth = startOfMonth.daysInMonth()
-      const dateCountOfLastMonth = startOfMonth.subtract(1, 'month').daysInMonth()
+      const dateCountOfLastMonth = startOfMonth
+        .subtract(1, 'month')
+        .daysInMonth()
 
       const offset = offsetDay.value
       const rows_ = tableRows.value
       let count = 1
 
-      const selectedDate: Dayjs[] = props.selectionMode === 'dates' ? coerceTruthyValueToArray(props.parsedValue) : []
+      const selectedDate: Dayjs[] =
+        props.selectionMode === 'dates'
+          ? coerceTruthyValueToArray(props.parsedValue)
+          : []
 
       const calNow = dayjs().startOf('day')
 
@@ -155,20 +161,18 @@ export default defineComponent({
           const calTime = startDate.value.add(index - offset, 'day')
           cell.type = 'normal'
 
-          const calEndDate = props.rangeState.endDate || props.maxDate
-            || props.rangeState.selecting && props.minDate
+          const calEndDate =
+            props.rangeState.endDate ||
+            props.maxDate ||
+            (props.rangeState.selecting && props.minDate)
 
-          cell.inRange = (
-            props.minDate &&
-              calTime.isSameOrAfter(props.minDate, 'day')
-          ) && (calEndDate &&
-              calTime.isSameOrBefore(calEndDate, 'day')
-          ) || (
-            props.minDate &&
-            calTime.isSameOrBefore(props.minDate, 'day')
-          ) && (calEndDate &&
-            calTime.isSameOrAfter(calEndDate, 'day')
-          )
+          cell.inRange =
+            (props.minDate &&
+              calTime.isSameOrAfter(props.minDate, 'day') &&
+              calEndDate && calTime.isSameOrBefore(calEndDate, 'day')) ||
+            (props.minDate &&
+              calTime.isSameOrBefore(props.minDate, 'day') &&
+              calEndDate && calTime.isSameOrAfter(calEndDate, 'day'))
 
           if (props.minDate?.isSameOrAfter(calEndDate)) {
             cell.start = calEndDate && calTime.isSame(calEndDate, 'day')
@@ -185,12 +189,19 @@ export default defineComponent({
           }
 
           if (i >= 0 && i <= 1) {
-            const numberOfDaysFromPreviousMonth = startOfMonthDay + offset < 0 ? 7 + startOfMonthDay + offset : startOfMonthDay + offset
+            const numberOfDaysFromPreviousMonth =
+              startOfMonthDay + offset < 0
+                ? 7 + startOfMonthDay + offset
+                : startOfMonthDay + offset
 
             if (j + i * 7 >= numberOfDaysFromPreviousMonth) {
               cell.text = count++
             } else {
-              cell.text = dateCountOfLastMonth - (numberOfDaysFromPreviousMonth - j % 7) + 1 + i * 7
+              cell.text =
+                dateCountOfLastMonth -
+                (numberOfDaysFromPreviousMonth - (j % 7)) +
+                1 +
+                i * 7
               cell.type = 'prev-month'
             }
           } else {
@@ -203,9 +214,12 @@ export default defineComponent({
           }
 
           const cellDate = calTime.toDate()
-          cell.selected = selectedDate.find(_ => _.valueOf() === calTime.valueOf())
+          cell.selected = selectedDate.find(
+            _ => _.valueOf() === calTime.valueOf(),
+          )
           cell.disabled = props.disabledDate && props.disabledDate(cellDate)
-          cell.customClass = props.cellClassName && props.cellClassName(cellDate)
+          cell.customClass =
+            props.cellClassName && props.cellClassName(cellDate)
           row[props.showWeekNumber ? j + 1 : j] = cell
         }
 
@@ -224,11 +238,7 @@ export default defineComponent({
 
     const cellMatchesDate = (cell, date) => {
       if (!date) return false
-      return dayjs(date)
-        .isSame(
-          props.date.date(Number(cell.text))
-          , 'day',
-        )
+      return dayjs(date).isSame(props.date.date(Number(cell.text)), 'day')
     }
 
     const getCellClasses = cell => {
@@ -242,11 +252,20 @@ export default defineComponent({
         classes.push(cell.type)
       }
 
-      if (props.selectionMode === 'day' && (cell.type === 'normal' || cell.type === 'today') && cellMatchesDate(cell, props.parsedValue)) {
+      if (
+        props.selectionMode === 'day' &&
+        (cell.type === 'normal' || cell.type === 'today') &&
+        cellMatchesDate(cell, props.parsedValue)
+      ) {
         classes.push('current')
       }
 
-      if (cell.inRange && ((cell.type === 'normal' || cell.type === 'today') || props.selectionMode === 'week')) {
+      if (
+        cell.inRange &&
+        (cell.type === 'normal' ||
+          cell.type === 'today' ||
+          props.selectionMode === 'week')
+      ) {
         classes.push('in-range')
 
         if (cell.start) {
@@ -274,7 +293,8 @@ export default defineComponent({
     }
 
     const getDateOfCell = (row, column) => {
-      const offsetFromStart = row * 7 + (column - (props.showWeekNumber ? 1 : 0)) - offsetDay.value
+      const offsetFromStart =
+        row * 7 + (column - (props.showWeekNumber ? 1 : 0)) - offsetDay.value
       return startDate.value.add(offsetFromStart, 'day')
     }
 
@@ -352,7 +372,9 @@ export default defineComponent({
         })
       } else if (props.selectionMode === 'dates') {
         const newValue = cell.selected
-          ? coerceTruthyValueToArray(props.parsedValue).filter(_ => _.valueOf() !== newDate.valueOf())
+          ? coerceTruthyValueToArray(props.parsedValue).filter(
+              _ => _.valueOf() !== newDate.valueOf(),
+            )
           : coerceTruthyValueToArray(props.parsedValue).concat([newDate])
         ctx.emit('pick', newValue)
       }
@@ -373,7 +395,8 @@ export default defineComponent({
       newDate = newDate.date(parseInt(cell.text, 10))
 
       if (props.parsedValue && !Array.isArray(props.parsedValue)) {
-        const dayOffset = (props.parsedValue.day() - firstDayOfWeek + 7) % 7 - 1
+        const dayOffset =
+          ((props.parsedValue.day() - firstDayOfWeek + 7) % 7) - 1
         const weekDate = props.parsedValue.subtract(dayOffset, 'day')
         return weekDate.isSame(newDate, 'day')
       }

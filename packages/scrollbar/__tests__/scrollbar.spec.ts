@@ -4,7 +4,7 @@ import Scrollbar from '../src/index.vue'
 
 const _mount = (template: string) => mount({
   components: {
-    'el-scrollbar': Scrollbar,
+    'tj-scrollbar': Scrollbar,
   },
   template,
 })
@@ -14,12 +14,12 @@ describe('ScrollBar', () => {
     const outerHeight = 200
     const innerHeight = 500
     const wrapper = _mount(`
-      <el-scrollbar style="height: ${outerHeight}px">
+      <tj-scrollbar style="height: ${outerHeight}px">
         <div style="height: ${innerHeight}px;"></div>
-      </el-scrollbar>
+      </tj-scrollbar>
     `)
 
-    const scrollDom = wrapper.find('.el-scrollbar__wrap').element
+    const scrollDom = wrapper.find('.tj-scrollbar__wrap').element
 
     defineGetter(scrollDom, 'clientHeight', outerHeight)
     defineGetter(scrollDom, 'scrollHeight', innerHeight)
@@ -34,12 +34,12 @@ describe('ScrollBar', () => {
     const outerWidth = 200
     const innerWidth = 500
     const wrapper = _mount(`
-      <el-scrollbar style="height: 100px; width: ${outerWidth}px">
+      <tj-scrollbar style="height: 100px; width: ${outerWidth}px">
         <div style="height:100px; width: ${innerWidth}px;"></div>
-      </el-scrollbar>
+      </tj-scrollbar>
     `)
 
-    const scrollDom = wrapper.find('.el-scrollbar__wrap').element
+    const scrollDom = wrapper.find('.tj-scrollbar__wrap').element
 
     defineGetter(scrollDom, 'clientWidth', outerWidth)
     defineGetter(scrollDom, 'scrollWidth', innerWidth)

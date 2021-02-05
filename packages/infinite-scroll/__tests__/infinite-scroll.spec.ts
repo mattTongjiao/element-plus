@@ -74,7 +74,7 @@ describe('InfiniteScroll', () => {
     // wait to ensure initial full check has finished
     await tick(INITIAL_TICK)
     expect(el[SCOPE].container).toEqual(el)
-    expect(el[SCOPE].containerEl).toEqual(el)
+    expect(el[SCOPE].containerTj).toEqual(el)
     expect(el[SCOPE].delay).toEqual(DEFAULT_DELAY)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE)
     // ensure observer has been destroyed, otherwise will cause memory leak
@@ -168,7 +168,7 @@ describe('InfiniteScroll', () => {
     // wait to ensure initial full check has finished
     await tick(INITIAL_TICK)
     expect(el[SCOPE].container).toEqual(window)
-    expect(el[SCOPE].containerEl).toEqual(documentElement)
+    expect(el[SCOPE].containerTj).toEqual(documentElement)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE)
 
     // won't trigger load when not reach the bottom distance

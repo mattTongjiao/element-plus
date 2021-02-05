@@ -1,23 +1,23 @@
 <template>
-  <div class="el-transfer-panel">
-    <p class="el-transfer-panel__header">
-      <el-checkbox
+  <div class="tj-transfer-panel">
+    <p class="tj-transfer-panel__header">
+      <tj-checkbox
         v-model="allChecked"
         :indeterminate="isIndeterminate"
         @change="handleAllCheckedChange"
       >
         {{ title }}
         <span>{{ checkedSummary }}</span>
-      </el-checkbox>
+      </tj-checkbox>
     </p>
 
     <div
-      :class="['el-transfer-panel__body', hasFooter ? 'is-with-footer' : '']"
+      :class="['tj-transfer-panel__body', hasFooter ? 'is-with-footer' : '']"
     >
-      <el-input
+      <tj-input
         v-if="filterable"
         v-model="query"
-        class="el-transfer-panel__filter"
+        class="tj-transfer-panel__filter"
         size="small"
         :placeholder="placeholder"
         @mouseenter="inputHover = true"
@@ -25,34 +25,35 @@
       >
         <template #prefix>
           <i
-            :class="['el-input__icon', 'el-icon-' + inputIcon]"
+            :class="['tj-input__icon', 'tj-icon-' + inputIcon]"
             @click="clearQuery"
           ></i>
         </template>
-      </el-input>
-      <el-checkbox-group
+      </tj-input>
+      <tj-checkbox-group
         v-show="!hasNoMatch && data.length > 0"
         v-model="checked"
         :class="{ 'is-filterable': filterable }"
-        class="el-transfer-panel__list"
+        class="tj-transfer-panel__list"
       >
-        <el-checkbox
+        <tj-checkbox
           v-for="item in filteredData"
           :key="item[keyProp]"
-          class="el-transfer-panel__item"
+          class="tj-transfer-panel__item"
           :label="item[keyProp]"
           :disabled="item[disabledProp]"
         >
-          <option-content
-            :option="optionRender(item)"
-          />
-        </el-checkbox>
-      </el-checkbox-group>
-      <p v-show="hasNoMatch || data.length === 0" class="el-transfer-panel__empty">
+          <option-content :option="optionRender(item)" />
+        </tj-checkbox>
+      </tj-checkbox-group>
+      <p
+        v-show="hasNoMatch || data.length === 0"
+        class="tj-transfer-panel__empty"
+      >
         {{ hasNoMatch ? t('el.transfer.noMatch') : t('el.transfer.noData') }}
       </p>
     </div>
-    <p v-if="hasFooter" class="el-transfer-panel__footer">
+    <p v-if="hasFooter" class="tj-transfer-panel__footer">
       <slot></slot>
     </p>
   </div>
@@ -61,18 +62,18 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs } from 'vue'
 import { t } from '@element-plus/locale'
-import ElCheckbox from '@element-plus/checkbox'
-import ElCheckboxGroup from '@element-plus/checkbox-group'
-import ElInput from '@element-plus/input'
+import TjCheckbox from '@element-plus/checkbox'
+import TjCheckboxGroup from '@element-plus/checkbox-group'
+import TjInput from '@element-plus/input'
 import { useCheck, CHECKED_CHANGE_EVENT } from './useCheck'
 
 export default defineComponent({
-  name: 'ElTransferPanel',
+  name: 'TjTransferPanel',
 
   components: {
-    ElCheckboxGroup,
-    ElCheckbox,
-    ElInput,
+    TjCheckboxGroup,
+    TjCheckbox,
+    TjInput,
     OptionContent: ({ option }) => option,
   },
 

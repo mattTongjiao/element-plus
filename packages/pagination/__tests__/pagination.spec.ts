@@ -13,25 +13,25 @@ describe('Pagination.vue', () => {
       },
     })
     expect(wrapper.find('button.btn-prev').exists()).toBe(true)
-    expect(wrapper.find('ul.el-pager').exists()).toBe(true)
+    expect(wrapper.find('ul.tj-pager').exists()).toBe(true)
     expect(wrapper.find('button.btn-next').exists()).toBe(true)
-    expect(wrapper.find('.el-pagination__jump').exists()).toBe(false)
-    expect(wrapper.find('.el-pagination__rightwrapper').exists()).toBe(false)
-    expect(wrapper.find('.el-pagination__total').exists()).toBe(false)
+    expect(wrapper.find('.tj-pagination__jump').exists()).toBe(false)
+    expect(wrapper.find('.tj-pagination__rightwrapper').exists()).toBe(false)
+    expect(wrapper.find('.tj-pagination__total').exists()).toBe(false)
   })
 
   test('slot', () => {
     const TestComponent = {
       template: `
-        <el-pagination
+        <tj-pagination
           layout="slot, prev, pager, next"
           :page-size="25"
           :total="100">
           <span class="slot-test">slot test</span>
-        </el-pagination>
+        </tj-pagination>
       `,
       components: {
-        'el-pagination': Pagination,
+        'tj-pagination': Pagination,
       },
     }
     const wrapper = mount(TestComponent)
@@ -44,7 +44,7 @@ describe('Pagination.vue', () => {
         small: true,
       },
     })
-    expect(wrapper.vm.$el.classList.contains('el-pagination--small')).toBe(true)
+    expect(wrapper.vm.$el.classList.contains('tj-pagination--small')).toBe(true)
   })
 
   test('pageSize', () => {
@@ -143,7 +143,7 @@ describe('click pager', () => {
         total: 1000,
       },
     })
-    wrapper.find('.el-pager').trigger('click')
+    wrapper.find('.tj-pager').trigger('click')
     expect(wrapper.vm.internalCurrentPage).toEqual(1)
   })
 
@@ -153,7 +153,7 @@ describe('click pager', () => {
         total: 1000,
       },
     })
-    wrapper.findAll('.el-pager li.number')[1].trigger('click')
+    wrapper.findAll('.tj-pager li.number')[1].trigger('click')
     expect(wrapper.vm.internalCurrentPage).toEqual(2)
   })
 
@@ -197,10 +197,10 @@ describe('click pager', () => {
     const onSizeChange = jest.fn()
     const wrapper = mount({
       components: {
-        'el-pagination': Pagination,
+        'tj-pagination': Pagination,
       },
       template: `
-        <el-pagination
+        <tj-pagination
           @size-change="onSizeChange"
           v-model:page-size="pageSize"
          :total="1000"
@@ -218,7 +218,7 @@ describe('click pager', () => {
       },
     })
 
-    const items = document.querySelectorAll('.el-select-dropdown__item:not(.selected)');
+    const items = document.querySelectorAll('.tj-select-dropdown__item:not(.selected)');
     (items[0] as HTMLOptionElement)?.click()
     expect(onSizeChange).toHaveBeenCalled()
     expect(wrapper.vm.pageSize).toBe(100)
@@ -233,7 +233,7 @@ describe('click pager', () => {
         [Pagination.name]: Pagination,
       },
       template: `
-        <el-pagination
+        <tj-pagination
           :total="total"
           :page-size="pageSize"
           @current-change="onCurrentChange"

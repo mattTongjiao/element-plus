@@ -1,9 +1,9 @@
 <template>
   <form
-    class="el-form"
+    class="tj-form"
     :class="[
-      labelPosition ? 'el-form--label-' + labelPosition : '',
-      { 'el-form--inline': inline }
+      labelPosition ? 'tj-form--label-' + labelPosition : '',
+      { 'tj-form--inline': inline },
     ]"
   >
     <slot></slot>
@@ -12,13 +12,21 @@
 
 <script lang="ts">
 import {
-  defineComponent, provide, watch, ref,
-  computed, reactive, toRefs, PropType,
+  defineComponent,
+  provide,
+  watch,
+  ref,
+  computed,
+  reactive,
+  toRefs,
+  PropType,
 } from 'vue'
 import mitt from 'mitt'
 import {
-  elFormKey, ElFormItemContext as FormItemCtx,
-  elFormEvents, ValidateFieldCallback,
+  elFormKey,
+  TjFormItemContext as FormItemCtx,
+  elFormEvents,
+  ValidateFieldCallback,
 } from './token'
 import { FieldErrorList } from 'async-validator'
 
@@ -63,7 +71,7 @@ interface Callback {
 }
 
 export default defineComponent({
-  name: 'ElForm',
+  name: 'TjForm',
   props: {
     model: Object,
     rules: Object,
@@ -188,7 +196,10 @@ export default defineComponent({
       return promise
     }
 
-    const validateField = (props: string|string[], cb: ValidateFieldCallback) => {
+    const validateField = (
+      props: string | string[],
+      cb: ValidateFieldCallback,
+    ) => {
       props = [].concat(props)
       const fds = fields.filter(field => props.indexOf(field.prop) !== -1)
       if (!fields.length) {

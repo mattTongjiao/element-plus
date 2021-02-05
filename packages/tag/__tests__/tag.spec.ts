@@ -14,8 +14,8 @@ describe('Tag.vue', () => {
 
     const vm = wrapper.vm
 
-    expect(vm.$el.classList.contains('el-tag')).toEqual(true)
-    expect(vm.$el.classList.contains('el-tag__close')).toEqual(false)
+    expect(vm.$el.classList.contains('tj-tag')).toEqual(true)
+    expect(vm.$el.classList.contains('tj-tag__close')).toEqual(false)
     expect(vm.$el.classList.contains('is-hit')).toEqual(false)
     expect(vm.$el.classList.contains('md-fade-center')).toEqual(false)
   })
@@ -27,7 +27,7 @@ describe('Tag.vue', () => {
       },
     })
     const vm = wrapper.vm
-    expect(vm.$el.classList.contains('el-tag--primary')).toEqual(true)
+    expect(vm.$el.classList.contains('tj-tag--primary')).toEqual(true)
   })
 
   test('hit', () => {
@@ -46,7 +46,7 @@ describe('Tag.vue', () => {
         closable: true,
       },
     })
-    const closeBtn = wrapper.find('.el-tag .el-tag__close')
+    const closeBtn = wrapper.find('.tj-tag .tj-tag__close')
     expect(closeBtn.exists()).toBe(true)
 
     await closeBtn.trigger('click')
@@ -81,8 +81,8 @@ describe('Tag.vue', () => {
     })
     const vm = wrapper.vm
     const el = vm.$el
-    expect(el.className.indexOf('el-tag--dark') > -1).toEqual(true)
-    expect(el.className.indexOf('el-tag--light') > -1).toEqual(false)
-    expect(el.className.indexOf('el-tag--plain') > -1).toEqual(false)
+    expect(el.className.indexOf('tj-tag--dark') > -1).toEqual(true)
+    expect(el.className.indexOf('tj-tag--light') > -1).toEqual(false)
+    expect(el.className.indexOf('tj-tag--plain') > -1).toEqual(false)
   })
 })

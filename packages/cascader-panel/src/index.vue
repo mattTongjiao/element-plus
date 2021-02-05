@@ -1,29 +1,26 @@
 <template>
   <div
-    :class="[
-      'el-cascader-panel',
-      border && 'is-bordered'
-    ]"
+    :class="['tj-cascader-panel', border && 'is-bordered']"
     @keydown="handleKeyDown"
   >
-    <el-cascader-menu
+    <tj-cascader-menu
       v-for="(menu, index) in menus"
       :key="index"
-      :ref="item => menuList[index] = item"
+      :ref="item => (menuList[index] = item)"
       :index="index"
       :nodes="menu"
     />
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import {
   computed, defineComponent, nextTick,
   onBeforeUpdate, onMounted,
   provide, reactive,
   Ref, ref, watch,
 } from 'vue'
-import ElCascaderMenu from './menu.vue'
+import TjCascaderMenu from './menu.vue'
 import Store from './store'
 import Node from './node'
 import isEqual from 'lodash/isEqual'
@@ -54,14 +51,14 @@ import type {
   CascaderNodeValue,
   CascaderOption,
   RenderLabel,
-  ElCascaderPanelContext,
+  TjCascaderPanelContext,
 } from './types'
 
 export default defineComponent({
-  name: 'ElCascaderPanel',
+  name: 'TjCascaderPanel',
 
   components: {
-    ElCascaderMenu,
+    TjCascaderMenu,
   },
 
   props: {
@@ -116,7 +113,7 @@ export default defineComponent({
       }
     }
 
-    const lazyLoad: ElCascaderPanelContext['lazyLoad'] = (node, cb) => {
+    const lazyLoad: TjCascaderPanelContext['lazyLoad'] = (node, cb) => {
       const cfg = config.value
       node = node || new Node({}, cfg, null, true)
       node.loading = true
@@ -132,7 +129,7 @@ export default defineComponent({
       cfg.lazyLoad(node, resolve)
     }
 
-    const expandNode: ElCascaderPanelContext['expandNode'] = (node, silent) => {
+    const expandNode: TjCascaderPanelContext['expandNode'] = (node, silent) => {
       const { level } = node
       const newMenus = menus.value.slice(0, level)
       let newExpandingNode: Nullable<CascaderNode>
@@ -151,7 +148,7 @@ export default defineComponent({
       }
     }
 
-    const handleCheckChange: ElCascaderPanelContext['handleCheckChange'] = (node, checked, emitClose = true) => {
+    const handleCheckChange: TjCascaderPanelContext['handleCheckChange'] = (node, checked, emitClose = true) => {
       const { checkStrictly, multiple } = config.value
       const oldNode = checkedNodes.value[0]
       manualChecked = true
@@ -244,9 +241,9 @@ export default defineComponent({
       menuList.value.forEach(menu => {
         const menuElement = menu?.$el
         if (menuElement) {
-          const container = menuElement.querySelector('.el-scrollbar__wrap')
-          const activeNode = menuElement.querySelector('.el-cascader-node.is-active') ||
-            menuElement.querySelector('.el-cascader-node.in-active-path')
+          const container = menuElement.querySelector('.tj-scrollbar__wrap')
+          const activeNode = menuElement.querySelector('.tj-cascader-node.is-active') ||
+            menuElement.querySelector('.tj-cascader-node.in-active-path')
           scrollIntoView(container, activeNode)
         }
       })
@@ -264,12 +261,12 @@ export default defineComponent({
           break
         case EVENT_CODE.left:
           const preMenu = menuList.value[getMenuIndex(target) - 1]
-          const expandedNode = preMenu?.$el.querySelector('.el-cascader-node[aria-expanded="true"]')
+          const expandedNode = preMenu?.$el.querySelector('.tj-cascader-node[aria-expanded="true"]')
           focusNode(expandedNode)
           break
         case EVENT_CODE.right:
           const nextMenu = menuList.value[getMenuIndex(target) + 1]
-          const firstNode = nextMenu?.$el.querySelector('.el-cascader-node[tabindex="-1"]')
+          const firstNode = nextMenu?.$el.querySelector('.tj-cascader-node[tabindex="-1"]')
           focusNode(firstNode)
           break
         case EVENT_CODE.enter:

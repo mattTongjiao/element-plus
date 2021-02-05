@@ -4,7 +4,7 @@ import type {
   FieldErrorList,
 } from 'async-validator'
 
-export interface ElFormContext {
+export interface TjFormContext {
   registerLabelWidth(width: number, oldWidth: number): void
   deregisterLabelWidth(width: number): void
   autoLabelWidth: string | undefined
@@ -27,7 +27,7 @@ export interface ValidateFieldCallback {
   (message?: string, invalidFields?: FieldErrorList): void
 }
 
-export interface ElFormItemContext {
+export interface TjFormItemContext {
   prop?: string
   formItemMitt: Emitter
   size: ComponentSize
@@ -41,9 +41,9 @@ export interface ElFormItemContext {
 }
 
 // TODO: change it to symbol
-export const elFormKey: InjectionKey<ElFormContext> = 'elForm' as any
+export const elFormKey: InjectionKey<TjFormContext> = 'elForm' as any
 
-export const elFormItemKey: InjectionKey<ElFormItemContext> = 'elFormItem' as any
+export const elFormItemKey: InjectionKey<TjFormItemContext> = 'elFormItem' as any
 
 export const elFormEvents = {
   addField: 'el.form.addField',

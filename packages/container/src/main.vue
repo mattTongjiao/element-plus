@@ -1,5 +1,5 @@
 <template>
-  <main class="el-main">
+  <main class="tj-main">
     <slot></slot>
   </main>
 </template>
@@ -7,6 +7,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ElMain',
+  name: 'TjMain',
 })
 </script>

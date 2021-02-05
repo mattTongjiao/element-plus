@@ -1,5 +1,5 @@
 <template>
-  <span class="el-pagination__total">
+  <span class="tj-pagination__total">
     {{
       t('el.pagination.total', {
         total,
@@ -26,5 +26,4 @@ export default defineComponent({
     }
   },
 })
-
 </script>

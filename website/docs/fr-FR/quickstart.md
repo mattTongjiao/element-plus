@@ -1,6 +1,6 @@
 ## Démarrer
 
-Cette page vous guidera tout le long de l'installation d'Element Plus au sein d'un projet webpack.
+Cette page vous guidera tout le long de l'installation d'Tongjiao UI au sein d'un projet webpack.
 
 ### Use vue-cli@4.5
 
@@ -8,13 +8,13 @@ Nous fournissons un [plugin Element](https://github.com/element-plus/vue-cli-plu
 
 ### Utiliser le Starter Kit
 
-Nous fournissons un [template de projet](https://github.com/element-plus/element-plus-starter) pour débuter rapidement, and also a Vite [template](https://github.com/element-plus/element-plus-vite-starter). Pour les utilisateurs Laravel, il est aussi possible d'utiliser ce [template](https://github.com/element-plus/element-plus-in-laravel-starter). VOus pouvez les télécharger directement.
+Nous fournissons un [template de projet](https://github.com/element-plus/element-plus-starter) pour débuter rapidement, and also a Vite [template](https://github.com/element-plus/element-plus-vite-starter). Pour les utilisateurs Laravel, il est aussi possible d'utiliser ce [template](https://github.com/element-plus/element-plus-in-laravtj-starter). VOus pouvez les télécharger directement.
 
 Si vous préférer vous passer de template, voyez la section suivante.
 
-### Importer Element Plus
+### Importer Tongjiao UI
 
-Element Plus peut être importé entièrement ou à la demande. Commençons par l'import total.
+Tongjiao UI peut être importé entièrement ou à la demande. Commençons par l'import total.
 
 #### Import total
 
@@ -22,16 +22,16 @@ Dans main.js:
 
 ```javascript
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus';
-import 'element-plus/lib/theme-chalk/index.css';
-import App from './App.vue';
+import ElementPlus from 'element-plus'
+import 'element-plus/lib/theme-chalk/index.css'
+import App from './App.vue'
 
 const app = createApp(App)
 app.use(ElementPlus)
 app.mount('#app')
 ```
 
-L'exemple ci-dessus importe Element Plus entièrement. Notez que les fichiers CSS doivent être importés séparément.
+L'exemple ci-dessus importe Tongjiao UI entièrement. Notez que les fichiers CSS doivent être importés séparément.
 
 #### À la demande
 
@@ -49,34 +49,34 @@ Puis éditez babel.config.js:
 module.exports = {
   plugins: [
     [
-      "import",
+      'import',
       {
         libraryName: 'element-plus',
-        customStyleName: (name) => {
+        customStyleName: name => {
           // En raison de l'existence de "customStyleName", "style : true" ne sera pas efficace.
           // Donc si vous voulez utiliser le fichier source `.scss`, il vous suffit de remplacer le nom de l'extension `.css` par `.scss`.
-          return `element-plus/lib/theme-chalk/${name}.css`;
+          return `element-plus/lib/theme-chalk/${name}.css`
         },
       },
     ],
   ],
-};
+}
 ```
 
 Ensuite, si vous n'avez besoin que de Button et Select, éditez main.js comme suit:
 
 ```javascript
 import { createApp } from 'vue'
-import { ElButton, ElSelect } from 'element-plus';
-import App from './App.vue';
+import { TjButton, TjSelect } from 'element-plus'
+import App from './App.vue'
 
 const app = createApp(App)
-app.component(ElButton.name, ElButton);
-app.component(ElSelect.name, ElSelect);
+app.component(TjButton.name, TjButton)
+app.component(TjSelect.name, TjSelect)
 
 /* or
- * app.use(ElButton)
- * app.use(ElSelect)
+ * app.use(TjButton)
+ * app.use(TjSelect)
  */
 
 app.mount('#app')
@@ -86,180 +86,180 @@ Exemple complet (liste complète des composants dans [reference](https://github.
 
 ```javascript
 import { createApp } from 'vue'
-import App from './App.vue';
+import App from './App.vue'
 import {
-  ElAlert,
-  ElAside,
-  ElAutocomplete,
-  ElAvatar,
-  ElBacktop,
-  ElBadge,
-  ElBreadcrumb,
-  ElBreadcrumbItem,
-  ElButton,
-  ElButtonGroup,
-  ElCalendar,
-  ElCard,
-  ElCarousel,
-  ElCarouselItem,
-  ElCascader,
-  ElCascaderPanel,
-  ElCheckbox,
-  ElCheckboxButton,
-  ElCheckboxGroup,
-  ElCol,
-  ElCollapse,
-  ElCollapseItem,
-  ElCollapseTransition,
-  ElColorPicker,
-  ElContainer,
-  ElDatePicker,
-  ElDialog,
-  ElDivider,
-  ElDrawer,
-  ElDropdown,
-  ElDropdownItem,
-  ElDropdownMenu,
-  ElFooter,
-  ElForm,
-  ElFormItem,
-  ElHeader,
-  ElIcon,
-  ElImage,
-  ElInput,
-  ElInputNumber,
-  ElLink,
-  ElMain,
-  ElMenu,
-  ElMenuItem,
-  ElMenuItemGroup,
-  ElOption,
-  ElOptionGroup,
-  ElPageHeader,
-  ElPagination,
-  ElPopconfirm,
-  ElPopover,
-  ElPopper,
-  ElProgress,
-  ElRadio,
-  ElRadioButton,
-  ElRadioGroup,
-  ElRate,
-  ElRow,
-  ElScrollbar,
-  ElSelect,
-  ElSlider,
-  ElStep,
-  ElSteps,
-  ElSubmenu,
-  ElSwitch,
-  ElTabPane,
-  ElTable,
-  ElTableColumn,
-  ElTabs,
-  ElTag,
-  ElTimePicker,
-  ElTimeSelect,
-  ElTimeline,
-  ElTimelineItem,
-  ElTooltip,
-  ElTransfer,
-  ElTree,
-  ElUpload,
-  ElInfiniteScroll,
-  ElLoading,
-  ElMessage,
-  ElMessageBox,
-  ElNotification,
-} from 'element-plus';
+  TjAlert,
+  TjAside,
+  TjAutocomplete,
+  TjAvatar,
+  TjBacktop,
+  TjBadge,
+  TjBreadcrumb,
+  TjBreadcrumbItem,
+  TjButton,
+  TjButtonGroup,
+  TjCalendar,
+  TjCard,
+  TjCarousel,
+  TjCarouselItem,
+  TjCascader,
+  TjCascaderPanel,
+  TjCheckbox,
+  TjCheckboxButton,
+  TjCheckboxGroup,
+  TjCol,
+  TjCollapse,
+  TjCollapseItem,
+  TjCollapseTransition,
+  TjColorPicker,
+  TjContainer,
+  TjDatePicker,
+  TjDialog,
+  TjDivider,
+  TjDrawer,
+  TjDropdown,
+  TjDropdownItem,
+  TjDropdownMenu,
+  TjFooter,
+  TjForm,
+  TjFormItem,
+  TjHeader,
+  TjIcon,
+  TjImage,
+  TjInput,
+  TjInputNumber,
+  TjLink,
+  TjMain,
+  TjMenu,
+  TjMenuItem,
+  TjMenuItemGroup,
+  TjOption,
+  TjOptionGroup,
+  TjPageHeader,
+  TjPagination,
+  TjPopconfirm,
+  TjPopover,
+  TjPopper,
+  TjProgress,
+  TjRadio,
+  TjRadioButton,
+  TjRadioGroup,
+  TjRate,
+  TjRow,
+  TjScrollbar,
+  TjSelect,
+  TjSlider,
+  TjStep,
+  TjSteps,
+  TjSubmenu,
+  TjSwitch,
+  TjTabPane,
+  TjTable,
+  TjTableColumn,
+  TjTabs,
+  TjTag,
+  TjTimePicker,
+  TjTimeSelect,
+  TjTimeline,
+  TjTimelineItem,
+  TjTooltip,
+  TjTransfer,
+  TjTree,
+  TjUpload,
+  TjInfiniteScroll,
+  TjLoading,
+  TjMessage,
+  TjMessageBox,
+  TjNotification,
+} from 'element-plus'
 
 const components = [
-  ElAlert,
-  ElAside,
-  ElAutocomplete,
-  ElAvatar,
-  ElBacktop,
-  ElBadge,
-  ElBreadcrumb,
-  ElBreadcrumbItem,
-  ElButton,
-  ElButtonGroup,
-  ElCalendar,
-  ElCard,
-  ElCarousel,
-  ElCarouselItem,
-  ElCascader,
-  ElCascaderPanel,
-  ElCheckbox,
-  ElCheckboxButton,
-  ElCheckboxGroup,
-  ElCol,
-  ElCollapse,
-  ElCollapseItem,
-  ElCollapseTransition,
-  ElColorPicker,
-  ElContainer,
-  ElDatePicker,
-  ElDialog,
-  ElDivider,
-  ElDrawer,
-  ElDropdown,
-  ElDropdownItem,
-  ElDropdownMenu,
-  ElFooter,
-  ElForm,
-  ElFormItem,
-  ElHeader,
-  ElIcon,
-  ElImage,
-  ElInput,
-  ElInputNumber,
-  ElLink,
-  ElMain,
-  ElMenu,
-  ElMenuItem,
-  ElMenuItemGroup,
-  ElOption,
-  ElOptionGroup,
-  ElPageHeader,
-  ElPagination,
-  ElPopconfirm,
-  ElPopover,
-  ElPopper,
-  ElProgress,
-  ElRadio,
-  ElRadioButton,
-  ElRadioGroup,
-  ElRate,
-  ElRow,
-  ElScrollbar,
-  ElSelect,
-  ElSlider,
-  ElStep,
-  ElSteps,
-  ElSubmenu,
-  ElSwitch,
-  ElTabPane,
-  ElTable,
-  ElTableColumn,
-  ElTabs,
-  ElTag,
-  ElTimePicker,
-  ElTimeSelect,
-  ElTimeline,
-  ElTimelineItem,
-  ElTooltip,
-  ElTransfer,
-  ElTree,
-  ElUpload,
+  TjAlert,
+  TjAside,
+  TjAutocomplete,
+  TjAvatar,
+  TjBacktop,
+  TjBadge,
+  TjBreadcrumb,
+  TjBreadcrumbItem,
+  TjButton,
+  TjButtonGroup,
+  TjCalendar,
+  TjCard,
+  TjCarousel,
+  TjCarouselItem,
+  TjCascader,
+  TjCascaderPanel,
+  TjCheckbox,
+  TjCheckboxButton,
+  TjCheckboxGroup,
+  TjCol,
+  TjCollapse,
+  TjCollapseItem,
+  TjCollapseTransition,
+  TjColorPicker,
+  TjContainer,
+  TjDatePicker,
+  TjDialog,
+  TjDivider,
+  TjDrawer,
+  TjDropdown,
+  TjDropdownItem,
+  TjDropdownMenu,
+  TjFooter,
+  TjForm,
+  TjFormItem,
+  TjHeader,
+  TjIcon,
+  TjImage,
+  TjInput,
+  TjInputNumber,
+  TjLink,
+  TjMain,
+  TjMenu,
+  TjMenuItem,
+  TjMenuItemGroup,
+  TjOption,
+  TjOptionGroup,
+  TjPageHeader,
+  TjPagination,
+  TjPopconfirm,
+  TjPopover,
+  TjPopper,
+  TjProgress,
+  TjRadio,
+  TjRadioButton,
+  TjRadioGroup,
+  TjRate,
+  TjRow,
+  TjScrollbar,
+  TjSelect,
+  TjSlider,
+  TjStep,
+  TjSteps,
+  TjSubmenu,
+  TjSwitch,
+  TjTabPane,
+  TjTable,
+  TjTableColumn,
+  TjTabs,
+  TjTag,
+  TjTimePicker,
+  TjTimeSelect,
+  TjTimeline,
+  TjTimelineItem,
+  TjTooltip,
+  TjTransfer,
+  TjTree,
+  TjUpload,
 ]
 
 const plugins = [
-  ElInfiniteScroll,
-  ElLoading,
-  ElMessage,
-  ElMessageBox,
-  ElNotification,
+  TjInfiniteScroll,
+  TjLoading,
+  TjMessage,
+  TjMessageBox,
+  TjNotification,
 ]
 
 const app = createApp(App)
@@ -281,30 +281,30 @@ Import total d'Element：
 
 ```js
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus';
-import App from './App.vue';
+import ElementPlus from 'element-plus'
+import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus, { size: 'small', zIndex: 3000 });
+app.use(ElementPlus, { size: 'small', zIndex: 3000 })
 ```
 
 Import partiel d'Element：
 
 ```js
 import { createApp } from 'vue'
-import { ElButton } from 'element-plus';
-import App from './App.vue';
+import { TjButton } from 'element-plus'
+import App from './App.vue'
 
 const app = createApp(App)
 app.config.globalProperties.$ELEMENT = option
-app.use(ElButton);
+app.use(TjButton)
 ```
 
 Avec la configuration ci-dessus, la taille par défaut des composants ayant l'attribut size sera 'small', et le z-index initial des fenêtres modales est 3000.
 
 ### Commencer à développer
 
-Maintenant que vous avez ajouté Vue et Element Plus à votre projet, vous pouvez commencer à coder. Référez-vous à la documentation de chaque composant pour savoir comment les utiliser.
+Maintenant que vous avez ajouté Vue et Tongjiao UI à votre projet, vous pouvez commencer à coder. Référez-vous à la documentation de chaque composant pour savoir comment les utiliser.
 
 ### Utiliser Nuxt.js
 

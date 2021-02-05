@@ -70,7 +70,7 @@ function useRender(props: TableColumnCtx, slots, owner: ComputedRef<any>) {
       check(children)
     }
     function check(item) {
-      if (item?.type?.name === 'ElTableColumn') {
+      if (item?.type?.name === 'TjTableColumn') {
         item.vParent = instance
       }
     }
@@ -121,7 +121,7 @@ function useRender(props: TableColumnCtx, slots, owner: ComputedRef<any>) {
           style: {},
         }
         if (column.showOverflowTooltip) {
-          props.class += ' el-tooltip'
+          props.class += ' tj-tooltip'
           props.style = {
             width: (data.column.realWidth || data.column.width) - 1 + 'px',
           }
@@ -142,7 +142,7 @@ function useRender(props: TableColumnCtx, slots, owner: ComputedRef<any>) {
       return prev
     }, {})
   }
-  const getColumnElIndex = (children, child) => {
+  const getColumnTjIndex = (children, child) => {
     return [].indexOf.call(children, child)
   }
 
@@ -156,7 +156,7 @@ function useRender(props: TableColumnCtx, slots, owner: ComputedRef<any>) {
     setColumnForcedProps,
     setColumnRenders,
     getPropsData,
-    getColumnElIndex,
+    getColumnTjIndex,
   }
 }
 

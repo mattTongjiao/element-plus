@@ -1,16 +1,16 @@
 <template>
-  <div class="el-empty">
-    <div class="el-empty__image" :style="imageStyle">
-      <img v-if="image" :src="image" ondragstart="return false">
+  <div class="tj-empty">
+    <div class="tj-empty__image" :style="imageStyle">
+      <img v-if="image" :src="image" ondragstart="return false" />
       <slot v-else name="image">
         <img-empty />
       </slot>
     </div>
-    <div class="el-empty__description">
+    <div class="tj-empty__description">
       <slot v-if="$slots.description" name="description"></slot>
       <p v-else>{{ emptyDescription }}</p>
     </div>
-    <div v-if="$slots.default" class="el-empty__bottom">
+    <div v-if="$slots.default" class="tj-empty__bottom">
       <slot></slot>
     </div>
   </div>
@@ -22,7 +22,7 @@ import ImgEmpty from './img-empty.vue'
 import { t } from '@element-plus/locale'
 
 export default defineComponent({
-  name: 'ElEmpty',
+  name: 'TjEmpty',
   components: {
     [ImgEmpty.name]: ImgEmpty,
   },
@@ -38,7 +38,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const emptyDescription = computed(() => props.description || t('el.table.emptyText'))
+    const emptyDescription = computed(
+      () => props.description || t('el.table.emptyText'),
+    )
     const imageStyle = computed(() => {
       return {
         width: props.imageSize ? `${props.imageSize}px` : '',

@@ -47,7 +47,7 @@ function useRender(props: TableBodyProps) {
     const rowClasses = getRowClass(row, $index)
     let display = true
     if (treeRowData) {
-      rowClasses.push('el-table__row--level-' + treeRowData.level)
+      rowClasses.push('tj-table__row--levtj-' + treeRowData.level)
       display = treeRowData.display
     }
     const displayStyle = display
@@ -149,7 +149,7 @@ function useRender(props: TableBodyProps) {
                 'td',
                 {
                   colspan: store.states.columns.value.length,
-                  class: 'el-table__expanded-cell',
+                  class: 'tj-table__expanded-cell',
                 },
                 [renderExpanded({ row, $index, store })],
               ),

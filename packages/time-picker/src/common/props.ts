@@ -22,7 +22,7 @@ export const defaultProps = {
   },
   clearIcon: {
     type: String,
-    default: 'el-icon-circle-close',
+    default: 'tj-icon-circle-close',
   },
   editable: {
     type: Boolean,

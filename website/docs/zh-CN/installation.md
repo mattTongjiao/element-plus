@@ -14,18 +14,21 @@ npm install element-plus --save
 
 ```html
 <!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/element-plus/lib/theme-chalk/index.css">
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/element-plus/lib/theme-chalk/index.css"
+/>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
 ```
 
 :::tip
-我们建议使用 CDN 引入 Element Plus 的用户在链接地址上锁定版本，以免将来 Element Plus 升级时受到非兼容性更新的影响。锁定版本的方法请查看 [unpkg.com](https://unpkg.com)。
+我们建议使用 CDN 引入 Tongjiao UI 的用户在链接地址上锁定版本，以免将来 Tongjiao UI 升级时受到非兼容性更新的影响。锁定版本的方法请查看 [unpkg.com](https://unpkg.com)。
 :::
 
 ### Hello world
 
-通过 CDN 的方式我们可以很容易地使用 Element Plus 写出一个 Hello world 页面。[在线演示](https://codepen.io/iamkun/pen/YzWMaVr)
+通过 CDN 的方式我们可以很容易地使用 Tongjiao UI 写出一个 Hello world 页面。[在线演示](https://codepen.io/iamkun/pen/YzWMaVr)
 
 <iframe height="469" style="width: 100%;" scrolling="no" title="YzWMaVr" src="https://codepen.io/iamkun/embed/YzWMaVr?height=469&theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/iamkun/pen/YzWMaVr'>YzWMaVr</a> by iamkun

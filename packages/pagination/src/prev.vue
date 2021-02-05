@@ -5,8 +5,8 @@
     :disabled="internalDisabled"
     @click.self.prevent
   >
-    <span v-if="prevText ">{{ prevText }}</span>
-    <i v-else class="el-icon el-icon-arrow-left"></i>
+    <span v-if="prevText">{{ prevText }}</span>
+    <i v-else class="tj-icon tj-icon-arrow-left"></i>
   </button>
 </template>
 
@@ -27,7 +27,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const internalDisabled = computed(() => props.disabled || props.currentPage <= 1)
+    const internalDisabled = computed(
+      () => props.disabled || props.currentPage <= 1,
+    )
     return {
       internalDisabled,
     }

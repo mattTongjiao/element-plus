@@ -5,7 +5,7 @@
     @mouseenter.stop="handleMouseEnter"
     @mouseleave.stop="handleMouseLeave"
   >
-    <div class="el-carousel__container" :style="{ height: height }">
+    <div class="tj-carousel__container" :style="{ height: height }">
       <transition v-if="arrowDisplay" name="carousel-arrow-left">
         <button
           v-show="
@@ -13,12 +13,12 @@
               (props.loop || data.activeIndex > 0)
           "
           type="button"
-          class="el-carousel__arrow el-carousel__arrow--left"
+          class="tj-carousel__arrow tj-carousel__arrow--left"
           @mouseenter="handleButtonEnter('left')"
           @mouseleave="handleButtonLeave"
           @click.stop="throttledArrowClick(data.activeIndex - 1)"
         >
-          <i class="el-icon-arrow-left"></i>
+          <i class="tj-icon-arrow-left"></i>
         </button>
       </transition>
       <transition v-if="arrowDisplay" name="carousel-arrow-right">
@@ -28,12 +28,12 @@
               (props.loop || data.activeIndex < items.length - 1)
           "
           type="button"
-          class="el-carousel__arrow el-carousel__arrow--right"
+          class="tj-carousel__arrow tj-carousel__arrow--right"
           @mouseenter="handleButtonEnter('right')"
           @mouseleave="handleButtonLeave"
           @click.stop="throttledArrowClick(data.activeIndex + 1)"
         >
-          <i class="el-icon-arrow-right"></i>
+          <i class="tj-icon-arrow-right"></i>
         </button>
       </transition>
       <slot></slot>
@@ -43,14 +43,14 @@
         v-for="(item, index) in items"
         :key="index"
         :class="[
-          'el-carousel__indicator',
-          'el-carousel__indicator--' + direction,
+          'tj-carousel__indicator',
+          'tj-carousel__indicator--' + direction,
           { 'is-active': index === data.activeIndex },
         ]"
         @mouseenter="throttledIndicatorHover(index)"
         @click.stop="handleIndicatorClick(index)"
       >
-        <button class="el-carousel__button">
+        <button class="tj-carousel__button">
           <span v-if="hasLabel">{{ item.label }}</span>
         </button>
       </li>
@@ -78,7 +78,7 @@ import {
 import { ICarouselProps, CarouselItem, InjectCarouselScope } from './carousel'
 
 export default defineComponent({
-  name: 'ElCarousel',
+  name: 'TjCarousel',
   props: {
     initialIndex: {
       type: Number,
@@ -150,23 +150,23 @@ export default defineComponent({
     })
 
     const carouselClasses = computed(() => {
-      const classes = ['el-carousel', 'el-carousel--' + props.direction]
+      const classes = ['tj-carousel', 'tj-carousel--' + props.direction]
       if (props.type === 'card') {
-        classes.push('el-carousel--card')
+        classes.push('tj-carousel--card')
       }
       return classes
     })
 
     const indicatorsClasses = computed(() => {
       const classes = [
-        'el-carousel__indicators',
-        'el-carousel__indicators--' + props.direction,
+        'tj-carousel__indicators',
+        'tj-carousel__indicators--' + props.direction,
       ]
       if (hasLabel.value) {
-        classes.push('el-carousel__indicators--labels')
+        classes.push('tj-carousel__indicators--labels')
       }
       if (props.indicatorPosition === 'outside' || props.type === 'card') {
-        classes.push('el-carousel__indicators--outside')
+        classes.push('tj-carousel__indicators--outside')
       }
       return classes
     })
@@ -244,7 +244,7 @@ export default defineComponent({
       const index = items.value.findIndex(item => item.uid === uid)
       if (index !== -1) {
         items.value.splice(index, 1)
-        if(data.activeIndex === index) next()
+        if (data.activeIndex === index) next()
       }
     }
 

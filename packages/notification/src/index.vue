@@ -1,9 +1,13 @@
 <template>
-  <transition name="el-notification-fade" @before-leave="onClose" @after-leave="$emit('destroy')">
+  <transition
+    name="tj-notification-fade"
+    @before-leave="onClose"
+    @after-leave="$emit('destroy')"
+  >
     <div
       v-show="visible"
       :id="id"
-      :class="['el-notification', customClass, horizontalClass]"
+      :class="['tj-notification', customClass, horizontalClass]"
       :style="positionStyle"
       role="alert"
       @mouseenter="clearTimer"
@@ -12,15 +16,19 @@
     >
       <i
         v-if="type || iconClass"
-        class="el-notification__icon"
+        class="tj-notification__icon"
         :class="[typeClass, iconClass]"
       ></i>
       <div
-        class="el-notification__group"
+        class="tj-notification__group"
         :class="{ 'is-with-icon': typeClass || iconClass }"
       >
-        <h2 class="el-notification__title" v-text="title"></h2>
-        <div v-show="message" class="el-notification__content" :style="!!title ? null : 'margin: 0'">
+        <h2 class="tj-notification__title" v-text="title"></h2>
+        <div
+          v-show="message"
+          class="tj-notification__content"
+          :style="!!title ? null : 'margin: 0'"
+        >
           <slot>
             <p v-if="!dangerouslyUseHTMLString">{{ message }}</p>
             <!-- Caution here, message could've been compromized, nerver use user's input as message -->
@@ -30,7 +38,7 @@
         </div>
         <div
           v-if="showClose"
-          class="el-notification__closeBtn el-icon-close"
+          class="tj-notification__closeBtn tj-icon-close"
           @click.stop="close"
         ></div>
       </div>
@@ -54,7 +62,7 @@ const TypeMap: Indexable<string> = {
 }
 
 export default defineComponent({
-  name: 'ElNotification',
+  name: 'TjNotification',
   props: {
     customClass: { type: String, default: '' },
     dangerouslyUseHTMLString: { type: Boolean, default: false },
@@ -91,7 +99,7 @@ export default defineComponent({
 
     const typeClass = computed(() => {
       const type = props.type
-      return type && TypeMap[type] ? `el-icon-${TypeMap[type]}` : ''
+      return type && TypeMap[type] ? `tj-icon-${TypeMap[type]}` : ''
     })
 
     const horizontalClass = computed(() => {

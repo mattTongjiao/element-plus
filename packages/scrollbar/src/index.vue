@@ -1,11 +1,11 @@
 <template>
-  <div ref="scrollbar" class="el-scrollbar">
+  <div ref="scrollbar" class="tj-scrollbar">
     <div
       ref="wrap"
       :class="[
         wrapClass,
-        'el-scrollbar__wrap',
-        native ? '' : 'el-scrollbar__wrap--hidden-default',
+        'tj-scrollbar__wrap',
+        native ? '' : 'tj-scrollbar__wrap--hidden-default',
       ]"
       :style="style"
       @scroll="handleScroll"
@@ -13,7 +13,7 @@
       <component
         :is="tag"
         ref="resize"
-        :class="['el-scrollbar__view', viewClass]"
+        :class="['tj-scrollbar__view', viewClass]"
         :style="viewStyle"
       >
         <slot></slot>
@@ -26,13 +26,24 @@
   </div>
 </template>
 <script lang="ts">
-import { addResizeListener, removeResizeListener } from '@element-plus/utils/resize-event'
+import {
+  addResizeListener,
+  removeResizeListener,
+} from '@element-plus/utils/resize-event'
 import { toObject } from '@element-plus/utils/util'
-import { computed, defineComponent, nextTick, onBeforeUnmount, onMounted, provide, ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  provide,
+  ref,
+} from 'vue'
 import Bar from './bar.vue'
 
 export default defineComponent({
-  name: 'ElScrollbar',
+  name: 'TjScrollbar',
   components: { Bar },
   props: {
     native: {
@@ -83,8 +94,10 @@ export default defineComponent({
     const update = () => {
       if (!wrap.value) return
 
-      const heightPercentage = (wrap.value.clientHeight * 100) / wrap.value.scrollHeight
-      const widthPercentage = (wrap.value.clientWidth * 100) / wrap.value.scrollWidth
+      const heightPercentage =
+        (wrap.value.clientHeight * 100) / wrap.value.scrollHeight
+      const widthPercentage =
+        (wrap.value.clientWidth * 100) / wrap.value.scrollWidth
 
       sizeHeight.value = heightPercentage < 100 ? heightPercentage + '%' : ''
       sizeWidth.value = widthPercentage < 100 ? widthPercentage + '%' : ''

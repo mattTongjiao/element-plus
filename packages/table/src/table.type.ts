@@ -186,7 +186,7 @@ interface TableLayout {
   setHeight: (value: string, prop?: string) => void
   setMaxHeight: (value: string) => void
   getFlattenColumns: () => AnyObject[]
-  updateElsHeight: () => void
+  updateTjsHeight: () => void
   headerDisplayNone: (elm: HTMLElement) => void
   updateColumnsWidth: () => void
   addObserver: (observer: TableHeader) => void

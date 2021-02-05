@@ -5,7 +5,7 @@ import Input from '../src/index.vue'
 
 const _mount = options => mount({
   components: {
-    'el-input': Input,
+    'tj-input': Input,
   },
   ...options,
 })
@@ -16,13 +16,13 @@ describe('Input.vue', () => {
     const handleFocus = jest.fn()
     const wrapper = _mount({
       template: `
-        <el-input
+        <tj-input
           :minlength="3"
           :maxlength="5"
           placeholder="请输入内容"
           @focus="handleFocus"
-          :model-value="input">
-        </el-input>
+          :modtj-value="input">
+        </tj-input>
       `,
       setup() {
         const input = ref('input')
@@ -34,13 +34,13 @@ describe('Input.vue', () => {
       },
     })
 
-    const inputElm = wrapper.find('input')
+    const inputTjm = wrapper.find('input')
     const vm = wrapper.vm as any
-    const nativeInput = inputElm.element
+    const nativeInput = inputTjm.element
 
-    await inputElm.trigger('focus')
+    await inputTjm.trigger('focus')
 
-    expect(inputElm.exists()).toBe(true)
+    expect(inputTjm.exists()).toBe(true)
     expect(handleFocus).toHaveBeenCalled()
     expect(nativeInput.placeholder).toBe('请输入内容')
     expect(nativeInput.value).toBe('input')
@@ -49,58 +49,58 @@ describe('Input.vue', () => {
 
     vm.input = 'text'
     await sleep()
-    expect(inputElm.element.value).toBe('text')
+    expect(inputTjm.element.value).toBe('text')
   })
 
   test('default to empty', () => {
     const wrapper = _mount({
-      template: '<el-input />',
+      template: '<tj-input />',
     })
-    const inputElm = wrapper.find('input')
-    expect(inputElm.element.value).toBe('')
+    const inputTjm = wrapper.find('input')
+    expect(inputTjm.element.value).toBe('')
   })
 
   test('disabled', () => {
     const wrapper = _mount({
-      template: `<el-input disabled />`,
+      template: `<tj-input disabled />`,
     })
-    const inputElm = wrapper.find('input')
-    expect(inputElm.element.disabled).not.toBeNull()
+    const inputTjm = wrapper.find('input')
+    expect(inputTjm.element.disabled).not.toBeNull()
   })
 
   test('suffixIcon', () => {
     const wrapper = _mount({
-      template: `<el-input suffix-icon="time" />`,
+      template: `<tj-input suffix-icon="time" />`,
     })
-    const icon = wrapper.find('.el-input__icon')
+    const icon = wrapper.find('.tj-input__icon')
     expect(icon.exists()).toBe(true)
   })
 
   test('prefixIcon', () => {
     const wrapper = _mount({
-      template: `<el-input prefix-icon="time" />`,
+      template: `<tj-input prefix-icon="time" />`,
     })
-    const icon = wrapper.find('.el-input__icon')
+    const icon = wrapper.find('.tj-input__icon')
     expect(icon.exists()).toBe(true)
   })
 
   test('size', () => {
     const wrapper = _mount({
-      template: `<el-input size="large" />`,
+      template: `<tj-input size="large" />`,
     })
-    expect(wrapper.classes('el-input--large')).toBe(true)
+    expect(wrapper.classes('tj-input--large')).toBe(true)
   })
 
   test('type', () => {
     const wrapper = _mount({
-      template: `<el-input type="textarea" />`,
+      template: `<tj-input type="textarea" />`,
     })
-    expect(wrapper.classes('el-textarea')).toBe(true)
+    expect(wrapper.classes('tj-textarea')).toBe(true)
   })
 
   test('rows', () => {
     const wrapper = _mount({
-      template: `<el-input type="textarea" :rows="3" />`,
+      template: `<tj-input type="textarea" :rows="3" />`,
     })
     expect(wrapper.find('textarea').element.rows).toEqual(3)
   })
@@ -109,7 +109,7 @@ describe('Input.vue', () => {
     const wrapper = _mount({
       template: `
         <div>
-          <el-input type="textarea" :resize="resize" />
+          <tj-input type="textarea" :resize="resize" />
         </div>
       `,
       data() {
@@ -131,7 +131,7 @@ describe('Input.vue', () => {
   // test('autosize', async() => {
   //   const wrapper = _mount({
   //     template: `<div>
-  //       <el-input
+  //       <tj-input
   //         ref="limitSize"
   //         type="textarea"
   //         :autosize="{minRows: 3, maxRows: 5}"
@@ -158,7 +158,7 @@ describe('Input.vue', () => {
 
   test('sets value on textarea / input type change', async () => {
     const wrapper = _mount({
-      template: `<el-input :type="type" v-model="val" />`,
+      template: `<tj-input :type="type" v-model="val" />`,
       data() {
         return {
           type: 'text',
@@ -180,34 +180,34 @@ describe('Input.vue', () => {
     const wrapper = _mount({
       template: `
         <div>
-          <el-input
+          <tj-input
             class="test-text"
             type="text"
             v-model="input1"
             maxlength="10"
             :show-word-limit="show">
-          </el-input>
-          <el-input
+          </tj-input>
+          <tj-input
             class="test-textarea"
             type="textarea"
             v-model="input2"
             maxlength="10"
             show-word-limit>
-          </el-input>
-          <el-input
+          </tj-input>
+          <tj-input
             class="test-password"
             type="password"
             v-model="input3"
             maxlength="10"
             show-word-limit>
-          </el-input>
-          <el-input
+          </tj-input>
+          <tj-input
             class="test-initial-exceed"
             type="text"
             v-model="input4"
             maxlength="2"
             show-word-limit>
-          </el-input>
+          </tj-input>
         </div>
       `,
       data() {
@@ -221,24 +221,24 @@ describe('Input.vue', () => {
       },
     })
 
-    const inputElm1 = wrapper.vm.$el.querySelector('.test-text')
-    const inputElm2 = wrapper.vm.$el.querySelector('.test-textarea')
-    const inputElm3 = wrapper.vm.$el.querySelector('.test-password')
-    const inputElm4 = wrapper.vm.$el.querySelector('.test-initial-exceed')
+    const inputTjm1 = wrapper.vm.$el.querySelector('.test-text')
+    const inputTjm2 = wrapper.vm.$el.querySelector('.test-textarea')
+    const inputTjm3 = wrapper.vm.$el.querySelector('.test-password')
+    const inputTjm4 = wrapper.vm.$el.querySelector('.test-initial-exceed')
 
-    expect(inputElm1.querySelectorAll('.el-input__count').length).toEqual(0)
-    expect(inputElm2.querySelectorAll('.el-input__count').length).toEqual(1)
-    expect(inputElm3.querySelectorAll('.el-input__count').length).toEqual(0)
-    expect(inputElm4.classList.contains('is-exceed')).toBe(true)
+    expect(inputTjm1.querySelectorAll('.tj-input__count').length).toEqual(0)
+    expect(inputTjm2.querySelectorAll('.tj-input__count').length).toEqual(1)
+    expect(inputTjm3.querySelectorAll('.tj-input__count').length).toEqual(0)
+    expect(inputTjm4.classList.contains('is-exceed')).toBe(true)
 
     const vm = wrapper.vm as any
     vm.show = true
     await sleep()
-    expect(inputElm1.querySelectorAll('.el-input__count').length).toEqual(1)
+    expect(inputTjm1.querySelectorAll('.tj-input__count').length).toEqual(1)
 
     vm.input4 = '1'
     await sleep()
-    expect(inputElm4.classList.contains('is-exceed')).toBe(false)
+    expect(inputTjm4.classList.contains('is-exceed')).toBe(false)
   })
 
   describe('Input Methods', () => {
@@ -246,7 +246,7 @@ describe('Input.vue', () => {
     test('method:select', async () => {
       const testContent = 'test'
       const wrapper = _mount({
-        template: `<el-input v-model="text" />`,
+        template: `<tj-input v-model="text" />`,
         data() {
           return {
             text: testContent,
@@ -276,7 +276,7 @@ describe('Input.vue', () => {
     test('method:resizeTextarea', async () => {
       const testContent = 'TEXT:resizeTextarea'
       const wrapper = _mount({
-        template: `<el-input  ref="textarea"  :autosize="{ minRows: 1, maxRows: 1 }" type="textarea" v-model="text" />`,
+        template: `<tj-input  ref="textarea"  :autosize="{ minRows: 1, maxRows: 1 }" type="textarea" v-model="text" />`,
         data() {
           return {
             text: testContent,
@@ -300,9 +300,9 @@ describe('Input.vue', () => {
 
     test('event:focus & blur', async () => {
       const wrapper = _mount({
-        template: `<el-input
+        template: `<tj-input
           placeholder="请输入内容"
-          :model-value="input"
+          :modtj-value="input"
           @focus="handleFocus"
           @blur="handleBlur"
         />`,
@@ -330,9 +330,9 @@ describe('Input.vue', () => {
       // NOTE: should be same as native's change behavior
       const wrapper = _mount({
         template: `
-          <el-input
+          <tj-input
             placeholder="请输入内容"
-            :model-value="input"
+            :modtj-value="input"
             @change="handleChange"
           />
         `,
@@ -369,7 +369,7 @@ describe('Input.vue', () => {
       const handleClear = jest.fn()
       const wrapper = _mount({
         template: `
-          <el-input
+          <tj-input
             placeholder="请输入内容"
             clearable
             v-model="input"
@@ -391,7 +391,7 @@ describe('Input.vue', () => {
       // focus to show clear button
       await input.trigger('focus')
       await sleep()
-      vm.$el.querySelector('.el-input__clear').click()
+      vm.$el.querySelector('.tj-input__clear').click()
       await sleep()
       expect(vm.input).toEqual('')
       expect(handleClear).toBeCalled()
@@ -401,10 +401,10 @@ describe('Input.vue', () => {
       const handleInput = jest.fn()
       const wrapper = _mount({
         template: `
-          <el-input
+          <tj-input
             placeholder="请输入内容"
             clearable
-            :model-value="input"
+            :modtj-value="input"
             @input="handleInput"
           />
         `,

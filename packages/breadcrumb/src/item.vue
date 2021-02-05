@@ -1,18 +1,18 @@
 <template>
-  <span class="el-breadcrumb__item">
+  <span class="tj-breadcrumb__item">
     <span
       ref="link"
-      :class="['el-breadcrumb__inner', to ? 'is-link' : '']"
+      :class="['tj-breadcrumb__inner', to ? 'is-link' : '']"
       role="link"
     >
       <slot></slot>
     </span>
     <i
       v-if="separatorClass"
-      class="el-breadcrumb__separator"
+      class="tj-breadcrumb__separator"
       :class="separatorClass"
     ></i>
-    <span v-else class="el-breadcrumb__separator" role="presentation">{{
+    <span v-else class="tj-breadcrumb__separator" role="presentation">{{
       separator
     }}</span>
   </span>
@@ -38,7 +38,7 @@ interface IBreadcrumbItemProps {
 }
 
 export default defineComponent({
-  name: 'ElBreadcrumbItem',
+  name: 'TjBreadcrumbItem',
   props: {
     to: {
       type: [String, Object],

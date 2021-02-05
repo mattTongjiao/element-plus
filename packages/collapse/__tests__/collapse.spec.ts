@@ -7,8 +7,8 @@ describe('Collapse.vue', () => {
   test('create', async () => {
     const wrapper = mount({
       components: {
-        'el-collapse': Collapse,
-        'el-collapse-item': CollapseItem,
+        'tj-collapse': Collapse,
+        'tj-collapse-item': CollapseItem,
       },
       data() {
         return {
@@ -16,34 +16,34 @@ describe('Collapse.vue', () => {
         }
       },
       template: `
-        <el-collapse v-model="activeNames">
-          <el-collapse-item title="title1" name="1">
+        <tj-collapse v-model="activeNames">
+          <tj-collapse-item title="title1" name="1">
             <div class="content">111</div>
-          </el-collapse-item>
-          <el-collapse-item title="title2" name="2">
+          </tj-collapse-item>
+          <tj-collapse-item title="title2" name="2">
             <div class="content">222</div>
-          </el-collapse-item>
-          <el-collapse-item title="title3" name="3">
+          </tj-collapse-item>
+          <tj-collapse-item title="title3" name="3">
             <div class="content">333</div>
-          </el-collapse-item>
-          <el-collapse-item title="title4" name="4">
+          </tj-collapse-item>
+          <tj-collapse-item title="title4" name="4">
             <div class="content">444</div>
-          </el-collapse-item>
-        </el-collapse>
+          </tj-collapse-item>
+        </tj-collapse>
       `,
     })
 
     const vm = wrapper.vm
     const collapseWrapper = wrapper.findComponent(Collapse)
     const collapseItemWrappers = collapseWrapper.findAllComponents(CollapseItem)
-    const collapseItemHeaderEls = vm.$el.querySelectorAll('.el-collapse-item__header')
+    const collapseItemHeaderTjs = vm.$el.querySelectorAll('.tj-collapse-item__header')
     expect(collapseItemWrappers[0].vm.isActive).toBe(true)
 
-    collapseItemHeaderEls[2].click()
+    collapseItemHeaderTjs[2].click()
     await nextTick()
     expect(collapseItemWrappers[0].vm.isActive).toBe(true)
     expect(collapseItemWrappers[2].vm.isActive).toBe(true)
-    collapseItemHeaderEls[0].click()
+    collapseItemHeaderTjs[0].click()
     await nextTick()
     expect(collapseItemWrappers[0].vm.isActive).toBe(false)
   })
@@ -51,8 +51,8 @@ describe('Collapse.vue', () => {
   test('accordion', async () => {
     const wrapper = mount({
       components: {
-        'el-collapse': Collapse,
-        'el-collapse-item': CollapseItem,
+        'tj-collapse': Collapse,
+        'tj-collapse-item': CollapseItem,
       },
       data() {
         return {
@@ -60,34 +60,34 @@ describe('Collapse.vue', () => {
         }
       },
       template: `
-        <el-collapse accordion v-model="activeNames">
-          <el-collapse-item title="title1" name="1">
+        <tj-collapse accordion v-model="activeNames">
+          <tj-collapse-item title="title1" name="1">
             <div class="content">111</div>
-          </el-collapse-item>
-          <el-collapse-item title="title2" name="2">
+          </tj-collapse-item>
+          <tj-collapse-item title="title2" name="2">
             <div class="content">222</div>
-          </el-collapse-item>
-          <el-collapse-item title="title3" name="3">
+          </tj-collapse-item>
+          <tj-collapse-item title="title3" name="3">
             <div class="content">333</div>
-          </el-collapse-item>
-          <el-collapse-item title="title4" name="4">
+          </tj-collapse-item>
+          <tj-collapse-item title="title4" name="4">
             <div class="content">444</div>
-          </el-collapse-item>
-        </el-collapse>
+          </tj-collapse-item>
+        </tj-collapse>
       `,
     })
 
     const vm = wrapper.vm
     const collapseWrapper = wrapper.findComponent(Collapse)
     const collapseItemWrappers = collapseWrapper.findAllComponents(CollapseItem)
-    const collapseItemHeaderEls = vm.$el.querySelectorAll('.el-collapse-item__header')
+    const collapseItemHeaderTjs = vm.$el.querySelectorAll('.tj-collapse-item__header')
     expect(collapseItemWrappers[0].vm.isActive).toBe(true)
 
-    collapseItemHeaderEls[2].click()
+    collapseItemHeaderTjs[2].click()
     await nextTick()
     expect(collapseItemWrappers[0].vm.isActive).toBe(false)
     expect(collapseItemWrappers[2].vm.isActive).toBe(true)
-    collapseItemHeaderEls[0].click()
+    collapseItemHeaderTjs[0].click()
     await nextTick()
     expect(collapseItemWrappers[0].vm.isActive).toBe(true)
     expect(collapseItemWrappers[2].vm.isActive).toBe(false)
@@ -97,8 +97,8 @@ describe('Collapse.vue', () => {
     const onChange = jest.fn()
     const wrapper = mount({
       components: {
-        'el-collapse': Collapse,
-        'el-collapse-item': CollapseItem,
+        'tj-collapse': Collapse,
+        'tj-collapse-item': CollapseItem,
       },
       data() {
         return {
@@ -106,20 +106,20 @@ describe('Collapse.vue', () => {
         }
       },
       template: `
-        <el-collapse v-model="activeNames" @change="onChange">
-          <el-collapse-item title="title1" name="1">
+        <tj-collapse v-model="activeNames" @change="onChange">
+          <tj-collapse-item title="title1" name="1">
             <div class="content">111</div>
-          </el-collapse-item>
-          <el-collapse-item title="title2" name="2">
+          </tj-collapse-item>
+          <tj-collapse-item title="title2" name="2">
             <div class="content">222</div>
-          </el-collapse-item>
-          <el-collapse-item title="title3" name="3">
+          </tj-collapse-item>
+          <tj-collapse-item title="title3" name="3">
             <div class="content">333</div>
-          </el-collapse-item>
-          <el-collapse-item title="title4" name="4">
+          </tj-collapse-item>
+          <tj-collapse-item title="title4" name="4">
             <div class="content">444</div>
-          </el-collapse-item>
-        </el-collapse>
+          </tj-collapse-item>
+        </tj-collapse>
       `,
       methods: {
         onChange,
@@ -129,17 +129,17 @@ describe('Collapse.vue', () => {
     const vm = wrapper.vm
     const collapseWrapper = wrapper.findComponent(Collapse)
     const collapseItemWrappers = collapseWrapper.findAllComponents(CollapseItem)
-    const collapseItemHeaderEls = vm.$el.querySelectorAll('.el-collapse-item__header')
+    const collapseItemHeaderTjs = vm.$el.querySelectorAll('.tj-collapse-item__header')
     expect(collapseItemWrappers[0].vm.isActive).toBe(true)
     expect(vm.activeNames).toEqual(['1'])
     expect(onChange).not.toHaveBeenCalled()
-    collapseItemHeaderEls[2].click()
+    collapseItemHeaderTjs[2].click()
     await nextTick()
     expect(onChange).toHaveBeenCalledTimes(1)
     expect(collapseItemWrappers[0].vm.isActive).toBe(true)
     expect(collapseItemWrappers[2].vm.isActive).toBe(true)
     expect(vm.activeNames).toEqual(['1', '3'])
-    collapseItemHeaderEls[0].click()
+    collapseItemHeaderTjs[0].click()
     await nextTick()
     expect(onChange).toHaveBeenCalledTimes(2)
     expect(collapseItemWrappers[0].vm.isActive).toBe(false)

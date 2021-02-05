@@ -118,7 +118,7 @@ function useStore (): Store {
     },
 
     changeSortCondition (states, options) {
-      // 修复 pr https://github.com/ElemeFE/element/pull/15012 导致的 bug
+      // 修复 pr https://github.com/TjemeFE/element/pull/15012 导致的 bug
       const { sortingColumn: column, sortProp: prop, sortOrder: order } = states
       if (unref(order) === null) {
         states.sortingColumn.value = null

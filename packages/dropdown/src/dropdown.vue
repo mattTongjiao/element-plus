@@ -1,5 +1,5 @@
 <template>
-  <el-popper
+  <tj-popper
     ref="triggerVnode"
     v-model:visible="visible"
     :placement="placement"
@@ -7,9 +7,9 @@
     pure
     :manual-mode="true"
     :trigger="[trigger]"
-    popper-class="el-dropdown__popper"
+    popper-class="tj-dropdown__popper"
     append-to-body
-    transition="el-zoom-in-top"
+    transition="tj-zoom-in-top"
     :stop-popper-mouse-event="false"
     :gpu-acceleration="false"
   >
@@ -17,29 +17,34 @@
       <slot name="dropdown"></slot>
     </template>
     <template #trigger>
-      <div :class="['el-dropdown', dropdownSize ? 'el-dropdown--' + dropdownSize : '']">
+      <div
+        :class="[
+          'tj-dropdown',
+          dropdownSize ? 'tj-dropdown--' + dropdownSize : '',
+        ]"
+      >
         <slot v-if="!splitButton" name="default"> </slot>
         <template v-else>
-          <el-button-group>
-            <el-button
+          <tj-button-group>
+            <tj-button
               :size="dropdownSize"
               :type="type"
               @click="handlerMainButtonClick"
             >
               <slot name="default"></slot>
-            </el-button>
-            <el-button
+            </tj-button>
+            <tj-button
               :size="dropdownSize"
               :type="type"
-              class="el-dropdown__caret-button"
+              class="tj-dropdown__caret-button"
             >
-              <i class="el-dropdown__icon el-icon-arrow-down"></i>
-            </el-button>
-          </el-button-group>
+              <i class="tj-dropdown__icon tj-icon-arrow-down"></i>
+            </tj-button>
+          </tj-button-group>
         </template>
       </div>
     </template>
-  </el-popper>
+  </tj-popper>
 </template>
 <script lang="ts">
 import {
@@ -53,17 +58,17 @@ import {
   ComponentPublicInstance,
 } from 'vue'
 import { on, addClass, removeClass } from '@element-plus/utils/dom'
-import ElButton from '@element-plus/button'
-import ElButtonGroup from '@element-plus/button-group'
-import ElPopper from '@element-plus/popper'
+import TjButton from '@element-plus/button'
+import TjButtonGroup from '@element-plus/button-group'
+import TjPopper from '@element-plus/popper'
 import { useDropdown } from './useDropdown'
 
 export default defineComponent({
-  name: 'ElDropdown',
+  name: 'TjDropdown',
   components: {
-    ElButton,
-    ElButtonGroup,
-    ElPopper,
+    TjButton,
+    TjButtonGroup,
+    TjPopper,
   },
   props: {
     trigger: {
@@ -112,8 +117,8 @@ export default defineComponent({
     watch(
       () => visible.value,
       val => {
-        if (val) triggerElmFocus()
-        if (!val) triggerElmBlur()
+        if (val) triggerTjmFocus()
+        if (!val) triggerTjmBlur()
         emit('visible-change', val)
       },
     )
@@ -122,7 +127,7 @@ export default defineComponent({
     watch(
       () => focusing.value,
       val => {
-        const selfDefine = triggerElm.value
+        const selfDefine = triggerTjm.value
         if (selfDefine) {
           if (val) {
             addClass(selfDefine, 'focusing')
@@ -134,14 +139,14 @@ export default defineComponent({
     )
 
     const triggerVnode = ref<Nullable<ComponentPublicInstance>>(null)
-    const triggerElm = computed<Nullable<HTMLButtonElement>>(() => {
+    const triggerTjm = computed<Nullable<HTMLButtonElement>>(() => {
       const _: any =
         (triggerVnode.value?.$refs.triggerRef as HTMLElement)?.children[0] ?? {}
       return !props.splitButton ? _ : _.children?.[1]
     })
 
     function handleClick() {
-      if (triggerElm.value?.disabled) return
+      if (triggerTjm.value?.disabled) return
       if (visible.value) {
         hide()
       } else {
@@ -150,33 +155,37 @@ export default defineComponent({
     }
 
     function show() {
-      if (triggerElm.value?.disabled) return
+      if (triggerTjm.value?.disabled) return
       timeout.value && clearTimeout(timeout.value)
       timeout.value = window.setTimeout(
         () => {
           visible.value = true
         },
-        ['click', 'contextmenu'].includes(props.trigger) ? 0 : props.showTimeout,
+        ['click', 'contextmenu'].includes(props.trigger)
+          ? 0
+          : props.showTimeout,
       )
     }
 
     function hide() {
-      if (triggerElm.value?.disabled) return
+      if (triggerTjm.value?.disabled) return
       removeTabindex()
       if (props.tabindex >= 0) {
-        resetTabindex(triggerElm.value)
+        resetTabindex(triggerTjm.value)
       }
       clearTimeout(timeout.value)
       timeout.value = window.setTimeout(
         () => {
           visible.value = false
         },
-        ['click', 'contextmenu'].includes(props.trigger) ? 0 : props.hideTimeout,
+        ['click', 'contextmenu'].includes(props.trigger)
+          ? 0
+          : props.hideTimeout,
       )
     }
 
     function removeTabindex() {
-      triggerElm.value?.setAttribute('tabindex', '-1')
+      triggerTjm.value?.setAttribute('tabindex', '-1')
     }
 
     function resetTabindex(ele) {
@@ -184,11 +193,11 @@ export default defineComponent({
       ele?.setAttribute('tabindex', '0')
     }
 
-    function triggerElmFocus() {
-      triggerElm.value?.focus?.()
+    function triggerTjmFocus() {
+      triggerTjm.value?.focus?.()
     }
-    function triggerElmBlur() {
-      triggerElm.value?.blur?.()
+    function triggerTjmBlur() {
+      triggerTjm.value?.blur?.()
     }
 
     const dropdownSize = computed(() => props.size || ELEMENT.size)
@@ -206,28 +215,28 @@ export default defineComponent({
       hide,
       trigger: computed(() => props.trigger),
       hideOnClick: computed(() => props.hideOnClick),
-      triggerElm,
+      triggerTjm,
     })
 
     onMounted(() => {
       if (!props.splitButton) {
-        on(triggerElm.value, 'focus', () => {
+        on(triggerTjm.value, 'focus', () => {
           focusing.value = true
         })
-        on(triggerElm.value, 'blur', () => {
+        on(triggerTjm.value, 'blur', () => {
           focusing.value = false
         })
-        on(triggerElm.value, 'click', () => {
+        on(triggerTjm.value, 'click', () => {
           focusing.value = false
         })
       }
       if (props.trigger === 'hover') {
-        on(triggerElm.value, 'mouseenter', show)
-        on(triggerElm.value, 'mouseleave', hide)
+        on(triggerTjm.value, 'mouseenter', show)
+        on(triggerTjm.value, 'mouseleave', hide)
       } else if (props.trigger === 'click') {
-        on(triggerElm.value, 'click', handleClick)
+        on(triggerTjm.value, 'click', handleClick)
       } else if (props.trigger === 'contextmenu') {
-        on(triggerElm.value, 'contextmenu', e => {
+        on(triggerTjm.value, 'contextmenu', e => {
           e.preventDefault()
           handleClick()
         })

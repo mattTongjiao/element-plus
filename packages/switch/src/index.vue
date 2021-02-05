@@ -1,6 +1,6 @@
 <template>
   <div
-    class="el-switch"
+    class="tj-switch"
     :class="{ 'is-disabled': switchDisabled, 'is-checked': checked }"
     role="switch"
     :aria-checked="checked"
@@ -10,7 +10,7 @@
     <input
       :id="id"
       ref="input"
-      class="el-switch__input"
+      class="tj-switch__input"
       type="checkbox"
       :name="name"
       :true-value="activeValue"
@@ -18,33 +18,49 @@
       :disabled="switchDisabled"
       @change="handleChange"
       @keydown.enter="switchValue"
-    >
+    />
     <span
       v-if="inactiveIconClass || inactiveText"
-      :class="['el-switch__label', 'el-switch__label--left', !checked ? 'is-active' : '']"
+      :class="[
+        'tj-switch__label',
+        'tj-switch__label--left',
+        !checked ? 'is-active' : '',
+      ]"
     >
       <i v-if="inactiveIconClass" :class="[inactiveIconClass]"></i>
-      <span v-if="!inactiveIconClass && inactiveText" :aria-hidden="checked">{{ inactiveText }}</span>
+      <span v-if="!inactiveIconClass && inactiveText" :aria-hidden="checked">{{
+        inactiveText
+      }}</span>
     </span>
-    <span ref="core" class="el-switch__core" :style="{ 'width': coreWidth + 'px' }">
-      <div class="el-switch__action">
-        <i v-if="loading" class="el-icon-loading"></i>
+    <span
+      ref="core"
+      class="tj-switch__core"
+      :style="{ width: coreWidth + 'px' }"
+    >
+      <div class="tj-switch__action">
+        <i v-if="loading" class="tj-icon-loading"></i>
       </div>
     </span>
     <span
       v-if="activeIconClass || activeText"
-      :class="['el-switch__label', 'el-switch__label--right', checked ? 'is-active' : '']"
+      :class="[
+        'tj-switch__label',
+        'tj-switch__label--right',
+        checked ? 'is-active' : '',
+      ]"
     >
       <i v-if="activeIconClass" :class="[activeIconClass]"></i>
-      <span v-if="!activeIconClass && activeText" :aria-hidden="!checked">{{ activeText }}</span>
+      <span v-if="!activeIconClass && activeText" :aria-hidden="!checked">{{
+        activeText
+      }}</span>
     </span>
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent, computed, onMounted, ref, inject, nextTick, watch } from 'vue'
 import { elFormKey, elFormItemKey } from '@element-plus/form'
 
-import type { ElFormContext, ElFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
 
 
 type ValueType = boolean | string | number;
@@ -69,7 +85,7 @@ interface ISwitchProps {
 }
 
 export default defineComponent({
-  name: 'ElSwitch',
+  name: 'TjSwitch',
   props: {
     modelValue: {
       type: [Boolean, String, Number],
@@ -135,8 +151,8 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'change', 'input'],
   setup(props: ISwitchProps, ctx) {
-    const elForm = inject(elFormKey, {} as ElFormContext)
-    const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
+    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
     const coreWidth = ref(props.width)
     const isModelValue = ref(props.modelValue !== false)
@@ -197,10 +213,10 @@ export default defineComponent({
 
     const setBackgroundColor = (): void => {
       const newColor = checked.value ? props.activeColor : props.inactiveColor
-      const coreEl = core.value
-      coreEl.style.borderColor = newColor
-      coreEl.style.backgroundColor = newColor
-      coreEl.children[0].style.color = newColor
+      const coreTj = core.value
+      coreTj.style.borderColor = newColor
+      coreTj.style.backgroundColor = newColor
+      coreTj.children[0].style.color = newColor
     }
 
     onMounted(() => {

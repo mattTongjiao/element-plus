@@ -1,24 +1,24 @@
 <template>
   <div
     ref="viewportRef"
-    class="el-vl__viewport"
+    class="tj-vl__viewport"
     :style="viewportStyle"
     @scroll.passive="onScroll"
   >
-    <div class="el-vl__content" :style="contentStyle">
+    <div class="tj-vl__content" :style="contentStyle">
       <div
-        class="el-vl__item-container"
+        class="tj-vl__item-container"
         :style="itemContainerStyle"
         :data-direction="direction"
       >
-        <el-virtual-list-item
+        <tj-virtual-list-item
           v-for="(item, idx) in window"
           :key="idx"
-          class="el-vl__item"
+          class="tj-vl__item"
           :style="itemStyle"
         >
           <slot :item="item"></slot>
-        </el-virtual-list-item>
+        </tj-virtual-list-item>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@ import type { PropType } from 'vue'
 import type { Direction } from './useVirtualScroll'
 
 export default defineComponent({
-  name: 'ElVirtualList',
+  name: 'TjVirtualList',
   components: {
     [VirtualItem.name]: VirtualItem,
   },

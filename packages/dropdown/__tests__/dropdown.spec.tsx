@@ -44,22 +44,22 @@ describe('Dropdown', () => {
               }
             }
           >
-            <span class="el-dropdown-link" ref="a">
-              dropdown<i class="el-icon-arrow-down el-icon--right"></i>
+            <span class="tj-dropdown-link" ref="a">
+              dropdown<i class="tj-icon-arrow-down tj-icon--right"></i>
             </span>
           </Dropdown>
         )
       }
     })
     const content = wrapper.findComponent({ ref: 'b' }).vm as any
-    const triggerElm = wrapper.find('.el-dropdown-link')
+    const triggerTjm = wrapper.find('.tj-dropdown-link')
     expect(content.visible).toBe(false)
-    await triggerElm.trigger('keydown')
-    await triggerElm.trigger('focus')
-    await triggerElm.trigger(MOUSE_ENTER_EVENT)
+    await triggerTjm.trigger('keydown')
+    await triggerTjm.trigger('focus')
+    await triggerTjm.trigger(MOUSE_ENTER_EVENT)
     await sleep(TIMEOUT)
     expect(content.visible).toBe(true)
-    await triggerElm.trigger(MOUSE_LEAVE_EVENT)
+    await triggerTjm.trigger(MOUSE_LEAVE_EVENT)
     await sleep(TIMEOUT)
     expect(content.visible).toBe(false)
   })
@@ -67,20 +67,20 @@ describe('Dropdown', () => {
   test('menu click', async () => {
     const wrapper = _mount(
       `
-      <el-dropdown ref="b" @command="commandHandler" placement="right">
-        <span class="el-dropdown-link" ref="a">
-          dropdown<i class="el-icon-arrow-down el-icon--right"></i>
+      <tj-dropdown ref="b" @command="commandHandler" placement="right">
+        <span class="tj-dropdown-link" ref="a">
+          dropdown<i class="tj-icon-arrow-down tj-icon--right"></i>
         </span>
         <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item command="a">Apple</el-dropdown-item>
-            <el-dropdown-item command="b">Orange</el-dropdown-item>
-            <el-dropdown-item ref="c" :command="myCommandObject">Cherry</el-dropdown-item>
-            <el-dropdown-item command="d">Peach</el-dropdown-item>
-            <el-dropdown-item command="e">Pear</el-dropdown-item>
-          </el-dropdown-menu>
+          <tj-dropdown-menu>
+            <tj-dropdown-item command="a">Apple</tj-dropdown-item>
+            <tj-dropdown-item command="b">Orange</tj-dropdown-item>
+            <tj-dropdown-item ref="c" :command="myCommandObject">Cherry</tj-dropdown-item>
+            <tj-dropdown-item command="d">Peach</tj-dropdown-item>
+            <tj-dropdown-item command="e">Pear</tj-dropdown-item>
+          </tj-dropdown-menu>
         </template>
-      </el-dropdown>
+      </tj-dropdown>
       `,
       () => ({
         myCommandObject: { name: 'CommandC' },
@@ -95,8 +95,8 @@ describe('Dropdown', () => {
       },
     )
     // const content = wrapper.findComponent({ ref: 'b' }).vm as any
-    const triggerElm = wrapper.find('.el-dropdown-link')
-    await triggerElm.trigger(MOUSE_ENTER_EVENT)
+    const triggerTjm = wrapper.find('.tj-dropdown-link')
+    await triggerTjm.trigger(MOUSE_ENTER_EVENT)
     await sleep(TIMEOUT)
     await wrapper.findComponent({ ref: 'c' }).trigger('click')
     await sleep(TIMEOUT)
@@ -106,20 +106,20 @@ describe('Dropdown', () => {
   test('trigger', async () => {
     const wrapper = _mount(
       `
-      <el-dropdown trigger="click" ref="b" placement="right">
-        <span class="el-dropdown-link" ref="a">
-          dropdown<i class="el-icon-arrow-down el-icon--right"></i>
+      <tj-dropdown trigger="click" ref="b" placement="right">
+        <span class="tj-dropdown-link" ref="a">
+          dropdown<i class="tj-icon-arrow-down tj-icon--right"></i>
         </span>
         <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item command="a">Apple</el-dropdown-item>
-            <el-dropdown-item command="b">Orange</el-dropdown-item>
-            <el-dropdown-item ref="c" :command="myCommandObject">Cherry</el-dropdown-item>
-            <el-dropdown-item command="d">Peach</el-dropdown-item>
-            <el-dropdown-item command="e">Pear</el-dropdown-item>
-          </el-dropdown-menu>
+          <tj-dropdown-menu>
+            <tj-dropdown-item command="a">Apple</tj-dropdown-item>
+            <tj-dropdown-item command="b">Orange</tj-dropdown-item>
+            <tj-dropdown-item ref="c" :command="myCommandObject">Cherry</tj-dropdown-item>
+            <tj-dropdown-item command="d">Peach</tj-dropdown-item>
+            <tj-dropdown-item command="e">Pear</tj-dropdown-item>
+          </tj-dropdown-menu>
         </template>
-      </el-dropdown>
+      </tj-dropdown>
       `,
       () => ({
         myCommandObject: { name: 'CommandC' },
@@ -127,12 +127,12 @@ describe('Dropdown', () => {
       }),
     )
     const content = wrapper.findComponent({ ref: 'b' }).vm as any
-    const triggerElm = wrapper.find('.el-dropdown-link')
+    const triggerTjm = wrapper.find('.tj-dropdown-link')
     expect(content.visible).toBe(false)
-    await triggerElm.trigger(MOUSE_ENTER_EVENT)
+    await triggerTjm.trigger(MOUSE_ENTER_EVENT)
     await sleep(TIMEOUT)
     expect(content.visible).toBe(false)
-    await triggerElm.trigger(CLICK)
+    await triggerTjm.trigger(CLICK)
     await sleep(TIMEOUT)
     expect(content.visible).toBe(true)
   })
@@ -140,20 +140,20 @@ describe('Dropdown', () => {
   test('trigger contextmenu', async () => {
     const wrapper = _mount(
       `
-      <el-dropdown trigger="contextmenu" ref="b" placement="right">
-        <span class="el-dropdown-link" ref="a">
-          dropdown<i class="el-icon-arrow-down el-icon--right"></i>
+      <tj-dropdown trigger="contextmenu" ref="b" placement="right">
+        <span class="tj-dropdown-link" ref="a">
+          dropdown<i class="tj-icon-arrow-down tj-icon--right"></i>
         </span>
         <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item command="a">Apple</el-dropdown-item>
-            <el-dropdown-item command="b">Orange</el-dropdown-item>
-            <el-dropdown-item ref="c" :command="myCommandObject">Cherry</el-dropdown-item>
-            <el-dropdown-item command="d">Peach</el-dropdown-item>
-            <el-dropdown-item command="e">Pear</el-dropdown-item>
-          </el-dropdown-menu>
+          <tj-dropdown-menu>
+            <tj-dropdown-item command="a">Apple</tj-dropdown-item>
+            <tj-dropdown-item command="b">Orange</tj-dropdown-item>
+            <tj-dropdown-item ref="c" :command="myCommandObject">Cherry</tj-dropdown-item>
+            <tj-dropdown-item command="d">Peach</tj-dropdown-item>
+            <tj-dropdown-item command="e">Pear</tj-dropdown-item>
+          </tj-dropdown-menu>
         </template>
-      </el-dropdown>
+      </tj-dropdown>
       `,
       () => ({
         myCommandObject: { name: 'CommandC' },
@@ -161,9 +161,9 @@ describe('Dropdown', () => {
       }),
     )
     const content = wrapper.findComponent({ ref: 'b' }).vm as any
-    const triggerElm = wrapper.find('.el-dropdown-link')
+    const triggerTjm = wrapper.find('.tj-dropdown-link')
     expect(content.visible).toBe(false)
-    await triggerElm.trigger(CONTEXTMENU)
+    await triggerTjm.trigger(CONTEXTMENU)
     await sleep(TIMEOUT)
     expect(content.visible).toBe(true)
   })
@@ -171,18 +171,18 @@ describe('Dropdown', () => {
   test('split button', async () => {
     const wrapper = _mount(
       `
-      <el-dropdown  @click="handleClick" split-button type="primary" ref="b" placement="right">
+      <tj-dropdown  @click="handleClick" split-button type="primary" ref="b" placement="right">
         dropdown
         <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item command="a">Apple</el-dropdown-item>
-            <el-dropdown-item command="b">Orange</el-dropdown-item>
-            <el-dropdown-item ref="c" :command="myCommandObject">Cherry</el-dropdown-item>
-            <el-dropdown-item command="d">Peach</el-dropdown-item>
-            <el-dropdown-item command="e">Pear</el-dropdown-item>
-          </el-dropdown-menu>
+          <tj-dropdown-menu>
+            <tj-dropdown-item command="a">Apple</tj-dropdown-item>
+            <tj-dropdown-item command="b">Orange</tj-dropdown-item>
+            <tj-dropdown-item ref="c" :command="myCommandObject">Cherry</tj-dropdown-item>
+            <tj-dropdown-item command="d">Peach</tj-dropdown-item>
+            <tj-dropdown-item command="e">Pear</tj-dropdown-item>
+          </tj-dropdown-menu>
         </template>
-      </el-dropdown>
+      </tj-dropdown>
       `,
       () => ({
         myCommandObject: { name: 'CommandC' },
@@ -197,14 +197,14 @@ describe('Dropdown', () => {
       },
     )
     const content = wrapper.findComponent({ ref: 'b' }).vm as any
-    const triggerElm = wrapper.find('.el-dropdown__caret-button')
-    const button = wrapper.find('.el-button')
+    const triggerTjm = wrapper.find('.tj-dropdown__caret-button')
+    const button = wrapper.find('.tj-button')
     expect(content.visible).toBe(false)
     await button.trigger('click')
     expect((wrapper.vm as any).name).toBe('click')
-    await triggerElm.trigger('keydown')
-    await triggerElm.trigger('focus')
-    await triggerElm.trigger(MOUSE_ENTER_EVENT)
+    await triggerTjm.trigger('keydown')
+    await triggerTjm.trigger('focus')
+    await triggerTjm.trigger(MOUSE_ENTER_EVENT)
     await sleep(TIMEOUT)
     expect(content.visible).toBe(true)
   })
@@ -212,71 +212,71 @@ describe('Dropdown', () => {
   test('hide on click', async () => {
     const wrapper = _mount(
       `
-      <el-dropdown ref="b" placement="right" :hide-on-click="false">
-        <span class="el-dropdown-link" ref="a">
-          dropdown<i class="el-icon-arrow-down el-icon--right"></i>
+      <tj-dropdown ref="b" placement="right" :hide-on-click="false">
+        <span class="tj-dropdown-link" ref="a">
+          dropdown<i class="tj-icon-arrow-down tj-icon--right"></i>
         </span>
         <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>Apple</el-dropdown-item>
-            <el-dropdown-item>Orange</el-dropdown-item>
-            <el-dropdown-item ref="c">Cherry</el-dropdown-item>
-            <el-dropdown-item disabled>Peach</el-dropdown-item>
-            <el-dropdown-item divided>Pear</el-dropdown-item>
-          </el-dropdown-menu>
+          <tj-dropdown-menu>
+            <tj-dropdown-item>Apple</tj-dropdown-item>
+            <tj-dropdown-item>Orange</tj-dropdown-item>
+            <tj-dropdown-item ref="c">Cherry</tj-dropdown-item>
+            <tj-dropdown-item disabled>Peach</tj-dropdown-item>
+            <tj-dropdown-item divided>Pear</tj-dropdown-item>
+          </tj-dropdown-menu>
         </template>
-      </el-dropdown>
+      </tj-dropdown>
       `,
       () => ({}),
     )
 
     const content = wrapper.findComponent({ ref: 'b' }).vm as any
-    const triggerElm = wrapper.find('.el-dropdown-link')
-    await triggerElm.trigger('keydown')
-    await triggerElm.trigger('focus')
-    await triggerElm.trigger(MOUSE_ENTER_EVENT)
+    const triggerTjm = wrapper.find('.tj-dropdown-link')
+    await triggerTjm.trigger('keydown')
+    await triggerTjm.trigger('focus')
+    await triggerTjm.trigger(MOUSE_ENTER_EVENT)
     await sleep(TIMEOUT)
     await wrapper.findComponent({ ref: 'c' }).trigger('click')
     await sleep(TIMEOUT)
     expect(content.visible).toBe(true)
   })
 
-  test('triggerElm keydown', async () => {
+  test('triggerTjm keydown', async () => {
     const wrapper = _mount(
       `
-      <el-dropdown ref="b" placement="right" :hide-on-click="false">
-        <span class="el-dropdown-link" ref="a">
-          dropdown<i class="el-icon-arrow-down el-icon--right"></i>
+      <tj-dropdown ref="b" placement="right" :hide-on-click="false">
+        <span class="tj-dropdown-link" ref="a">
+          dropdown<i class="tj-icon-arrow-down tj-icon--right"></i>
         </span>
         <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>Apple</el-dropdown-item>
-            <el-dropdown-item>Orange</el-dropdown-item>
-            <el-dropdown-item ref="c">Cherry</el-dropdown-item>
-            <el-dropdown-item disabled>Peach</el-dropdown-item>
-            <el-dropdown-item divided>Pear</el-dropdown-item>
-          </el-dropdown-menu>
+          <tj-dropdown-menu>
+            <tj-dropdown-item>Apple</tj-dropdown-item>
+            <tj-dropdown-item>Orange</tj-dropdown-item>
+            <tj-dropdown-item ref="c">Cherry</tj-dropdown-item>
+            <tj-dropdown-item disabled>Peach</tj-dropdown-item>
+            <tj-dropdown-item divided>Pear</tj-dropdown-item>
+          </tj-dropdown-menu>
         </template>
-      </el-dropdown>
+      </tj-dropdown>
       `,
       () => ({}),
     )
 
     const content = wrapper.findComponent({ ref: 'b' }).vm as any
-    const triggerElm = wrapper.find('.el-dropdown-link')
-    await triggerElm.trigger('keydown')
-    await triggerElm.trigger('focus')
-    await triggerElm.trigger(MOUSE_ENTER_EVENT)
+    const triggerTjm = wrapper.find('.tj-dropdown-link')
+    await triggerTjm.trigger('keydown')
+    await triggerTjm.trigger('focus')
+    await triggerTjm.trigger(MOUSE_ENTER_EVENT)
     await sleep(TIMEOUT)
-    await triggerElm.trigger('keydown', {
+    await triggerTjm.trigger('keydown', {
       code: EVENT_CODE.enter,
     })
     await sleep(TIMEOUT)
     expect(content.visible).toBe(false)
 
-    await triggerElm.trigger(MOUSE_ENTER_EVENT)
+    await triggerTjm.trigger(MOUSE_ENTER_EVENT)
     await sleep(TIMEOUT)
-    await triggerElm.trigger('keydown', {
+    await triggerTjm.trigger('keydown', {
       code: EVENT_CODE.tab,
     })
     await sleep(TIMEOUT)
@@ -286,27 +286,27 @@ describe('Dropdown', () => {
   test('dropdown menu keydown', async () => {
     const wrapper = _mount(
       `
-      <el-dropdown ref="b" placement="right" :hide-on-click="false">
-        <span class="el-dropdown-link" ref="a">
-          dropdown<i class="el-icon-arrow-down el-icon--right"></i>
+      <tj-dropdown ref="b" placement="right" :hide-on-click="false">
+        <span class="tj-dropdown-link" ref="a">
+          dropdown<i class="tj-icon-arrow-down tj-icon--right"></i>
         </span>
         <template #dropdown>
-          <el-dropdown-menu ref="a">
-            <el-dropdown-item ref="d">Apple</el-dropdown-item>
-            <el-dropdown-item>Orange</el-dropdown-item>
-            <el-dropdown-item ref="c">Cherry</el-dropdown-item>
-            <el-dropdown-item disabled>Peach</el-dropdown-item>
-            <el-dropdown-item divided>Pear</el-dropdown-item>
-          </el-dropdown-menu>
+          <tj-dropdown-menu ref="a">
+            <tj-dropdown-item ref="d">Apple</tj-dropdown-item>
+            <tj-dropdown-item>Orange</tj-dropdown-item>
+            <tj-dropdown-item ref="c">Cherry</tj-dropdown-item>
+            <tj-dropdown-item disabled>Peach</tj-dropdown-item>
+            <tj-dropdown-item divided>Pear</tj-dropdown-item>
+          </tj-dropdown-menu>
         </template>
-      </el-dropdown>
+      </tj-dropdown>
       `,
       () => ({}),
     )
 
     const content = wrapper.findComponent({ ref: 'a' })
-    const triggerElm = wrapper.find('.el-dropdown-link')
-    await triggerElm.trigger(MOUSE_ENTER_EVENT)
+    const triggerTjm = wrapper.find('.tj-dropdown-link')
+    await triggerTjm.trigger(MOUSE_ENTER_EVENT)
     await sleep(TIMEOUT)
     await content.trigger('keydown', {
       code: EVENT_CODE.down,

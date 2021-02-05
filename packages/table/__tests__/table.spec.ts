@@ -1,7 +1,7 @@
 import { mount as _mount, VueWrapper } from '@vue/test-utils'
 import { ComponentPublicInstance, nextTick } from 'vue'
-import ElTable from '../src/table.vue'
-import ElTableColumn from '../src/table-column/index'
+import TjTable from '../src/table.vue'
+import TjTableColumn from '../src/table-column/index'
 import sinon from 'sinon'
 
 const testDataArr = []
@@ -87,17 +87,17 @@ describe('Table.vue', () => {
   describe('rendering data is correct', () => {
     const wrapper = mount({
       components: {
-        ElTable,
-        ElTableColumn,
+        TjTable,
+        TjTableColumn,
       },
       template: `
-      <el-table :data="testData">
-        <el-table-column prop="id" />
-        <el-table-column prop="name" label="片名" />
-        <el-table-column prop="release" label="发行日期" />
-        <el-table-column prop="director" label="导演" />
-        <el-table-column prop="runtime" label="时长（分）" />
-      </el-table>
+      <tj-table :data="testData">
+        <tj-table-column prop="id" />
+        <tj-table-column prop="name" label="片名" />
+        <tj-table-column prop="release" label="发行日期" />
+        <tj-table-column prop="director" label="导演" />
+        <tj-table-column prop="runtime" label="时长（分）" />
+      </tj-table>
       `,
       created() {
         this.testData = getTestData()
@@ -115,7 +115,7 @@ describe('Table.vue', () => {
 
     it('row length', () => {
       expect(
-        wrapper.findAll('.el-table__body-wrapper tbody tr').length,
+        wrapper.findAll('.tj-table__body-wrapper tbody tr').length,
       ).toEqual(getTestData().length)
     })
     it('row data', () => {
@@ -132,16 +132,16 @@ describe('Table.vue', () => {
         Object.assign(
           {
             components: {
-              ElTable,
-              ElTableColumn,
+              TjTable,
+              TjTableColumn,
             },
             template: `
-          <el-table :data="testData" ${props}>
-            <el-table-column prop="name" label="片名" />
-            <el-table-column prop="release" label="发行日期" />
-            <el-table-column prop="director" label="导演" />
-            <el-table-column prop="runtime" label="时长（分）" />
-          </el-table>
+          <tj-table :data="testData" ${props}>
+            <tj-table-column prop="name" label="片名" />
+            <tj-table-column prop="release" label="发行日期" />
+            <tj-table-column prop="director" label="导演" />
+            <tj-table-column prop="runtime" label="时长（分）" />
+          </tj-table>
         `,
             created() {
               this.testData = getTestData()
@@ -179,7 +179,7 @@ describe('Table.vue', () => {
     it('stripe', async done => {
       const wrapper = createTable('stripe')
       await nextTick()
-      expect(wrapper.classes().includes('el-table--striped')).toBeTruthy
+      expect(wrapper.classes().includes('tj-table--striped')).toBeTruthy
       wrapper.unmount()
       done()
     })
@@ -187,7 +187,7 @@ describe('Table.vue', () => {
     it('border', async done => {
       const wrapper = createTable('border')
       await nextTick()
-      expect(wrapper.classes().includes('el-table--border')).toBeTruthy
+      expect(wrapper.classes().includes('tj-table--border')).toBeTruthy
       wrapper.unmount()
       done()
     })
@@ -195,7 +195,7 @@ describe('Table.vue', () => {
     it('fit', async done => {
       const wrapper = createTable(':fit="false"')
       await nextTick()
-      expect(wrapper.classes().includes('el-table--fit')).toBeFalsy
+      expect(wrapper.classes().includes('tj-table--fit')).toBeFalsy
       wrapper.unmount()
       done()
     })
@@ -203,7 +203,7 @@ describe('Table.vue', () => {
     it('show-header', async done => {
       const wrapper = createTable(':show-header="false"')
       await nextTick()
-      expect(wrapper.findAll('.el-table__header-wrapper').length).toEqual(0)
+      expect(wrapper.findAll('.tj-table__header-wrapper').length).toEqual(0)
       wrapper.unmount()
       done()
     })
@@ -232,7 +232,7 @@ describe('Table.vue', () => {
     it('tableRowStyle[Object]', async done => {
       const wrapper = createTable(':row-style="{ height: \'60px\' }"', {})
       await nextTick()
-      expect(wrapper.find('.el-table__body tr').attributes('style')).toContain(
+      expect(wrapper.find('.tj-table__body tr').attributes('style')).toContain(
         'height: 60px',
       )
       wrapper.unmount()
@@ -253,8 +253,8 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      const child1 = wrapper.find('.el-table__body tr:nth-child(1)')
-      const child2 = wrapper.find('.el-table__body tr:nth-child(2)')
+      const child1 = wrapper.find('.tj-table__body tr:nth-child(1)')
+      const child2 = wrapper.find('.tj-table__body tr:nth-child(2)')
       expect(child1.attributes('style')).toBeUndefined
       expect(child2.attributes('style')).toContain('height: 60px')
       expect(child2.attributes('style')).toContain('display: none')
@@ -265,16 +265,16 @@ describe('Table.vue', () => {
     it('current-row-key', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-        <el-table :data="testData" row-key="id" highlight-current-row :current-row-key="currentRowKey">
-          <el-table-column prop="name" label="片名" />
-          <el-table-column prop="release" label="发行日期" />
-          <el-table-column prop="director" label="导演" />
-          <el-table-column prop="runtime" label="时长（分）" />
-        </el-table>
+        <tj-table :data="testData" row-key="id" highlight-current-row :current-row-key="currentRowKey">
+          <tj-table-column prop="name" label="片名" />
+          <tj-table-column prop="release" label="发行日期" />
+          <tj-table-column prop="director" label="导演" />
+          <tj-table-column prop="runtime" label="时长（分）" />
+        </tj-table>
       `,
         created() {
           this.testData = getTestData()
@@ -285,12 +285,12 @@ describe('Table.vue', () => {
       })
       await nextTick()
       wrapper.vm.currentRowKey = 1
-      const tr = wrapper.find('.el-table__body-wrapper tbody tr')
+      const tr = wrapper.find('.tj-table__body-wrapper tbody tr')
       await nextTick()
       expect(tr.classes().includes('current-row')).toBeTruthy
       wrapper.vm.currentRowKey = 2
 
-      const rows = wrapper.findAll('.el-table__body-wrapper tbody tr')
+      const rows = wrapper.findAll('.tj-table__body-wrapper tbody tr')
       await nextTick()
       expect(tr.classes().includes('current-row')).toBeFalsy
       expect(rows[1].classes().includes('current-row')).toBeTruthy
@@ -304,14 +304,14 @@ describe('Table.vue', () => {
     beforeEach(async done => {
       wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table ref="table" :data="testData" @filter-change="handleFilterChange">
-            <el-table-column prop="name" label="片名" />
-            <el-table-column prop="release" label="发行日期" />
-            <el-table-column
+          <tj-table ref="table" :data="testData" @filter-change="handleFilterChange">
+            <tj-table-column prop="name" label="片名" />
+            <tj-table-column prop="release" label="发行日期" />
+            <tj-table-column
               prop="director"
               column-key="director"
               :filters="[
@@ -321,8 +321,8 @@ describe('Table.vue', () => {
               ]"
               :filter-method="filterMethod"
               label="导演" />
-            <el-table-column prop="runtime" label="时长（分）" />
-          </el-table>
+            <tj-table-column prop="runtime" label="时长（分）" />
+          </tj-table>
         `,
 
         created() {
@@ -345,31 +345,31 @@ describe('Table.vue', () => {
     afterEach(() => wrapper.unmount())
 
     it('render', () => {
-      expect(wrapper.find('.el-table__column-filter-trigger')).not.toBeUndefined
+      expect(wrapper.find('.tj-table__column-filter-trigger')).not.toBeUndefined
     })
 
     it('click dropdown', async done => {
-      const btn = wrapper.find('.el-table__column-filter-trigger')
+      const btn = wrapper.find('.tj-table__column-filter-trigger')
       btn.trigger('click')
       await nextTick()
-      const filter = document.body.querySelector('.el-table-filter')
+      const filter = document.body.querySelector('.tj-table-filter')
       expect(filter).not.toBeUndefined
       filter.parentNode.removeChild(filter)
       done()
     })
 
     it('click filter', async done => {
-      const btn = wrapper.find('.el-table__column-filter-trigger')
+      const btn = wrapper.find('.tj-table__column-filter-trigger')
 
       btn.trigger('click')
       await nextTick()
-      const filter = document.body.querySelector('.el-table-filter')
+      const filter = document.body.querySelector('.tj-table-filter')
 
-      triggerEvent(filter.querySelector('.el-checkbox'), 'click', true, false)
+      triggerEvent(filter.querySelector('.tj-checkbox'), 'click', true, false)
       // confrim button
       await nextTick()
       triggerEvent(
-        filter.querySelector('.el-table-filter__bottom button'),
+        filter.querySelector('.tj-table-filter__bottom button'),
         'click',
         true,
         false,
@@ -381,22 +381,22 @@ describe('Table.vue', () => {
         ],
       ).toEqual(['John Lasseter'])
       expect(
-        wrapper.findAll('.el-table__body-wrapper tbody tr').length,
+        wrapper.findAll('.tj-table__body-wrapper tbody tr').length,
       ).toEqual(3)
       filter.parentNode.removeChild(filter)
       done()
     })
 
     it('click reset', async done => {
-      const btn = wrapper.find('.el-table__column-filter-trigger')
+      const btn = wrapper.find('.tj-table__column-filter-trigger')
       btn.trigger('click')
       await nextTick()
-      const filter = document.body.querySelector('.el-table-filter')
+      const filter = document.body.querySelector('.tj-table-filter')
 
-      triggerEvent(filter.querySelector('.el-checkbox'), 'click', true, false)
+      triggerEvent(filter.querySelector('.tj-checkbox'), 'click', true, false)
       await nextTick()
       triggerEvent(
-        filter.querySelectorAll('.el-table-filter__bottom button')[1],
+        filter.querySelectorAll('.tj-table-filter__bottom button')[1],
         'click',
         true,
         false,
@@ -409,7 +409,7 @@ describe('Table.vue', () => {
       ).toEqual([])
       expect(
         filter
-          .querySelector('.el-table-filter__bottom button')
+          .querySelector('.tj-table-filter__bottom button')
           .classList.contains('is-disabled'),
       ).toBeTruthy
       filter.parentNode.removeChild(filter)
@@ -422,17 +422,17 @@ describe('Table.vue', () => {
     const createTable = function(prop = '') {
       return mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" @${prop}="handleEvent">
-            <el-table-column type="selection" />
-            <el-table-column prop="name" />
-            <el-table-column prop="release" />
-            <el-table-column prop="director" />
-            <el-table-column prop="runtime"/>
-          </el-table>
+          <tj-table :data="testData" @${prop}="handleEvent">
+            <tj-table-column type="selection" />
+            <tj-table-column prop="name" />
+            <tj-table-column prop="release" />
+            <tj-table-column prop="director" />
+            <tj-table-column prop="runtime"/>
+          </tj-table>
         `,
 
         methods: {
@@ -450,7 +450,7 @@ describe('Table.vue', () => {
     it('select', async done => {
       const wrapper = createTable('select')
       await nextTick()
-      wrapper.findAll('.el-checkbox')[1].trigger('click')
+      wrapper.findAll('.tj-checkbox')[1].trigger('click')
       expect(wrapper.vm.result.length).toEqual(2)
       expect(wrapper.vm.result[1]).toHaveProperty('name')
       expect(wrapper.vm.result[1]['name']).toEqual(getTestData()[0].name)
@@ -461,7 +461,7 @@ describe('Table.vue', () => {
     it('selection-change', async done => {
       const wrapper = createTable('selection-change')
       await nextTick()
-      wrapper.findAll('.el-checkbox')[1].trigger('click')
+      wrapper.findAll('.tj-checkbox')[1].trigger('click')
       expect(wrapper.vm.result.length).toEqual(1)
       wrapper.unmount()
       done()
@@ -470,7 +470,7 @@ describe('Table.vue', () => {
     it('cell-mouse-enter', async done => {
       const wrapper = createTable('cell-mouse-enter')
       await nextTick()
-      const cell = wrapper.findAll('.el-table__body .cell')[2] // first row
+      const cell = wrapper.findAll('.tj-table__body .cell')[2] // first row
       triggerEvent(cell.element.parentNode, 'mouseenter')
       expect(wrapper.vm.result.length).toEqual(4) // row, column, cell, event
       expect(wrapper.vm.result[0]).toHaveProperty('name')
@@ -482,8 +482,8 @@ describe('Table.vue', () => {
     it('cell-mouse-leave', async done => {
       const wrapper = createTable('cell-mouse-leave')
       await nextTick()
-      const cell = wrapper.findAll('.el-table__body .cell')[7] // second row
-      const cell2 = wrapper.findAll('.el-table__body .cell')[2] // first row
+      const cell = wrapper.findAll('.tj-table__body .cell')[7] // second row
+      const cell2 = wrapper.findAll('.tj-table__body .cell')[2] // first row
 
       triggerEvent(cell2.element.parentNode, 'mouseenter')
       triggerEvent(cell.element.parentNode, 'mouseleave')
@@ -497,7 +497,7 @@ describe('Table.vue', () => {
     it('row-click', async done => {
       const wrapper = createTable('row-click')
       await nextTick()
-      const cell = wrapper.findAll('.el-table__body .cell')[2] // first row
+      const cell = wrapper.findAll('.tj-table__body .cell')[2] // first row
 
       triggerEvent(cell.element.parentNode.parentNode, 'click')
       expect(wrapper.vm.result.length).toEqual(3) // row, event, column
@@ -510,7 +510,7 @@ describe('Table.vue', () => {
     it('row-dblclick', async done => {
       const wrapper = createTable('row-dblclick')
       await nextTick()
-      const cell = wrapper.findAll('.el-table__body .cell')[2] // first row
+      const cell = wrapper.findAll('.tj-table__body .cell')[2] // first row
 
       triggerEvent(cell.element.parentNode.parentNode, 'dblclick')
       expect(wrapper.vm.result.length).toEqual(3) // row, event, column
@@ -523,7 +523,7 @@ describe('Table.vue', () => {
     it('header-click', async done => {
       const wrapper = createTable('header-click')
       await nextTick()
-      const cell = wrapper.findAll('.el-table__header th')[1] // header[prop='name']
+      const cell = wrapper.findAll('.tj-table__header th')[1] // header[prop='name']
       cell.trigger('click')
       expect(wrapper.vm.result.length).toEqual(2) // column, event
       expect(wrapper.vm.result[0]['name']).toBeUndefined
@@ -544,16 +544,16 @@ describe('Table.vue', () => {
         Object.assign(
           {
             components: {
-              ElTable,
-              ElTableColumn,
+              TjTable,
+              TjTableColumn,
             },
             template: `
-          <el-table :data="testData" ${tableProps || ''}>
-            <el-table-column prop="name" ${props1 || ''} />
-            <el-table-column prop="release" ${props2 || ''} />
-            <el-table-column prop="director" ${props3 || ''} />
-            <el-table-column prop="runtime" ${props4 || ''} />
-          </el-table>
+          <tj-table :data="testData" ${tableProps || ''}>
+            <tj-table-column prop="name" ${props1 || ''} />
+            <tj-table-column prop="release" ${props2 || ''} />
+            <tj-table-column prop="director" ${props3 || ''} />
+            <tj-table-column prop="runtime" ${props4 || ''} />
+          </tj-table>
         `,
 
             created() {
@@ -580,7 +580,7 @@ describe('Table.vue', () => {
     it('width', async done => {
       const wrapper = createTable('width="123px"', ':width="102"', 'width="39"')
       await nextTick()
-      const ths = toArray(wrapper.findAll('.el-table__header-wrapper col'))
+      const ths = toArray(wrapper.findAll('.tj-table__header-wrapper col'))
         .map(node => node.width)
         .filter(o => o)
       expect(ths.includes('123')).toBeTruthy
@@ -599,16 +599,16 @@ describe('Table.vue', () => {
       await nextTick()
       expect(
         toArray(
-          wrapper.findAll('.el-table__fixed th:not(.is-hidden)'),
+          wrapper.findAll('.tj-table__fixed th:not(.is-hidden)'),
         ).map(node => node.text()),
       ).toEqual(['test1', 'test3'])
 
       expect(
         toArray(
-          wrapper.findAll('.el-table__fixed-right th:not(.is-hidden)'),
+          wrapper.findAll('.tj-table__fixed-right th:not(.is-hidden)'),
         ).map(node => node.text()),
       ).toEqual(['test2'])
-      expect(wrapper.find('.el-table__body-wrapper').attributes('style'))
+      expect(wrapper.find('.tj-table__body-wrapper').attributes('style'))
         .toBeFalsy
       wrapper.unmount()
       done()
@@ -642,7 +642,7 @@ describe('Table.vue', () => {
 
       await nextTick()
       const cells = toArray(
-        wrapper.findAll('.el-table__body-wrapper tbody tr td:first-child'),
+        wrapper.findAll('.tj-table__body-wrapper tbody tr td:first-child'),
       )
       expect(cells.map(n => n.text())).toEqual(
         getTestData().map(o => `[${o.name}]`),
@@ -654,7 +654,7 @@ describe('Table.vue', () => {
     it('show-overflow-tooltip', async done => {
       const wrapper = createTable('show-overflow-tooltip')
       await nextTick()
-      expect(wrapper.findAll('.el-tooltip').length).toEqual(5)
+      expect(wrapper.findAll('.tj-tooltip').length).toEqual(5)
       wrapper.unmount()
       done()
     })
@@ -663,7 +663,7 @@ describe('Table.vue', () => {
     //   // old version prop name
     //   const wrapper = createTable('show-tooltip-when-overflow')
     //   await nextTick()
-    //   expect(wrapper.findAll('.el-tooltip').length).toEqual(5)
+    //   expect(wrapper.findAll('.tj-tooltip').length).toEqual(5)
     //   wrapper.unmount()
     //   done()
     // })
@@ -701,17 +701,17 @@ describe('Table.vue', () => {
     it('selectable === false & check selectAll status', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" @selection-change="change">
-            <el-table-column type="selection" :selectable="filterSelect" />
-            <el-table-column prop="name" label="name" />
-            <el-table-column prop="release" label="release" />
-            <el-table-column prop="director" label="director" />
-            <el-table-column prop="runtime" label="runtime" />
-          </el-table>
+          <tj-table :data="testData" @selection-change="change">
+            <tj-table-column type="selection" :selectable="filterSelect" />
+            <tj-table-column prop="name" label="name" />
+            <tj-table-column prop="release" label="release" />
+            <tj-table-column prop="director" label="director" />
+            <tj-table-column prop="runtime" label="runtime" />
+          </tj-table>
         `,
 
         data() {
@@ -730,7 +730,7 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      expect(wrapper.find('.el-checkbox').attributes('checked')).toBeFalsy
+      expect(wrapper.find('.tj-checkbox').attributes('checked')).toBeFalsy
       await nextTick()
       expect(wrapper.vm.selected.length).toEqual(0)
       wrapper.unmount()
@@ -741,17 +741,17 @@ describe('Table.vue', () => {
       const createTable = function(type) {
         return mount({
           components: {
-            ElTable,
-            ElTableColumn,
+            TjTable,
+            TjTableColumn,
           },
           template: `
-            <el-table :data="testData" @selection-change="change">
-              <el-table-column type="${type}" />
-              <el-table-column prop="name" label="name" />
-              <el-table-column prop="release" label="release" />
-              <el-table-column prop="director" label="director" />
-              <el-table-column prop="runtime" label="runtime" />
-            </el-table>
+            <tj-table :data="testData" @selection-change="change">
+              <tj-table-column type="${type}" />
+              <tj-table-column prop="name" label="name" />
+              <tj-table-column prop="release" label="release" />
+              <tj-table-column prop="director" label="director" />
+              <tj-table-column prop="runtime" label="runtime" />
+            </tj-table>
           `,
 
           created() {
@@ -775,14 +775,14 @@ describe('Table.vue', () => {
 
         it('render', async done => {
           await nextTick()
-          expect(wrapper.findAll('.el-checkbox').length).toEqual(
+          expect(wrapper.findAll('.tj-checkbox').length).toEqual(
             getTestData().length + 1,
           )
           done()
         })
 
         it('select all', async done => {
-          wrapper.find('.el-checkbox').trigger('click')
+          wrapper.find('.tj-checkbox').trigger('click')
           await nextTick()
           expect(wrapper.vm.selected.length).toEqual(5)
           wrapper.unmount()
@@ -793,7 +793,7 @@ describe('Table.vue', () => {
           const wrapper2 = createTable('selection')
 
           await nextTick()
-          wrapper2.findAll('.el-checkbox')[1].trigger('click')
+          wrapper2.findAll('.tj-checkbox')[1].trigger('click')
 
           await nextTick()
           expect(wrapper2.vm.selected.length).toEqual(1)
@@ -811,7 +811,7 @@ describe('Table.vue', () => {
           expect(
             toArray(
               wrapper.findAll(
-                '.el-table__body-wrapper tbody tr td:first-child',
+                '.tj-table__body-wrapper tbody tr td:first-child',
               ),
             ).map(node => node.text()),
           ).toEqual(['1', '2', '3', '4', '5'])
@@ -825,20 +825,20 @@ describe('Table.vue', () => {
           extra = extra || ''
           return mount({
             components: {
-              ElTableColumn,
-              ElTable,
+              TjTableColumn,
+              TjTable,
             },
             template: `
-            <el-table row-key="id" :data="testData" @expand-change="handleExpand" ${extra}>
-              <el-table-column type="expand">
+            <tj-table row-key="id" :data="testData" @expand-change="handleExpand" ${extra}>
+              <tj-table-column type="expand">
                 <template #default="props">
                   <div>{{props.row.name}}</div>
                 </template>
-              </el-table-column>
-              <el-table-column prop="release" label="release" />
-              <el-table-column prop="director" label="director" />
-              <el-table-column prop="runtime" label="runtime" />
-            </el-table>
+              </tj-table-column>
+              <tj-table-column prop="release" label="release" />
+              <tj-table-column prop="director" label="director" />
+              <tj-table-column prop="runtime" label="runtime" />
+            </tj-table>
           `,
 
             data() {
@@ -863,7 +863,7 @@ describe('Table.vue', () => {
         it('works', async done => {
           const wrapper = createInstance()
           await nextTick()
-          expect(wrapper.findAll('td.el-table__expand-column').length).toEqual(
+          expect(wrapper.findAll('td.tj-table__expand-column').length).toEqual(
             5,
           )
           wrapper.unmount()
@@ -896,7 +896,7 @@ describe('Table.vue', () => {
 
         await nextTick()
         const lastCells = wrapper.findAll(
-          '.el-table__body-wrapper tbody tr td:last-child',
+          '.tj-table__body-wrapper tbody tr td:last-child',
         )
         expect(toArray(lastCells).map(node => node.text())).toEqual([
           '100',
@@ -937,7 +937,7 @@ describe('Table.vue', () => {
 
         await nextTick()
         const lastCells = wrapper.findAll(
-          '.el-table__body-wrapper tbody tr td:last-child',
+          '.tj-table__body-wrapper tbody tr td:last-child',
         )
         expect(toArray(lastCells).map(node => node.text())).toEqual([
           '100',
@@ -965,7 +965,7 @@ describe('Table.vue', () => {
 
         await nextTick()
         const lastCells = wrapper.findAll(
-          '.el-table__body-wrapper tbody tr td:last-child',
+          '.tj-table__body-wrapper tbody tr td:last-child',
         )
         expect(toArray(lastCells).map(node => node.text())).toEqual([
           '100',
@@ -993,7 +993,7 @@ describe('Table.vue', () => {
 
         await nextTick()
         const lastCells = wrapper.findAll(
-          '.el-table__body-wrapper tbody tr td:last-child',
+          '.tj-table__body-wrapper tbody tr td:last-child',
         )
         expect(toArray(lastCells).map(node => node.text())).toEqual([
           '80',
@@ -1016,7 +1016,7 @@ describe('Table.vue', () => {
         elm.trigger('click')
         await nextTick()
         const lastCells = wrapper.findAll(
-          '.el-table__body-wrapper tbody tr td:last-child',
+          '.tj-table__body-wrapper tbody tr td:last-child',
         )
         expect(toArray(lastCells).map(node => node.text())).toEqual([
           '80',
@@ -1034,7 +1034,7 @@ describe('Table.vue', () => {
         elm.trigger('click')
         await nextTick()
         const lastCells = wrapper.findAll(
-          '.el-table__body-wrapper tbody tr td:last-child',
+          '.tj-table__body-wrapper tbody tr td:last-child',
         )
         expect(toArray(lastCells).map(node => node.text())).toEqual([
           '100',
@@ -1051,8 +1051,8 @@ describe('Table.vue', () => {
     it('change column configuration', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
           <template>
@@ -1072,14 +1072,14 @@ describe('Table.vue', () => {
                 }
               "
               >-</button>
-            <el-table :data="data">
-              <el-table-column
+            <tj-table :data="data">
+              <tj-table-column
                 v-for="item of cols"
                 :prop="item"
                 :label="item"
                 :key="item"
-              ></el-table-column>
-            </el-table>
+              ></tj-table-column>
+            </tj-table>
           </template>
         `,
 
@@ -1089,21 +1089,21 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      expect(wrapper.findAll('.el-table__header-wrapper th').length).toEqual(3)
+      expect(wrapper.findAll('.tj-table__header-wrapper th').length).toEqual(3)
       const addBut = wrapper.find('#addBut')
       const delBut = wrapper.find('#delBut')
       addBut.trigger('click')
       await nextTick()
-      expect(wrapper.findAll('.el-table__header-wrapper th').length).toEqual(4)
+      expect(wrapper.findAll('.tj-table__header-wrapper th').length).toEqual(4)
       addBut.trigger('click')
       await nextTick()
-      expect(wrapper.findAll('.el-table__header-wrapper th').length).toEqual(5)
+      expect(wrapper.findAll('.tj-table__header-wrapper th').length).toEqual(5)
       delBut.trigger('click')
       await nextTick()
-      expect(wrapper.findAll('.el-table__header-wrapper th').length).toEqual(4)
+      expect(wrapper.findAll('.tj-table__header-wrapper th').length).toEqual(4)
       delBut.trigger('click')
       await nextTick()
-      expect(wrapper.findAll('.el-table__header-wrapper th').length).toEqual(3)
+      expect(wrapper.findAll('.tj-table__header-wrapper th').length).toEqual(3)
       done()
     })
   })
@@ -1111,16 +1111,16 @@ describe('Table.vue', () => {
     it('should render', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" show-summary>
-            <el-table-column prop="name" />
-            <el-table-column prop="release"/>
-            <el-table-column prop="director"/>
-            <el-table-column prop="runtime"/>
-          </el-table>
+          <tj-table :data="testData" show-summary>
+            <tj-table-column prop="name" />
+            <tj-table-column prop="release"/>
+            <tj-table-column prop="director"/>
+            <tj-table-column prop="runtime"/>
+          </tj-table>
         `,
 
         created() {
@@ -1129,7 +1129,7 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      const footer = wrapper.find('.el-table__footer')
+      const footer = wrapper.find('.tj-table__footer')
       expect(footer).not.toBeUndefined
       const cells = toArray(footer.findAll('.cell'))
       expect(cells[cells.length - 1].text()).toEqual('459')
@@ -1140,16 +1140,16 @@ describe('Table.vue', () => {
     it('custom sum text', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" show-summary sum-text="Time">
-            <el-table-column prop="name" />
-            <el-table-column prop="release"/>
-            <el-table-column prop="director"/>
-            <el-table-column prop="runtime"/>
-          </el-table>
+          <tj-table :data="testData" show-summary sum-text="Time">
+            <tj-table-column prop="name" />
+            <tj-table-column prop="release"/>
+            <tj-table-column prop="director"/>
+            <tj-table-column prop="runtime"/>
+          </tj-table>
         `,
 
         created() {
@@ -1158,7 +1158,7 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      const cells = toArray(wrapper.findAll('.el-table__footer .cell'))
+      const cells = toArray(wrapper.findAll('.tj-table__footer .cell'))
       expect(cells[0].text()).toEqual('Time')
       wrapper.unmount()
       done()
@@ -1167,16 +1167,16 @@ describe('Table.vue', () => {
     it('custom summary method', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" show-summary :summary-method="getSummary">
-            <el-table-column prop="name" />
-            <el-table-column prop="release"/>
-            <el-table-column prop="director"/>
-            <el-table-column prop="runtime"/>
-          </el-table>
+          <tj-table :data="testData" show-summary :summary-method="getSummary">
+            <tj-table-column prop="name" />
+            <tj-table-column prop="release"/>
+            <tj-table-column prop="director"/>
+            <tj-table-column prop="runtime"/>
+          </tj-table>
         `,
 
         created() {
@@ -1207,7 +1207,7 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      const cells = toArray(wrapper.findAll('.el-table__footer .cell'))
+      const cells = toArray(wrapper.findAll('.tj-table__footer .cell'))
       expect(cells[1].text()).toEqual('9996')
       wrapper.unmount()
       done()
@@ -1217,18 +1217,18 @@ describe('Table.vue', () => {
     it('should works', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData">
-            <el-table-column prop="name" />
-            <el-table-column label="group">
-              <el-table-column prop="release"/>
-              <el-table-column prop="director"/>
-            </el-table-column>
-            <el-table-column prop="runtime"/>
-          </el-table>
+          <tj-table :data="testData">
+            <tj-table-column prop="name" />
+            <tj-table-column label="group">
+              <tj-table-column prop="release"/>
+              <tj-table-column prop="director"/>
+            </tj-table-column>
+            <tj-table-column prop="runtime"/>
+          </tj-table>
         `,
 
         created() {
@@ -1237,7 +1237,7 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      const trs = wrapper.findAll('.el-table__header tr')
+      const trs = wrapper.findAll('.tj-table__header tr')
       expect(trs.length).toEqual(2)
       const firstRowHeader = trs[0].findAll('th .cell').length
       const secondRowHeader = trs[1].findAll('th .cell').length
@@ -1253,21 +1253,21 @@ describe('Table.vue', () => {
     // it('should works', async done => {
     //   const wrapper = mount({
     //     components: {
-    //       ElTable,
-    //       ElTableColumn,
+    //       TjTable,
+    //       TjTableColumn,
     //     },
     //     template: `
-    //       <el-table :data="testData">
-    //         <el-table-column prop="name" />
-    //         <el-table-column label="group">
-    //           <el-table-column label="group's group">
-    //             <el-table-column prop="release" />
-    //             <el-table-column prop="runtime"/>
-    //           </el-table-column>
-    //           <el-table-column prop="director" />
-    //         </el-table-column>
-    //         <el-table-column prop="runtime"/>
-    //       </el-table>
+    //       <tj-table :data="testData">
+    //         <tj-table-column prop="name" />
+    //         <tj-table-column label="group">
+    //           <tj-table-column label="group's group">
+    //             <tj-table-column prop="release" />
+    //             <tj-table-column prop="runtime"/>
+    //           </tj-table-column>
+    //           <tj-table-column prop="director" />
+    //         </tj-table-column>
+    //         <tj-table-column prop="runtime"/>
+    //       </tj-table>
     //     `,
 
     //     created() {
@@ -1276,7 +1276,7 @@ describe('Table.vue', () => {
     //   })
 
     //   await nextTick()
-    //   const trs = wrapper.findAll('.el-table__header tr')
+    //   const trs = wrapper.findAll('.tj-table__header tr')
     //   expect(trs.length).toEqual(3)
     //   const firstRowHeader = trs[0].findAll('th .cell').length
     //   const secondRowHeader = trs[1].findAll('th .cell').length
@@ -1297,15 +1297,15 @@ describe('Table.vue', () => {
     it('should work in one column', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData">
-            <el-table-column label="group">
-              <el-table-column prop="release"/>
-            </el-table-column>
-          </el-table>
+          <tj-table :data="testData">
+            <tj-table-column label="group">
+              <tj-table-column prop="release"/>
+            </tj-table-column>
+          </tj-table>
         `,
 
         created() {
@@ -1314,7 +1314,7 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      const trs = wrapper.findAll('.el-table__header tr')
+      const trs = wrapper.findAll('.tj-table__header tr')
       expect(trs.length).toEqual(2)
       const firstRowLength = trs[0].findAll('th .cell').length
       const secondRowLength = trs[1].findAll('th .cell').length
@@ -1331,16 +1331,16 @@ describe('Table.vue', () => {
     it('label', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData">
-            <el-table-column prop="name" :label="label"/>
-            <el-table-column prop="release" />
-            <el-table-column prop="director" />
-            <el-table-column prop="runtime" />
-          </el-table>
+          <tj-table :data="testData">
+            <tj-table-column prop="name" :label="label"/>
+            <tj-table-column prop="release" />
+            <tj-table-column prop="director" />
+            <tj-table-column prop="runtime" />
+          </tj-table>
         `,
         data() {
           return {
@@ -1354,10 +1354,10 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      expect(wrapper.find('.el-table__header th .cell').text()).toEqual('name')
+      expect(wrapper.find('.tj-table__header th .cell').text()).toEqual('name')
       wrapper.vm.label = 'NAME'
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.el-table__header th .cell').text()).toEqual(
+        expect(wrapper.find('.tj-table__header th .cell').text()).toEqual(
           'NAME',
         )
         wrapper.unmount()
@@ -1368,13 +1368,13 @@ describe('Table.vue', () => {
     it('align', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData">
-            <el-table-column prop="name" :align="align"/>
-          </el-table>
+          <tj-table :data="testData">
+            <tj-table-column prop="name" :align="align"/>
+          </tj-table>
         `,
 
         data() {
@@ -1389,11 +1389,11 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      expect(wrapper.findAll('.el-table__body td.is-right').length === 0)
+      expect(wrapper.findAll('.tj-table__body td.is-right').length === 0)
         .toBeTruthy
       wrapper.vm.align = 'right'
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.findAll('.el-table__body td.is-right').length > 0)
+        expect(wrapper.findAll('.tj-table__body td.is-right').length > 0)
           .toBeTruthy
         wrapper.unmount()
         done()
@@ -1402,13 +1402,13 @@ describe('Table.vue', () => {
     it('header-align', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData">
-            <el-table-column prop="name" :align="align" :header-align="headerAlign"/>
-          </el-table>
+          <tj-table :data="testData">
+            <tj-table-column prop="name" :align="align" :header-align="headerAlign"/>
+          </tj-table>
         `,
 
         data() {
@@ -1424,36 +1424,36 @@ describe('Table.vue', () => {
       })
       await nextTick()
       expect(
-        wrapper.findAll('.el-table__header th.is-left').length,
+        wrapper.findAll('.tj-table__header th.is-left').length,
       ).toBeGreaterThanOrEqual(0)
-      expect(wrapper.findAll('.el-table__header th.is-center').length).toEqual(
+      expect(wrapper.findAll('.tj-table__header th.is-center').length).toEqual(
         0,
       )
-      expect(wrapper.findAll('.el-table__header th.is-right').length).toEqual(0)
+      expect(wrapper.findAll('.tj-table__header th.is-right').length).toEqual(0)
       wrapper.vm.align = 'right'
       await nextTick()
-      expect(wrapper.findAll('.el-table__header th.is-left').length).toEqual(0)
-      expect(wrapper.findAll('.el-table__header th.is-center').length).toEqual(
+      expect(wrapper.findAll('.tj-table__header th.is-left').length).toEqual(0)
+      expect(wrapper.findAll('.tj-table__header th.is-center').length).toEqual(
         0,
       )
       expect(
-        wrapper.findAll('.el-table__header th.is-right').length,
+        wrapper.findAll('.tj-table__header th.is-right').length,
       ).toBeGreaterThanOrEqual(0)
       wrapper.vm.headerAlign = 'center'
       await nextTick()
-      expect(wrapper.findAll('.el-table__header th.is-left').length).toEqual(0)
+      expect(wrapper.findAll('.tj-table__header th.is-left').length).toEqual(0)
       expect(
-        wrapper.findAll('.el-table__header th.is-center').length,
+        wrapper.findAll('.tj-table__header th.is-center').length,
       ).toBeGreaterThanOrEqual(0)
-      expect(wrapper.findAll('.el-table__header th.is-right').length).toEqual(0)
+      expect(wrapper.findAll('.tj-table__header th.is-right').length).toEqual(0)
       wrapper.vm.headerAlign = null
       await nextTick()
-      expect(wrapper.findAll('.el-table__header th.is-left').length).toEqual(0)
-      expect(wrapper.findAll('.el-table__header th.is-center').length).toEqual(
+      expect(wrapper.findAll('.tj-table__header th.is-left').length).toEqual(0)
+      expect(wrapper.findAll('.tj-table__header th.is-center').length).toEqual(
         0,
       )
       expect(
-        wrapper.findAll('.el-table__header th.is-right').length,
+        wrapper.findAll('.tj-table__header th.is-right').length,
       ).toBeGreaterThanOrEqual(0)
       wrapper.unmount()
       done()
@@ -1462,13 +1462,13 @@ describe('Table.vue', () => {
     it('width', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" :fit="false">
-            <el-table-column prop="name" :width="width"/>
-          </el-table>
+          <tj-table :data="testData" :fit="false">
+            <tj-table-column prop="name" :width="width"/>
+          </tj-table>
         `,
 
         data() {
@@ -1483,12 +1483,12 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      expect(wrapper.find('.el-table__body col').attributes('width')).toEqual(
+      expect(wrapper.find('.tj-table__body col').attributes('width')).toEqual(
         '100',
       )
       wrapper.vm.width = 200
       await nextTick()
-      expect(wrapper.find('.el-table__body col').attributes('width')).toEqual(
+      expect(wrapper.find('.tj-table__body col').attributes('width')).toEqual(
         '200',
       )
       wrapper.unmount()
@@ -1498,13 +1498,13 @@ describe('Table.vue', () => {
     it('min-width', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" :fit="false">
-            <el-table-column prop="name" :min-width="width"/>
-          </el-table>
+          <tj-table :data="testData" :fit="false">
+            <tj-table-column prop="name" :min-width="width"/>
+          </tj-table>
         `,
 
         data() {
@@ -1519,12 +1519,12 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      expect(wrapper.find('.el-table__body col').attributes('width')).toEqual(
+      expect(wrapper.find('.tj-table__body col').attributes('width')).toEqual(
         '100',
       )
       wrapper.vm.width = 200
       await nextTick()
-      expect(wrapper.find('.el-table__body col').attributes('width')).toEqual(
+      expect(wrapper.find('.tj-table__body col').attributes('width')).toEqual(
         '200',
       )
       wrapper.unmount()
@@ -1534,16 +1534,16 @@ describe('Table.vue', () => {
     it('fixed', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData">
-            <el-table-column :fixed="fixed" />
-            <el-table-column prop="release" />
-            <el-table-column prop="director" />
-            <el-table-column prop="runtime" />
-          </el-table>
+          <tj-table :data="testData">
+            <tj-table-column :fixed="fixed" />
+            <tj-table-column prop="release" />
+            <tj-table-column prop="director" />
+            <tj-table-column prop="runtime" />
+          </tj-table>
         `,
 
         data() {
@@ -1558,10 +1558,10 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      expect(!wrapper.find('.el-table__fixed')).toBeTruthy
+      expect(!wrapper.find('.tj-table__fixed')).toBeTruthy
       wrapper.vm.fixed = true
       await nextTick()
-      expect(!!wrapper.find('.el-table__fixed')).toBeTruthy
+      expect(!!wrapper.find('.tj-table__fixed')).toBeTruthy
       wrapper.unmount()
       done()
     })
@@ -1569,16 +1569,16 @@ describe('Table.vue', () => {
     it('prop', async done => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData">
-            <el-table-column :prop="prop" />
-            <el-table-column prop="release" />
-            <el-table-column prop="director" />
-            <el-table-column prop="runtime" />
-          </el-table>
+          <tj-table :data="testData">
+            <tj-table-column :prop="prop" />
+            <tj-table-column prop="release" />
+            <tj-table-column prop="director" />
+            <tj-table-column prop="runtime" />
+          </tj-table>
         `,
 
         data() {
@@ -1593,16 +1593,16 @@ describe('Table.vue', () => {
       })
 
       await nextTick()
-      let firstColumnContent = wrapper.find('.el-table__body td .cell').text()
+      let firstColumnContent = wrapper.find('.tj-table__body td .cell').text()
       let secondColumnContent = wrapper
-        .find('.el-table__body td:nth-child(2) .cell')
+        .find('.tj-table__body td:nth-child(2) .cell')
         .text()
       expect(firstColumnContent !== secondColumnContent).toBeTruthy
       wrapper.vm.prop = 'release'
       await nextTick()
-      firstColumnContent = wrapper.find('.el-table__body td .cell').text()
+      firstColumnContent = wrapper.find('.tj-table__body td .cell').text()
       secondColumnContent = wrapper
-        .find('.el-table__body td:nth-child(2) .cell')
+        .find('.tj-table__body td:nth-child(2) .cell')
         .text()
       expect(firstColumnContent === secondColumnContent).toBeTruthy
       wrapper.unmount()
@@ -1613,17 +1613,17 @@ describe('Table.vue', () => {
     const createTable = function(prop = '') {
       return mount({
         components: {
-          ElTableColumn,
-          ElTable,
+          TjTableColumn,
+          TjTable,
         },
         template: `
-          <el-table ref="table" :data="testData" @${prop}="handleEvent">
-            <el-table-column type="selection" />
-            <el-table-column prop="name" />
-            <el-table-column prop="release" />
-            <el-table-column prop="director" />
-            <el-table-column prop="runtime"/>
-          </el-table>
+          <tj-table ref="table" :data="testData" @${prop}="handleEvent">
+            <tj-table-column type="selection" />
+            <tj-table-column prop="name" />
+            <tj-table-column prop="release" />
+            <tj-table-column prop="director" />
+            <tj-table-column prop="runtime"/>
+          </tj-table>
         `,
 
         methods: {
@@ -1692,16 +1692,16 @@ describe('Table.vue', () => {
     it('sort', async done => {
       const wrapper = mount({
         components: {
-          ElTableColumn,
-          ElTable,
+          TjTableColumn,
+          TjTable,
         },
         template: `
-          <el-table ref="table" :data="testData" :default-sort = "{prop: 'runtime', order: 'ascending'}">
-            <el-table-column prop="name" />
-            <el-table-column prop="release" />
-            <el-table-column prop="director" />
-            <el-table-column prop="runtime"/>
-          </el-table>
+          <tj-table ref="table" :data="testData" :default-sort = "{prop: 'runtime', order: 'ascending'}">
+            <tj-table-column prop="name" />
+            <tj-table-column prop="release" />
+            <tj-table-column prop="director" />
+            <tj-table-column prop="runtime"/>
+          </tj-table>
         `,
         data() {
           return { testData: getTestData() }
@@ -1711,7 +1711,7 @@ describe('Table.vue', () => {
       const vm = wrapper.vm
       await nextTick()
       const lastCells = wrapper.findAll(
-        '.el-table__body-wrapper tbody tr td:last-child',
+        '.tj-table__body-wrapper tbody tr td:last-child',
       )
       equalArray(
         toArray(lastCells).map(node => node.text()),
@@ -1741,16 +1741,16 @@ describe('Table.vue', () => {
 
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table ref="table" :data="testData" >
-            <el-table-column prop="name" sortable />
-            <el-table-column prop="release" sortable />
-            <el-table-column prop="director" sortable />
-            <el-table-column prop="runtime" sortable />
-          </el-table>
+          <tj-table ref="table" :data="testData" >
+            <tj-table-column prop="name" sortable />
+            <tj-table-column prop="release" sortable />
+            <tj-table-column prop="director" sortable />
+            <tj-table-column prop="runtime" sortable />
+          </tj-table>
         `,
         data() {
           return { testData: getTestData() }
@@ -1789,17 +1789,17 @@ describe('Table.vue', () => {
     it('setCurrentRow', async () => {
       const wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
         <div>
-          <el-table ref="table" :data="testData" highlight-current-row>
-            <el-table-column prop="name" sortable />
-            <el-table-column prop="release" sortable />
-            <el-table-column prop="director" sortable />
-            <el-table-column prop="runtime" sortable />
-          </el-table>
+          <tj-table ref="table" :data="testData" highlight-current-row>
+            <tj-table-column prop="name" sortable />
+            <tj-table-column prop="release" sortable />
+            <tj-table-column prop="director" sortable />
+            <tj-table-column prop="runtime" sortable />
+          </tj-table>
           <button class="clear" @click="clear">clear</button>
         </div>
         `,
@@ -1816,7 +1816,7 @@ describe('Table.vue', () => {
 
       vm.$refs.table.setCurrentRow(vm.testData[1])
       await nextTick()
-      const secondRow = vm.$el.querySelectorAll('.el-table__row')[1]
+      const secondRow = vm.$el.querySelectorAll('.tj-table__row')[1]
       expect(secondRow.classList.contains('current-row')).toBeTruthy
 
       vm.$el.querySelector('.clear').click()
@@ -1830,16 +1830,16 @@ describe('Table.vue', () => {
   it('hover', async () => {
     const wrapper = mount({
       components: {
-        ElTable,
-        ElTableColumn,
+        TjTable,
+        TjTableColumn,
       },
       template: `
-        <el-table :data="testData">
-          <el-table-column prop="name" label="片名" fixed />
-          <el-table-column prop="release" label="发行日期" />
-          <el-table-column prop="director" label="导演" />
-          <el-table-column prop="runtime" label="时长（分）" />
-        </el-table>
+        <tj-table :data="testData">
+          <tj-table-column prop="name" label="片名" fixed />
+          <tj-table-column prop="release" label="发行日期" />
+          <tj-table-column prop="director" label="导演" />
+          <tj-table-column prop="runtime" label="时长（分）" />
+        </tj-table>
       `,
       data() {
         return {
@@ -1849,7 +1849,7 @@ describe('Table.vue', () => {
     })
     const vm = wrapper.vm
     await nextTick()
-    const tr = vm.$el.querySelector('.el-table__body-wrapper tbody tr')
+    const tr = vm.$el.querySelector('.tj-table__body-wrapper tbody tr')
     triggerEvent(tr, 'mouseenter', true, false)
 
     await nextTick()
@@ -1864,16 +1864,16 @@ describe('Table.vue', () => {
   it('highlight-current-row', async done => {
     const wrapper = mount({
       components: {
-        ElTable,
-        ElTableColumn,
+        TjTable,
+        TjTableColumn,
       },
       template: `
-        <el-table :data="testData" highlight-current-row>
-          <el-table-column prop="name" label="片名" />
-          <el-table-column prop="release" label="发行日期" />
-          <el-table-column prop="director" label="导演" />
-          <el-table-column prop="runtime" label="时长（分）" sortable />
-        </el-table>
+        <tj-table :data="testData" highlight-current-row>
+          <tj-table-column prop="name" label="片名" />
+          <tj-table-column prop="release" label="发行日期" />
+          <tj-table-column prop="director" label="导演" />
+          <tj-table-column prop="runtime" label="时长（分）" sortable />
+        </tj-table>
       `,
 
       created() {
@@ -1882,22 +1882,22 @@ describe('Table.vue', () => {
     })
     const vm = wrapper.vm
     await nextTick()
-    const tr = vm.$el.querySelector('.el-table__body-wrapper tbody tr')
+    const tr = vm.$el.querySelector('.tj-table__body-wrapper tbody tr')
     triggerEvent(tr, 'click', true, false)
     await nextTick()
     expect(tr.classList.contains('current-row')).toBeTruthy
-    let rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    let rows = vm.$el.querySelectorAll('.tj-table__body-wrapper tbody tr')
 
     triggerEvent(rows[1], 'click', true, false)
     await nextTick()
     expect(tr.classList.contains('current-row')).toBeFalsy
     expect(rows[1].classList.contains('current-row')).toBeTruthy
 
-    const ths = vm.$el.querySelectorAll('.el-table__header-wrapper thead th')
+    const ths = vm.$el.querySelectorAll('.tj-table__header-wrapper thead th')
     triggerEvent(ths[3], 'click', true, false)
 
     await nextTick()
-    rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    rows = vm.$el.querySelectorAll('.tj-table__body-wrapper tbody tr')
 
     expect(rows[1].classList.contains('current-row')).toBeFalsy
     expect(rows[3].classList.contains('current-row')).toBeTruthy
@@ -1908,16 +1908,16 @@ describe('Table.vue', () => {
   it('keep highlight row when data change', async done => {
     const wrapper = mount({
       components: {
-        ElTable,
-        ElTableColumn,
+        TjTable,
+        TjTableColumn,
       },
       template: `
-        <el-table :data="testData" highlight-current-row row-key="release">
-          <el-table-column prop="name" label="片名" />
-          <el-table-column prop="release" label="发行日期" />
-          <el-table-column prop="director" label="导演" />
-          <el-table-column prop="runtime" label="时长（分）" sortable />
-        </el-table>
+        <tj-table :data="testData" highlight-current-row row-key="release">
+          <tj-table-column prop="name" label="片名" />
+          <tj-table-column prop="release" label="发行日期" />
+          <tj-table-column prop="director" label="导演" />
+          <tj-table-column prop="runtime" label="时长（分）" sortable />
+        </tj-table>
       `,
       data() {
         return {
@@ -1927,7 +1927,7 @@ describe('Table.vue', () => {
     })
     const vm = wrapper.vm
     await nextTick()
-    let rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    let rows = vm.$el.querySelectorAll('.tj-table__body-wrapper tbody tr')
     triggerEvent(rows[2], 'click', true, false)
     await nextTick()
     expect(rows[2].classList.contains('current-row')).toBeTruthy
@@ -1943,7 +1943,7 @@ describe('Table.vue', () => {
     vm.testData = data
 
     await nextTick()
-    rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    rows = vm.$el.querySelectorAll('.tj-table__body-wrapper tbody tr')
     expect(rows[3].classList.contains('current-row')).toBeTruthy
     wrapper.unmount()
     done()
@@ -1952,16 +1952,16 @@ describe('Table.vue', () => {
   it('keep highlight row after sort', async done => {
     const wrapper = mount({
       components: {
-        ElTable,
-        ElTableColumn,
+        TjTable,
+        TjTableColumn,
       },
       template: `
-        <el-table :data="testData" row-key="release" highlight-current-row >
-          <el-table-column prop="name" label="片名" />
-          <el-table-column prop="release" label="发行日期" />
-          <el-table-column prop="director" label="导演" />
-          <el-table-column prop="runtime" label="时长（分）" sortable />
-        </el-table>
+        <tj-table :data="testData" row-key="release" highlight-current-row >
+          <tj-table-column prop="name" label="片名" />
+          <tj-table-column prop="release" label="发行日期" />
+          <tj-table-column prop="director" label="导演" />
+          <tj-table-column prop="runtime" label="时长（分）" sortable />
+        </tj-table>
       `,
       data() {
         return {
@@ -1971,17 +1971,17 @@ describe('Table.vue', () => {
     })
     const vm = wrapper.vm
     await nextTick()
-    let rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    let rows = vm.$el.querySelectorAll('.tj-table__body-wrapper tbody tr')
     triggerEvent(rows[1], 'click', true, false)
     await nextTick()
     expect(rows[1].classList.contains('current-row')).toBeTruthy
     const cells = vm.$el.querySelectorAll(
-      '.el-table__header-wrapper thead th > .cell',
+      '.tj-table__header-wrapper thead th > .cell',
     )
     triggerEvent(cells[3], 'click', true, false)
 
     await nextTick()
-    rows = vm.$el.querySelectorAll('.el-table__body-wrapper tbody tr')
+    rows = vm.$el.querySelectorAll('.tj-table__body-wrapper tbody tr')
     expect(rows[3].classList.contains('current-row')).toBeTruthy
     wrapper.unmount()
     done()
@@ -1990,26 +1990,26 @@ describe('Table.vue', () => {
   it('table append is visible in viewport if height is 100%', async () => {
     const wrapper = mount({
       components: {
-        ElTable,
-        ElTableColumn,
+        TjTable,
+        TjTableColumn,
       },
       template: `
-      <el-table :data="[]" height="100%">
-        <el-table-column prop="name" label="片名" />
-        <el-table-column prop="release" label="发行日期" />
-        <el-table-column prop="director" label="导演" />
-        <el-table-column prop="runtime" label="时长（分）" />
+      <tj-table :data="[]" height="100%">
+        <tj-table-column prop="name" label="片名" />
+        <tj-table-column prop="release" label="发行日期" />
+        <tj-table-column prop="director" label="导演" />
+        <tj-table-column prop="runtime" label="时长（分）" />
         <template #append>
           <div class="append-content" style="height: 48px;">
             append 区域始终出现在视图内
           </div>
         </template>
-      </el-table>
+      </tj-table>
       `,
     })
     await nextTick()
-    const emptyBlockEl = wrapper.find('.el-table__empty-block')
-    expect(emptyBlockEl.attributes('style')).toContain('height: 100%')
+    const emptyBlockTj = wrapper.find('.tj-table__empty-block')
+    expect(emptyBlockTj.attributes('style')).toContain('height: 100%')
     wrapper.unmount()
   })
 
@@ -2019,16 +2019,16 @@ describe('Table.vue', () => {
     it('render tree structual data', async () => {
       wrapper = mount({
         components: {
-          ElTableColumn,
-          ElTable,
+          TjTableColumn,
+          TjTable,
         },
         template: `
-          <el-table :data="testData" row-key="release">
-            <el-table-column prop="name" label="片名" />
-            <el-table-column prop="release" label="发行日期" />
-            <el-table-column prop="director" label="导演" />
-            <el-table-column prop="runtime" label="时长（分）" />
-          </el-table>
+          <tj-table :data="testData" row-key="release">
+            <tj-table-column prop="name" label="片名" />
+            <tj-table-column prop="release" label="发行日期" />
+            <tj-table-column prop="director" label="导演" />
+            <tj-table-column prop="runtime" label="时长（分）" />
+          </tj-table>
         `,
         data() {
           const testData = getTestData() as any
@@ -2052,14 +2052,14 @@ describe('Table.vue', () => {
         },
       })
       await nextTick()
-      const rows = wrapper.findAll('.el-table__row')
+      const rows = wrapper.findAll('.tj-table__row')
       expect(rows.length).toEqual(7)
-      const childRows = wrapper.findAll('.el-table__row--level-1')
+      const childRows = wrapper.findAll('.tj-table__row--levtj-1')
       expect(childRows.length).toEqual(2)
       childRows.forEach(item => {
         expect(item.attributes('style')).toContain('display: none')
       })
-      wrapper.find('.el-table__expand-icon').trigger('click')
+      wrapper.find('.tj-table__expand-icon').trigger('click')
 
       await nextTick()
       childRows.forEach(item => {
@@ -2070,16 +2070,16 @@ describe('Table.vue', () => {
     it('load substree row data', async () => {
       wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" row-key="release" lazy :load="load">
-            <el-table-column prop="name" label="片名" />
-            <el-table-column prop="release" label="发行日期" />
-            <el-table-column prop="director" label="导演" />
-            <el-table-column prop="runtime" label="时长（分）" />
-          </el-table>
+          <tj-table :data="testData" row-key="release" lazy :load="load">
+            <tj-table-column prop="name" label="片名" />
+            <tj-table-column prop="release" label="发行日期" />
+            <tj-table-column prop="director" label="导演" />
+            <tj-table-column prop="runtime" label="时长（分）" />
+          </tj-table>
         `,
         data() {
           const testData = getTestData() as any
@@ -2116,31 +2116,31 @@ describe('Table.vue', () => {
         },
       })
       await nextTick()
-      const expandIcon = wrapper.find('.el-table__expand-icon')
+      const expandIcon = wrapper.find('.tj-table__expand-icon')
       expandIcon.trigger('click')
 
       await nextTick()
-      expect(expandIcon.classes().includes('el-table__expand-icon--expanded'))
+      expect(expandIcon.classes().includes('tj-table__expand-icon--expanded'))
         .toBeTruthy
-      expect(wrapper.findAll('.el-table__row').length).toEqual(8)
+      expect(wrapper.findAll('.tj-table__row').length).toEqual(8)
     })
 
     it('tree-props & default-expand-all & expand-change', async () => {
       const spy = sinon.spy()
       wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table
+          <tj-table
             :data="testData" lazy default-expand-all row-key="release" :tree-props="{children: 'childrenTest', hasChildren: 'hasChildrenTest'}"
             :load="load" @expand-change="change">
-            <el-table-column prop="name" label="片名" />
-            <el-table-column prop="release" label="发行日期" />
-            <el-table-column prop="director" label="导演" />
-            <el-table-column prop="runtime" label="时长（分）" />
-          </el-table>
+            <tj-table-column prop="name" label="片名" />
+            <tj-table-column prop="release" label="发行日期" />
+            <tj-table-column prop="director" label="导演" />
+            <tj-table-column prop="runtime" label="时长（分）" />
+          </tj-table>
         `,
         data() {
           const testData = getTestData() as any
@@ -2178,16 +2178,16 @@ describe('Table.vue', () => {
         },
       })
       await nextTick()
-      const childRows = wrapper.findAll('.el-table__row--level-1')
+      const childRows = wrapper.findAll('.tj-table__row--levtj-1')
       childRows.forEach(item => {
         expect(item.attributes('style')).toBeUndefined
       })
-      const expandIcon = wrapper.find('.el-table__expand-icon')
+      const expandIcon = wrapper.find('.tj-table__expand-icon')
       expandIcon.trigger('click')
       await nextTick()
-      expect(expandIcon.classes().includes('el-table__expand-icon--expanded'))
+      expect(expandIcon.classes().includes('tj-table__expand-icon--expanded'))
         .toBeTruthy
-      expect(wrapper.findAll('.el-table__row').length).toEqual(8)
+      expect(wrapper.findAll('.tj-table__row').length).toEqual(8)
       expect(spy.args[0][0]).toBeInstanceOf(Object)
       expect(spy.args[0][1]).toBeTruthy
     })
@@ -2195,16 +2195,16 @@ describe('Table.vue', () => {
     it('expand-row-keys & toggleRowExpansion', async () => {
       wrapper = mount({
         components: {
-          ElTable,
-          ElTableColumn,
+          TjTable,
+          TjTableColumn,
         },
         template: `
-          <el-table :data="testData" row-key="release" lazy :load="load" :expand-row-keys="['2003-5-30']" ref="table">
-            <el-table-column prop="name" label="片名" />
-            <el-table-column prop="release" label="发行日期" />
-            <el-table-column prop="director" label="导演" />
-            <el-table-column prop="runtime" label="时长（分）" />
-          </el-table>
+          <tj-table :data="testData" row-key="release" lazy :load="load" :expand-row-keys="['2003-5-30']" ref="table">
+            <tj-table-column prop="name" label="片名" />
+            <tj-table-column prop="release" label="发行日期" />
+            <tj-table-column prop="director" label="导演" />
+            <tj-table-column prop="runtime" label="时长（分）" />
+          </tj-table>
         `,
         data() {
           const testData = getTestData() as any
@@ -2240,18 +2240,18 @@ describe('Table.vue', () => {
         },
       })
       await nextTick()
-      const childRows = wrapper.findAll('.el-table__row--level-1')
+      const childRows = wrapper.findAll('.tj-table__row--levtj-1')
       childRows.forEach(item => {
         expect(item.attributes('style')).toBeUndefined
       })
-      const expandIcon = childRows[0].find('.el-table__expand-icon')
+      const expandIcon = childRows[0].find('.tj-table__expand-icon')
       expandIcon.trigger('click')
       await nextTick()
-      expect(expandIcon.classes().includes('el-table__expand-icon--expanded'))
+      expect(expandIcon.classes().includes('tj-table__expand-icon--expanded'))
         .toBeTruthy
       wrapper.vm.closeExpandRow()
       await nextTick()
-      expect(expandIcon.classes().includes('el-table__expand-icon--expanded'))
+      expect(expandIcon.classes().includes('tj-table__expand-icon--expanded'))
         .toBeTruthy
     })
   })

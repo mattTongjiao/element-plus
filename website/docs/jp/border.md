@@ -51,11 +51,11 @@
 
 ## Border
 
-ボタンやカード、ポップアップなどで使用できるborderを標準化しています。
+ボタンやカード、ポップアップなどで使用できる border を標準化しています。
 
 ### Border
 
-borderのスタイルはいくつかあります。
+border のスタイルはいくつかあります。
 
 <table class="demo-border">
   <tbody>
@@ -85,34 +85,34 @@ borderのスタイルはいくつかあります。
 
 いくつかの半径(radius)のスタイルがあります。
 
-<el-row :gutter="12" class="demo-radius">
-  <el-col :span="6" :xs="{span: 12}">
+<tj-row :gutter="12" class="demo-radius">
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="title">No Radius</div>
     <div class="value">border-radius: 0px</div>
     <div class="radius"></div>
-  </el-col>
-  <el-col :span="6" :xs="{span: 12}">
+  </tj-col>
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="title">Small Radius</div>
     <div class="value">border-radius: {{borderRadiusSmall}}</div>
     <div 
       class="radius" 
       :style="{ borderRadius: borderRadiusSmall }"
     ></div>
-  </el-col>
-  <el-col :span="6" :xs="{span: 12}">
+  </tj-col>
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="title">Large Radius</div>
     <div class="value">border-radius: {{borderRadiusBase}}</div>
     <div 
       class="radius"
       :style="{ borderRadius: borderRadiusBase }"
     ></div>
-  </el-col>
-  <el-col :span="6" :xs="{span: 12}">
+  </tj-col>
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="title">Round Radius</div>
     <div class="value">border-radius: 30px</div>
     <div class="radius radius-30"></div>
-  </el-col>
-</el-row>
+  </tj-col>
+</tj-row>
 
 ### 影
 

@@ -1,14 +1,14 @@
 <template>
-  <transition name="el-scrollbar-fade">
+  <transition name="tj-scrollbar-fade">
     <div
       v-show="visible"
       ref="instance"
-      :class="['el-scrollbar__bar', 'is-' + bar.key]"
+      :class="['tj-scrollbar__bar', 'is-' + bar.key]"
       @mousedown="clickTrackHandler"
     >
       <div
         ref="thumb"
-        class="el-scrollbar__thumb"
+        class="tj-scrollbar__thumb"
         :style="thumbStyle"
         @mousedown="clickThumbHandler"
       ></div>
@@ -17,7 +17,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, onBeforeUnmount, onMounted, ref, Ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  inject,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  Ref,
+} from 'vue'
 import { off, on } from '@element-plus/utils/dom'
 import { BAR_MAP, renderThumbStyle } from './util'
 
@@ -33,7 +41,9 @@ export default defineComponent({
     const thumb = ref(null)
     const scrollbar = inject('scrollbar', {} as Ref<Nullable<HTMLElement>>)
     const wrap = inject('scrollbar-wrap', {} as Ref<Nullable<HTMLElement>>)
-    const bar = computed(() => BAR_MAP[props.vertical ? 'vertical' : 'horizontal'])
+    const bar = computed(
+      () => BAR_MAP[props.vertical ? 'vertical' : 'horizontal'],
+    )
     const barStore = ref({})
     const cursorDown = ref(null)
     const visible = ref(false)
@@ -46,15 +56,23 @@ export default defineComponent({
         return
       }
       startDrag(e)
-      barStore.value[bar.value.axis] = (e.currentTarget[bar.value.offset] - (e[bar.value.client] - e.currentTarget.getBoundingClientRect()[bar.value.direction]))
+      barStore.value[bar.value.axis] =
+        e.currentTarget[bar.value.offset] -
+        (e[bar.value.client] -
+          e.currentTarget.getBoundingClientRect()[bar.value.direction])
     }
 
     const clickTrackHandler = e => {
-      const offset = Math.abs(e.target.getBoundingClientRect()[bar.value.direction] - e[bar.value.client])
-      const thumbHalf = (thumb.value[bar.value.offset] / 2)
-      const thumbPositionPercentage = ((offset - thumbHalf) * 100 / instance.value[bar.value.offset])
+      const offset = Math.abs(
+        e.target.getBoundingClientRect()[bar.value.direction] -
+          e[bar.value.client],
+      )
+      const thumbHalf = thumb.value[bar.value.offset] / 2
+      const thumbPositionPercentage =
+        ((offset - thumbHalf) * 100) / instance.value[bar.value.offset]
 
-      wrap.value[bar.value.scroll] = (thumbPositionPercentage * wrap.value[bar.value.scrollSize] / 100)
+      wrap.value[bar.value.scroll] =
+        (thumbPositionPercentage * wrap.value[bar.value.scrollSize]) / 100
     }
 
     const startDrag = e => {
@@ -72,10 +90,15 @@ export default defineComponent({
 
       if (!prevPage) return
 
-      const offset = ((instance.value.getBoundingClientRect()[bar.value.direction] - e[bar.value.client]) * -1)
-      const thumbClickPosition = (thumb.value[bar.value.offset] - prevPage)
-      const thumbPositionPercentage = ((offset - thumbClickPosition) * 100 / instance.value[bar.value.offset])
-      wrap.value[bar.value.scroll] = (thumbPositionPercentage * wrap.value[bar.value.scrollSize] / 100)
+      const offset =
+        (instance.value.getBoundingClientRect()[bar.value.direction] -
+          e[bar.value.client]) *
+        -1
+      const thumbClickPosition = thumb.value[bar.value.offset] - prevPage
+      const thumbPositionPercentage =
+        ((offset - thumbClickPosition) * 100) / instance.value[bar.value.offset]
+      wrap.value[bar.value.scroll] =
+        (thumbPositionPercentage * wrap.value[bar.value.scrollSize]) / 100
     }
 
     const mouseUpDocumentHandler = () => {
@@ -85,11 +108,13 @@ export default defineComponent({
       document.onselectstart = onselectstartStore
     }
 
-    const thumbStyle = computed(() => renderThumbStyle({
-      size: props.size,
-      move: props.move,
-      bar: bar.value,
-    }))
+    const thumbStyle = computed(() =>
+      renderThumbStyle({
+        size: props.size,
+        move: props.move,
+        bar: bar.value,
+      }),
+    )
 
     const showBar = () => {
       visible.value = !!props.size
@@ -121,5 +146,4 @@ export default defineComponent({
     }
   },
 })
-
 </script>

@@ -9,7 +9,7 @@ import { defaultProps } from './common/props'
 dayjs.extend(customParseFormat)
 
 export default defineComponent({
-  name: 'ElTimePicker',
+  name: 'TjTimePicker',
   install: null,
   props: {
     ...defaultProps,

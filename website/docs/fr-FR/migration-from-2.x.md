@@ -1,6 +1,6 @@
 ## Migration from Element 2.x
 
-This document will help you upgrade from Element 2.x to Element Plus.
+This document will help you upgrade from Element 2.x to Tongjiao UI.
 
 ### Breaking changes
 

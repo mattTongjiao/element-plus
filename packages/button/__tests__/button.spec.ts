@@ -9,14 +9,14 @@ describe('Button.vue', () => {
     const wrapper = mount(Button, {
       props: { type: 'primary' },
     })
-    expect(wrapper.classes()).toContain('el-button--primary')
+    expect(wrapper.classes()).toContain('tj-button--primary')
   })
 
   it('icon', () => {
     const wrapper = mount(Button, {
-      props: { icon: 'el-icon-search' },
+      props: { icon: 'tj-icon-search' },
     })
-    expect(wrapper.find('.el-icon-search').exists()).toBeTruthy()
+    expect(wrapper.find('.tj-icon-search').exists()).toBeTruthy()
   })
   it('nativeType', () => {
     const wrapper = mount(Button, {
@@ -29,13 +29,13 @@ describe('Button.vue', () => {
       props: { loading: true },
     })
     expect(wrapper.classes()).toContain('is-loading')
-    expect(wrapper.find('.el-icon-loading').exists()).toBeTruthy()
+    expect(wrapper.find('.tj-icon-loading').exists()).toBeTruthy()
   })
   it('size', () => {
     const wrapper = mount(Button, {
       props: { size: 'medium' },
     })
-    expect(wrapper.classes()).toContain('el-button--medium')
+    expect(wrapper.classes()).toContain('tj-button--medium')
   })
   it('plain', () => {
     const wrapper = mount(Button, {
@@ -109,19 +109,19 @@ describe('Button.vue', () => {
 })
 describe('Button Group', () => {
   const TestComponent = {
-    template: `<el-button-group>
-      <el-button type="primary">Prev</el-button>
-      <el-button type="primary">Next</el-button>
-    </el-button-group>`,
+    template: `<tj-button-group>
+      <tj-button type="primary">Prev</tj-button>
+      <tj-button type="primary">Next</tj-button>
+    </tj-button-group>`,
     components: {
-      'el-button-group': ButtonGroup,
-      'el-button': Button,
+      'tj-button-group': ButtonGroup,
+      'tj-button': Button,
     },
   }
 
   it('create', () => {
     const wrapper = mount(TestComponent)
-    expect(wrapper.classes()).toContain('el-button-group')
+    expect(wrapper.classes()).toContain('tj-button-group')
     expect(wrapper.findAll('button').length).toBe(2)
   })
 })

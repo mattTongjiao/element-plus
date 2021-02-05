@@ -11,7 +11,7 @@ export default defineComponent({
   props: {
     prefixCls: {
       type: String,
-      default: 'el-space',
+      default: 'tj-space',
     },
   },
   setup(props) {
@@ -20,4 +20,4 @@ export default defineComponent({
     }
   },
 })
-</script >
+</script>

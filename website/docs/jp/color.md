@@ -87,24 +87,26 @@
 </script>
 
 ## カラー
-Element Plusは、特定のパレットセットを用いて色を指定し、プロダクトに一貫した外観と使用感を提供します。
+
+Tongjiao UI は、特定のパレットセットを用いて色を指定し、プロダクトに一貫した外観と使用感を提供します。
 
 ### メインカラー
-Element Plusのメインカラーは明るく親しみやすいブルーです。
 
-<el-row :gutter="12">
-  <el-col :span="10" :xs="{span: 12}">
-    <div 
+Tongjiao UI のメインカラーは明るく親しみやすいブルーです。
+
+<tj-row :gutter="12">
+  <tj-col :span="10" :xs="{span: 12}">
+    <div
       class="demo-color-box"
       :style="{ background: primary }"
     >
       Brand Color<div class="value">#409EFF</div>
-    <div 
+    <div
       class="bg-color-sub"
       :style="{ background: tintColor(primary, 0.9) }"
     >
-    <div 
-      class="bg-blue-sub-item" 
+    <div
+      class="bg-blue-sub-item"
       v-for="(item, key) in Array(8)"
       :key="key"
       :style="{ background: tintColor(primary, (key + 1) / 10) }"
@@ -112,23 +114,23 @@ Element Plusのメインカラーは明るく親しみやすいブルーです�
     </div>
     </div>
     </div>
-  </el-col>
-</el-row>
+  </tj-col>
+</tj-row>
 
 ### セカンダリカラー
 
 メインカラーの他にも、シーンカラーを別のシナリオで使用する必要があります（例えば、危険な色は危険な操作を示します）。
 
-<el-row :gutter="12">
-  <el-col :span="6" :xs="{span: 12}">
+<tj-row :gutter="12">
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: success }"
     >Success<div class="value">#67C23A</div>
-      <div 
+      <div
         class="bg-color-sub"
       >
-        <div 
-          class="bg-success-sub-item" 
+        <div
+          class="bg-success-sub-item"
           v-for="(item, key) in Array(2)"
           :key="key"
           :style="{ background: tintColor(success, (key + 8) / 10) }"
@@ -136,16 +138,16 @@ Element Plusのメインカラーは明るく親しみやすいブルーです�
         </div>
       </div>
     </div>
-  </el-col>
-  <el-col :span="6" :xs="{span: 12}">
+  </tj-col>
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: warning }"
     >Warning<div class="value">#E6A23C</div>
-      <div 
+      <div
           class="bg-color-sub"
         >
-        <div 
-          class="bg-success-sub-item" 
+        <div
+          class="bg-success-sub-item"
           v-for="(item, key) in Array(2)"
           :key="key"
           :style="{ background: tintColor(warning, (key + 8) / 10) }"
@@ -153,16 +155,16 @@ Element Plusのメインカラーは明るく親しみやすいブルーです�
         </div>
       </div>
     </div>
-  </el-col>
-  <el-col :span="6" :xs="{span: 12}">
+  </tj-col>
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: danger }"
     >Danger<div class="value">#F56C6C</div>
-      <div 
+      <div
           class="bg-color-sub"
         >
-        <div 
-          class="bg-success-sub-item" 
+        <div
+          class="bg-success-sub-item"
           v-for="(item, key) in Array(2)"
           :key="key"
           :style="{ background: tintColor(danger, (key + 8) / 10) }"
@@ -170,16 +172,16 @@ Element Plusのメインカラーは明るく親しみやすいブルーです�
         </div>
       </div>
     </div>
-  </el-col>
-  <el-col :span="6" :xs="{span: 12}">
+  </tj-col>
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box"
     :style="{ background: info }"
     >Info<div class="value">#909399</div>
-      <div 
+      <div
           class="bg-color-sub"
         >
-        <div 
-          class="bg-success-sub-item" 
+        <div
+          class="bg-success-sub-item"
           v-for="(item, key) in Array(2)"
           :key="key"
           :style="{ background: tintColor(info, (key + 8) / 10) }"
@@ -187,15 +189,15 @@ Element Plusのメインカラーは明るく親しみやすいブルーです�
         </div>
       </div>
     </div>
-  </el-col>
-</el-row>
+  </tj-col>
+</tj-row>
 
 ### ニュートラルカラー
 
 ニュートラルカラーとは、文字色、背景色、枠線の色のことです。ニュートラルカラーを使い分けることで、階層構造を表現することができます。
 
-<el-row :gutter="12">
-  <el-col :span="6" :xs="{span: 12}">
+<tj-row :gutter="12">
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box-group">
       <div class="demo-color-box demo-color-box-other"
       :style="{ background: textPrimary }"
@@ -211,8 +213,8 @@ Element Plusのメインカラーは明るく親しみやすいブルーです�
       :style="{ background: textPlaceholder }"
       >Placeholder Text<div class="value">{{textPlaceholder}}</div></div>
     </div>
-  </el-col>
-  <el-col :span="6" :xs="{span: 12}">
+  </tj-col>
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box-group">
       <div class="demo-color-box demo-color-box-other demo-color-box-lite"
       :style="{ background: borderBase }"
@@ -227,10 +229,10 @@ Element Plusのメインカラーは明るく親しみやすいブルーです�
       :style="{ background: borderExtraLight }"
       >Extra Light Border<div class="value">{{borderExtraLight}}</div></div>
     </div>
-  </el-col>
-  <el-col :span="6" :xs="{span: 12}">
+  </tj-col>
+  <tj-col :span="6" :xs="{span: 12}">
     <div class="demo-color-box-group">
-      <div 
+      <div
       class="demo-color-box demo-color-box-other"
       :style="{ background: black }"
       >Basic Black<div class="value">{{black}}</div></div>
@@ -241,5 +243,5 @@ Element Plusのメインカラーは明るく親しみやすいブルーです�
       <div class="demo-color-box demo-color-box-other bg-transparent">Transparent<div class="value">Transparent</div>
       </div>
     </div>
-  </el-col>
-</el-row>
+  </tj-col>
+</tj-row>

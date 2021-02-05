@@ -1,33 +1,33 @@
 <template>
   <label
     :id="id"
-    class="el-checkbox"
+    class="tj-checkbox"
     :class="[
-      border && checkboxSize ? 'el-checkbox--' + checkboxSize : '',
+      border && checkboxSize ? 'tj-checkbox--' + checkboxSize : '',
       { 'is-disabled': isDisabled },
       { 'is-bordered': border },
-      { 'is-checked': isChecked }
+      { 'is-checked': isChecked },
     ]"
     :aria-controls="indeterminate ? controls : null"
   >
     <span
-      class="el-checkbox__input"
+      class="tj-checkbox__input"
       :class="{
         'is-disabled': isDisabled,
         'is-checked': isChecked,
         'is-indeterminate': indeterminate,
-        'is-focus': focus
+        'is-focus': focus,
       }"
       :tabindex="indeterminate ? 0 : false"
       :role="indeterminate ? 'checkbox' : false"
       :aria-checked="indeterminate ? 'mixed' : false"
     >
-      <span class="el-checkbox__inner"></span>
+      <span class="tj-checkbox__inner"></span>
       <input
         v-if="trueLabel || falseLabel"
         v-model="model"
         :checked="isChecked"
-        class="el-checkbox__original"
+        class="tj-checkbox__original"
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
         :name="name"
@@ -37,11 +37,11 @@
         @change="handleChange"
         @focus="focus = true"
         @blur="focus = false"
-      >
+      />
       <input
         v-else
         v-model="model"
-        class="el-checkbox__original"
+        class="tj-checkbox__original"
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
         :disabled="isDisabled"
@@ -50,25 +50,22 @@
         @change="handleChange"
         @focus="focus = true"
         @blur="focus = false"
-      >
+      />
     </span>
-    <span v-if="$slots.default || label" class="el-checkbox__label">
+    <span v-if="$slots.default || label" class="tj-checkbox__label">
       <slot></slot>
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
   </label>
 </template>
-<script lang='ts'>
-import {
-  defineComponent,
-  PropType,
-} from 'vue'
+<script lang="ts">
+import { defineComponent, PropType } from 'vue'
 import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
 import { isValidComponentSize } from '@element-plus/utils/validators'
 import { useCheckbox } from './useCheckbox'
 
 export default defineComponent({
-  name: 'ElCheckbox',
+  name: 'TjCheckbox',
   props: {
     modelValue: {
       type: [Boolean, Number, String],

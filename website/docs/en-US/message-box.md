@@ -13,7 +13,7 @@ Alert interrupts user operation until the user confirms.
 
 ```html
 <template>
-  <el-button type="text" @click="open">Click to open the Message Box</el-button>
+  <tj-button type="text" @click="open">Click to open the Message Box</tj-button>
 </template>
 
 <script>
@@ -25,15 +25,16 @@ Alert interrupts user operation until the user confirms.
           callback: action => {
             this.$message({
               type: 'info',
-              message: `action: ${ action }`
-            });
-          }
-        });
-      }
-    }
+              message: `action: ${action}`,
+            })
+          },
+        })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Confirm
@@ -44,30 +45,36 @@ Confirm is used to ask users' confirmation.
 
 ```html
 <template>
-  <el-button type="text" @click="open">Click to open the Message Box</el-button>
+  <tj-button type="text" @click="open">Click to open the Message Box</tj-button>
 </template>
 
 <script>
   export default {
     methods: {
       open() {
-        this.$confirm('This will permanently delete the file. Continue?', 'Warning', {
-          confirmButtonText: 'OK',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: 'Delete completed'
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: 'Delete canceled'
-          });
-        });
-      }
-    }
+        this.$confirm(
+          'This will permanently delete the file. Continue?',
+          'Warning',
+          {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning',
+          },
+        )
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: 'Delete completed',
+            })
+          })
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: 'Delete canceled',
+            })
+          })
+      },
+    },
   }
 </script>
 ```
@@ -82,7 +89,7 @@ Prompt is used when user input is required.
 
 ```html
 <template>
-  <el-button type="text" @click="open">Click to open Message Box</el-button>
+  <tj-button type="text" @click="open">Click to open Message Box</tj-button>
 </template>
 
 <script>
@@ -93,23 +100,26 @@ Prompt is used when user input is required.
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
           inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-          inputErrorMessage: 'Invalid Email'
-        }).then(({ value }) => {
-          this.$message({
-            type: 'success',
-            message: 'Your email is:' + value
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: 'Input canceled'
-          });
-        });
-      }
-    }
+          inputErrorMessage: 'Invalid Email',
+        })
+          .then(({ value }) => {
+            this.$message({
+              type: 'success',
+              message: 'Your email is:' + value,
+            })
+          })
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: 'Input canceled',
+            })
+          })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Customization
@@ -120,11 +130,11 @@ Can be customized to show various content.
 
 ```html
 <template>
-  <el-button type="text" @click="open">Click to open Message Box</el-button>
+  <tj-button type="text" @click="open">Click to open Message Box</tj-button>
 </template>
 
 <script>
-  import { h } from 'vue';
+  import { h } from 'vue'
 
   export default {
     methods: {
@@ -133,40 +143,41 @@ Can be customized to show various content.
           title: 'Message',
           message: h('p', null, [
             h('span', null, 'Message can be '),
-            h('i', { style: 'color: teal' }, 'VNode')
+            h('i', { style: 'color: teal' }, 'VNode'),
           ]),
           showCancelButton: true,
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
           beforeClose: (action, instance, done) => {
             if (action === 'confirm') {
-              instance.confirmButtonLoading = true;
-              instance.confirmButtonText = 'Loading...';
+              instance.confirmButtonLoading = true
+              instance.confirmButtonText = 'Loading...'
               setTimeout(() => {
-                done();
+                done()
                 setTimeout(() => {
-                  instance.confirmButtonLoading = false;
-                }, 300);
-              }, 3000);
+                  instance.confirmButtonLoading = false
+                }, 300)
+              }, 3000)
             } else {
-              done();
+              done()
             }
-          }
+          },
         }).then(action => {
           this.$message({
             type: 'info',
-            message: 'action: ' + action
-          });
-        });
+            message: 'action: ' + action,
+          })
+        })
       },
-    }
+    },
   }
 </script>
 ```
+
 :::
 
 :::tip
-The content of MessageBox can be `VNode`, allowing us to pass custom components. When opening the MessageBox, Vue compares new `VNode` with old `VNode`, then figures out how to efficiently update the UI, so the components may not be completely re-rendered ([#8931](https://github.com/ElemeFE/element/issues/8931)). In this case, you can add a unique key to `VNode` each time MessageBox opens: [example](https://jsfiddle.net/zhiyang/ezmhq2ef).
+The content of MessageBox can be `VNode`, allowing us to pass custom components. When opening the MessageBox, Vue compares new `VNode` with old `VNode`, then figures out how to efficiently update the UI, so the components may not be completely re-rendered ([#8931](https://github.com/TjemeFE/element/issues/8931)). In this case, you can add a unique key to `VNode` each time MessageBox opens: [example](https://jsfiddle.net/zhiyang/ezmhq2ef).
 :::
 
 ### Use HTML String
@@ -177,21 +188,26 @@ The content of MessageBox can be `VNode`, allowing us to pass custom components.
 
 ```html
 <template>
-  <el-button type="text" @click="open">Click to open Message Box</el-button>
+  <tj-button type="text" @click="open">Click to open Message Box</tj-button>
 </template>
 
 <script>
   export default {
     methods: {
       open() {
-        this.$alert('<strong>This is <i>HTML</i> string</strong>', 'HTML String', {
-          dangerouslyUseHTMLString: true
-        });
-      }
-    }
+        this.$alert(
+          '<strong>This is <i>HTML</i> string</strong>',
+          'HTML String',
+          {
+            dangerouslyUseHTMLString: true,
+          },
+        )
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 :::warning
@@ -206,79 +222,94 @@ In some cases, clicking the cancel button and close button may have different me
 
 ```html
 <template>
-  <el-button type="text" @click="open">Click to open Message Box</el-button>
+  <tj-button type="text" @click="open">Click to open Message Box</tj-button>
 </template>
 
 <script>
   export default {
     methods: {
       open() {
-        this.$confirm('You have unsaved changes, save and proceed?', 'Confirm', {
-          distinguishCancelAndClose: true,
-          confirmButtonText: 'Save',
-          cancelButtonText: 'Discard Changes'
-        })
+        this.$confirm(
+          'You have unsaved changes, save and proceed?',
+          'Confirm',
+          {
+            distinguishCancelAndClose: true,
+            confirmButtonText: 'Save',
+            cancelButtonText: 'Discard Changes',
+          },
+        )
           .then(() => {
             this.$message({
               type: 'info',
-              message: 'Changes saved. Proceeding to a new route.'
-            });
+              message: 'Changes saved. Proceeding to a new route.',
+            })
           })
           .catch(action => {
             this.$message({
               type: 'info',
-              message: action === 'cancel'
-                ? 'Changes discarded. Proceeding to a new route.'
-                : 'Stay in the current route'
+              message:
+                action === 'cancel'
+                  ? 'Changes discarded. Proceeding to a new route.'
+                  : 'Stay in the current route',
             })
-          });
-      }
-    }
+          })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Centered content
+
 Content of MessageBox can be centered.
 
 :::demo Setting `center` to `true` will center the content
 
 ```html
 <template>
-  <el-button type="text" @click="open">Click to open Message Box</el-button>
+  <tj-button type="text" @click="open">Click to open Message Box</tj-button>
 </template>
 
 <script>
   export default {
     methods: {
       open() {
-        this.$confirm('This will permanently delete the file. Continue?', 'Warning', {
-          confirmButtonText: 'OK',
-          cancelButtonText: 'Cancel',
-          type: 'warning',
-          center: true
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: 'Delete completed'
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: 'Delete canceled'
-          });
-        });
-      }
-    }
+        this.$confirm(
+          'This will permanently delete the file. Continue?',
+          'Warning',
+          {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning',
+            center: true,
+          },
+        )
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: 'Delete completed',
+            })
+          })
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: 'Delete canceled',
+            })
+          })
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Global method
 
-If Element Plus is fully imported, it will add the following global methods for `app.config.globalProperties`: `$msgbox`, `$alert`, `$confirm` and `$prompt`. So in a Vue instance you can call `MessageBox` like what we did in this page. The parameters are:
+If Tongjiao UI is fully imported, it will add the following global methods for `app.config.globalProperties`: `$msgbox`, `$alert`, `$confirm` and `$prompt`. So in a Vue instance you can call `MessageBox` like what we did in this page. The parameters are:
+
 - `$msgbox(options)`
 - `$alert(message, title, options)` or `$alert(message, options)`
 - `$confirm(message, title, options)` or `$confirm(message, options)`
@@ -289,41 +320,41 @@ If Element Plus is fully imported, it will add the following global methods for 
 If you prefer importing `MessageBox` on demand:
 
 ```javascript
-import { ElMessageBox } from 'element-plus';
+import { TjMessageBox } from 'element-plus'
 ```
 
-The corresponding methods are: `ElMessageBox`, `ElMessageBox.alert`, `ElMessageBox.confirm` and `ElMessageBox.prompt`. The parameters are the same as above.
+The corresponding methods are: `TjMessageBox`, `TjMessageBox.alert`, `TjMessageBox.confirm` and `TjMessageBox.prompt`. The parameters are the same as above.
 
 ### Options
 
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| title | title of the MessageBox | string | — | — |
-| message | content of the MessageBox | string | — | — |
-| dangerouslyUseHTMLString | whether `message` is treated as HTML string | boolean | — | false |
-| type | message type, used for icon display | string | success / info / warning / error | — |
-| iconClass | custom icon's class, overrides `type` | string | — | — |
-| customClass | custom class name for MessageBox | string | — | — |
-| callback | MessageBox closing callback if you don't prefer Promise | function(action), where action can be 'confirm', 'cancel' or 'close', and `instance` is the MessageBox instance. You can access to that instance's attributes and methods | — | — |
-| showClose | whether to show close icon of MessageBox | boolean | — | true |
-| beforeClose | callback before MessageBox closes, and it will prevent MessageBox from closing | function(action, instance, done), where `action` can be 'confirm', 'cancel' or 'close'; `instance` is the MessageBox instance, and you can access to that instance's attributes and methods; `done` is for closing the instance | — | — |
-| distinguishCancelAndClose | whether to distinguish canceling and closing the MessageBox | boolean | — | false |
-| lockScroll | whether to lock body scroll when MessageBox prompts | boolean | — | true |
-| showCancelButton | whether to show a cancel button | boolean | — | false (true when called with confirm and prompt) |
-| showConfirmButton | whether to show a confirm button | boolean | — | true |
-| cancelButtonText | text content of cancel button | string | — | Cancel |
-| confirmButtonText | text content of confirm button | string | — | OK |
-| cancelButtonClass | custom class name of cancel button | string | — | — |
-| confirmButtonClass | custom class name of confirm button | string | — | — |
-| closeOnClickModal | whether MessageBox can be closed by clicking the mask | boolean | — | true (false when called with alert) |
-| closeOnPressEscape | whether MessageBox can be closed by pressing the ESC | boolean | — | true (false when called with alert) |
-| closeOnHashChange | whether to close MessageBox when hash changes | boolean | — | true |
-| showInput | whether to show an input | boolean | — | false (true when called with prompt) |
-| inputPlaceholder | placeholder of input | string | — | — |
-| inputType | type of input | string | — | text |
-| inputValue | initial value of input | string | — | — |
-| inputPattern | regexp for the input | regexp | — | — |
-| inputValidator | validation function for the input. Should returns a boolean or string. If a string is returned, it will be assigned to inputErrorMessage | function | — | — |
-| inputErrorMessage | error message when validation fails | string | — | Illegal input |
-| center | whether to align the content in center | boolean | — | false |
-| roundButton | whether to use round button | boolean | — | false |
+| Attribute                 | Description                                                                                                                              | Type                                                                                                                                                                                                                            | Accepted Values                  | Default                                          |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ------------------------------------------------ |
+| title                     | title of the MessageBox                                                                                                                  | string                                                                                                                                                                                                                          | —                                | —                                                |
+| message                   | content of the MessageBox                                                                                                                | string                                                                                                                                                                                                                          | —                                | —                                                |
+| dangerouslyUseHTMLString  | whether `message` is treated as HTML string                                                                                              | boolean                                                                                                                                                                                                                         | —                                | false                                            |
+| type                      | message type, used for icon display                                                                                                      | string                                                                                                                                                                                                                          | success / info / warning / error | —                                                |
+| iconClass                 | custom icon's class, overrides `type`                                                                                                    | string                                                                                                                                                                                                                          | —                                | —                                                |
+| customClass               | custom class name for MessageBox                                                                                                         | string                                                                                                                                                                                                                          | —                                | —                                                |
+| callback                  | MessageBox closing callback if you don't prefer Promise                                                                                  | function(action), where action can be 'confirm', 'cancel' or 'close', and `instance` is the MessageBox instance. You can access to that instance's attributes and methods                                                       | —                                | —                                                |
+| showClose                 | whether to show close icon of MessageBox                                                                                                 | boolean                                                                                                                                                                                                                         | —                                | true                                             |
+| beforeClose               | callback before MessageBox closes, and it will prevent MessageBox from closing                                                           | function(action, instance, done), where `action` can be 'confirm', 'cancel' or 'close'; `instance` is the MessageBox instance, and you can access to that instance's attributes and methods; `done` is for closing the instance | —                                | —                                                |
+| distinguishCancelAndClose | whether to distinguish canceling and closing the MessageBox                                                                              | boolean                                                                                                                                                                                                                         | —                                | false                                            |
+| lockScroll                | whether to lock body scroll when MessageBox prompts                                                                                      | boolean                                                                                                                                                                                                                         | —                                | true                                             |
+| showCancelButton          | whether to show a cancel button                                                                                                          | boolean                                                                                                                                                                                                                         | —                                | false (true when called with confirm and prompt) |
+| showConfirmButton         | whether to show a confirm button                                                                                                         | boolean                                                                                                                                                                                                                         | —                                | true                                             |
+| cancelButtonText          | text content of cancel button                                                                                                            | string                                                                                                                                                                                                                          | —                                | Cancel                                           |
+| confirmButtonText         | text content of confirm button                                                                                                           | string                                                                                                                                                                                                                          | —                                | OK                                               |
+| cancelButtonClass         | custom class name of cancel button                                                                                                       | string                                                                                                                                                                                                                          | —                                | —                                                |
+| confirmButtonClass        | custom class name of confirm button                                                                                                      | string                                                                                                                                                                                                                          | —                                | —                                                |
+| closeOnClickModal         | whether MessageBox can be closed by clicking the mask                                                                                    | boolean                                                                                                                                                                                                                         | —                                | true (false when called with alert)              |
+| closeOnPressEscape        | whether MessageBox can be closed by pressing the ESC                                                                                     | boolean                                                                                                                                                                                                                         | —                                | true (false when called with alert)              |
+| closeOnHashChange         | whether to close MessageBox when hash changes                                                                                            | boolean                                                                                                                                                                                                                         | —                                | true                                             |
+| showInput                 | whether to show an input                                                                                                                 | boolean                                                                                                                                                                                                                         | —                                | false (true when called with prompt)             |
+| inputPlaceholder          | placeholder of input                                                                                                                     | string                                                                                                                                                                                                                          | —                                | —                                                |
+| inputType                 | type of input                                                                                                                            | string                                                                                                                                                                                                                          | —                                | text                                             |
+| inputValue                | initial value of input                                                                                                                   | string                                                                                                                                                                                                                          | —                                | —                                                |
+| inputPattern              | regexp for the input                                                                                                                     | regexp                                                                                                                                                                                                                          | —                                | —                                                |
+| inputValidator            | validation function for the input. Should returns a boolean or string. If a string is returned, it will be assigned to inputErrorMessage | function                                                                                                                                                                                                                        | —                                | —                                                |
+| inputErrorMessage         | error message when validation fails                                                                                                      | string                                                                                                                                                                                                                          | —                                | Illegal input                                    |
+| center                    | whether to align the content in center                                                                                                   | boolean                                                                                                                                                                                                                         | —                                | false                                            |
+| roundButton               | whether to use round button                                                                                                              | boolean                                                                                                                                                                                                                         | —                                | false                                            |

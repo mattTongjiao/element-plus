@@ -64,6 +64,7 @@
 我们对字体进行统一规范，力求在各个操作系统下都有最佳展示效果。
 
 ### 字体
+
 <div class="demo-term-box">
 <img src="../../assets/images/term-pingfang.png" alt="">
 <img src="../../assets/images/term-hiragino.png" alt="">
@@ -88,42 +89,42 @@
     >
       <td>辅助文字</td>
       <td class="color-dark-light">{{font_size_extra_small}} Extra Small</td>
-      <td>用 Element Plus 快速搭建页面</td>
+      <td>用 Tongjiao UI 快速搭建页面</td>
     </tr>
     <tr
     :style="{ fontSize: font_size_small }"
     >
       <td>正文（小）</td>
       <td class="color-dark-light">{{font_size_small}} Small</td>
-      <td>用 Element Plus 快速搭建页面</td>
+      <td>用 Tongjiao UI 快速搭建页面</td>
     </tr>
     <tr
     :style="{ fontSize: font_size_base }"
     >
       <td>正文</td>
       <td class="color-dark-light">{{font_size_base}} Base</td>
-      <td>用 Element Plus 快速搭建页面</td>
+      <td>用 Tongjiao UI 快速搭建页面</td>
     </tr>
     <tr
     :style="{ fontSize: font_size_medium }"
     >
       <td>小标题</td>
       <td class="color-dark-light">{{font_size_medium}} Medium</td>
-      <td>用 Element Plus 快速搭建页面</td>
+      <td>用 Tongjiao UI 快速搭建页面</td>
     </tr>
     <tr
     :style="{ fontSize: font_size_large }"
     >
       <td>标题</td>
       <td class="color-dark-light">{{font_size_large}} large</td>
-      <td>用 Element Plus 快速搭建页面</td>
+      <td>用 Tongjiao UI 快速搭建页面</td>
     </tr>
     <tr
     :style="{ fontSize: font_size_extra_large }"
     >
       <td>主标题</td>
       <td class="color-dark-light">{{font_size_extra_large}} Extra large</td>
-      <td>用 Element Plus 快速搭建页面</td>
+      <td>用 Tongjiao UI 快速搭建页面</td>
     </tr>
   </tbody>
 </table>
@@ -143,5 +144,6 @@
 ### Font-family 代码
 
 ```css
-font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+  'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 ```

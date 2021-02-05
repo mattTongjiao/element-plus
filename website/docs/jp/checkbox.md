@@ -4,78 +4,81 @@
 
 ### 基本的な使い方
 
-checkbox単独で使用して2つの状態を切り替えることができます。
+checkbox 単独で使用して 2 つの状態を切り替えることができます。
 
-:::demo `el-checkbox` の `v-model` バインド変数)を定義する。デフォルト値は単一の `checkbox` の場合、 `Boolean` で、チェックを選択した場合は `true` になります。el-checkbox`タグ内の内容は、checkboxのボタンに続く説明文になります。
+:::demo `tj-checkbox` の `v-model` バインド変数)を定義する。デフォルト値は単一の `checkbox` の場合、 `Boolean` で、チェックを選択した場合は `true` になります。tj-checkbox`タグ内の内容は、checkbox のボタンに続く説明文になります。
 
 ```html
 <template>
   <!-- `checked` should be true or false -->
-  <el-checkbox v-model="checked">Option</el-checkbox>
+  <tj-checkbox v-model="checked">Option</tj-checkbox>
 </template>
 <script>
   export default {
     data() {
       return {
-        checked: true
-      };
-    }
-  };
+        checked: true,
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 ### 無効状態
 
-checkboxを無効にした状態。
+checkbox を無効にした状態。
 
 :::demo `disabled` 属性を設定する。
 
 ```html
 <template>
-  <el-checkbox v-model="checked1" disabled>Option</el-checkbox>
-  <el-checkbox v-model="checked2" disabled>Option</el-checkbox>
+  <tj-checkbox v-model="checked1" disabled>Option</tj-checkbox>
+  <tj-checkbox v-model="checked2" disabled>Option</tj-checkbox>
 </template>
 <script>
   export default {
     data() {
       return {
         checked1: false,
-        checked2: true
-      };
-    }
-  };
+        checked2: true,
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
-### Checkboxグループ
+### Checkbox グループ
 
-1つのグループに固定された複数のcheckboxに使用され、選択肢が選択されているかどうかをチェックして表示します。
+1 つのグループに固定された複数の checkbox に使用され、選択肢が選択されているかどうかをチェックして表示します。
 
-:::demo `checkbox-group` 要素は `Array` としてバインドされた `v-model` を用いて複数のcheckboxを一つのグループにまとめて管理することができる。`el-checkbox` 要素の内部では、`label` がcheckboxの値である。このタグにコンテンツが入れ子になっていない場合、`label` はcheckboxのボタンに続く説明文としてレンダリングされます。`label` は配列の要素の値にも対応する。 指定された値が配列に存在する場合は選択され、その逆(指定されていない値は選択されない)も同様である。
+:::demo `checkbox-group` 要素は `Array` としてバインドされた `v-model` を用いて複数の checkbox を一つのグループにまとめて管理することができる。`tj-checkbox` 要素の内部では、`label` が checkbox の値である。このタグにコンテンツが入れ子になっていない場合、`label` は checkbox のボタンに続く説明文としてレンダリングされます。`label` は配列の要素の値にも対応する。 指定された値が配列に存在する場合は選択され、その逆(指定されていない値は選択されない)も同様である。
 
 ```html
 <template>
-  <el-checkbox-group v-model="checkList">
-    <el-checkbox label="Option A"></el-checkbox>
-    <el-checkbox label="Option B"></el-checkbox>
-    <el-checkbox label="Option C"></el-checkbox>
-    <el-checkbox label="disabled" disabled></el-checkbox>
-    <el-checkbox label="selected and disabled" disabled></el-checkbox>
-  </el-checkbox-group>
+  <tj-checkbox-group v-model="checkList">
+    <tj-checkbox label="Option A"></tj-checkbox>
+    <tj-checkbox label="Option B"></tj-checkbox>
+    <tj-checkbox label="Option C"></tj-checkbox>
+    <tj-checkbox label="disabled" disabled></tj-checkbox>
+    <tj-checkbox label="selected and disabled" disabled></tj-checkbox>
+  </tj-checkbox-group>
 </template>
 
 <script>
   export default {
-    data () {
+    data() {
       return {
-        checkList: ['selected and disabled','Option A']
-      };
-    }
-  };
+        checkList: ['selected and disabled', 'Option A'],
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 ### 不確定
@@ -86,37 +89,49 @@ checkboxを無効にした状態。
 
 ```html
 <template>
-  <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">Check all</el-checkbox>
+  <tj-checkbox
+    :indeterminate="isIndeterminate"
+    v-model="checkAll"
+    @change="handleCheckAllChange"
+    >Check all</tj-checkbox
+  >
   <div style="margin: 15px 0;"></div>
-  <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
-    <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
-  </el-checkbox-group>
+  <tj-checkbox-group
+    v-model="checkedCities"
+    @change="handleCheckedCitiesChange"
+  >
+    <tj-checkbox v-for="city in cities" :label="city" :key="city"
+      >{{city}}</tj-checkbox
+    >
+  </tj-checkbox-group>
 </template>
 <script>
-  const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
+  const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen']
   export default {
     data() {
       return {
         checkAll: false,
         checkedCities: ['Shanghai', 'Beijing'],
         cities: cityOptions,
-        isIndeterminate: true
-      };
+        isIndeterminate: true,
+      }
     },
     methods: {
       handleCheckAllChange(val) {
-        this.checkedCities = val ? cityOptions : [];
-        this.isIndeterminate = false;
+        this.checkedCities = val ? cityOptions : []
+        this.isIndeterminate = false
       },
       handleCheckedCitiesChange(value) {
-        let checkedCount = value.length;
-        this.checkAll = checkedCount === this.cities.length;
-        this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
-      }
-    }
-  };
+        let checkedCount = value.length
+        this.checkAll = checkedCount === this.cities.length
+        this.isIndeterminate =
+          checkedCount > 0 && checkedCount < this.cities.length
+      },
+    },
+  }
 </script>
 ```
+
 :::
 
 ### 最小/最大チェック項目
@@ -127,158 +142,189 @@ checkboxを無効にした状態。
 
 ```html
 <template>
-  <el-checkbox-group 
-    v-model="checkedCities"
-    :min="1"
-    :max="2">
-    <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
-  </el-checkbox-group>
+  <tj-checkbox-group v-model="checkedCities" :min="1" :max="2">
+    <tj-checkbox v-for="city in cities" :label="city" :key="city"
+      >{{city}}</tj-checkbox
+    >
+  </tj-checkbox-group>
 </template>
 <script>
-  const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
+  const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen']
   export default {
     data() {
       return {
         checkedCities: ['Shanghai', 'Beijing'],
-        cities: cityOptions
-      };
-    }
-  };
+        cities: cityOptions,
+      }
+    },
+  }
 </script>
 ```
+
 :::
 
 ### ボタンスタイル
 
-ボタンスタイルのcheckbox。
+ボタンスタイルの checkbox。
 
 :::demo `EL-CHECKBOX` 要素を `EL-CHECKBOX-BUTTON` 要素に変更すればよい。また、`size` 属性も提供されています。
+
 ```html
 <template>
   <div>
-    <el-checkbox-group v-model="checkboxGroup1">
-      <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
-    </el-checkbox-group>
+    <tj-checkbox-group v-model="checkboxGroup1">
+      <tj-checkbox-button v-for="city in cities" :label="city" :key="city"
+        >{{city}}</tj-checkbox-button
+      >
+    </tj-checkbox-group>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup2" size="medium">
-      <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
-    </el-checkbox-group>
+    <tj-checkbox-group v-model="checkboxGroup2" size="medium">
+      <tj-checkbox-button v-for="city in cities" :label="city" :key="city"
+        >{{city}}</tj-checkbox-button
+      >
+    </tj-checkbox-group>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup3" size="small">
-      <el-checkbox-button v-for="city in cities" :label="city" :disabled="city === 'Beijing'" :key="city">{{city}}</el-checkbox-button>
-    </el-checkbox-group>
+    <tj-checkbox-group v-model="checkboxGroup3" size="small">
+      <tj-checkbox-button
+        v-for="city in cities"
+        :label="city"
+        :disabled="city === 'Beijing'"
+        :key="city"
+        >{{city}}</tj-checkbox-button
+      >
+    </tj-checkbox-group>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup4" size="mini" disabled>
-      <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
-    </el-checkbox-group>
+    <tj-checkbox-group v-model="checkboxGroup4" size="mini" disabled>
+      <tj-checkbox-button v-for="city in cities" :label="city" :key="city"
+        >{{city}}</tj-checkbox-button
+      >
+    </tj-checkbox-group>
   </div>
 </template>
 <script>
-  const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
+  const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen']
 
   export default {
-    data () {
+    data() {
       return {
         checkboxGroup1: ['Shanghai'],
         checkboxGroup2: ['Shanghai'],
         checkboxGroup3: ['Shanghai'],
         checkboxGroup4: ['Shanghai'],
-        cities: cityOptions
-      };
-    }
+        cities: cityOptions,
+      }
+    },
   }
 </script>
 ```
+
 :::
 
 ### 境界線をつける
 
-:::demo `border`属性はcheckboxに境界線を追加することができます。
+:::demo `border`属性は checkbox に境界線を追加することができます。
+
 ```html
 <template>
   <div>
-    <el-checkbox v-model="checked1" label="Option1" border></el-checkbox>
-    <el-checkbox v-model="checked2" label="Option2" border></el-checkbox>
+    <tj-checkbox v-model="checked1" label="Option1" border></tj-checkbox>
+    <tj-checkbox v-model="checked2" label="Option2" border></tj-checkbox>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox v-model="checked3" label="Option1" border size="medium"></el-checkbox>
-    <el-checkbox v-model="checked4" label="Option2" border size="medium"></el-checkbox>
+    <tj-checkbox
+      v-model="checked3"
+      label="Option1"
+      border
+      size="medium"
+    ></tj-checkbox>
+    <tj-checkbox
+      v-model="checked4"
+      label="Option2"
+      border
+      size="medium"
+    ></tj-checkbox>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup1" size="small">
-      <el-checkbox label="Option1" border></el-checkbox>
-      <el-checkbox label="Option2" border disabled></el-checkbox>
-    </el-checkbox-group>
+    <tj-checkbox-group v-model="checkboxGroup1" size="small">
+      <tj-checkbox label="Option1" border></tj-checkbox>
+      <tj-checkbox label="Option2" border disabled></tj-checkbox>
+    </tj-checkbox-group>
   </div>
   <div style="margin-top: 20px">
-    <el-checkbox-group v-model="checkboxGroup2" size="mini" disabled>
-      <el-checkbox label="Option1" border></el-checkbox>
-      <el-checkbox label="Option2" border></el-checkbox>
-    </el-checkbox-group>
+    <tj-checkbox-group v-model="checkboxGroup2" size="mini" disabled>
+      <tj-checkbox label="Option1" border></tj-checkbox>
+      <tj-checkbox label="Option2" border></tj-checkbox>
+    </tj-checkbox-group>
   </div>
 </template>
 
 <script>
   export default {
-    data () {
+    data() {
       return {
         checked1: true,
         checked2: false,
         checked3: false,
         checked4: true,
         checkboxGroup1: [],
-        checkboxGroup2: []
-      };
-    }
+        checkboxGroup2: [],
+      }
+    },
   }
 </script>
 ```
+
 :::
 
-### Checkbox属性
-| Attribute      | Description         | Type    | Options                         | Default|
-|---------- |-------- |---------- |-------------  |-------- |
-| value / v-model | バインディング値 | string / number / boolean | — | — |
-| label     | `checkbox-group` の中で使われる場合のcheckboxの値   | string / number / boolean   |       —        |     —    |
-| true-label | checkboxがチェックされている場合は、checkboxの値   | string / number    |       —        |     —    |
-| false-label | checkboxがチェックされていない場合のcheckboxの値   | string / number    |      —         |     —    |
-| disabled  | checkboxを無効にするかどうか   | boolean   |  — | false   |
-| border  | checkboxの周りにボーダーを追加するかどうか  | boolean   | — | false   |
-| size  | checkboxのサイズ、`border` がtrueの場合にのみ動作します。  | string  | medium / small / mini | — |
-| name | ネイティブ 'name' 属性 | string    |      —         |     —    |
-| checked  | checkboxがチェックされているかどうか  | boolean   |  — | false   |
-| indeterminate  | ネイティブcheckboxの `indeterminate` と同じ | boolean   |  — | false   |
+### Checkbox 属性
 
-### Checkboxのイベント
-| Event Name | Description | Parameters |
-|---------- |-------- |---------- |
-| change  | バインディング値が変更された場合にトリガされます。 | the updated value |
+| Attribute       | Description                                                  | Type                      | Options               | Default |
+| --------------- | ------------------------------------------------------------ | ------------------------- | --------------------- | ------- |
+| value / v-model | バインディング値                                             | string / number / boolean | —                     | —       |
+| label           | `checkbox-group` の中で使われる場合の checkbox の値          | string / number / boolean | —                     | —       |
+| true-label      | checkbox がチェックされている場合は、checkbox の値           | string / number           | —                     | —       |
+| false-label     | checkbox がチェックされていない場合の checkbox の値          | string / number           | —                     | —       |
+| disabled        | checkbox を無効にするかどうか                                | boolean                   | —                     | false   |
+| border          | checkbox の周りにボーダーを追加するかどうか                  | boolean                   | —                     | false   |
+| size            | checkbox のサイズ、`border` が true の場合にのみ動作します。 | string                    | medium / small / mini | —       |
+| name            | ネイティブ 'name' 属性                                       | string                    | —                     | —       |
+| checked         | checkbox がチェックされているかどうか                        | boolean                   | —                     | false   |
+| indeterminate   | ネイティブ checkbox の `indeterminate` と同じ                | boolean                   | —                     | false   |
 
-### Checkboxグループの属性
-| Attribute      | Description         | Type    | Options                         | Default|
-|---------- |-------- |---------- |-------------  |-------- |
-| value / v-model | バインディング値 | array | — | — |
-|size | checkboxのボタンや枠線の大きさ | string | medium / small / mini | — |
-| disabled  | ネスティングcheckboxを無効にするかどうか | boolean   | — | false   |
-| min     | checkboxの最小チェック数   | number    |       —        |     —    |
-| max     | checkboxの最大チェック数   | number    |       —        |     —    |
-|text-color | ボタンがアクティブなときのフォント色 | string   | — | #ffffff   |
-|fill  | ボタンがアクティブなときの境界線と背景色 | string   | — | #409EFF   |
+### Checkbox のイベント
 
-### Checkboxグループのイベント
-| Event Name | Description | Parameters |
-|---------- |-------- |---------- |
-| change  | バインディング値が変更された場合にトリガされます。 | the updated value |
+| Event Name | Description                                        | Parameters        |
+| ---------- | -------------------------------------------------- | ----------------- |
+| change     | バインディング値が変更された場合にトリガされます。 | the updated value |
 
-### Checkboxボタンの属性
-| Attribute      | Description         | Type    | Options                         | Default|
-|---------- |-------- |---------- |-------------  |-------- |
-| label     | `checkbox-group` の中で使われる場合のcheckboxの値 | string / number / boolean  |       —        |     —    |
-| true-label | チェックされている場合の、checkboxの値 | string / number | — |     —    |
-| false-label | チェックされていない場合の、checkboxの値 | string / number    |      —         |     —    |
-| disabled  | checkboxを無効にするかどうか | boolean   |  — | false   |
-| name | ネイティブ 'name' 属性 | string    |      —         |     —    |
-| checked  | checkboxがチェックされているかどうか | boolean   |  — | false   |
+### Checkbox グループの属性
+
+| Attribute       | Description                                | Type    | Options               | Default |
+| --------------- | ------------------------------------------ | ------- | --------------------- | ------- |
+| value / v-model | バインディング値                           | array   | —                     | —       |
+| size            | checkbox のボタンや枠線の大きさ            | string  | medium / small / mini | —       |
+| disabled        | ネスティング checkbox を無効にするかどうか | boolean | —                     | false   |
+| min             | checkbox の最小チェック数                  | number  | —                     | —       |
+| max             | checkbox の最大チェック数                  | number  | —                     | —       |
+| text-color      | ボタンがアクティブなときのフォント色       | string  | —                     | #ffffff |
+| fill            | ボタンがアクティブなときの境界線と背景色   | string  | —                     | #409EFF |
+
+### Checkbox グループのイベント
+
+| Event Name | Description                                        | Parameters        |
+| ---------- | -------------------------------------------------- | ----------------- |
+| change     | バインディング値が変更された場合にトリガされます。 | the updated value |
+
+### Checkbox ボタンの属性
+
+| Attribute   | Description                                         | Type                      | Options | Default |
+| ----------- | --------------------------------------------------- | ------------------------- | ------- | ------- |
+| label       | `checkbox-group` の中で使われる場合の checkbox の値 | string / number / boolean | —       | —       |
+| true-label  | チェックされている場合の、checkbox の値             | string / number           | —       | —       |
+| false-label | チェックされていない場合の、checkbox の値           | string / number           | —       | —       |
+| disabled    | checkbox を無効にするかどうか                       | boolean                   | —       | false   |
+| name        | ネイティブ 'name' 属性                              | string                    | —       | —       |
+| checked     | checkbox がチェックされているかどうか               | boolean                   | —       | false   |

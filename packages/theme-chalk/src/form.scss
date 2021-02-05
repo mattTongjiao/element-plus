@@ -1,6 +1,6 @@
-@import "mixins/mixins";
-@import "mixins/utils";
-@import "common/var";
+@import 'mixins/mixins';
+@import 'mixins/utils';
+@import 'common/var';
 
 @include b(form) {
   @include m(label-left) {
@@ -133,7 +133,9 @@
   @include when(required) {
     @include pseudo('not(.is-no-asterisk)') {
       & > .#{$namespace}-form-item__label:before,
-      & .#{$namespace}-form-item__label-wrap > .#{$namespace}-form-item__label:before {
+      &
+        .#{$namespace}-form-item__label-wrap
+        > .#{$namespace}-form-item__label:before {
         content: '*';
         color: $--color-danger;
         margin-right: 4px;
@@ -144,7 +146,8 @@
   @include when(error) {
     & .#{$namespace}-input__inner,
     & .#{$namespace}-textarea__inner {
-      &, &:focus {
+      &,
+      &:focus {
         border-color: $--color-danger;
       }
     }

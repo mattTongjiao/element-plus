@@ -1,3 +1,3 @@
-import ElTableColumn from './table-column'
+import TjTableColumn from './table-column'
 
-export default ElTableColumn
+export default TjTableColumn

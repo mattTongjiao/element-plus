@@ -1,31 +1,31 @@
 <template>
-  <el-popper
+  <tj-popper
     ref="popper"
     v-model:visible="suggestionVisible"
     :placement="placement"
-    :popper-class="`el-autocomplete__popper ${popperClass}`"
+    :popper-class="`tj-autocomplete__popper ${popperClass}`"
     :append-to-body="popperAppendToBody"
     pure
     manual-mode
     effect="light"
     trigger="click"
-    transition="el-zoom-in-top"
+    transition="tj-zoom-in-top"
     :gpu-acceleration="false"
   >
     <template #trigger>
       <div
         v-clickoutside="close"
-        :class="['el-autocomplete', $attrs.class]"
+        :class="['tj-autocomplete', $attrs.class]"
         :style="$attrs.style"
         role="combobox"
         aria-haspopup="listbox"
         :aria-expanded="suggestionVisible"
         :aria-owns="id"
       >
-        <el-input
+        <tj-input
           ref="inputRef"
           v-bind="attrs"
-          :model-value="modelValue"
+          :modtj-value="modelValue"
           @input="handleInput"
           @change="handleChange"
           @focus="handleFocus"
@@ -48,30 +48,33 @@
           <template v-if="$slots.suffix" #suffix>
             <slot name="suffix"></slot>
           </template>
-        </el-input>
+        </tj-input>
       </div>
     </template>
     <template #default>
       <div
         ref="regionRef"
-        :class="['el-autocomplete-suggestion', suggestionLoading && 'is-loading']"
+        :class="[
+          'tj-autocomplete-suggestion',
+          suggestionLoading && 'is-loading',
+        ]"
         :style="{ width: dropdownWidth, outline: 'none' }"
         role="region"
       >
-        <el-scrollbar
+        <tj-scrollbar
           tag="ul"
-          wrap-class="el-autocomplete-suggestion__wrap"
-          view-class="el-autocomplete-suggestion__list"
+          wrap-class="tj-autocomplete-suggestion__wrap"
+          view-class="tj-autocomplete-suggestion__list"
         >
           <li v-if="suggestionLoading">
-            <i class="el-icon-loading"></i>
+            <i class="tj-icon-loading"></i>
           </li>
           <template v-else>
             <li
               v-for="(item, index) in suggestions"
               :id="`${id}-item-${index}`"
               :key="index"
-              :class="{'highlighted': highlightedIndex === index}"
+              :class="{ highlighted: highlightedIndex === index }"
               role="option"
               :aria-selected="highlightedIndex === index"
               @click="select(item)"
@@ -79,10 +82,10 @@
               <slot :item="item">{{ item[valueKey] }}</slot>
             </li>
           </template>
-        </el-scrollbar>
+        </tj-scrollbar>
       </div>
     </template>
-  </el-popper>
+  </tj-popper>
 </template>
 
 <script lang="ts">
@@ -98,18 +101,18 @@ import { ClickOutside } from '@element-plus/directives'
 import { generateId, isArray } from '@element-plus/utils/util'
 import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
 import throwError from '@element-plus/utils/error'
-import ElInput from '@element-plus/input'
-import ElScrollbar from '@element-plus/scrollbar'
-import ElPopper from '@element-plus/popper'
+import TjInput from '@element-plus/input'
+import TjScrollbar from '@element-plus/scrollbar'
+import TjPopper from '@element-plus/popper'
 
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElAutocomplete',
+  name: 'TjAutocomplete',
   components: {
-    ElPopper,
-    ElInput,
-    ElScrollbar,
+    TjPopper,
+    TjInput,
+    TjScrollbar,
   },
   directives: {
     clickoutside: ClickOutside,
@@ -178,7 +181,7 @@ export default defineComponent({
     const popper = ref(null)
 
     const id = computed(() => {
-      return `el-autocomplete-${generateId()}`
+      return `tj-autocomplete-${generateId()}`
     })
     const suggestionVisible = computed(() => {
       const isValidData = isArray(suggestions.value) && suggestions.value.length > 0
@@ -201,7 +204,7 @@ export default defineComponent({
       inputRef.value.inputOrTextarea.setAttribute('aria-autocomplete', 'list')
       inputRef.value.inputOrTextarea.setAttribute('aria-controls', 'id')
       inputRef.value.inputOrTextarea.setAttribute('aria-activedescendant', `${id.value}-item-${highlightedIndex.value}`)
-      const $ul = regionRef.value.querySelector('.el-autocomplete-suggestion__list')
+      const $ul = regionRef.value.querySelector('.tj-autocomplete-suggestion__list')
       $ul.setAttribute('role', 'listbox')
       $ul.setAttribute('id', id.value)
     })
@@ -223,7 +226,7 @@ export default defineComponent({
           suggestions.value = suggestionsArg
           highlightedIndex.value = props.highlightFirstItem ? 0 : -1
         } else {
-          throwError('ElAutocomplete', 'autocomplete suggestions must be an array')
+          throwError('TjAutocomplete', 'autocomplete suggestions must be an array')
         }
       })
     }
@@ -297,8 +300,8 @@ export default defineComponent({
       if (index >= suggestions.value.length) {
         index = suggestions.value.length - 1
       }
-      const suggestion = regionRef.value.querySelector('.el-autocomplete-suggestion__wrap')
-      const suggestionList = suggestion.querySelectorAll('.el-autocomplete-suggestion__list li')
+      const suggestion = regionRef.value.querySelector('.tj-autocomplete-suggestion__wrap')
+      const suggestionList = suggestion.querySelectorAll('.tj-autocomplete-suggestion__list li')
       const highlightItem = suggestionList[index]
       const scrollTop = suggestion.scrollTop
       const offsetTop = highlightItem.offsetTop

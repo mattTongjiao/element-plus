@@ -9,67 +9,69 @@ Muestra la cantidad de mensajes nuevos.
 :::demo La cantidad está definida por `value` que acepta `Number` o `String`.
 
 ```html
-<el-badge :value="12" class="item">
-  <el-button size="small">comments</el-button>
-</el-badge>
-<el-badge :value="3" class="item">
-  <el-button size="small">replies</el-button>
-</el-badge>
-<el-badge :value="1" class="item" type="primary">
-  <el-button size="small">comments</el-button>
-</el-badge>
-<el-badge :value="2" class="item" type="warning">
-  <el-button size="small">replies</el-button>
-</el-badge>
+<tj-badge :value="12" class="item">
+  <tj-button size="small">comments</tj-button>
+</tj-badge>
+<tj-badge :value="3" class="item">
+  <tj-button size="small">replies</tj-button>
+</tj-badge>
+<tj-badge :value="1" class="item" type="primary">
+  <tj-button size="small">comments</tj-button>
+</tj-badge>
+<tj-badge :value="2" class="item" type="warning">
+  <tj-button size="small">replies</tj-button>
+</tj-badge>
 
-<el-dropdown trigger="click">
-  <span class="el-dropdown-link">
-    Click Me<i class="el-icon-caret-bottom el-icon--right"></i>
+<tj-dropdown trigger="click">
+  <span class="tj-dropdown-link">
+    Click Me<i class="tj-icon-caret-bottom tj-icon--right"></i>
   </span>
   <template #dropdown>
-    <el-dropdown-menu>
-      <el-dropdown-item class="clearfix">
+    <tj-dropdown-menu>
+      <tj-dropdown-item class="clearfix">
         comments
-        <el-badge class="mark" :value="12" />
-      </el-dropdown-item>
-      <el-dropdown-item class="clearfix">
+        <tj-badge class="mark" :value="12" />
+      </tj-dropdown-item>
+      <tj-dropdown-item class="clearfix">
         replies
-        <el-badge class="mark" :value="3" />
-      </el-dropdown-item>
-    </el-dropdown-menu>
+        <tj-badge class="mark" :value="3" />
+      </tj-dropdown-item>
+    </tj-dropdown-menu>
   </template>
-</el-dropdown>
+</tj-dropdown>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### Valor máximo
 
 Se puede personalizar el valor máximo.
 
-:::demo El valor máximo se define como `max` el cual es un `Number`. Nota: solo funciona si `value` es también un `Number`.
+:::demo Tj valor máximo se define como `max` el cual es un `Number`. Nota: solo funciona si `value` es también un `Number`.
 
 ```html
-<el-badge :value="200" :max="99" class="item">
-  <el-button size="small">comments</el-button>
-</el-badge>
-<el-badge :value="100" :max="10" class="item">
-  <el-button size="small">replies</el-button>
-</el-badge>
+<tj-badge :value="200" :max="99" class="item">
+  <tj-button size="small">comments</tj-button>
+</tj-badge>
+<tj-badge :value="100" :max="10" class="item">
+  <tj-button size="small">replies</tj-button>
+</tj-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### Personalizaciones
@@ -79,20 +81,21 @@ Mostrar texto en vez de números.
 :::demo Cuando `value` es un `String`, puede mostrar texto personalizado.
 
 ```html
-<el-badge value="new" class="item">
-  <el-button size="small">comments</el-button>
-</el-badge>
-<el-badge value="hot" class="item">
-  <el-button size="small">replies</el-button>
-</el-badge>
+<tj-badge value="new" class="item">
+  <tj-button size="small">comments</tj-button>
+</tj-badge>
+<tj-badge value="hot" class="item">
+  <tj-button size="small">replies</tj-button>
+</tj-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### Pequeño punto rojo
@@ -102,26 +105,31 @@ Puede utilizar un punto rojo para marcar contenido que debe ser notado.
 :::demo Use el atributo `is-dot`. Es un `Boolean`.
 
 ```html
-<el-badge is-dot class="item">query</el-badge>
-<el-badge is-dot class="item">
-  <el-button class="share-button" icon="el-icon-share" type="primary"></el-button>
-</el-badge>
+<tj-badge is-dot class="item">query</tj-badge>
+<tj-badge is-dot class="item">
+  <tj-button
+    class="share-button"
+    icon="tj-icon-share"
+    type="primary"
+  ></tj-button>
+</tj-badge>
 
 <style>
-.item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
+  .item {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
 </style>
 ```
+
 :::
 
 ### Atributos
-| Atributo | Descripción                              | Tipo           | Valores aceptados | Por defecto |
-| -------- | ---------------------------------------- | -------------- | ----------------- | ----------- |
-| value    | valor a mostrar                          | string, number | —                 | —           |
-| max      | valor máximo, Muestra '{max}+' cuando se excede. Solo funciona si `value` es un `Number` | number         | —                 | —           |
-| is-dot   | si se debe mostrar un pequeño punto      | boolean        | —                 | false       |
-| hidden   | oculta el badge                    | boolean        | —                 | false       |
-| type     | tipo de botón                            | string         | primary / success / warning / danger / info | — |
 
+| Atributo | Descripción                                                                              | Tipo           | Valores aceptados                           | Por defecto |
+| -------- | ---------------------------------------------------------------------------------------- | -------------- | ------------------------------------------- | ----------- |
+| value    | valor a mostrar                                                                          | string, number | —                                           | —           |
+| max      | valor máximo, Muestra '{max}+' cuando se excede. Solo funciona si `value` es un `Number` | number         | —                                           | —           |
+| is-dot   | si se debe mostrar un pequeño punto                                                      | boolean        | —                                           | false       |
+| hidden   | oculta el badge                                                                          | boolean        | —                                           | false       |
+| type     | tipo de botón                                                                            | string         | primary / success / warning / danger / info | —           |

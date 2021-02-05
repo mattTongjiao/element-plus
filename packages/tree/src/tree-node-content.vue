@@ -1,9 +1,9 @@
-<script lang='ts'>
+<script lang="ts">
 import { h, defineComponent, inject, ComponentInternalInstance } from 'vue'
 import { RootTreeType } from './tree.type'
 
 export default defineComponent({
-  name: 'ElTreeNodeContent',
+  name: 'TjTreeNodeContent',
   props: {
     node: {
       type: Object,
@@ -17,13 +17,11 @@ export default defineComponent({
     return () => {
       const node = props.node
       const { data, store } = node
-      return (
-        props.renderContent
-          ? props.renderContent(h, { _self: nodeInstance, node, data, store })
-          : tree.ctx.slots.default
-            ? tree.ctx.slots.default({ node, data })
-            :  h('span', { class: 'el-tree-node__label' }, [node.label])
-      )
+      return props.renderContent
+        ? props.renderContent(h, { _self: nodeInstance, node, data, store })
+        : tree.ctx.slots.default
+        ? tree.ctx.slots.default({ node, data })
+        : h('span', { class: 'tj-tree-node__label' }, [node.label])
     }
   },
 })

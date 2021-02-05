@@ -1,10 +1,10 @@
 ## クイックスタート
 
-このパートでは、webpackプロジェクトでElement Plusを用いた開発プロセスを説明します。
+このパートでは、webpack プロジェクトで Tongjiao UI を用いた開発プロセスを説明します。
 
-### vue-cli@4.5を使う
+### vue-cli@4.5 を使う
 
-私達はvue-cli@4.5のために [Element Plus plugin](https://github.com/element-plus/vue-cli-plugin-element-plus) 提供しており, 簡単に Element Plusベースのプロジェクトを構築出来ます。
+私達は vue-cli@4.5 のために [Tongjiao UI plugin](https://github.com/element-plus/vue-cli-plugin-element-plus) 提供しており, 簡単に Tongjiao UI ベースのプロジェクトを構築出来ます。
 
 ### スターターキットを使う
 
@@ -12,9 +12,9 @@
 
 これらのツールを使いたくない場合は、以下の記事を御覧ください。
 
-### Element Plusをインポートする
+### Tongjiao UI をインポートする
 
-Element Plusを完全にインポートすることも、必要なものだけをインポートすることもできます。完全なインポートから始めましょう。
+Tongjiao UI を完全にインポートすることも、必要なものだけをインポートすることもできます。完全なインポートから始めましょう。
 
 #### 完全にインポートした場合
 
@@ -22,22 +22,22 @@ main.js:
 
 ```javascript
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus';
-import 'element-plus/lib/theme-chalk/index.css';
-import App from './App.vue';
+import ElementPlus from 'element-plus'
+import 'element-plus/lib/theme-chalk/index.css'
+import App from './App.vue'
 
 const app = createApp(App)
 app.use(ElementPlus)
 app.mount('#app')
 ```
 
-上記のコードは完全にElement Plusをインポートします。CSSファイルは個別にインポートする必要があることを注意してください。
+上記のコードは完全に Tongjiao UI をインポートします。CSS ファイルは個別にインポートする必要があることを注意してください。
 
 #### オンデマンド
 
 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) を用いて、 必要な分のコンポーネントをインポートし、プロジェクトをより小さくすることが出来ます。
 
-はじめに、babel-plugin-importをインストール:
+はじめに、babel-plugin-import をインストール:
 
 ```bash
 npm install babel-plugin-import -D
@@ -49,34 +49,34 @@ npm install babel-plugin-import -D
 module.exports = {
   plugins: [
     [
-      "import",
+      'import',
       {
         libraryName: 'element-plus',
-        customStyleName: (name) => {
+        customStyleName: name => {
           // `customStyleName` が存在するため、`style: true` は有効になりません。
           // そのため、`.scss` のソースファイルを使いたい場合は、拡張子を `.css` から `.scss` に置き換えるだけです。
-          return `element-plus/lib/theme-chalk/${name}.css`;
+          return `element-plus/lib/theme-chalk/${name}.css`
         },
       },
     ],
   ],
-};
+}
 ```
 
-次に、ボタンとセレクトが必要な場合、main.jsを編集します:
+次に、ボタンとセレクトが必要な場合、main.js を編集します:
 
 ```javascript
 import { createApp } from 'vue'
-import { ElButton, ElSelect } from 'element-plus';
-import App from './App.vue';
+import { TjButton, TjSelect } from 'element-plus'
+import App from './App.vue'
 
 const app = createApp(App)
-app.component(ElButton.name, ElButton);
-app.component(ElSelect.name, ElSelect);
+app.component(TjButton.name, TjButton)
+app.component(TjSelect.name, TjSelect)
 
 /* or
- * app.use(ElButton)
- * app.use(ElSelect)
+ * app.use(TjButton)
+ * app.use(TjSelect)
  */
 
 app.mount('#app')
@@ -86,180 +86,180 @@ app.mount('#app')
 
 ```javascript
 import { createApp } from 'vue'
-import App from './App.vue';
+import App from './App.vue'
 import {
-  ElAlert,
-  ElAside,
-  ElAutocomplete,
-  ElAvatar,
-  ElBacktop,
-  ElBadge,
-  ElBreadcrumb,
-  ElBreadcrumbItem,
-  ElButton,
-  ElButtonGroup,
-  ElCalendar,
-  ElCard,
-  ElCarousel,
-  ElCarouselItem,
-  ElCascader,
-  ElCascaderPanel,
-  ElCheckbox,
-  ElCheckboxButton,
-  ElCheckboxGroup,
-  ElCol,
-  ElCollapse,
-  ElCollapseItem,
-  ElCollapseTransition,
-  ElColorPicker,
-  ElContainer,
-  ElDatePicker,
-  ElDialog,
-  ElDivider,
-  ElDrawer,
-  ElDropdown,
-  ElDropdownItem,
-  ElDropdownMenu,
-  ElFooter,
-  ElForm,
-  ElFormItem,
-  ElHeader,
-  ElIcon,
-  ElImage,
-  ElInput,
-  ElInputNumber,
-  ElLink,
-  ElMain,
-  ElMenu,
-  ElMenuItem,
-  ElMenuItemGroup,
-  ElOption,
-  ElOptionGroup,
-  ElPageHeader,
-  ElPagination,
-  ElPopconfirm,
-  ElPopover,
-  ElPopper,
-  ElProgress,
-  ElRadio,
-  ElRadioButton,
-  ElRadioGroup,
-  ElRate,
-  ElRow,
-  ElScrollbar,
-  ElSelect,
-  ElSlider,
-  ElStep,
-  ElSteps,
-  ElSubmenu,
-  ElSwitch,
-  ElTabPane,
-  ElTable,
-  ElTableColumn,
-  ElTabs,
-  ElTag,
-  ElTimePicker,
-  ElTimeSelect,
-  ElTimeline,
-  ElTimelineItem,
-  ElTooltip,
-  ElTransfer,
-  ElTree,
-  ElUpload,
-  ElInfiniteScroll,
-  ElLoading,
-  ElMessage,
-  ElMessageBox,
-  ElNotification,
-} from 'element-plus';
+  TjAlert,
+  TjAside,
+  TjAutocomplete,
+  TjAvatar,
+  TjBacktop,
+  TjBadge,
+  TjBreadcrumb,
+  TjBreadcrumbItem,
+  TjButton,
+  TjButtonGroup,
+  TjCalendar,
+  TjCard,
+  TjCarousel,
+  TjCarouselItem,
+  TjCascader,
+  TjCascaderPanel,
+  TjCheckbox,
+  TjCheckboxButton,
+  TjCheckboxGroup,
+  TjCol,
+  TjCollapse,
+  TjCollapseItem,
+  TjCollapseTransition,
+  TjColorPicker,
+  TjContainer,
+  TjDatePicker,
+  TjDialog,
+  TjDivider,
+  TjDrawer,
+  TjDropdown,
+  TjDropdownItem,
+  TjDropdownMenu,
+  TjFooter,
+  TjForm,
+  TjFormItem,
+  TjHeader,
+  TjIcon,
+  TjImage,
+  TjInput,
+  TjInputNumber,
+  TjLink,
+  TjMain,
+  TjMenu,
+  TjMenuItem,
+  TjMenuItemGroup,
+  TjOption,
+  TjOptionGroup,
+  TjPageHeader,
+  TjPagination,
+  TjPopconfirm,
+  TjPopover,
+  TjPopper,
+  TjProgress,
+  TjRadio,
+  TjRadioButton,
+  TjRadioGroup,
+  TjRate,
+  TjRow,
+  TjScrollbar,
+  TjSelect,
+  TjSlider,
+  TjStep,
+  TjSteps,
+  TjSubmenu,
+  TjSwitch,
+  TjTabPane,
+  TjTable,
+  TjTableColumn,
+  TjTabs,
+  TjTag,
+  TjTimePicker,
+  TjTimeSelect,
+  TjTimeline,
+  TjTimelineItem,
+  TjTooltip,
+  TjTransfer,
+  TjTree,
+  TjUpload,
+  TjInfiniteScroll,
+  TjLoading,
+  TjMessage,
+  TjMessageBox,
+  TjNotification,
+} from 'element-plus'
 
 const components = [
-  ElAlert,
-  ElAside,
-  ElAutocomplete,
-  ElAvatar,
-  ElBacktop,
-  ElBadge,
-  ElBreadcrumb,
-  ElBreadcrumbItem,
-  ElButton,
-  ElButtonGroup,
-  ElCalendar,
-  ElCard,
-  ElCarousel,
-  ElCarouselItem,
-  ElCascader,
-  ElCascaderPanel,
-  ElCheckbox,
-  ElCheckboxButton,
-  ElCheckboxGroup,
-  ElCol,
-  ElCollapse,
-  ElCollapseItem,
-  ElCollapseTransition,
-  ElColorPicker,
-  ElContainer,
-  ElDatePicker,
-  ElDialog,
-  ElDivider,
-  ElDrawer,
-  ElDropdown,
-  ElDropdownItem,
-  ElDropdownMenu,
-  ElFooter,
-  ElForm,
-  ElFormItem,
-  ElHeader,
-  ElIcon,
-  ElImage,
-  ElInput,
-  ElInputNumber,
-  ElLink,
-  ElMain,
-  ElMenu,
-  ElMenuItem,
-  ElMenuItemGroup,
-  ElOption,
-  ElOptionGroup,
-  ElPageHeader,
-  ElPagination,
-  ElPopconfirm,
-  ElPopover,
-  ElPopper,
-  ElProgress,
-  ElRadio,
-  ElRadioButton,
-  ElRadioGroup,
-  ElRate,
-  ElRow,
-  ElScrollbar,
-  ElSelect,
-  ElSlider,
-  ElStep,
-  ElSteps,
-  ElSubmenu,
-  ElSwitch,
-  ElTabPane,
-  ElTable,
-  ElTableColumn,
-  ElTabs,
-  ElTag,
-  ElTimePicker,
-  ElTimeSelect,
-  ElTimeline,
-  ElTimelineItem,
-  ElTooltip,
-  ElTransfer,
-  ElTree,
-  ElUpload,
+  TjAlert,
+  TjAside,
+  TjAutocomplete,
+  TjAvatar,
+  TjBacktop,
+  TjBadge,
+  TjBreadcrumb,
+  TjBreadcrumbItem,
+  TjButton,
+  TjButtonGroup,
+  TjCalendar,
+  TjCard,
+  TjCarousel,
+  TjCarouselItem,
+  TjCascader,
+  TjCascaderPanel,
+  TjCheckbox,
+  TjCheckboxButton,
+  TjCheckboxGroup,
+  TjCol,
+  TjCollapse,
+  TjCollapseItem,
+  TjCollapseTransition,
+  TjColorPicker,
+  TjContainer,
+  TjDatePicker,
+  TjDialog,
+  TjDivider,
+  TjDrawer,
+  TjDropdown,
+  TjDropdownItem,
+  TjDropdownMenu,
+  TjFooter,
+  TjForm,
+  TjFormItem,
+  TjHeader,
+  TjIcon,
+  TjImage,
+  TjInput,
+  TjInputNumber,
+  TjLink,
+  TjMain,
+  TjMenu,
+  TjMenuItem,
+  TjMenuItemGroup,
+  TjOption,
+  TjOptionGroup,
+  TjPageHeader,
+  TjPagination,
+  TjPopconfirm,
+  TjPopover,
+  TjPopper,
+  TjProgress,
+  TjRadio,
+  TjRadioButton,
+  TjRadioGroup,
+  TjRate,
+  TjRow,
+  TjScrollbar,
+  TjSelect,
+  TjSlider,
+  TjStep,
+  TjSteps,
+  TjSubmenu,
+  TjSwitch,
+  TjTabPane,
+  TjTable,
+  TjTableColumn,
+  TjTabs,
+  TjTag,
+  TjTimePicker,
+  TjTimeSelect,
+  TjTimeline,
+  TjTimelineItem,
+  TjTooltip,
+  TjTransfer,
+  TjTree,
+  TjUpload,
 ]
 
 const plugins = [
-  ElInfiniteScroll,
-  ElLoading,
-  ElMessage,
-  ElMessageBox,
-  ElNotification,
+  TjInfiniteScroll,
+  TjLoading,
+  TjMessage,
+  TjMessageBox,
+  TjNotification,
 ]
 
 const app = createApp(App)
@@ -275,38 +275,38 @@ plugins.forEach(plugin => {
 
 ### グローバルコンフィグ
 
-Elenentをインポートする際、グローバルコンフィグオブジェクトを定義出来ます。現時点では2つのプロパティ: `size` と `zIndex` があります。 プロパティ `size` はすべてのコンポーネントのデフォルトサイズ、プロパティ `zIndex` はモーダルボックスの初期の z-index (デフォルト: 2000) を設定します。
+Tjenent をインポートする際、グローバルコンフィグオブジェクトを定義出来ます。現時点では 2 つのプロパティ: `size` と `zIndex` があります。 プロパティ `size` はすべてのコンポーネントのデフォルトサイズ、プロパティ `zIndex` はモーダルボックスの初期の z-index (デフォルト: 2000) を設定します。
 
-Element Plusを完全にインポート：
+Tongjiao UI を完全にインポート：
 
 ```js
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus';
-import App from './App.vue';
+import ElementPlus from 'element-plus'
+import App from './App.vue'
 
 const app = createApp(App)
-app.use(ElementPlus, { size: 'small', zIndex: 3000 });
+app.use(ElementPlus, { size: 'small', zIndex: 3000 })
 ```
 
-Element Plusを部分的にインポート：
+Tongjiao UI を部分的にインポート：
 
 ```js
 import { createApp } from 'vue'
-import { ElButton } from 'element-plus';
-import App from './App.vue';
+import { TjButton } from 'element-plus'
+import App from './App.vue'
 
 const app = createApp(App)
 app.config.globalProperties.$ELEMENT = option
-app.use(ElButton);
+app.use(TjButton)
 ```
 
-上記の設定では、size属性を持つすべてのコンポーネントのデフォルトのサイズは `small`、モーダルボックスのデフォルト値 `z-index` は3000となります。
+上記の設定では、size 属性を持つすべてのコンポーネントのデフォルトのサイズは `small`、モーダルボックスのデフォルト値 `z-index` は 3000 となります。
 
 ### コーディングを始めましょう
 
-プロジェクトに Vue と Element Plus を実装したので、いよいよコードを書く時が来ました。使用方法については、各コンポーネントのドキュメントを参照してください。
+プロジェクトに Vue と Tongjiao UI を実装したので、いよいよコードを書く時が来ました。使用方法については、各コンポーネントのドキュメントを参照してください。
 
-### Nuxt.jsを使う
+### Nuxt.js を使う
 
 [Nuxt.js](https://nuxtjs.org/) を使ってプロジェクトを立ち上げることも出来ます:
 

@@ -83,8 +83,8 @@ export default {
       error: 'Entrada inválida',
     },
     upload: {
-      deleteTip: 'Pulse Eliminar para retirar',
-      delete: 'Eliminar',
+      deleteTip: 'Pulse Tjiminar para retirar',
+      delete: 'Tjiminar',
       preview: 'Vista Previa',
       continue: 'Continuar',
     },

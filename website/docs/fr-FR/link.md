@@ -10,12 +10,12 @@ Lien texte basique.
 
 ```html
 <div>
-  <el-link href="https://element.eleme.io" target="_blank">défaut</el-link>
-  <el-link type="primary">primaire</el-link>
-  <el-link type="success">succès</el-link>
-  <el-link type="warning">avertissement</el-link>
-  <el-link type="danger">danger</el-link>
-  <el-link type="info">info</el-link>
+  <tj-link href="https://element.eleme.io" target="_blank">défaut</tj-link>
+  <tj-link type="primary">primaire</tj-link>
+  <tj-link type="success">succès</tj-link>
+  <tj-link type="warning">avertissement</tj-link>
+  <tj-link type="danger">danger</tj-link>
+  <tj-link type="info">info</tj-link>
 </div>
 ```
 
@@ -29,12 +29,12 @@ Lien désactivé.
 
 ```html
 <div>
-  <el-link disabled>défaut</el-link>
-  <el-link type="primary" disabled>primaire</el-link>
-  <el-link type="success" disabled>succès</el-link>
-  <el-link type="warning" disabled>avertissement</el-link>
-  <el-link type="danger" disabled>danger</el-link>
-  <el-link type="info" disabled>info</el-link>
+  <tj-link disabled>défaut</tj-link>
+  <tj-link type="primary" disabled>primaire</tj-link>
+  <tj-link type="success" disabled>succès</tj-link>
+  <tj-link type="warning" disabled>avertissement</tj-link>
+  <tj-link type="danger" disabled>danger</tj-link>
+  <tj-link type="info" disabled>info</tj-link>
 </div>
 ```
 
@@ -48,8 +48,8 @@ Lien souligné.
 
 ```html
 <div>
-  <el-link :underline="false">non souligné</el-link>
-  <el-link>Souligné</el-link>
+  <tj-link :underline="false">non souligné</tj-link>
+  <tj-link>Souligné</tj-link>
 </div>
 ```
 
@@ -63,8 +63,8 @@ Lien avec icône.
 
 ```html
 <div>
-  <el-link icon="el-icon-edit">Éditer</el-link>
-  <el-link>Vérifier<i class="el-icon-view el-icon--right"></i> </el-link>
+  <tj-link icon="tj-icon-edit">Éditer</tj-link>
+  <tj-link>Vérifier<i class="tj-icon-view tj-icon--right"></i> </tj-link>
 </div>
 ```
 
@@ -72,10 +72,10 @@ Lien avec icône.
 
 ### Attributs
 
-| Attribut  | Description                     | Type    | Options                                     | Défaut  |
-| --------- | ------------------------------- | ------- | ------------------------------------------- | ------- |
-| type      | Type du lien.                   | string  | primary / success / warning / danger / info | défaut  |
-| underline | Si le composant est souligné.   | boolean | —                                           | true    |
-| disabled  | Si le composant est désactivé.  | boolean | —                                           | false   |
-| href      | Identique au `href` natif.      | string  | —                                           | -       |
-| icon      | Nom de classe de l'icône.       | string  | —                                           | -       |
+| Attribut  | Description                    | Type    | Options                                     | Défaut |
+| --------- | ------------------------------ | ------- | ------------------------------------------- | ------ |
+| type      | Type du lien.                  | string  | primary / success / warning / danger / info | défaut |
+| underline | Si le composant est souligné.  | boolean | —                                           | true   |
+| disabled  | Si le composant est désactivé. | boolean | —                                           | false  |
+| href      | Identique au `href` natif.     | string  | —                                           | -      |
+| icon      | Nom de classe de l'icône.      | string  | —                                           | -      |

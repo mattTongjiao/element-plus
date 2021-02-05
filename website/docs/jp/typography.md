@@ -64,6 +64,7 @@
 私たちは、さまざまなプラットフォームで最高のプレゼンテーションを実現するために、フォントの規約を作成します。
 
 ### Font
+
 <div class="demo-term-box">
 <img src="../../assets/images/term-pingfang.png" alt="">
 <img src="../../assets/images/term-hiragino.png" alt="">
@@ -143,5 +144,6 @@
 ### フォントファミリー
 
 ```css
-font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+  'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 ```

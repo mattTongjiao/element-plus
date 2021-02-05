@@ -1,5 +1,5 @@
 <template>
-  <footer class="el-footer" :style="{ height }">
+  <footer class="tj-footer" :style="{ height }">
     <slot></slot>
   </footer>
 </template>
@@ -7,7 +7,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ElFooter',
+  name: 'TjFooter',
   props: {
     height: {
       type: String,

@@ -27,12 +27,12 @@ export function createLoadingComponent({
       let loadingNumber: number | string = target.getAttribute('loading-number')
       loadingNumber = Number.parseInt(loadingNumber) - 1
       if (!loadingNumber) {
-        removeClass(target, 'el-loading-parent--relative')
+        removeClass(target, 'tj-loading-parent--relative')
         target.removeAttribute('loading-number')
       } else {
         target.setAttribute('loading-number', loadingNumber.toString())
       }
-      removeClass(target, 'el-loading-parent--hidden')
+      removeClass(target, 'tj-loading-parent--hidden')
     }
     if (vm.el && vm.el.parentNode) {
       vm.el.parentNode.removeChild(vm.el)
@@ -71,7 +71,7 @@ export function createLoadingComponent({
   }
 
   const elLoadingComponent = {
-    name: 'ElLoading',
+    name: 'TjLoading',
     setup() {
       return componentSetupConfig
     },
@@ -85,10 +85,10 @@ export function createLoadingComponent({
 
       const noSpinner = h('i', { class: this.spinner })
 
-      const spinnerText = h('p', { class: 'el-loading-text' }, [this.text])
+      const spinnerText = h('p', { class: 'tj-loading-text' }, [this.text])
 
       return h(Transition, {
-        name: 'el-loading-fade',
+        name: 'tj-loading-fade',
         onAfterLeave: this.handleAfterLeave,
       }, {
         default: withCtx(() => [withDirectives(createVNode('div', {
@@ -96,13 +96,13 @@ export function createLoadingComponent({
             backgroundColor: this.background || '',
           },
           class: [
-            'el-loading-mask',
+            'tj-loading-mask',
             this.customClass,
             this.fullscreen ? 'is-fullscreen' : '',
           ],
         }, [
           h('div', {
-            class: 'el-loading-spinner',
+            class: 'tj-loading-spinner',
           }, [
             !this.spinner ? spinner : noSpinner,
             this.text ? spinnerText : null,

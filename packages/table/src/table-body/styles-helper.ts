@@ -35,7 +35,7 @@ function useStyles (props: TableBodyProps) {
   }
 
   const getRowClass = (row: AnyObject, rowIndex: number) => {
-    const classes = ['el-table__row']
+    const classes = ['tj-table__row']
     if (
       parent.props.highlightCurrentRow &&
       row === props.store.states.currentRow.value
@@ -44,7 +44,7 @@ function useStyles (props: TableBodyProps) {
     }
 
     if (props.stripe && rowIndex % 2 === 1) {
-      classes.push('el-table__row--striped')
+      classes.push('tj-table__row--striped')
     }
     const rowClassName = parent.props.rowClassName
     if (typeof rowClassName === 'string') {

@@ -1,31 +1,33 @@
 ## Card
-cardコンテナに情報を統合する
+
+card コンテナに情報を統合する
 
 ### 基本的な使い方
 
-cardはタイトル、内容、操作を含む。
+card はタイトル、内容、操作を含む。
 
-:::demo cardは `header` と `body` からなる。ヘッダはオプションであり、その内容の分布はスロットの名前に依存します。
+:::demo card は `header` と `body` からなる。ヘッダはオプションであり、その内容の分布はスロットの名前に依存します。
+
 ```html
-<el-card class="box-card">
+<tj-card class="box-card">
   <template #header>
     <div class="card-header">
       <span>Card name</span>
-      <el-button class="button" type="text">Operation button</el-button>
+      <tj-button class="button" type="text">Operation button</tj-button>
     </div>
   </template>
   <div v-for="o in 4" :key="o" class="text item">
     {{'List item ' + o }}
   </div>
-</el-card>
+</tj-card>
 
 <style>
   .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-    
+
   .text {
     font-size: 14px;
   }
@@ -39,19 +41,21 @@ cardはタイトル、内容、操作を含む。
   }
 </style>
 ```
+
 :::
 
-### シンプルなcard
+### シンプルな card
 
 ヘッダー部分は省略可能です。
 
 :::demo
+
 ```html
-<el-card class="box-card">
+<tj-card class="box-card">
   <div v-for="o in 4" :key="o" class="text item">
     {{'List item ' + o }}
   </div>
-</el-card>
+</tj-card>
 
 <style>
   .text {
@@ -67,35 +71,45 @@ cardはタイトル、内容、操作を含む。
   }
 </style>
 ```
+
 :::
 
 ### 画像付き
 
 設定を追加することで、よりリッチなコンテンツを表示することができます。
 
-:::demo `body-style` 属性は、カスタム `body` の CSS スタイルを定義します。この例ではレイアウトにも `el-col` を用いています。
+:::demo `body-style` 属性は、カスタム `body` の CSS スタイルを定義します。この例ではレイアウトにも `tj-col` を用いています。
+
 ```html
-<el-row>
-  <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
-    <el-card :body-style="{ padding: '0px' }">
-      <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+<tj-row>
+  <tj-col
+    :span="8"
+    v-for="(o, index) in 2"
+    :key="o"
+    :offset="index > 0 ? 2 : 0"
+  >
+    <tj-card :body-style="{ padding: '0px' }">
+      <img
+        src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+        class="image"
+      />
       <div style="padding: 14px;">
         <span>Yummy hamburger</span>
         <div class="bottom">
           <time class="time">{{ currentDate }}</time>
-          <el-button type="text" class="button">Operating</el-button>
+          <tj-button type="text" class="button">Operating</tj-button>
         </div>
       </div>
-    </el-card>
-  </el-col>
-</el-row>
+    </tj-card>
+  </tj-col>
+</tj-row>
 
 <style>
   .time {
     font-size: 13px;
     color: #999;
   }
-  
+
   .bottom {
     margin-top: 13px;
     line-height: 12px;
@@ -116,46 +130,50 @@ cardはタイトル、内容、操作を含む。
 </style>
 
 <script>
-export default {
-  data() {
-    return {
-      currentDate: new Date()
-    };
+  export default {
+    data() {
+      return {
+        currentDate: new Date(),
+      }
+    },
   }
-}
 </script>
 ```
+
 :::
 
 ### シャドウ
 
-cardのシャドウを表示するタイミングを定義することができます。
+card のシャドウを表示するタイミングを定義することができます。
 
-:::demo `shadow` 属性は、cardの影をいつ表示するかを決定します。`always`, `hover`, `never` のいずれかです。
+:::demo `shadow` 属性は、card の影をいつ表示するかを決定します。`always`, `hover`, `never` のいずれかです。
+
 ```html
-<el-row :gutter="12">
-  <el-col :span="8">
-    <el-card shadow="always">
+<tj-row :gutter="12">
+  <tj-col :span="8">
+    <tj-card shadow="always">
       Always
-    </el-card>
-  </el-col>
-  <el-col :span="8">
-    <el-card shadow="hover">
+    </tj-card>
+  </tj-col>
+  <tj-col :span="8">
+    <tj-card shadow="hover">
       Hover
-    </el-card>
-  </el-col>
-  <el-col :span="8">
-    <el-card shadow="never">
+    </tj-card>
+  </tj-col>
+  <tj-col :span="8">
+    <tj-card shadow="never">
       Never
-    </el-card>
-  </el-col>
-</el-row>
+    </tj-card>
+  </tj-col>
+</tj-row>
 ```
+
 :::
 
 ### Attributes
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------- |---------- |-------------  |-------- |
-| header | cardのタイトルを指定します。`slot#header` で渡された DOM も受け付ける。 | string| — | — |
-| body-style | ボディのCSSスタイル | object| — | { padding: '20px' } |
-| shadow | cardの影を表示するタイミング | string | always / hover / never | always |
+
+| Attribute  | Description                                                              | Type   | Accepted Values        | Default             |
+| ---------- | ------------------------------------------------------------------------ | ------ | ---------------------- | ------------------- |
+| header     | card のタイトルを指定します。`slot#header` で渡された DOM も受け付ける。 | string | —                      | —                   |
+| body-style | ボディの CSS スタイル                                                    | object | —                      | { padding: '20px' } |
+| shadow     | card の影を表示するタイミング                                            | string | always / hover / never | always              |

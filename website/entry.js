@@ -21,6 +21,7 @@ import App from './app.vue'
 import ElementPlus from 'element-plus'
 import '../packages/theme-chalk/src/index.scss'
 import '../packages/theme-chalk/src/display.scss'
+import '../lib/theme-chalk/index.css'
 
 const app = createApp(App)
 
@@ -40,7 +41,6 @@ const router = createRouter({
 app.use(ElementPlus)
 app.use(router)
 router.isReady().then(() => {
-
   router.afterEach(async route => {
     await nextTick()
     const data = title[route.meta.lang]
@@ -53,7 +53,6 @@ router.isReady().then(() => {
     document.title = 'Element'
     ga('send', 'event', 'PageView', route.name)
   })
-
 })
 
 app.mount('#app')

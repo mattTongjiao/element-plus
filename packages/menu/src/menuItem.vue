@@ -1,6 +1,6 @@
 <template>
   <li
-    class="el-menu-item"
+    class="tj-menu-item"
     role="menuitem"
     tabindex="-1"
     :style="[paddingStyle, itemStyle, { backgroundColor }]"
@@ -14,9 +14,9 @@
     @blur="onMouseLeave"
     @mouseleave="onMouseLeave"
   >
-    <el-tooltip
+    <tj-tooltip
       v-if="
-        parentMenu.type.name === 'ElMenu' &&
+        parentMenu.type.name === 'TjMenu' &&
           rootMenu.props.collapse &&
           slots.title
       "
@@ -31,7 +31,7 @@
       >
         <slot></slot>
       </div>
-    </el-tooltip>
+    </tj-tooltip>
     <template v-else>
       <slot></slot>
       <slot name="title"></slot>
@@ -49,14 +49,14 @@ import {
 } from 'vue'
 import { IMenuItemProps, RootMenuProvider, SubMenuProvider } from './menu'
 import useMenu from './useMenu'
-import ElTooltip from '@element-plus/tooltip'
+import TjTooltip from '@element-plus/tooltip'
 
 export default defineComponent({
-  name: 'ElMenuItem',
+  name: 'TjMenuItem',
 
-  componentName: 'ElMenuItem',
+  componentName: 'TjMenuItem',
 
-  components: { ElTooltip },
+  components: { TjTooltip },
 
   props: {
     index: {
@@ -97,7 +97,7 @@ export default defineComponent({
       return rootMenu.props.mode
     })
     const isNested = computed(() => {
-      return parentMenu.value.type.name !== 'ElMenu'
+      return parentMenu.value.type.name !== 'TjMenu'
     })
 
     const itemStyle = computed(() => {

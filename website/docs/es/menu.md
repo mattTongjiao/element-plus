@@ -9,169 +9,183 @@ Top bar NavMenu puede ser usado en distinto escenarios.
 :::demo Por defecto el menú es vertical, pero puede hacerlo horizontal asignando a la propiedad `mode` el valor 'horizontal'. Además, puede utilizar el componente de submenú para crear un menú de segundo nivel. Menú provee `background-color`, `text-color` y `active-text-color` para customizar los colores.
 
 ```html
-<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-  <el-menu-item index="1">Processing Center</el-menu-item>
-  <el-submenu index="2">
+<tj-menu
+  :default-active="activeIndex"
+  class="tj-menu-demo"
+  mode="horizontal"
+  @select="handleSelect"
+>
+  <tj-menu-item index="1">Processing Center</tj-menu-item>
+  <tj-submenu index="2">
     <template #title>Workspace</template>
-    <el-menu-item index="2-1">item one</el-menu-item>
-    <el-menu-item index="2-2">item two</el-menu-item>
-    <el-menu-item index="2-3">item three</el-menu-item>
-    <el-submenu index="2-4">
+    <tj-menu-item index="2-1">item one</tj-menu-item>
+    <tj-menu-item index="2-2">item two</tj-menu-item>
+    <tj-menu-item index="2-3">item three</tj-menu-item>
+    <tj-submenu index="2-4">
       <template #title>item four</template>
-      <el-menu-item index="2-4-1">item one</el-menu-item>
-      <el-menu-item index="2-4-2">item two</el-menu-item>
-      <el-menu-item index="2-4-3">item three</el-menu-item>
-    </el-submenu>
-  </el-submenu>
-  <el-menu-item index="3" disabled>Info</el-menu-item>
-  <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">Orders</a></el-menu-item>
-</el-menu>
+      <tj-menu-item index="2-4-1">item one</tj-menu-item>
+      <tj-menu-item index="2-4-2">item two</tj-menu-item>
+      <tj-menu-item index="2-4-3">item three</tj-menu-item>
+    </tj-submenu>
+  </tj-submenu>
+  <tj-menu-item index="3" disabled>Info</tj-menu-item>
+  <tj-menu-item index="4"
+    ><a href="https://www.ele.me" target="_blank">Orders</a></tj-menu-item
+  >
+</tj-menu>
 <div class="line"></div>
-<el-menu
+<tj-menu
   :default-active="activeIndex2"
-  class="el-menu-demo"
+  class="tj-menu-demo"
   mode="horizontal"
   @select="handleSelect"
   background-color="#545c64"
   text-color="#fff"
-  active-text-color="#ffd04b">
-  <el-menu-item index="1">Processing Center</el-menu-item>
-  <el-submenu index="2">
+  active-text-color="#ffd04b"
+>
+  <tj-menu-item index="1">Processing Center</tj-menu-item>
+  <tj-submenu index="2">
     <template #title>Workspace</template>
-    <el-menu-item index="2-1">item one</el-menu-item>
-    <el-menu-item index="2-2">item two</el-menu-item>
-    <el-menu-item index="2-3">item three</el-menu-item>
-    <el-submenu index="2-4">
+    <tj-menu-item index="2-1">item one</tj-menu-item>
+    <tj-menu-item index="2-2">item two</tj-menu-item>
+    <tj-menu-item index="2-3">item three</tj-menu-item>
+    <tj-submenu index="2-4">
       <template #title>item four</template>
-      <el-menu-item index="2-4-1">item one</el-menu-item>
-      <el-menu-item index="2-4-2">item two</el-menu-item>
-      <el-menu-item index="2-4-3">item three</el-menu-item>
-    </el-submenu>
-  </el-submenu>
-  <el-menu-item index="3" disabled>Info</el-menu-item>
-  <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">Orders</a></el-menu-item>
-</el-menu>
+      <tj-menu-item index="2-4-1">item one</tj-menu-item>
+      <tj-menu-item index="2-4-2">item two</tj-menu-item>
+      <tj-menu-item index="2-4-3">item three</tj-menu-item>
+    </tj-submenu>
+  </tj-submenu>
+  <tj-menu-item index="3" disabled>Info</tj-menu-item>
+  <tj-menu-item index="4"
+    ><a href="https://www.ele.me" target="_blank">Orders</a></tj-menu-item
+  >
+</tj-menu>
 
 <script>
   export default {
     data() {
       return {
         activeIndex: '1',
-        activeIndex2: '1'
-      };
+        activeIndex2: '1',
+      }
     },
     methods: {
       handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
+        console.log(key, keyPath)
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Side bar
 
 NavMenu vertical con sub-menús.
 
-:::demo Puede utilizar el componente `el-menu-item-group` para crear un grupo de menú, y el nombre del grupo estará determinado por la propiedad `title` o la propiedad `slot`.
+:::demo Puede utilizar el componente `tj-menu-item-group` para crear un grupo de menú, y el nombre del grupo estará determinado por la propiedad `title` o la propiedad `slot`.
 
 ```html
-<el-row class="tac">
-  <el-col :span="12">
+<tj-row class="tac">
+  <tj-col :span="12">
     <h5>Default colors</h5>
-    <el-menu
+    <tj-menu
       default-active="2"
-      class="el-menu-vertical-demo"
+      class="tj-menu-vertical-demo"
       @open="handleOpen"
-      @close="handleClose">
-      <el-submenu index="1">
+      @close="handleClose"
+    >
+      <tj-submenu index="1">
         <template #title>
-          <i class="el-icon-location"></i>
+          <i class="tj-icon-location"></i>
           <span>Navigator One</span>
         </template>
-        <el-menu-item-group title="Group One">
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item one</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
+        <tj-menu-item-group title="Group One">
+          <tj-menu-item index="1-1">item one</tj-menu-item>
+          <tj-menu-item index="1-2">item one</tj-menu-item>
+        </tj-menu-item-group>
+        <tj-menu-item-group title="Group Two">
+          <tj-menu-item index="1-3">item three</tj-menu-item>
+        </tj-menu-item-group>
+        <tj-submenu index="1-4">
           <template #title>item four</template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
+          <tj-menu-item index="1-4-1">item one</tj-menu-item>
+        </tj-submenu>
+      </tj-submenu>
+      <tj-menu-item index="2">
+        <i class="tj-icon-menu"></i>
         <span>Navigator Two</span>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
+      </tj-menu-item>
+      <tj-menu-item index="3" disabled>
+        <i class="tj-icon-document"></i>
         <span>Navigator Three</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
+      </tj-menu-item>
+      <tj-menu-item index="4">
+        <i class="tj-icon-setting"></i>
         <span>Navigator Four</span>
-      </el-menu-item>
-    </el-menu>
-  </el-col>
-  <el-col :span="12">
+      </tj-menu-item>
+    </tj-menu>
+  </tj-col>
+  <tj-col :span="12">
     <h5>Custom colors</h5>
-    <el-menu
+    <tj-menu
       default-active="2"
-      class="el-menu-vertical-demo"
+      class="tj-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
       background-color="#545c64"
       text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-submenu index="1">
+      active-text-color="#ffd04b"
+    >
+      <tj-submenu index="1">
         <template #title>
-          <i class="el-icon-location"></i>
+          <i class="tj-icon-location"></i>
           <span>Navigator One</span>
         </template>
-        <el-menu-item-group title="Group One">
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item one</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
+        <tj-menu-item-group title="Group One">
+          <tj-menu-item index="1-1">item one</tj-menu-item>
+          <tj-menu-item index="1-2">item one</tj-menu-item>
+        </tj-menu-item-group>
+        <tj-menu-item-group title="Group Two">
+          <tj-menu-item index="1-3">item three</tj-menu-item>
+        </tj-menu-item-group>
+        <tj-submenu index="1-4">
           <template #title>item four</template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
+          <tj-menu-item index="1-4-1">item one</tj-menu-item>
+        </tj-submenu>
+      </tj-submenu>
+      <tj-menu-item index="2">
+        <i class="tj-icon-menu"></i>
         <span>Navigator Two</span>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
+      </tj-menu-item>
+      <tj-menu-item index="3" disabled>
+        <i class="tj-icon-document"></i>
         <span>Navigator Three</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
+      </tj-menu-item>
+      <tj-menu-item index="4">
+        <i class="tj-icon-setting"></i>
         <span>Navigator Four</span>
-      </el-menu-item>
-    </el-menu>
-  </el-col>
-</el-row>
+      </tj-menu-item>
+    </tj-menu>
+  </tj-col>
+</tj-row>
 
 <script>
   export default {
     methods: {
       handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+        console.log(key, keyPath)
       },
       handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
+        console.log(key, keyPath)
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Collapse
@@ -179,46 +193,53 @@ NavMenu vertical con sub-menús.
 NavMenu vertical puede ser colapsado.
 
 :::demo
+
 ```html
-<el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-  <el-radio-button :label="false">expand</el-radio-button>
-  <el-radio-button :label="true">collapse</el-radio-button>
-</el-radio-group>
-<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-  <el-submenu index="1">
+<tj-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+  <tj-radio-button :label="false">expand</tj-radio-button>
+  <tj-radio-button :label="true">collapse</tj-radio-button>
+</tj-radio-group>
+<tj-menu
+  default-active="2"
+  class="tj-menu-vertical-demo"
+  @open="handleOpen"
+  @close="handleClose"
+  :collapse="isCollapse"
+>
+  <tj-submenu index="1">
     <template #title>
-      <i class="el-icon-location"></i>
+      <i class="tj-icon-location"></i>
       <span>Navigator One</span>
     </template>
-    <el-menu-item-group>
+    <tj-menu-item-group>
       <template #title><span>Group One</span></template>
-      <el-menu-item index="1-1">item one</el-menu-item>
-      <el-menu-item index="1-2">item two</el-menu-item>
-    </el-menu-item-group>
-    <el-menu-item-group title="Group Two">
-      <el-menu-item index="1-3">item three</el-menu-item>
-    </el-menu-item-group>
-    <el-submenu index="1-4">
+      <tj-menu-item index="1-1">item one</tj-menu-item>
+      <tj-menu-item index="1-2">item two</tj-menu-item>
+    </tj-menu-item-group>
+    <tj-menu-item-group title="Group Two">
+      <tj-menu-item index="1-3">item three</tj-menu-item>
+    </tj-menu-item-group>
+    <tj-submenu index="1-4">
       <template #title><span>item four</span></template>
-      <el-menu-item index="1-4-1">item one</el-menu-item>
-    </el-submenu>
-  </el-submenu>
-  <el-menu-item index="2">
-    <i class="el-icon-menu"></i>
+      <tj-menu-item index="1-4-1">item one</tj-menu-item>
+    </tj-submenu>
+  </tj-submenu>
+  <tj-menu-item index="2">
+    <i class="tj-icon-menu"></i>
     <template #title>Navigator Two</template>
-  </el-menu-item>
-  <el-menu-item index="3" disabled>
-    <i class="el-icon-document"></i>
+  </tj-menu-item>
+  <tj-menu-item index="3" disabled>
+    <i class="tj-icon-document"></i>
     <template #title>Navigator Three</template>
-  </el-menu-item>
-  <el-menu-item index="4">
-    <i class="el-icon-setting"></i>
+  </tj-menu-item>
+  <tj-menu-item index="4">
+    <i class="tj-icon-setting"></i>
     <template #title>Navigator Four</template>
-  </el-menu-item>
-</el-menu>
+  </tj-menu-item>
+</tj-menu>
 
 <style>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
+  .tj-menu-vertical-demo:not(.tj-menu--collapse) {
     width: 200px;
     min-height: 400px;
   }
@@ -228,73 +249,81 @@ NavMenu vertical puede ser colapsado.
   export default {
     data() {
       return {
-        isCollapse: true
-      };
+        isCollapse: true,
+      }
     },
     methods: {
       handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+        console.log(key, keyPath)
       },
       handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
+        console.log(key, keyPath)
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Atributos Menu
-| Atributo          | Descripción                              | Tipo    | Valores aceptados     | Por defecto |
-| ----------------- | ---------------------------------------- | ------- | --------------------- | ----------- |
-| mode              | modo de presentación del menú            | string  | horizontal / vertical | vertical    |
-| collapse          | si el menú está colapsado (solo en modo vertical) | boolean | —                     | false       |
-| background-color  | color de fondo del menú (formato hexadecimal) | string  | —                     | #ffffff     |
-| text-color        | color de texto del menú (formato hexadecimal) | string  | —                     | #303133     |
-| active-text-color | color de text del menu-item activo (formato hexadecimal) | string  | —                     | #409EFF     |
-| default-active    | índice del menu-item activo              | string  | —                     | —           |
-| default-openeds   | arreglo que contiene las llaves del sub-menus activo | Array   | —                     | —           |
-| unique-opened     | si solo un submenu puede ser activo      | boolean | —                     | false       |
-| menu-trigger      | como dispara eventos sub-menus, solo funciona cuando `mode` es 'horizontal' | string  | hover / click      | hover   |
-| router            | si el modo `vue-router` está activado. Si es verdadero, el índice será usado como 'path' para activar la ruta | boolean | —                     | false       |
-| collapse-transition  | si se debe permitir collapse transition | boolean   | — | true   |
+
+| Atributo            | Descripción                                                                                                   | Tipo    | Valores aceptados     | Por defecto |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- | ------- | --------------------- | ----------- |
+| mode                | modo de presentación del menú                                                                                 | string  | horizontal / vertical | vertical    |
+| collapse            | si el menú está colapsado (solo en modo vertical)                                                             | boolean | —                     | false       |
+| background-color    | color de fondo del menú (formato hexadecimal)                                                                 | string  | —                     | #ffffff     |
+| text-color          | color de texto del menú (formato hexadecimal)                                                                 | string  | —                     | #303133     |
+| active-text-color   | color de text del menu-item activo (formato hexadecimal)                                                      | string  | —                     | #409EFF     |
+| default-active      | índice del menu-item activo                                                                                   | string  | —                     | —           |
+| default-openeds     | arreglo que contiene las llaves del sub-menus activo                                                          | Array   | —                     | —           |
+| unique-opened       | si solo un submenu puede ser activo                                                                           | boolean | —                     | false       |
+| menu-trigger        | como dispara eventos sub-menus, solo funciona cuando `mode` es 'horizontal'                                   | string  | hover / click         | hover       |
+| router              | si el modo `vue-router` está activado. Si es verdadero, el índice será usado como 'path' para activar la ruta | boolean | —                     | false       |
+| collapse-transition | si se debe permitir collapse transition                                                                       | boolean | —                     | true        |
 
 ### Métodos Menu
+
 | Métodos de evento | Descripción                   | Parámetros                             |
-| ---------------- | ----------------------------- | -------------------------------------- |
-| open             | abre un sub-menu específico   | index: índice del sub-menu para abrir  |
-| close            | cierra un sub-menu específico | index: índice del sub-menu para cerrar |
+| ----------------- | ----------------------------- | -------------------------------------- |
+| open              | abre un sub-menu específico   | index: índice del sub-menu para abrir  |
+| close             | cierra un sub-menu específico | index: índice del sub-menu para cerrar |
 
 ### Eventos Menu
-| Nombre de evento | Descripción                              | Parámetros                               |
-| ---------------- | ---------------------------------------- | ---------------------------------------- |
-| select           | callback ejecutado cuando el menú es activado | index: índice del menú activado, indexPath: index path del menú activado |
+
+| Nombre de evento | Descripción                                   | Parámetros                                                                         |
+| ---------------- | --------------------------------------------- | ---------------------------------------------------------------------------------- |
+| select           | callback ejecutado cuando el menú es activado | index: índice del menú activado, indexPath: index path del menú activado           |
 | open             | callback ejecutado cuando sub-menu se expande | index: índice del sub-menu expandido, indexPath: index path del sub-menu expandido |
-| close            | callback ejecutado cuando sub-menu colapsa | index: índice del sub-menu colapsado, indexPath: index path del menú colapsado |
+| close            | callback ejecutado cuando sub-menu colapsa    | index: índice del sub-menu colapsado, indexPath: index path del menú colapsado     |
 
 ### Eventos Menu-Item
-| Nombre de evento | Descripción                              | Parámetros                 |
-| ---------------- | ---------------------------------------- | -------------------------- |
+
+| Nombre de evento | Descripción                                             | Parámetros                 |
+| ---------------- | ------------------------------------------------------- | -------------------------- |
 | click            | callback ejecutado cuando se hace click sobre menu-item | el: instancia de menu-item |
 
 ### Atributos SubMenu
-| Atributo     | Descripción                              | Tipo   | Valores aceptados | Por defecto |
-| ------------ | ---------------------------------------- | ------ | ----------------- | ----------- |
-| index        | identificador único                      | string/null | —            | null        |
-| popper-class | nombre personalizado de la clase del menú popup | string | —                 | —           |
-| show-timeout | tiempo de espera antes de mostrar un submenú | number | —                 | 300         |
-| hide-timeout | tiempo de espera antes de ocultar un submenú | number | —                 | 300         |
-| disabled | si esta `disabled` el sub-menu | boolean | — | false |
-| popper-append-to-body | si se debe agregar el menú emergente al cuerpo. Si la posición del menú es incorrecta, puede intentar ajustar este prop | boolean | - | level one Submenu: true / other Submenus: false |
+
+| Atributo              | Descripción                                                                                                             | Tipo        | Valores aceptados | Por defecto                                     |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------- | ----------------------------------------------- |
+| index                 | identificador único                                                                                                     | string/null | —                 | null                                            |
+| popper-class          | nombre personalizado de la clase del menú popup                                                                         | string      | —                 | —                                               |
+| show-timeout          | tiempo de espera antes de mostrar un submenú                                                                            | number      | —                 | 300                                             |
+| hide-timeout          | tiempo de espera antes de ocultar un submenú                                                                            | number      | —                 | 300                                             |
+| disabled              | si esta `disabled` el sub-menu                                                                                          | boolean     | —                 | false                                           |
+| popper-append-to-body | si se debe agregar el menú emergente al cuerpo. Si la posición del menú es incorrecta, puede intentar ajustar este prop | boolean     | -                 | level one Submenu: true / other Submenus: false |
 
 ### Atributos Menu-Item
-| Atributo | Descripción         | Tipo   | Valores aceptados | Por defecto |
-| -------- | ------------------- | ------ | ----------------- | ----------- |
-| index    | identificador único | string | —                 | —           |
-| route    | Objeto Vue Router   | object | —                 | —           |
-| disabled | si esta `disabled` | boolean | — | false |
+
+| Atributo | Descripción         | Tipo    | Valores aceptados | Por defecto |
+| -------- | ------------------- | ------- | ----------------- | ----------- |
+| index    | identificador único | string  | —                 | —           |
+| route    | Objeto Vue Router   | object  | —                 | —           |
+| disabled | si esta `disabled`  | boolean | —                 | false       |
 
 ### Atributos Menu-Group
+
 | Atributo | Descripción      | Tipo   | Valores aceptados | Por defecto |
 | -------- | ---------------- | ------ | ----------------- | ----------- |
 | title    | título del grupo | string | —                 | —           |

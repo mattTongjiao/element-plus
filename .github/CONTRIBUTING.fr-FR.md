@@ -1,18 +1,18 @@
-# Guide à destination des contributeurs d'Element Plus
+# Guide à destination des contributeurs d'Tongjiao UI
 
-Bonjour! Merci d'avoir choisi Element Plus.
+Bonjour! Merci d'avoir choisi Tongjiao UI.
 
-Element Plus est une bibliothèque de composants basée sur Vue 3.0 pour les développeurs, les designers et les chefs de produits.
+Tongjiao UI est une bibliothèque de composants basée sur Vue 3.0 pour les développeurs, les designers et les chefs de produits.
 
-Nous sommes ravis que vous souhaitiez contribuer à Element Plus. Avant de soumettre votre contribution, veuillez vous assurer de prendre un moment pour lire les indications suivantes.
+Nous sommes ravis que vous souhaitiez contribuer à Tongjiao UI. Avant de soumettre votre contribution, veuillez vous assurer de prendre un moment pour lire les indications suivantes.
 
 ## Concernant les issues
 
-- Les issues concernent exclusivement les bugs, les demandes de fonctionnalités et les sujets liés à la conception. Les questions concernant d'autres sujets peuvent être fermées directement. Si vous avez des questions à propos de l'utilisation d'Element Plus, veuillez vous rendre sur [Discord](https://discord.link/ElementPlus) pour obtenir de l'aide.
+- Les issues concernent exclusivement les bugs, les demandes de fonctionnalités et les sujets liés à la conception. Les questions concernant d'autres sujets peuvent être fermées directement. Si vous avez des questions à propos de l'utilisation d'Tongjiao UI, veuillez vous rendre sur [Discord](https://discord.link/ElementPlus) pour obtenir de l'aide.
 
 - Avant de soumettre une issue, veuillez vérifier si des problèmes similaires n'ont pas déjà été signalés.
 
-- Veuillez spécifier la version de `Element Plus` et `Vue` que vous utilisez, et fournir des informations sur le système d'exploitation et le navigateur. [JSFiddle](https://jsfiddle.net/) est recommandé afin de construire une démo pour que votre problème puisse être reproduit clairement.
+- Veuillez spécifier la version de `Tongjiao UI` et `Vue` que vous utilisez, et fournir des informations sur le système d'exploitation et le navigateur. [JSFiddle](https://jsfiddle.net/) est recommandé afin de construire une démo pour que votre problème puisse être reproduit clairement.
 
 ## Concernant les pull requests
 
@@ -31,4 +31,3 @@ Nous sommes ravis que vous souhaitiez contribuer à Element Plus. Avant de soume
 - Si votre PR corrige un bug, veuillez fournir une description du bug en question.
 
 - La fusion d'un PR nécessite deux responsables: l'un approuve les modifications après révision, puis l'autre les révise et les fusionne.
-

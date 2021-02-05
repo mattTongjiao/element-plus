@@ -10,7 +10,7 @@ Scrollez en bas de la page pour voir le bouton en bas à droite.
 ```html
 <template>
   Scrollez en bas de la page pour voir le bouton en bas à droite.
-  <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
+  <tj-backtop target=".page-component__scroll .tj-scrollbar__wrap"></tj-backtop>
 </template>
 ```
 
@@ -24,7 +24,10 @@ La zone d'affichage est de 40px \* 40px.
 ```html
 <template>
   Scrollez en bas de la page pour voir le bouton en bas à droite.
-  <el-backtop target=".page-component__scroll .el-scrollbar__wrap" :bottom="100">
+  <tj-backtop
+    target=".page-component__scroll .tj-scrollbar__wrap"
+    :bottom="100"
+  >
     <div
       style="{
         height: 100%;
@@ -38,7 +41,7 @@ La zone d'affichage est de 40px \* 40px.
     >
       UP
     </div>
-  </el-backtop>
+  </tj-backtop>
 </template>
 ```
 
@@ -46,15 +49,15 @@ La zone d'affichage est de 40px \* 40px.
 
 ### Attributes
 
-| Attribut          | Description                                                         | Type            | Valeurs acceptées | Défaut |
-| ----------------- | ------------------------------------------------------------------- | --------------- | --------------- | ------- |
-| target            | La cible pour déclencher le scroll                                  | string          |                 |         |
-| visibility-height | Le bouton ne s'affichera pas tant que la hauteur de défilement n'aura pas atteint cette valeur. |  number |    | 200     |
-| right             | La distance du bord droit                                           | number |                 | 40      |
-| bottom            | La distance du bord gauche                                          | number |                 | 40      |
+| Attribut          | Description                                                                                     | Type   | Valeurs acceptées | Défaut |
+| ----------------- | ----------------------------------------------------------------------------------------------- | ------ | ----------------- | ------ |
+| target            | La cible pour déclencher le scroll                                                              | string |                   |        |
+| visibility-height | Le bouton ne s'affichera pas tant que la hauteur de défilement n'aura pas atteint cette valeur. | number |                   | 200    |
+| right             | La distance du bord droit                                                                       | number |                   | 40     |
+| bottom            | La distance du bord gauche                                                                      | number |                   | 40     |
 
 ### Events
 
-| Event Name | Description         | Parameters  |
-| ---------- | ------------------- | ----------- |
+| Event Name | Description                             | Parameters  |
+| ---------- | --------------------------------------- | ----------- |
 | click      | Se déclenche quand l'utilisateur clique | click event |

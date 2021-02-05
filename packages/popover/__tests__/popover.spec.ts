@@ -36,14 +36,14 @@ describe('Popover.vue', () => {
       },
     })
 
-    expect(wrapper.find('.el-popover').attributes('style')).toContain('width: 200px')
+    expect(wrapper.find('.tj-popover').attributes('style')).toContain('width: 200px')
 
     await wrapper.setProps({
       width: '100vw',
     })
 
 
-    expect(wrapper.find('.el-popover').attributes('style')).toContain('width: 100vw')
+    expect(wrapper.find('.tj-popover').attributes('style')).toContain('width: 100vw')
   })
 
   test('the content should be overrode by slots', () => {
@@ -75,7 +75,7 @@ describe('Popover.vue', () => {
 
     expect(
       Number.parseInt(
-        window.getComputedStyle(wrapper.find('.el-popper').element).zIndex,
+        window.getComputedStyle(wrapper.find('.tj-popper').element).zIndex,
       ),
     ).toBeLessThanOrEqual(PopupManager.zIndex)
   })

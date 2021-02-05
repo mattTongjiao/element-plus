@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 
 const _mount = (template: string, data, otherObj?) => mount({
   components: {
-    'el-time-picker': TimePicker,
+    'tj-time-picker': TimePicker,
   },
   template,
   data,
@@ -35,7 +35,7 @@ afterEach(() => {
 
 describe('TimePicker', () => {
   it('create & custom class & style', async () => {
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
     :placeholder="placeholder"
     :readonly="readonly"
     :style="{color:'red'}"
@@ -45,13 +45,13 @@ describe('TimePicker', () => {
     const input = wrapper.find('input')
     expect(input.attributes('placeholder')).toBe('test_')
     expect(input.attributes('readonly')).not.toBeUndefined()
-    const outterInput = wrapper.find('.el-input')
+    const outterInput = wrapper.find('.tj-input')
     expect(outterInput.classes()).toContain('customClass')
     expect(outterInput.attributes().style).toBeDefined()
   })
 
   it('set format && default value && set AM/PM spinner && no $attr to panel', async () => {
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         :format="format"
         v-model="value"
         class="customClass"
@@ -63,73 +63,73 @@ describe('TimePicker', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    const list = document.querySelectorAll('.el-time-spinner__list')
-    const hoursEl = list[0]
-    const items = hoursEl.querySelectorAll('.el-time-spinner__item')
+    const list = document.querySelectorAll('.tj-time-spinner__list')
+    const hoursTj = list[0]
+    const items = hoursTj.querySelectorAll('.tj-time-spinner__item')
     expect(items[0].textContent).toBe('12 AM') // am pm
     expect(items[1].textContent).toBe('01 AM')
     expect(items[12].textContent).toBe('12 PM')
     expect(items[15].textContent).toBe('03 PM')
-    const times = document.querySelectorAll('.el-time-spinner__list .active')
+    const times = document.querySelectorAll('.tj-time-spinner__list .active')
     expect(times[0].textContent).toBe('06 PM')
     expect(times[1].textContent).toBe('40') // default value
     expect(times[2].textContent).toBe('00')
-    const panel = document.querySelector('.el-time-panel') as any
+    const panel = document.querySelector('.tj-time-panel') as any
     expect(panel.classList).not.toContain('customClass')
   })
 
   it('select time', async () => {
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
       />`, () => ({ value: '' }))
     const input = wrapper.find('input')
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    const list = document.querySelectorAll('.el-time-spinner__list')
-    const hoursEl = list[0]
-    const minutesEl = list[1]
-    const secondsEl = list[2]
-    const hourEl = hoursEl.querySelectorAll('.el-time-spinner__item')[4] as any
-    const minuteEl = minutesEl.querySelectorAll('.el-time-spinner__item')[36]  as any
-    const secondEl = secondsEl.querySelectorAll('.el-time-spinner__item')[20]  as any
+    const list = document.querySelectorAll('.tj-time-spinner__list')
+    const hoursTj = list[0]
+    const minutesTj = list[1]
+    const secondsTj = list[2]
+    const hourTj = hoursTj.querySelectorAll('.tj-time-spinner__item')[4] as any
+    const minuteTj = minutesTj.querySelectorAll('.tj-time-spinner__item')[36]  as any
+    const secondTj = secondsTj.querySelectorAll('.tj-time-spinner__item')[20]  as any
     // click hour, minute, second one at a time.
-    hourEl.click()
+    hourTj.click()
     await nextTick()
-    minuteEl.click()
+    minuteTj.click()
     await nextTick()
-    secondEl.click()
+    secondTj.click()
     await nextTick()
     const vm = wrapper.vm as any
     const date = vm.value
-    expect(hourEl.classList.contains('active')).toBeTruthy()
-    expect(minuteEl.classList.contains('active')).toBeTruthy()
-    expect(secondEl.classList.contains('active')).toBeTruthy()
+    expect(hourTj.classList.contains('active')).toBeTruthy()
+    expect(minuteTj.classList.contains('active')).toBeTruthy()
+    expect(secondTj.classList.contains('active')).toBeTruthy()
     expect(date.getHours()).toBe(4)
     expect(date.getMinutes()).toBe(36)
     expect(date.getSeconds()).toBe(20)
   })
 
   it('click confirm / cancel button', async () => {
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
       />`, () => ({ value: '' }))
     const input = wrapper.find('input')
     input.trigger('blur')
     input.trigger('focus')
     await nextTick();
-    (document.querySelector('.el-time-panel__btn.cancel') as any).click()
+    (document.querySelector('.tj-time-panel__btn.cancel') as any).click()
     const vm = wrapper.vm as any
     expect(vm.value).toBe('')
     input.trigger('blur')
     input.trigger('focus')
     await nextTick();
-    (document.querySelector('.el-time-panel__btn.confirm') as any).click()
+    (document.querySelector('.tj-time-panel__btn.confirm') as any).click()
     expect(vm.value instanceof Date).toBeTruthy()
   })
 
   it('set format', async () => {
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
         format='HH:mm'
       />`, () => ({ value: '' }))
@@ -137,7 +137,7 @@ describe('TimePicker', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    const spinnerDom = document.querySelectorAll('.el-time-spinner__wrapper')
+    const spinnerDom = document.querySelectorAll('.tj-time-spinner__wrapper')
     const minutesDom = spinnerDom[1]
     const secondsDom = spinnerDom[2]
     expect(minutesDom).not.toBeUndefined()
@@ -148,7 +148,7 @@ describe('TimePicker', () => {
     const changeHandler = jest.fn()
     const focusHandler = jest.fn()
     const blurHandler = jest.fn()
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
         @change="onChange"
         @focus="onFocus"
@@ -171,13 +171,13 @@ describe('TimePicker', () => {
     input.trigger('focus')
     await nextTick()
     expect(focusHandler).toHaveBeenCalledTimes(1)
-    const list = document.querySelectorAll('.el-time-spinner__list')
-    const hoursEl = list[0]
-    const hourEl = hoursEl.querySelectorAll('.el-time-spinner__item')[4] as any
-    hourEl.click()
+    const list = document.querySelectorAll('.tj-time-spinner__list')
+    const hoursTj = list[0]
+    const hourTj = hoursTj.querySelectorAll('.tj-time-spinner__item')[4] as any
+    hourTj.click()
     await nextTick()
     expect(changeHandler).toHaveBeenCalledTimes(1);
-    (document.querySelector('.el-time-panel__btn.cancel') as any).click()
+    (document.querySelector('.tj-time-panel__btn.cancel') as any).click()
     await nextTick()
     expect(blurHandler).toHaveBeenCalledTimes(1)
   })
@@ -185,7 +185,7 @@ describe('TimePicker', () => {
   it('selectableRange ', async () => {
     // ['17:30:00 - 18:30:00', '18:50:00 - 20:30:00', '21:00:00 - 22:00:00']
     const disabledHoursArr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,23]
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
         :disabled-hours="disabledHours"
         :disabled-minutes="disabledMinutes"
@@ -227,22 +227,22 @@ describe('TimePicker', () => {
     input.trigger('focus')
     await nextTick()
 
-    const list = document.querySelectorAll('.el-time-spinner__list')
-    const hoursEl = list[0]
-    const minutesEl = list[1]
-    const secondsEl = list[2]
-    const disabledHours = getSpinnerTextAsArray(hoursEl, '.disabled')
+    const list = document.querySelectorAll('.tj-time-spinner__list')
+    const hoursTj = list[0]
+    const minutesTj = list[1]
+    const secondsTj = list[2]
+    const disabledHours = getSpinnerTextAsArray(hoursTj, '.disabled')
     expect(disabledHours).toEqual(disabledHoursArr)
-    const hourSpinners = hoursEl.querySelectorAll('.el-time-spinner__item');
+    const hourSpinners = hoursTj.querySelectorAll('.tj-time-spinner__item');
     (hourSpinners[18] as any).click()
     await nextTick()
-    const disabledMinutes = getSpinnerTextAsArray(minutesEl, '.disabled')
+    const disabledMinutes = getSpinnerTextAsArray(minutesTj, '.disabled')
     expect(disabledMinutes.every(t => t > 30 && t < 50)).toBeTruthy()
     expect(disabledMinutes.length).toEqual(19);
     (hourSpinners[22] as any).click()
     await nextTick()
-    const enabledMinutes = getSpinnerTextAsArray(minutesEl, ':not(.disabled)')
-    const enabledSeconds = getSpinnerTextAsArray(secondsEl, ':not(.disabled)')
+    const enabledMinutes = getSpinnerTextAsArray(minutesTj, ':not(.disabled)')
+    const enabledSeconds = getSpinnerTextAsArray(secondsTj, ':not(.disabled)')
     expect(enabledMinutes).toEqual([0])
     expect(enabledSeconds).toEqual([0])
   })
@@ -250,17 +250,17 @@ describe('TimePicker', () => {
 
 describe('TimePicker(range)', () => {
   it('create', async () => {
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
         size="mini"
         :is-range="true"
       />`, () => ({ value: [new Date(2016, 9, 10, 18, 40), new Date(2016, 9, 10, 19, 40)] }))
-    expect(wrapper.find('.el-range-editor--mini').exists()).toBeTruthy()
+    expect(wrapper.find('.tj-range-editor--mini').exists()).toBeTruthy()
     const input = wrapper.find('input')
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    const list = document.querySelectorAll('.el-time-spinner__list .el-time-spinner__item.active');
+    const list = document.querySelectorAll('.tj-time-spinner__list .tj-time-spinner__item.active');
 
     ['18','40','00','19','40','00'].forEach((_, i) => {
       expect(list[i].textContent).toBe(_)
@@ -269,7 +269,7 @@ describe('TimePicker(range)', () => {
 
   it('default value', async() => {
     const defaultValue = [new Date(2000, 9, 1, 10, 20, 0), new Date(2000, 9, 1, 11, 10, 0)]
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
         :default-value="defaultValue"
         :is-range="true"
@@ -281,7 +281,7 @@ describe('TimePicker(range)', () => {
     input.trigger('focus')
     await nextTick()
 
-    const list = document.querySelectorAll('.el-time-spinner__list .el-time-spinner__item.active');
+    const list = document.querySelectorAll('.tj-time-spinner__list .tj-time-spinner__item.active');
 
     ['10','20','00','11','10','00'].forEach((_, i) => {
       expect(list[i].textContent).toBe(_)
@@ -289,7 +289,7 @@ describe('TimePicker(range)', () => {
   })
 
   it('cancel button', async () => {
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
         is-range
       />`, () => ({ value: '' }))
@@ -298,14 +298,14 @@ describe('TimePicker(range)', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick();
-    (document.querySelector('.el-time-panel__btn.cancel') as any).click()
+    (document.querySelector('.tj-time-panel__btn.cancel') as any).click()
     await nextTick()
     const vm = wrapper.vm as any
     expect(vm.value).toBe('')
     input.trigger('blur')
     input.trigger('focus')
     await nextTick();
-    (document.querySelector('.el-time-panel__btn.confirm') as any).click()
+    (document.querySelector('.tj-time-panel__btn.confirm') as any).click()
     expect(vm.value instanceof Array).toBeTruthy()
     vm.value.forEach(_ => {
       expect(_ instanceof Date).toBeTruthy()
@@ -314,7 +314,7 @@ describe('TimePicker(range)', () => {
 
   it('selectableRange ', async () => {
     // left ['08:00:00 - 12:59:59'] right ['11:00:00 - 16:59:59']
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
         is-range
         :disabled-hours="disabledHours"
@@ -332,21 +332,21 @@ describe('TimePicker(range)', () => {
     input.trigger('focus')
     await nextTick()
 
-    const list = document.querySelectorAll('.el-time-spinner__list')
-    const leftHoursEl = list[0]
-    const leftEndbledHours = getSpinnerTextAsArray(leftHoursEl, ':not(.disabled)')
+    const list = document.querySelectorAll('.tj-time-spinner__list')
+    const leftHoursTj = list[0]
+    const leftEndbledHours = getSpinnerTextAsArray(leftHoursTj, ':not(.disabled)')
     expect(leftEndbledHours).toEqual([ 8, 9, 10, 11, 12 ])
-    const rightHoursEl = list[3]
-    const rightEndbledHours = getSpinnerTextAsArray(rightHoursEl, ':not(.disabled)')
+    const rightHoursTj = list[3]
+    const rightEndbledHours = getSpinnerTextAsArray(rightHoursTj, ':not(.disabled)')
     expect(rightEndbledHours).toEqual([ 11, 12, 13, 14, 15, 16 ]);
-    (leftHoursEl.querySelectorAll('.el-time-spinner__item')[12] as any).click()
+    (leftHoursTj.querySelectorAll('.tj-time-spinner__item')[12] as any).click()
     await nextTick()
-    const NextRightEndbledHours = getSpinnerTextAsArray(rightHoursEl, ':not(.disabled)')
+    const NextRightEndbledHours = getSpinnerTextAsArray(rightHoursTj, ':not(.disabled)')
     expect(NextRightEndbledHours).toEqual([ 12, 13, 14, 15, 16 ])
   })
 
   it('arrow key', async () => {
-    const wrapper = _mount(`<el-time-picker
+    const wrapper = _mount(`<tj-time-picker
         v-model="value"
         format="YYYY-MM-DD HH:mm:ss"
       />`, () => ({ value: new Date(2016, 9, 10, 18, 40) }))

@@ -10,16 +10,16 @@ import {
 } from 'vue'
 import { cellStarts } from '../config'
 import { mergeOptions, compose } from '../util'
-import ElCheckbox from '@element-plus/checkbox'
+import TjCheckbox from '@element-plus/checkbox'
 import { TableColumnCtx, TableColumn } from '../table.type'
 import useWatcher from './watcher-helper'
 import useRender from './render-helper'
 
 let columnIdSeed = 1
 export default defineComponent({
-  name: 'ElTableColumn',
+  name: 'TjTableColumn',
   components: {
-    ElCheckbox,
+    TjCheckbox,
   },
   props: {
     type: {
@@ -110,7 +110,7 @@ export default defineComponent({
       setColumnForcedProps,
       setColumnRenders,
       getPropsData,
-      getColumnElIndex,
+      getColumnTjIndex,
       realAlign,
     } = useRender(props, slots, owner)
 
@@ -187,7 +187,7 @@ export default defineComponent({
       const children = isSubColumn.value
         ? parent.vnode.el.children
         : parent.refs.hiddenColumns?.children
-      const getColumnIndex = () => getColumnElIndex(children || [], instance.vnode.el)
+      const getColumnIndex = () => getColumnTjIndex(children || [], instance.vnode.el)
       columnConfig.value.getColumnIndex = getColumnIndex
       const columnIndex = getColumnIndex()
       columnIndex > -1 && owner.value.store.commit(

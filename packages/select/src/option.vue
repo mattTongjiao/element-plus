@@ -1,11 +1,12 @@
 <template>
   <li
     v-show="visible"
-    class="el-select-dropdown__item"
+    class="tj-select-dropdown__item"
     :class="{
-      'selected': itemSelected,
+      selected: itemSelected,
       'is-disabled': isDisabled,
-      'hover': hover}"
+      hover: hover,
+    }"
     @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
   >
@@ -26,10 +27,9 @@ import {
 import { useOption } from './useOption'
 import { SelectOptionProxy } from './token'
 
-
 export default defineComponent({
-  name: 'ElOption',
-  componentName: 'ElOption',
+  name: 'TjOption',
+  componentName: 'TjOption',
 
   props: {
     value: {
@@ -61,10 +61,7 @@ export default defineComponent({
       hoverItem,
     } = useOption(props, states)
 
-    const {
-      visible,
-      hover,
-    } = toRefs(states)
+    const { visible, hover } = toRefs(states)
 
     const vm = getCurrentInstance().proxy
     select.onOptionCreate(vm)
@@ -74,14 +71,16 @@ export default defineComponent({
       let selectedOptions = select.props.multiple ? selected : [selected]
       let index = select.cachedOptions.indexOf(vm)
       let selectedIndex = selectedOptions.findIndex(item => {
-        return item.value === (vm as unknown as SelectOptionProxy).value
+        return item.value === ((vm as unknown) as SelectOptionProxy).value
       })
 
       // if option is not selected, remove it from cache
       if (index > -1 && selectedIndex < 0) {
         select.cachedOptions.splice(index, 1)
       }
-      select.onOptionDestroy(select.options.map(item => item.value).indexOf(props.value))
+      select.onOptionDestroy(
+        select.options.map(item => item.value).indexOf(props.value),
+      )
     })
 
     function selectOptionClick() {
@@ -102,5 +101,4 @@ export default defineComponent({
     }
   },
 })
-
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <el-popper
+  <tj-popper
     ref="tooltip"
     v-model:visible="tooltipVisible"
     :offset="0"
@@ -9,28 +9,28 @@
     effect="light"
     pure
     manual-mode
-    popper-class="el-table-filter"
+    popper-class="tj-table-filter"
     append-to-body
   >
     <template #default>
       <div v-if="multiple">
-        <div class="el-table-filter__content">
-          <el-scrollbar wrap-class="el-table-filter__wrap">
-            <el-checkbox-group
+        <div class="tj-table-filter__content">
+          <tj-scrollbar wrap-class="tj-table-filter__wrap">
+            <tj-checkbox-group
               v-model="filteredValue"
-              class="el-table-filter__checkbox-group"
+              class="tj-table-filter__checkbox-group"
             >
-              <el-checkbox
+              <tj-checkbox
                 v-for="filter in filters"
                 :key="filter.value"
                 :label="filter.value"
               >
                 {{ filter.text }}
-              </el-checkbox>
-            </el-checkbox-group>
-          </el-scrollbar>
+              </tj-checkbox>
+            </tj-checkbox-group>
+          </tj-scrollbar>
         </div>
-        <div class="el-table-filter__bottom">
+        <div class="tj-table-filter__bottom">
           <button
             :class="{ 'is-disabled': filteredValue.length === 0 }"
             :disabled="filteredValue.length === 0"
@@ -44,12 +44,12 @@
           </button>
         </div>
       </div>
-      <ul v-else class="el-table-filter__list">
+      <ul v-else class="tj-table-filter__list">
         <li
           :class="{
             'is-active': filterValue === undefined || filterValue === null,
           }"
-          class="el-table-filter__list-item"
+          class="tj-table-filter__list-item"
           @click="handleSelect(null)"
         >
           {{ t('el.table.clearFilter') }}
@@ -59,7 +59,7 @@
           :key="filter.value"
           :class="{ 'is-active': isActive(filter) }"
           :label="filter.value"
-          class="el-table-filter__list-item"
+          class="tj-table-filter__list-item"
           @click="handleSelect(filter.value)"
         >
           {{ filter.text }}
@@ -69,18 +69,18 @@
     <template #trigger>
       <span
         v-click-outside:[popperPaneRef]="hideFilterPanel"
-        class="el-table__column-filter-trigger el-none-outline"
+        class="tj-table__column-filter-trigger tj-none-outline"
         @click="showFilterPanel"
       >
         <i
           :class="[
-            'el-icon-arrow-down',
-            column.filterOpened ? 'el-icon-arrow-up' : '',
+            'tj-icon-arrow-down',
+            column.filterOpened ? 'tj-icon-arrow-up' : '',
           ]"
         ></i>
       </span>
     </template>
-  </el-popper>
+  </tj-popper>
 </template>
 
 <script lang="ts">
@@ -93,22 +93,22 @@ import {
   WritableComputedRef,
   PropType,
 } from 'vue'
-import ElPopper from '@element-plus/popper'
+import TjPopper from '@element-plus/popper'
 import { t } from '@element-plus/locale'
-import ElCheckbox from '@element-plus/checkbox'
-import ElCheckboxGroup from '@element-plus/checkbox-group'
-import ElScrollbar from '@element-plus/scrollbar'
+import TjCheckbox from '@element-plus/checkbox'
+import TjCheckboxGroup from '@element-plus/checkbox-group'
+import TjScrollbar from '@element-plus/scrollbar'
 import { ClickOutside } from '@element-plus/directives'
 
 import { Store, TableColumnCtx, TableHeader } from './table.type'
 
 export default defineComponent({
-  name: 'ElTableFilterPanel',
+  name: 'TjTableFilterPanel',
   components: {
-    ElCheckbox,
-    ElCheckboxGroup,
-    ElScrollbar,
-    ElPopper,
+    TjCheckbox,
+    TjCheckboxGroup,
+    TjScrollbar,
+    TjPopper,
   },
   directives: { ClickOutside },
   props: {

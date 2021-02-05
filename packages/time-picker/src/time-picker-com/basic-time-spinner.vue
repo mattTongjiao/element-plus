@@ -1,13 +1,13 @@
 <template>
-  <div class="el-time-spinner" :class="{ 'has-seconds': showSeconds }">
+  <div class="tj-time-spinner" :class="{ 'has-seconds': showSeconds }">
     <template v-if="!arrowControl">
-      <el-scrollbar
+      <tj-scrollbar
         v-for="item in spinnerItems"
         :key="item"
         :ref="getRefId(item)"
-        class="el-time-spinner__wrapper"
+        class="tj-time-spinner__wrapper"
         wrap-style="max-height: inherit;"
-        view-class="el-time-spinner__list"
+        view-class="tj-time-spinner__list"
         noresize
         tag="ul"
         @mouseenter="emitSelectRange(item)"
@@ -16,43 +16,58 @@
         <li
           v-for="(disabled, key) in listMap[item].value"
           :key="key"
-          class="el-time-spinner__item"
-          :class="{ 'active': key === timePartsMap[item].value, disabled }"
+          class="tj-time-spinner__item"
+          :class="{ active: key === timePartsMap[item].value, disabled }"
           @click="handleClick(item, { value: key, disabled })"
         >
           <template v-if="item === 'hours'">
-            {{ ('0' + (amPmMode ? (key % 12 || 12) : key )).slice(-2) }}{{ getAmPmFlag(key) }}
+            {{ ('0' + (amPmMode ? key % 12 || 12 : key)).slice(-2)
+            }}{{ getAmPmFlag(key) }}
           </template>
           <template v-else>
             {{ ('0' + key).slice(-2) }}
           </template>
         </li>
-      </el-scrollbar>
+      </tj-scrollbar>
     </template>
     <template v-if="arrowControl">
       <div
         v-for="item in spinnerItems"
         :key="item"
-        class="el-time-spinner__wrapper is-arrow"
+        class="tj-time-spinner__wrapper is-arrow"
         @mouseenter="emitSelectRange(item)"
       >
-        <i v-repeat-click="onDecreaseClick" class="el-time-spinner__arrow el-icon-arrow-up"></i>
-        <i v-repeat-click="onIncreaseClick" class="el-time-spinner__arrow el-icon-arrow-down"></i>
-        <ul class="el-time-spinner__list">
+        <i
+          v-repeat-click="onDecreaseClick"
+          class="tj-time-spinner__arrow tj-icon-arrow-up"
+        ></i>
+        <i
+          v-repeat-click="onIncreaseClick"
+          class="tj-time-spinner__arrow tj-icon-arrow-down"
+        ></i>
+        <ul class="tj-time-spinner__list">
           <li
             v-for="(time, key) in arrowListMap[item].value"
             :key="key"
-            class="el-time-spinner__item"
-            :class="{ 'active': time === timePartsMap[item].value, 'disabled': listMap[item].value[time] }"
+            class="tj-time-spinner__item"
+            :class="{
+              active: time === timePartsMap[item].value,
+              disabled: listMap[item].value[time],
+            }"
           >
-            {{ time === undefined ? '' : ('0' + (amPmMode ? (time % 12 || 12) : time )).slice(-2) + getAmPmFlag(time) }}
+            {{
+              time === undefined
+                ? ''
+                : ('0' + (amPmMode ? time % 12 || 12 : time)).slice(-2) +
+                  getAmPmFlag(time)
+            }}
           </li>
         </ul>
       </div>
     </template>
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import {
   defineComponent,
   ref,
@@ -66,17 +81,16 @@ import {
 import { Dayjs } from 'dayjs'
 import debounce from 'lodash/debounce'
 import { RepeatClick } from '@element-plus/directives'
-import ElScrollbar from '@element-plus/scrollbar'
+import TjScrollbar from '@element-plus/scrollbar'
 import { getTimeLists } from './useTimePicker'
 
 export default defineComponent({
-
   directives: {
     repeatClick: RepeatClick,
   },
 
   components: {
-    ElScrollbar,
+    TjScrollbar,
   },
 
   props: {
@@ -122,7 +136,9 @@ export default defineComponent({
     const listMinutesRef: Ref<Nullable<HTMLElement>> = ref(null)
     const listSecondsRef: Ref<Nullable<HTMLElement>> = ref(null)
     const listRefsMap = {
-      hours: listHoursRef, minutes: listMinutesRef, seconds: listSecondsRef,
+      hours: listHoursRef,
+      minutes: listMinutesRef,
+      seconds: listSecondsRef,
     }
 
     // computed
@@ -140,7 +156,9 @@ export default defineComponent({
       return props.spinnerDate.second()
     })
     const timePartsMap = computed(() => ({
-      hours, minutes, seconds,
+      hours,
+      minutes,
+      seconds,
     }))
     const hoursList = computed(() => {
       return getHoursList(props.role)
@@ -190,7 +208,7 @@ export default defineComponent({
       if (!shouldShowAmPm) return ''
       let isCapital = props.amPmMode === 'A'
       // todo locale
-      let content = (hour < 12) ? ' am' : ' pm'
+      let content = hour < 12 ? ' am' : ' pm'
       if (isCapital) content = content.toUpperCase()
       return content
     }
@@ -223,11 +241,14 @@ export default defineComponent({
       if (props.arrowControl) return
       const el = listRefsMap[type]
       if (el.value) {
-        el.value.$el.querySelector('.el-scrollbar__wrap').scrollTop = Math.max(0, value * typeItemHeight(type))
+        el.value.$el.querySelector('.tj-scrollbar__wrap').scrollTop = Math.max(
+          0,
+          value * typeItemHeight(type),
+        )
       }
     }
 
-    const typeItemHeight  = type => {
+    const typeItemHeight = type => {
       const el = listRefsMap[type]
       return el.value.$el.querySelector('li').offsetHeight
     }
@@ -260,23 +281,32 @@ export default defineComponent({
       const isDisabled = list[value]
       if (isDisabled) return
       switch (type) {
-        case 'hours': ctx.emit('change',
-          props.spinnerDate
-            .hour(value)
-            .minute(minutes.value)
-            .second(seconds.value))
+        case 'hours':
+          ctx.emit(
+            'change',
+            props.spinnerDate
+              .hour(value)
+              .minute(minutes.value)
+              .second(seconds.value),
+          )
           break
-        case 'minutes': ctx.emit('change',
-          props.spinnerDate
-            .hour(hours.value)
-            .minute(value)
-            .second(seconds.value))
+        case 'minutes':
+          ctx.emit(
+            'change',
+            props.spinnerDate
+              .hour(hours.value)
+              .minute(value)
+              .second(seconds.value),
+          )
           break
-        case 'seconds': ctx.emit('change',
-          props.spinnerDate
-            .hour(hours.value)
-            .minute(minutes.value)
-            .second(value))
+        case 'seconds':
+          ctx.emit(
+            'change',
+            props.spinnerDate
+              .hour(hours.value)
+              .minute(minutes.value)
+              .second(value),
+          )
           break
       }
     }
@@ -292,7 +322,16 @@ export default defineComponent({
     const handleScroll = type => {
       isScrolling = true
       debouncedResetScroll(type)
-      const value = Math.min(Math.round((listRefsMap[type].value.$el.querySelector('.el-scrollbar__wrap').scrollTop - (scrollBarHeight(type) * 0.5 - 10) / typeItemHeight(type) + 3) / typeItemHeight(type)), (type === 'hours' ? 23 : 59))
+      const value = Math.min(
+        Math.round(
+          (listRefsMap[type].value.$el.querySelector('.tj-scrollbar__wrap')
+            .scrollTop -
+            (scrollBarHeight(type) * 0.5 - 10) / typeItemHeight(type) +
+            3) /
+            typeItemHeight(type),
+        ),
+        type === 'hours' ? 23 : 59,
+      )
       modifyDateField(type, value)
     }
 
@@ -303,9 +342,11 @@ export default defineComponent({
     const bindScrollEvent = () => {
       const bindFuntion = type => {
         if (listRefsMap[type].value) {
-          listRefsMap[type].value.$el.querySelector('.el-scrollbar__wrap').onscroll = () => {
-          // TODO: scroll is emitted when set scrollTop programatically
-          // should find better solutions in the future!
+          listRefsMap[type].value.$el.querySelector(
+            '.tj-scrollbar__wrap',
+          ).onscroll = () => {
+            // TODO: scroll is emitted when set scrollTop programatically
+            // should find better solutions in the future!
             handleScroll(type)
           }
         }
@@ -328,23 +369,22 @@ export default defineComponent({
       return `list${item.charAt(0).toUpperCase() + item.slice(1)}Ref`
     }
 
-    ctx.emit('set-option',[`${props.role}_scrollDown`, scrollDown])
-    ctx.emit('set-option',[`${props.role}_emitSelectRange`, emitSelectRange])
+    ctx.emit('set-option', [`${props.role}_scrollDown`, scrollDown])
+    ctx.emit('set-option', [`${props.role}_emitSelectRange`, emitSelectRange])
 
-    const {
-      getHoursList,
-      getMinutesList,
-      getSecondsList,
-    } = getTimeLists(
+    const { getHoursList, getMinutesList, getSecondsList } = getTimeLists(
       props.disabledHours,
       props.disabledMinutes,
       props.disabledSeconds,
     )
 
-    watch(() => props.spinnerDate, () => {
-      if (isScrolling) return
-      adjustSpinners()
-    })
+    watch(
+      () => props.spinnerDate,
+      () => {
+        if (isScrolling) return
+        adjustSpinners()
+      },
+    )
 
     return {
       getRefId,

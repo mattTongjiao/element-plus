@@ -1,13 +1,13 @@
 <template>
-  <span class="el-pagination__jump">
+  <span class="tj-pagination__jump">
     {{ t('el.pagination.goto') }}
-    <el-input
+    <tj-input
       size="mini"
-      class="el-pagination__editor is-in-pagination"
+      class="tj-pagination__editor is-in-pagination"
       :min="1"
       :max="pageCount"
       :disabled="disabled"
-      :model-value="innerValue"
+      :modtj-value="innerValue"
       type="number"
       @update:modelValue="handleInput"
       @change="handleChange"
@@ -17,18 +17,14 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  ref,
-} from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { t } from '@element-plus/locale'
-import ElInput from '@element-plus/input'
+import TjInput from '@element-plus/input'
 import { usePagination } from './usePagination'
 
 export default defineComponent({
   components: {
-    ElInput,
+    TjInput,
   },
   setup() {
     const { pagination, pageCount, disabled, currentPage } = usePagination()

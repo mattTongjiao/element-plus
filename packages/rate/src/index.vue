@@ -1,6 +1,6 @@
 <template>
   <div
-    class="el-rate"
+    class="tj-rate"
     role="slider"
     :aria-valuenow="currentValue"
     :aria-valuetext="text"
@@ -12,30 +12,35 @@
     <span
       v-for="(item, key) in max"
       :key="key"
-      class="el-rate__item"
+      class="tj-rate__item"
       :style="{ cursor: rateDisabled ? 'auto' : 'pointer' }"
       @mousemove="setCurrentValue(item, $event)"
       @mouseleave="resetCurrentValue"
       @click="selectValue(item)"
     >
       <i
-        :class="[classes[item - 1], { 'hover': hoverIndex === item }]"
-        class="el-rate__icon"
+        :class="[classes[item - 1], { hover: hoverIndex === item }]"
+        class="tj-rate__icon"
         :style="getIconStyle(item)"
       >
         <i
           v-if="showDecimalIcon(item)"
           :class="decimalIconClass"
           :style="decimalStyle"
-          class="el-rate__decimal"
+          class="tj-rate__decimal"
         >
         </i>
       </i>
     </span>
-    <span v-if="showText || showScore" class="el-rate__text" :style="{ color: textColor }">{{ text }}</span>
+    <span
+      v-if="showText || showScore"
+      class="tj-rate__text"
+      :style="{ color: textColor }"
+      >{{ text }}</span
+    >
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import {
   defineComponent,
   inject,
@@ -49,10 +54,10 @@ import { hasClass } from '@element-plus/utils/dom'
 import { EVENT_CODE } from '@element-plus/utils/aria'
 import { elFormKey } from '@element-plus/form'
 
-import type { ElFormContext } from '@element-plus/form'
+import type { TjFormContext } from '@element-plus/form'
 
 export default defineComponent({
-  name: 'ElRate',
+  name: 'TjRate',
   props: {
     modelValue: {
       type: Number,
@@ -84,15 +89,15 @@ export default defineComponent({
     },
     iconClasses: {
       type: [Array, Object],
-      default: () => ['el-icon-star-on', 'el-icon-star-on', 'el-icon-star-on'],
+      default: () => ['tj-icon-star-on', 'tj-icon-star-on', 'tj-icon-star-on'],
     },
     voidIconClass: {
       type: String,
-      default: 'el-icon-star-off',
+      default: 'tj-icon-star-off',
     },
     disabledVoidIconClass: {
       type: String,
-      default: 'el-icon-star-on',
+      default: 'tj-icon-star-on',
     },
     disabled: {
       type: Boolean,
@@ -125,7 +130,7 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
-    const elForm = inject(elFormKey, {} as ElFormContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
 
     const currentValue = ref(props.modelValue)
 
@@ -274,10 +279,10 @@ export default defineComponent({
       /* istanbul ignore if */
       if (props.allowHalf) {
         let target = event.target as HTMLElement
-        if (hasClass(target, 'el-rate__item')) {
-          target = target.querySelector('.el-rate__icon')
+        if (hasClass(target, 'tj-rate__item')) {
+          target = target.querySelector('.tj-rate__icon')
         }
-        if (hasClass(target, 'el-rate__decimal')) {
+        if (hasClass(target, 'tj-rate__decimal')) {
           target = target.parentNode as HTMLElement
         }
         pointerAtLeftHalf.value = event.offsetX * 2 <= target.clientWidth

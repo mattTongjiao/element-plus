@@ -1,8 +1,8 @@
 <template>
   <div
     :class="{
-      'el-upload-dragger': true,
-      'is-dragover': dragover
+      'tj-upload-dragger': true,
+      'is-dragover': dragover,
     }"
     @drop.prevent="onDrop"
     @dragover.prevent="onDragover"
@@ -14,10 +14,10 @@
 <script lang="ts">
 import { defineComponent, ref, inject } from 'vue'
 
-import type { ElUpload } from './upload.type'
+import type { TjUpload } from './upload.type'
 
 export default defineComponent({
-  name: 'ElUploadDrag',
+  name: 'TjUploadDrag',
   props: {
     disabled: {
       type: Boolean,
@@ -26,7 +26,7 @@ export default defineComponent({
   },
   emits: ['file'],
   setup(props, { emit }) {
-    const uploader = inject('uploader', {} as ElUpload)
+    const uploader = inject('uploader', {} as TjUpload)
     const dragover = ref(false)
 
     function onDrop(e: DragEvent) {

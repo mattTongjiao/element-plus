@@ -3,7 +3,7 @@ import type { InjectionKey } from 'vue'
 type IModelType = boolean | string | number
 
 export interface RadioGroupContext {
-  name: 'ElRadioGroup'
+  name: 'TjRadioGroup'
   modelValue: IModelType
   fill: string
   textColor: string

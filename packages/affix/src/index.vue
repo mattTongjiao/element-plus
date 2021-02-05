@@ -1,19 +1,31 @@
 <template>
-  <div ref="root" class="el-affix" :style="rootStyle">
-    <div :class="{'el-affix--fixed': state.fixed}" :style="affixStyle">
+  <div ref="root" class="tj-affix" :style="rootStyle">
+    <div :class="{ 'tj-affix--fixed': state.fixed }" :style="affixStyle">
       <slot></slot>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onBeforeUnmount, onMounted, PropType, reactive, ref, watch } from 'vue'
+import {
+  computed,
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+  PropType,
+  reactive,
+  ref,
+  watch,
+} from 'vue'
 import { getScrollContainer, off, on } from '@element-plus/utils/dom'
-import { addResizeListener, removeResizeListener } from '@element-plus/utils/resize-event'
+import {
+  addResizeListener,
+  removeResizeListener,
+} from '@element-plus/utils/resize-event'
 
 type Position = 'top' | 'bottom'
 
 export default defineComponent({
-  name: 'ElAffix',
+  name: 'TjAffix',
   props: {
     zIndex: {
       type: Number,
@@ -40,10 +52,10 @@ export default defineComponent({
 
     const state = reactive({
       fixed: false,
-      height: 0,  // height of root
-      width: 0,  // width of root
+      height: 0, // height of root
+      width: 0, // width of root
       scrollTop: 0, // scrollTop of documentElement
-      clientHeight: 0,  // clientHeight of documentElement
+      clientHeight: 0, // clientHeight of documentElement
       transform: 0,
     })
 
@@ -59,7 +71,9 @@ export default defineComponent({
         return
       }
       const offset = props.offset ? `${props.offset}px` : 0
-      const transform = state.transform ? `translateY(${state.transform}px)` : ''
+      const transform = state.transform
+        ? `translateY(${state.transform}px)`
+        : ''
 
       return {
         height: `${state.height}px`,
@@ -76,7 +90,10 @@ export default defineComponent({
       const targetRect = target.value.getBoundingClientRect()
       state.height = rootRect.height
       state.width = rootRect.width
-      state.scrollTop = scrollContainer.value === window ? document.documentElement.scrollTop : scrollContainer.value.scrollTop
+      state.scrollTop =
+        scrollContainer.value === window
+          ? document.documentElement.scrollTop
+          : scrollContainer.value.scrollTop
       state.clientHeight = document.documentElement.clientHeight
 
       if (props.position === 'top') {
@@ -89,8 +106,11 @@ export default defineComponent({
         }
       } else {
         if (props.target) {
-          const difference = state.clientHeight - targetRect.top - props.offset - state.height
-          state.fixed = state.clientHeight - props.offset < rootRect.bottom && state.clientHeight > targetRect.top
+          const difference =
+            state.clientHeight - targetRect.top - props.offset - state.height
+          state.fixed =
+            state.clientHeight - props.offset < rootRect.bottom &&
+            state.clientHeight > targetRect.top
           state.transform = difference < 0 ? -difference : 0
         } else {
           state.fixed = state.clientHeight - props.offset < rootRect.bottom
@@ -107,9 +127,12 @@ export default defineComponent({
       })
     }
 
-    watch(() => state.fixed, () => {
-      emit('change', state.fixed)
-    })
+    watch(
+      () => state.fixed,
+      () => {
+        emit('change', state.fixed)
+      },
+    )
 
     onMounted(() => {
       if (props.target) {

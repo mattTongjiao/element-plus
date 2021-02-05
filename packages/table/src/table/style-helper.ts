@@ -23,7 +23,7 @@ function useStyle(
   table: Table,
   doLayout: fn,
 ) {
-  const $ElEMENT = useGlobalConfig()
+  const $TjEMENT = useGlobalConfig()
   const isHidden = ref(false)
   const renderExpanded = ref(null)
   const resizeProxyVisible = ref(false)
@@ -104,7 +104,7 @@ function useStyle(
     })
     table.$ready = true
   })
-  const setScrollClassByEl = (el: HTMLElement, className: string) => {
+  const setScrollClassByTj = (el: HTMLElement, className: string) => {
     if (!el) return
     const classList = Array.from(el.classList).filter(
       item => !item.startsWith('is-scrolling-'),
@@ -114,7 +114,7 @@ function useStyle(
   }
   const setScrollClass = (className: string) => {
     const { bodyWrapper } = table.refs
-    setScrollClassByEl(bodyWrapper, className)
+    setScrollClassByTj(bodyWrapper, className)
   }
   const syncPostion = throttle(function() {
     const {
@@ -188,7 +188,7 @@ function useStyle(
     }
   }
   const tableSize = computed(() => {
-    return props.size || $ElEMENT.size
+    return props.size || $TjEMENT.size
   })
   const bodyWidth = computed(() => {
     const { bodyWidth: bodyWidth_, scrollY, gutterWidth } = layout

@@ -3,49 +3,54 @@
     <div
       ref="wrapper"
       :tabindex="-1"
-      class="el-image-viewer__wrapper"
+      class="tj-image-viewer__wrapper"
       :style="{ zIndex }"
     >
       <div
-        class="el-image-viewer__mask"
+        class="tj-image-viewer__mask"
         @click.self="hideOnClickModal && hide()"
-      >
-      </div>
+      ></div>
       <!-- CLOSE -->
-      <span class="el-image-viewer__btn el-image-viewer__close" @click="hide">
-        <i class="el-icon-close"></i>
+      <span class="tj-image-viewer__btn tj-image-viewer__close" @click="hide">
+        <i class="tj-icon-close"></i>
       </span>
       <!-- ARROW -->
       <template v-if="!isSingle">
         <span
-          class="el-image-viewer__btn el-image-viewer__prev"
+          class="tj-image-viewer__btn tj-image-viewer__prev"
           :class="{ 'is-disabled': !infinite && isFirst }"
           @click="prev"
         >
-          <i class="el-icon-arrow-left"></i>
+          <i class="tj-icon-arrow-left"></i>
         </span>
         <span
-          class="el-image-viewer__btn el-image-viewer__next"
+          class="tj-image-viewer__btn tj-image-viewer__next"
           :class="{ 'is-disabled': !infinite && isLast }"
           @click="next"
         >
-          <i class="el-icon-arrow-right"></i>
+          <i class="tj-icon-arrow-right"></i>
         </span>
       </template>
       <!-- ACTIONS -->
-      <div class="el-image-viewer__btn el-image-viewer__actions">
-        <div class="el-image-viewer__actions__inner">
-          <i class="el-icon-zoom-out" @click="handleActions('zoomOut')"></i>
-          <i class="el-icon-zoom-in" @click="handleActions('zoomIn')"></i>
-          <i class="el-image-viewer__actions__divider"></i>
+      <div class="tj-image-viewer__btn tj-image-viewer__actions">
+        <div class="tj-image-viewer__actions__inner">
+          <i class="tj-icon-zoom-out" @click="handleActions('zoomOut')"></i>
+          <i class="tj-icon-zoom-in" @click="handleActions('zoomIn')"></i>
+          <i class="tj-image-viewer__actions__divider"></i>
           <i :class="mode.icon" @click="toggleMode"></i>
-          <i class="el-image-viewer__actions__divider"></i>
-          <i class="el-icon-refresh-left" @click="handleActions('anticlocelise')"></i>
-          <i class="el-icon-refresh-right" @click="handleActions('clocelise')"></i>
+          <i class="tj-image-viewer__actions__divider"></i>
+          <i
+            class="tj-icon-refresh-left"
+            @click="handleActions('anticlocelise')"
+          ></i>
+          <i
+            class="tj-icon-refresh-right"
+            @click="handleActions('clocelise')"
+          ></i>
         </div>
       </div>
       <!-- CANVAS -->
-      <div class="el-image-viewer__canvas">
+      <div class="tj-image-viewer__canvas">
         <img
           v-for="(url, i) in urlList"
           v-show="i === index"
@@ -53,19 +58,26 @@
           :key="url"
           :src="currentImg"
           :style="imgStyle"
-          class="el-image-viewer__img"
+          class="tj-image-viewer__img"
           @load="handleImgLoad"
           @error="handleImgError"
           @mousedown="handleMouseDown"
-        >
+        />
       </div>
     </div>
   </transition>
 </template>
 
-<script lang='ts'>
-
-import { defineComponent, computed, ref, onMounted, watch, nextTick, PropType } from 'vue'
+<script lang="ts">
+import {
+  defineComponent,
+  computed,
+  ref,
+  onMounted,
+  watch,
+  nextTick,
+  PropType,
+} from 'vue'
 import { rafThrottle, isFirefox } from '@element-plus/utils/util'
 import { on, off } from '@element-plus/utils/dom'
 import { EVENT_CODE } from '@element-plus/utils/aria'
@@ -74,21 +86,25 @@ import { t } from '@element-plus/locale'
 const Mode = {
   CONTAIN: {
     name: 'contain',
-    icon: 'el-icon-full-screen',
+    icon: 'tj-icon-full-screen',
   },
   ORIGINAL: {
     name: 'original',
-    icon: 'el-icon-c-scale-to-original',
+    icon: 'tj-icon-c-scale-to-original',
   },
 }
 
 const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel'
 const CLOSE_EVENT = 'close'
 const SWITCH_EVENT = 'switch'
-export type ImageViewerAction = 'zoomIn' | 'zoomOut' | 'clocelise' | 'anticlocelise'
+export type ImageViewerAction =
+  | 'zoomIn'
+  | 'zoomOut'
+  | 'clocelise'
+  | 'anticlocelise'
 
 export default defineComponent({
-  name: 'ElImageViewer',
+  name: 'TjImageViewer',
   props: {
     urlList: {
       type: Array as PropType<string[]>,
@@ -300,11 +316,15 @@ export default defineComponent({
       switch (action) {
         case 'zoomOut':
           if (transform.value.scale > 0.2) {
-            transform.value.scale = parseFloat((transform.value.scale - zoomRate).toFixed(3))
+            transform.value.scale = parseFloat(
+              (transform.value.scale - zoomRate).toFixed(3),
+            )
           }
           break
         case 'zoomIn':
-          transform.value.scale = parseFloat((transform.value.scale + zoomRate).toFixed(3))
+          transform.value.scale = parseFloat(
+            (transform.value.scale + zoomRate).toFixed(3),
+          )
           break
         case 'clocelise':
           transform.value.deg += rotateDeg

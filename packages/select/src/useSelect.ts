@@ -25,7 +25,7 @@ import isEqual from 'lodash/isEqual'
 import { isObject, toRawType } from '@vue/shared'
 
 import type { ComponentPublicInstance } from 'vue'
-import type { ElFormContext, ElFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
 
 export function useSelectStates(props) {
   const selectEmitter = mitt()
@@ -70,8 +70,8 @@ export const useSelect = (props, states: States, ctx) => {
   const hoverOption = ref(-1)
 
   // inject
-  const elForm = inject(elFormKey, {} as ElFormContext)
-  const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+  const elForm = inject(elFormKey, {} as TjFormContext)
+  const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
   const readonly = computed(() => !props.filterable || props.multiple || (!isIE() && !isEdge() && !states.visible))
 
@@ -520,7 +520,7 @@ export const useSelect = (props, states: States, ctx) => {
     }
   }
 
-  const getEl = option => {
+  const getTj = option => {
     const options = states.options.filter(item => item.value === option.value)
     if (options.length > 0) {
       return options[0].$el
@@ -528,9 +528,9 @@ export const useSelect = (props, states: States, ctx) => {
   }
 
   const scrollToOption = option => {
-    const target = Array.isArray(option) ? getEl(option[0]) : getEl(option)
+    const target = Array.isArray(option) ? getTj(option[0]) : getTj(option)
     if (popper.value && target) {
-      const menu = popper.value?.popperRef?.querySelector?.('.el-select-dropdown__wrap')
+      const menu = popper.value?.popperRef?.querySelector?.('.tj-select-dropdown__wrap')
       if (menu) {
         scrollIntoView(menu, target)
       }
@@ -608,7 +608,7 @@ export const useSelect = (props, states: States, ctx) => {
   }
 
   const handleBlur = (event: Event) => {
-    // https://github.com/ElemeFE/element/pull/10822
+    // https://github.com/TjemeFE/element/pull/10822
     nextTick(() => {
       if (states.isSilentBlur) {
         states.isSilentBlur = false

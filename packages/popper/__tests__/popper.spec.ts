@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import * as Vue from 'vue'
 import * as popperExports from '@popperjs/core'
 import { rAF } from '@element-plus/test-utils/tick'
-import ElPopper from '../src/index.vue'
+import TjPopper from '../src/index.vue'
 
 import type { VueWrapper } from '@vue/test-utils'
 import PopupManager from '@element-plus/utils/popup-manager'
@@ -23,7 +23,7 @@ const BLUR_EVENT = 'blur'
 const DISPLAY_NONE = 'display: none'
 
 const Wrapped = (props: UnknownProps, { slots }) => {
-  return h('div', h(ElPopper, props, slots))
+  return h('div', h(TjPopper, props, slots))
 }
 
 // eslint-disable-next-line
@@ -85,7 +85,7 @@ describe('Popper.vue', () => {
     expect(wrapper.find(selector).exists()).toBe(false)
 
     /**
-     * Current layout of `ElPopper`
+     * Current layout of `TjPopper`
      *  --> Teleport
      *   --> mask
      *    --> transition
@@ -106,7 +106,7 @@ describe('Popper.vue', () => {
 
     expect(
       Number.parseInt(
-        window.getComputedStyle(wrapper.find('.el-popper').element).zIndex,
+        window.getComputedStyle(wrapper.find('.tj-popper').element).zIndex,
       ),
     ).toBeLessThanOrEqual(PopupManager.zIndex)
   })
@@ -159,9 +159,9 @@ describe('Popper.vue', () => {
     })
     await nextTick()
 
-    await wrapper.find('.el-popper').trigger('mousedown')
+    await wrapper.find('.tj-popper').trigger('mousedown')
     expect(onMouseDown).toHaveBeenCalled()
-    await wrapper.find('.el-popper').trigger('mouseup')
+    await wrapper.find('.tj-popper').trigger('mouseup')
     expect(onMouseUp).toHaveBeenCalled()
 
     await wrapper.setProps({
@@ -169,9 +169,9 @@ describe('Popper.vue', () => {
     })
     await nextTick()
 
-    await wrapper.find('.el-popper').trigger('mousedown')
+    await wrapper.find('.tj-popper').trigger('mousedown')
     expect(onMouseDown).toHaveBeenCalledTimes(1)
-    await wrapper.find('.el-popper').trigger('mouseup')
+    await wrapper.find('.tj-popper').trigger('mouseup')
     expect(onMouseUp).toHaveBeenCalledTimes(1)
     document.removeEventListener('mouseup', onMouseUp)
     document.removeEventListener('mousedown', onMouseDown)
@@ -262,7 +262,7 @@ describe('Popper.vue', () => {
       await nextTick()
 
       const trigger = wrapper.find(`.${TEST_TRIGGER}`)
-      const popper = wrapper.findComponent(ElPopper)
+      const popper = wrapper.findComponent(TjPopper)
 
       expect(popper.vm.visibility).toBe(false)
       // for now triggering event on element via DOMWrapper is not available so we need to apply
@@ -274,7 +274,7 @@ describe('Popper.vue', () => {
       await trigger.trigger(MOUSE_LEAVE_EVENT)
       expect(popper.vm.visibility).toBe(true)
 
-      await wrapper.find('.el-popper').trigger(MOUSE_LEAVE_EVENT)
+      await wrapper.find('.tj-popper').trigger(MOUSE_LEAVE_EVENT)
       expect(popper.vm.visibility).toBe(true)
       await trigger.trigger(BLUR_EVENT)
       expect(popper.vm.visibility).toBe(true)
@@ -291,12 +291,12 @@ describe('Popper.vue', () => {
       await nextTick()
 
       const trigger = wrapper.find(`.${TEST_TRIGGER}`)
-      const popper = wrapper.findComponent(ElPopper)
+      const popper = wrapper.findComponent(TjPopper)
 
       await trigger.trigger(CLICK_EVENT)
       expect(popper.vm.visibility).toBe(true)
 
-      await wrapper.find('.el-popper').trigger(MOUSE_LEAVE_EVENT)
+      await wrapper.find('.tj-popper').trigger(MOUSE_LEAVE_EVENT)
       expect(popper.vm.visibility).toBe(true)
 
       await trigger.trigger(CLICK_EVENT)
@@ -312,7 +312,7 @@ describe('Popper.vue', () => {
       await nextTick()
 
       const trigger = wrapper.find(`.${TEST_TRIGGER}`)
-      const popper = wrapper.findComponent(ElPopper)
+      const popper = wrapper.findComponent(TjPopper)
       expect(popper.vm.visibility).toBe(false)
       // for now triggering event on element via DOMWrapper is not available so we need to apply
       // old way
@@ -342,7 +342,7 @@ describe('Popper.vue', () => {
       await nextTick()
 
       const trigger = wrapper.find(`.${TEST_TRIGGER}`)
-      const popper = wrapper.findComponent(ElPopper)
+      const popper = wrapper.findComponent(TjPopper)
       expect(popper.vm.visibility).toBe(false)
       // for now triggering event on element via DOMWrapper is not available so we need to apply
       // old way
@@ -381,7 +381,7 @@ describe('Popper.vue', () => {
       await nextTick()
 
       const trigger = wrapper.find(`.${TEST_TRIGGER}`)
-      const popper = wrapper.findComponent(ElPopper)
+      const popper = wrapper.findComponent(TjPopper)
       expect(popper.vm.visibility).toBe(false)
       // for now triggering event on element via DOMWrapper is not available so we need to apply
       // old way

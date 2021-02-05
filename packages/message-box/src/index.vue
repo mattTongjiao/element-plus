@@ -1,6 +1,6 @@
 <template>
   <transition name="fade-in-linear" @after-leave="$emit('vanish')">
-    <el-overlay
+    <tj-overlay
       v-show="visible"
       :z-index="state.zIndex"
       :overlay-class="['is-message-box', modalClass]"
@@ -13,26 +13,26 @@
         :aria-label="title || 'dialog'"
         aria-modal="true"
         :class="[
-          'el-message-box',
+          'tj-message-box',
           customClass,
-          { 'el-message-box--center': center },
+          { 'tj-message-box--center': center },
         ]"
       >
         <div
           v-if="title !== null && title !== undefined"
-          class="el-message-box__header"
+          class="tj-message-box__header"
         >
-          <div class="el-message-box__title">
+          <div class="tj-message-box__title">
             <div
               v-if="icon && center"
-              :class="['el-message-box__status', icon]"
+              :class="['tj-message-box__status', icon]"
             ></div>
             <span>{{ title }}</span>
           </div>
           <button
             v-if="showClose"
             type="button"
-            class="el-message-box__headerbtn"
+            class="tj-message-box__headerbtn"
             aria-label="Close"
             @click="
               handleAction(distinguishCancelAndClose ? 'close' : 'cancel')
@@ -41,24 +41,24 @@
               handleAction(distinguishCancelAndClose ? 'close' : 'cancel')
             "
           >
-            <i class="el-message-box__close el-icon-close"></i>
+            <i class="tj-message-box__close tj-icon-close"></i>
           </button>
         </div>
-        <div class="el-message-box__content">
-          <div class="el-message-box__container">
+        <div class="tj-message-box__content">
+          <div class="tj-message-box__container">
             <div
               v-if="icon && !center && hasMessage"
-              :class="['el-message-box__status', icon]"
+              :class="['tj-message-box__status', icon]"
             ></div>
-            <div v-if="hasMessage" class="el-message-box__message">
+            <div v-if="hasMessage" class="tj-message-box__message">
               <slot>
                 <p v-if="!dangerouslyUseHTMLString">{{ message }}</p>
                 <p v-else v-html="message"></p>
               </slot>
             </div>
           </div>
-          <div v-show="showInput" class="el-message-box__input">
-            <el-input
+          <div v-show="showInput" class="tj-message-box__input">
+            <tj-input
               ref="inputRef"
               v-model="state.inputValue"
               :type="inputType"
@@ -67,7 +67,7 @@
               @keydown.prevent.enter="handleInputEnter"
             />
             <div
-              class="el-message-box__errormsg"
+              class="tj-message-box__errormsg"
               :style="{
                 visibility: !!state.editorErrorMessage ? 'visible' : 'hidden',
               }"
@@ -76,8 +76,8 @@
             </div>
           </div>
         </div>
-        <div class="el-message-box__btns">
-          <el-button
+        <div class="tj-message-box__btns">
+          <tj-button
             v-if="showCancelButton"
             :loading="state.cancelButtonLoading"
             :class="[cancelButtonClass]"
@@ -87,8 +87,8 @@
             @keydown.enter="handleAction('cancel')"
           >
             {{ state.cancelButtonText || t('el.messagebox.cancel') }}
-          </el-button>
-          <el-button
+          </tj-button>
+          <tj-button
             v-show="showConfirmButton"
             ref="confirmRef"
             :loading="state.confirmButtonLoading"
@@ -100,10 +100,10 @@
             @keydown.enter="handleAction('confirm')"
           >
             {{ state.confirmButtonText || t('el.messagebox.confirm') }}
-          </el-button>
+          </tj-button>
         </div>
       </div>
-    </el-overlay>
+    </tj-overlay>
   </transition>
 </template>
 <script lang="ts">
@@ -118,10 +118,10 @@ import {
   ref,
   isVNode,
 } from 'vue'
-import ElButton from '@element-plus/button'
-import ElInput from '@element-plus/input'
+import TjButton from '@element-plus/button'
+import TjInput from '@element-plus/input'
 import { t } from '@element-plus/locale'
-import { Overlay as ElOverlay } from '@element-plus/overlay'
+import { Overlay as TjOverlay } from '@element-plus/overlay'
 import { useModal, useLockScreen, useRestoreActive, usePreventGlobal } from '@element-plus/hooks'
 import { TrapFocus } from '@element-plus/directives'
 import PopupManager from '@element-plus/utils/popup-manager'
@@ -140,11 +140,11 @@ const TypeMap: Indexable<string> = {
 }
 
 export default defineComponent({
-  name: 'ElMessageBox',
+  name: 'TjMessageBox',
   components: {
-    ElButton,
-    ElInput,
-    ElOverlay,
+    TjButton,
+    TjInput,
+    TjOverlay,
   },
   directives: {
     TrapFocus,
@@ -252,18 +252,18 @@ export default defineComponent({
       confirmButtonDisabled: false,
       confirmButtonText: props.confirmButtonText,
       editorErrorMessage: '',
-      // refer to: https://github.com/ElemeFE/element/commit/2999279ae34ef10c373ca795c87b020ed6753eed
+      // refer to: https://github.com/TjemeFE/element/commit/2999279ae34ef10c373ca795c87b020ed6753eed
       // seemed ok for now without this state.
       // isOnComposition: false, // temporary remove
       validateError: false,
       zIndex: PopupManager.nextZIndex(),
     })
-    const icon = computed(() => props.iconClass || (props.type && TypeMap[props.type] ? `el-icon-${TypeMap[props.type]}` : ''))
+    const icon = computed(() => props.iconClass || (props.type && TypeMap[props.type] ? `tj-icon-${TypeMap[props.type]}` : ''))
     const hasMessage = computed(() => !!props.message)
     const inputRef = ref<ComponentPublicInstance>(null)
     const confirmRef = ref<ComponentPublicInstance>(null)
 
-    const confirmButtonClasses = computed(() => `el-button--primary ${props.confirmButtonClass}`)
+    const confirmButtonClasses = computed(() => `tj-button--primary ${props.confirmButtonClass}`)
 
     watch(() => state.inputValue, async val => {
       await nextTick()

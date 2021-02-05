@@ -9,8 +9,8 @@ const wait = (ms = 100) =>
 const _mount = (template: string, data?: () => void, methods?: any) =>
   mount({
     components: {
-      'el-carousel': Carousel,
-      'el-carousel-item': CarouselItem,
+      'tj-carousel': Carousel,
+      'tj-carousel-item': CarouselItem,
     },
     template,
     data,
@@ -22,29 +22,29 @@ describe('Carousel', () => {
     const wrapper = _mount(
       `
         <div>
-          <el-carousel ref="carousel">
-            <el-carousel-item v-for="item in 3" :key="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel ref="carousel">
+            <tj-carousel-item v-for="item in 3" :key="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `,
     )
 
     expect(wrapper.vm.$refs.carousel.direction).toBe('horizontal')
-    expect(wrapper.findAll('.el-carousel__item').length).toEqual(3)
+    expect(wrapper.findAll('.tj-carousel__item').length).toEqual(3)
   })
 
   it('auto play', async done => {
     const wrapper = _mount(`
         <div>
-          <el-carousel :interval="50">
-            <el-carousel-item v-for="item in 3" :key="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel :interval="50">
+            <tj-carousel-item v-for="item in 3" :key="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `)
 
     await nextTick()
     await wait(10)
-    const items = wrapper.vm.$el.querySelectorAll('.el-carousel__item')
+    const items = wrapper.vm.$el.querySelectorAll('.tj-carousel__item')
     expect(items[0].classList.contains('is-active')).toBeTruthy()
     await wait(60)
     expect(items[1].classList.contains('is-active')).toBeTruthy()
@@ -54,9 +54,9 @@ describe('Carousel', () => {
   it('initial index', async done => {
     const wrapper = _mount(`
         <div>
-          <el-carousel :autoplay="false" :initial-index="1">
-            <el-carousel-item v-for="item in 3" :key="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel :autoplay="false" :initial-index="1">
+            <tj-carousel-item v-for="item in 3" :key="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `)
 
@@ -65,7 +65,7 @@ describe('Carousel', () => {
 
     expect(
       wrapper.vm.$el
-        .querySelectorAll('.el-carousel__item')[1]
+        .querySelectorAll('.tj-carousel__item')[1]
         .classList.contains('is-active'),
     ).toBeTruthy()
     done()
@@ -74,13 +74,13 @@ describe('Carousel', () => {
   it('reset timer', async done => {
     const wrapper = _mount(`
         <div>
-          <el-carousel :interval="500">
-            <el-carousel-item v-for="item in 3" :key="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel :interval="500">
+            <tj-carousel-item v-for="item in 3" :key="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `)
     await nextTick()
-    const items = wrapper.vm.$el.querySelectorAll('.el-carousel__item')
+    const items = wrapper.vm.$el.querySelectorAll('.tj-carousel__item')
     await wrapper.trigger('mouseenter')
     await nextTick()
     expect(items[0].classList.contains('is-active')).toBeTruthy()
@@ -95,9 +95,9 @@ describe('Carousel', () => {
     const wrapper = _mount(
       `
         <div>
-          <el-carousel :interval="50" @change="handleChange">
-            <el-carousel-item v-for="item in 3" :key="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel :interval="50" @change="handleChange">
+            <tj-carousel-item v-for="item in 3" :key="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `,
       () => {
@@ -124,13 +124,13 @@ describe('Carousel', () => {
   it('label', async done => {
     const wrapper = _mount(`
         <div>
-          <el-carousel>
-            <el-carousel-item v-for="item in 3" :key="item" :label="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel>
+            <tj-carousel-item v-for="item in 3" :key="item" :label="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `)
     await nextTick()
-    expect(wrapper.find('.el-carousel__button span').text()).toBe('1')
+    expect(wrapper.find('.tj-carousel__button span').text()).toBe('1')
     done()
   })
 
@@ -138,20 +138,20 @@ describe('Carousel', () => {
     it('hover', async done => {
       const wrapper = _mount(`
         <div>
-          <el-carousel :autoplay="false">
-            <el-carousel-item v-for="item in 3" :key="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel :autoplay="false">
+            <tj-carousel-item v-for="item in 3" :key="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `)
 
       await nextTick()
       await wait()
-      await wrapper.findAll('.el-carousel__indicator')[1].trigger('mouseenter')
+      await wrapper.findAll('.tj-carousel__indicator')[1].trigger('mouseenter')
       await nextTick()
       await wait()
       expect(
         wrapper.vm.$el
-          .querySelectorAll('.el-carousel__item')[1]
+          .querySelectorAll('.tj-carousel__item')[1]
           .classList.contains('is-active'),
       ).toBeTruthy()
       done()
@@ -161,21 +161,21 @@ describe('Carousel', () => {
   it('card', async done => {
     const wrapper = _mount(`
         <div>
-          <el-carousel :autoplay="false" type="card">
-            <el-carousel-item v-for="item in 7" :key="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel :autoplay="false" type="card">
+            <tj-carousel-item v-for="item in 7" :key="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `)
     await nextTick()
     await wait()
-    const items = wrapper.vm.$el.querySelectorAll('.el-carousel__item')
+    const items = wrapper.vm.$el.querySelectorAll('.tj-carousel__item')
     expect(items[0].classList.contains('is-active')).toBeTruthy()
     expect(items[1].classList.contains('is-in-stage')).toBeTruthy()
     expect(items[6].classList.contains('is-in-stage')).toBeTruthy()
     await items[1].click()
     await wait()
     expect(items[1].classList.contains('is-active')).toBeTruthy()
-    await wrapper.vm.$el.querySelector('.el-carousel__arrow--left').click()
+    await wrapper.vm.$el.querySelector('.tj-carousel__arrow--left').click()
     await wait()
     expect(items[0].classList.contains('is-active')).toBeTruthy()
     await items[6].click()
@@ -187,12 +187,12 @@ describe('Carousel', () => {
   it('vertical direction', () => {
     const wrapper = _mount(`
         <div>
-          <el-carousel ref="carousel" :autoplay="false" direction="vertical" height="100px">
-            <el-carousel-item v-for="item in 3" :key="item"></el-carousel-item>
-          </el-carousel>
+          <tj-carousel ref="carousel" :autoplay="false" direction="vertical" height="100px">
+            <tj-carousel-item v-for="item in 3" :key="item"></tj-carousel-item>
+          </tj-carousel>
         </div>
       `)
-    const items = wrapper.vm.$el.querySelectorAll('.el-carousel__item')
+    const items = wrapper.vm.$el.querySelectorAll('.tj-carousel__item')
 
     expect(wrapper.vm.$refs.carousel.direction).toBe('vertical')
     expect(items[0].style.transform.indexOf('translateY') !== -1).toBeTruthy()

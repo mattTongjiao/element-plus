@@ -1,7 +1,7 @@
 <template>
   <div
     ref="radioGroup"
-    class="el-radio-group"
+    class="tj-radio-group"
     role="radiogroup"
     @keydown="handleKeydown"
   >
@@ -29,12 +29,12 @@ import { elFormItemKey } from '@element-plus/form'
 import radioGroupKey from './token'
 
 import type { PropType } from 'vue'
-import type { ElFormItemContext } from '@element-plus/form'
+import type { TjFormItemContext } from '@element-plus/form'
 
 export default defineComponent({
-  name: 'ElRadioGroup',
+  name: 'TjRadioGroup',
 
-  componentName: 'ElRadioGroup',
+  componentName: 'TjRadioGroup',
 
   props: {
     modelValue: {
@@ -61,7 +61,7 @@ export default defineComponent({
   setup(props, ctx) {
     const radioGroup = ref(null)
 
-    const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
     const radioGroupSize = computed<ComponentSize>(() => {
       return props.size || elFormItem.size
@@ -76,7 +76,7 @@ export default defineComponent({
     }
 
     provide(radioGroupKey, reactive({
-      name: 'ElRadioGroup',
+      name: 'TjRadioGroup',
       ...toRefs(props),
       radioGroupSize: radioGroupSize,
       changeEvent: changeEvent,
@@ -130,4 +130,3 @@ export default defineComponent({
   },
 })
 </script>
-

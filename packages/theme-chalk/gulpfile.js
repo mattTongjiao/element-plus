@@ -6,18 +6,20 @@ const autoprefixer = require('gulp-autoprefixer')
 const cssmin = require('gulp-cssmin')
 const rename = require('gulp-rename')
 
-const noElPrefixFile = /(index|base|display)/
+const noTjPrefixFile = /(index|base|display)/
 
 function compile() {
   return src('./src/*.scss')
     .pipe(sass.sync())
     .pipe(autoprefixer({ cascade: false }))
     .pipe(cssmin())
-    .pipe(rename(function (path) {
-      if(!noElPrefixFile.test(path.basename)) {
-        path.basename = `el-${path.basename}`
-      }
-    }))
+    .pipe(
+      rename(function(path) {
+        if (!noTjPrefixFile.test(path.basename)) {
+          path.basename = `tj-${path.basename}`
+        }
+      }),
+    )
     .pipe(dest('./lib'))
 }
 

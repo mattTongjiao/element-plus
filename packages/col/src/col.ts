@@ -5,8 +5,8 @@ type SizeObject = {
   span: number
   offset: number
 }
-const ElCol = defineComponent({
-  name: 'ElCol',
+const TjCol = defineComponent({
+  name: 'TjCol',
   props: {
     tag: {
       type: String,
@@ -50,7 +50,7 @@ const ElCol = defineComponent({
     },
   },
   setup(props, { slots }) {
-    const gutter = inject('ElRow', 0)
+    const gutter = inject('TjRow', 0)
 
     const style = computed(() => {
       if (gutter) {
@@ -67,18 +67,18 @@ const ElCol = defineComponent({
       pos.forEach(prop => {
         const size = props[prop]
         if (typeof size === 'number' && size > 0) {
-          ret.push(prop !== 'span' ? `el-col-${prop}-${props[prop]}` : `el-col-${props[prop]}`)
+          ret.push(prop !== 'span' ? `tj-col-${prop}-${props[prop]}` : `tj-col-${props[prop]}`)
         }
       })
       const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
       sizes.forEach(size => {
         if (typeof props[size] === 'number') {
-          ret.push(`el-col-${size}-${props[size]}`)
+          ret.push(`tj-col-${size}-${props[size]}`)
         } else if (typeof props[size] === 'object') {
           const sizeProps = props[size]
           Object.keys(sizeProps).forEach(prop => {
             ret.push(
-              prop !== 'span' ? `el-col-${size}-${prop}-${sizeProps[prop]}` : `el-col-${size}-${sizeProps[prop]}`,
+              prop !== 'span' ? `tj-col-${size}-${prop}-${sizeProps[prop]}` : `tj-col-${size}-${sizeProps[prop]}`,
             )
           })
         }
@@ -94,7 +94,7 @@ const ElCol = defineComponent({
     return () => h(
       props.tag,
       {
-        class: ['el-col', classList.value],
+        class: ['tj-col', classList.value],
         style: style.value,
       },
       slots.default?.(),
@@ -102,4 +102,4 @@ const ElCol = defineComponent({
   },
 })
 
-export default ElCol
+export default TjCol

@@ -1,8 +1,8 @@
 <template>
-  <div :class="['el-divider', `el-divider--${direction}`]">
+  <div :class="['tj-divider', `tj-divider--${direction}`]">
     <div
       v-if="$slots.default && direction !== 'vertical'"
-      :class="['el-divider__text', `is-${contentPosition}`]"
+      :class="['tj-divider__text', `is-${contentPosition}`]"
     >
       <slot></slot>
     </div>
@@ -18,7 +18,7 @@ interface IDividerProps {
 }
 
 export default defineComponent({
-  name: 'ElDivider',
+  name: 'TjDivider',
   props: {
     direction: {
       type: String,

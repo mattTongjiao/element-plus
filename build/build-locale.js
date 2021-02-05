@@ -6,12 +6,14 @@ const localePath = resolve(__dirname, '../packages/locale/lang')
 const fileList = fs.readdirSync(localePath)
 
 const transform = function(filename, name, cb) {
-  require('@babel/core').transformFile(resolve(localePath, filename), {
-    plugins: [
-      '@babel/plugin-transform-modules-umd',
-    ],
-    moduleId: name,
-  }, cb)
+  require('@babel/core').transformFile(
+    resolve(localePath, filename),
+    {
+      plugins: ['@babel/plugin-transform-modules-umd'],
+      moduleId: name,
+    },
+    cb,
+  )
 }
 
 fileList
@@ -27,13 +29,15 @@ fileList
       } else {
         const code = result.code
         const transformedCode = code
-          .replace('define(\"', 'define(\"element/locale/')
+          .replace('define("', 'define("element/locale/')
           .replace(
             /global\.(\S*) = mod.exports/,
-            'global.ElementPlus.lang = global.ElementPlus.lang || {};\n    global.ElementPlus.lang.$1 = mod.exports.default'
+            'global.ElementPlus.lang = global.ElementPlus.lang || {};\n    global.ElementPlus.lang.$1 = mod.exports.default',
           )
 
-        save(resolve(__dirname, '../lib/umd/locale', `${name}.js`)).write(transformedCode)
+        save(resolve(__dirname, '../lib/umd/locale', `${name}.js`)).write(
+          transformedCode,
+        )
       }
     })
   })

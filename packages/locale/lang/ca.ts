@@ -84,7 +84,7 @@ export default {
     },
     upload: {
       deleteTip: 'premi eliminar per descartar',
-      delete: 'Eliminar',
+      delete: 'Tjiminar',
       preview: 'Vista Prèvia',
       continue: 'Continuar',
     },

@@ -69,7 +69,7 @@ class TableLayout {
     if (height === null) return false
     const bodyWrapper = this.table.refs.bodyWrapper as HTMLElement
     if (this.table.vnode.el && bodyWrapper) {
-      const body = bodyWrapper.querySelector('.el-table__body') as HTMLElement
+      const body = bodyWrapper.querySelector('.tj-table__body') as HTMLElement
       const prevScrollY = this.scrollY.value
       const scrollY = body.offsetHeight > this.bodyHeight.value
       this.scrollY.value = scrollY
@@ -89,10 +89,10 @@ class TableLayout {
 
     if (typeof value === 'number') {
       el.style[prop] = value + 'px'
-      this.updateElsHeight()
+      this.updateTjsHeight()
     } else if (typeof value === 'string') {
       el.style[prop] = value
-      this.updateElsHeight()
+      this.updateTjsHeight()
     }
   }
 
@@ -115,8 +115,8 @@ class TableLayout {
     return flattenColumns
   }
 
-  updateElsHeight() {
-    if (!this.table.$ready) return nextTick(() => this.updateElsHeight())
+  updateTjsHeight() {
+    if (!this.table.$ready) return nextTick(() => this.updateTjsHeight())
     const {
       headerWrapper: headerWrapper_,
       appendWrapper: appendWrapper_,
@@ -129,11 +129,11 @@ class TableLayout {
 
     if (this.showHeader && !headerWrapper) return
 
-    // fix issue (https://github.com/ElemeFE/element/pull/16956)
-    const headerTrElm = headerWrapper
-      ? headerWrapper.querySelector('.el-table__header tr')
+    // fix issue (https://github.com/TjemeFE/element/pull/16956)
+    const headerTrTjm = headerWrapper
+      ? headerWrapper.querySelector('.tj-table__header tr')
       : null
-    const noneHeader = this.headerDisplayNone(headerTrElm as HTMLElement)
+    const noneHeader = this.headerDisplayNone(headerTrTjm as HTMLElement)
 
     const headerHeight = (this.headerHeight.value = !this.showHeader
       ? 0
@@ -145,7 +145,7 @@ class TableLayout {
       (this.table.store.states.columns.value || []).length > 0 &&
       headerHeight < 2
     ) {
-      return nextTick(() => this.updateElsHeight())
+      return nextTick(() => this.updateTjsHeight())
     }
     const tableHeight = (this.tableHeight.value = this.table.vnode.el.clientHeight)
     const footerHeight = (this.footerHeight.value = footerWrapper
@@ -276,7 +276,7 @@ class TableLayout {
     }
 
     this.notifyObservers('columns')
-    this.updateElsHeight()
+    this.updateTjsHeight()
   }
 
   addObserver(observer: TableHeader) {

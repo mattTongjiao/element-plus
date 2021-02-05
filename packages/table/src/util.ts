@@ -126,7 +126,7 @@ export const getColumnByCell = function(
   },
   cell: HTMLElement,
 ): null | TableColumnCtx {
-  const matches = (cell.className || '').match(/el-table_[^\s]+/gm)
+  const matches = (cell.className || '').match(/tj-table_[^\s]+/gm)
   if (matches) {
     return getColumnById(table, matches[0])
   }
@@ -307,7 +307,7 @@ export function createTablePopper(
 ) {
   function renderContent(): HTMLDivElement {
     const content = document.createElement('div')
-    content.className = 'el-tooltip__popper is-dark'
+    content.className = 'tj-tooltip__popper is-dark'
     content.innerHTML = popperContent
     content.style.zIndex = String(PopupManager.nextZIndex())
     document.body.appendChild(content)
@@ -315,7 +315,7 @@ export function createTablePopper(
   }
   function renderArrow(): HTMLDivElement {
     const arrow = document.createElement('div')
-    arrow.className = 'el-popper__arrow'
+    arrow.className = 'tj-popper__arrow'
     arrow.style.bottom = '-4px'
     return arrow
   }

@@ -26,7 +26,7 @@ export interface MessageBoxState {
   zIndex: number
 }
 
-export declare class ElMessageBoxComponent {
+export declare class TjMessageBoxComponent {
   title: string
   message: string
   type: MessageType
@@ -61,12 +61,12 @@ export type Callback =
   | ((action: Action) => any)
 
 /** Options used in MessageBox */
-export interface ElMessageBoxOptions {
+export interface TjMessageBoxOptions {
 
   /** Callback before MessageBox closes, and it will prevent MessageBox from closing */
   beforeClose?: (
     action: Action,
-    instance: ElMessageBoxComponent,
+    instance: TjMessageBoxComponent,
     done: () => void,
   ) => void
 
@@ -156,32 +156,32 @@ export interface ElMessageBoxOptions {
 
 }
 
-export type ElMessageBoxShortcutMethod =
+export type TjMessageBoxShortcutMethod =
   ((
       message: string,
       title: string,
-      options?: ElMessageBoxOptions,
+      options?: TjMessageBoxOptions,
     ) => Promise<MessageBoxData>)
   & ((
       message: string,
-      options?: ElMessageBoxOptions,
+      options?: TjMessageBoxOptions,
     ) => Promise<MessageBoxData>)
 
-export interface ElMessageBox {
+export interface TjMessageBox {
   /** Show a message box */
   // (message: string, title?: string, type?: string): Promise<MessageBoxData>
 
   /** Show a message box */
-  (options: ElMessageBoxOptions): Promise<MessageBoxData>
+  (options: TjMessageBoxOptions): Promise<MessageBoxData>
 
   /** Show an alert message box */
-  alert: ElMessageBoxShortcutMethod
+  alert: TjMessageBoxShortcutMethod
 
   /** Show a confirm message box */
-  confirm: ElMessageBoxShortcutMethod
+  confirm: TjMessageBoxShortcutMethod
 
   /** Show a prompt message box */
-  prompt: ElMessageBoxShortcutMethod
+  prompt: TjMessageBoxShortcutMethod
 
   /** Close current message box */
   close(): void

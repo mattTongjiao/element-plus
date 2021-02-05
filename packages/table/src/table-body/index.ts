@@ -8,7 +8,7 @@ import useRender from './render-helper'
 import { TableBodyProps } from './table-body'
 import { removePopper } from '../util'
 export default defineComponent({
-  name: 'ElTableBody',
+  name: 'TjTableBody',
   props: {
     store: {
       required: true,
@@ -48,7 +48,7 @@ export default defineComponent({
           raf = fn => window.setTimeout(fn, 16)
         }
         raf(() => {
-          const rows = instance.vnode.el.querySelectorAll('.el-table__row')
+          const rows = instance.vnode.el.querySelectorAll('.tj-table__row')
           const oldRow = rows[oldVal]
           const newRow = rows[newVal]
           if (oldRow) {
@@ -79,7 +79,7 @@ export default defineComponent({
     return h(
       'table',
       {
-        class: 'el-table__body',
+        class: 'tj-table__body',
         cellspacing: '0',
         cellpadding: '0',
         border: '0',

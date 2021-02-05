@@ -4,28 +4,29 @@ You can use Element's built-in transitions directly. Before that, please read th
 
 ### fade
 
-:::demo We have two fading effects: `el-fade-in-linear` and `el-fade-in`.
+:::demo We have two fading effects: `tj-fade-in-linear` and `tj-fade-in`.
+
 ```html
 <template>
   <div>
-    <el-button @click="show = !show">Click Me</el-button>
+    <tj-button @click="show = !show">Click Me</tj-button>
 
     <div style="display: flex; margin-top: 20px; height: 100px;">
-      <transition name="el-fade-in-linear">
-        <div v-show="show" class="transition-box">.el-fade-in-linear</div>
+      <transition name="tj-fade-in-linear">
+        <div v-show="show" class="transition-box">.tj-fade-in-linear</div>
       </transition>
-      <transition name="el-fade-in">
-        <div v-show="show" class="transition-box">.el-fade-in</div>
+      <transition name="tj-fade-in">
+        <div v-show="show" class="transition-box">.tj-fade-in</div>
       </transition>
     </div>
   </div>
 </template>
 
 <script>
-    export default {
+  export default {
     data: () => ({
-      show: true
-    })
+      show: true,
+    }),
   }
 </script>
 
@@ -35,7 +36,7 @@ You can use Element's built-in transitions directly. Before that, please read th
     width: 200px;
     height: 100px;
     border-radius: 4px;
-    background-color: #409EFF;
+    background-color: #409eff;
     text-align: center;
     color: #fff;
     padding: 40px 20px;
@@ -44,37 +45,39 @@ You can use Element's built-in transitions directly. Before that, please read th
   }
 </style>
 ```
+
 :::
 
 ### zoom
 
-:::demo `el-zoom-in-center`, `el-zoom-in-top` and `el-zoom-in-bottom` are provided.
+:::demo `tj-zoom-in-center`, `tj-zoom-in-top` and `tj-zoom-in-bottom` are provided.
+
 ```html
 <template>
   <div>
-    <el-button @click="show2 = !show2">Click Me</el-button>
+    <tj-button @click="show2 = !show2">Click Me</tj-button>
 
     <div style="display: flex; margin-top: 20px; height: 100px;">
-      <transition name="el-zoom-in-center">
-        <div v-show="show2" class="transition-box">.el-zoom-in-center</div>
+      <transition name="tj-zoom-in-center">
+        <div v-show="show2" class="transition-box">.tj-zoom-in-center</div>
       </transition>
 
-      <transition name="el-zoom-in-top">
-        <div v-show="show2" class="transition-box">.el-zoom-in-top</div>
+      <transition name="tj-zoom-in-top">
+        <div v-show="show2" class="transition-box">.tj-zoom-in-top</div>
       </transition>
 
-      <transition name="el-zoom-in-bottom">
-        <div v-show="show2" class="transition-box">.el-zoom-in-bottom</div>
+      <transition name="tj-zoom-in-bottom">
+        <div v-show="show2" class="transition-box">.tj-zoom-in-bottom</div>
       </transition>
     </div>
   </div>
 </template>
 
 <script>
-    export default {
+  export default {
     data: () => ({
-      show2: true
-    })
+      show2: true,
+    }),
   }
 </script>
 
@@ -84,7 +87,7 @@ You can use Element's built-in transitions directly. Before that, please read th
     width: 200px;
     height: 100px;
     border-radius: 4px;
-    background-color: #409EFF;
+    background-color: #409eff;
     text-align: center;
     color: #fff;
     padding: 40px 20px;
@@ -93,35 +96,36 @@ You can use Element's built-in transitions directly. Before that, please read th
   }
 </style>
 ```
-:::
 
+:::
 
 ### collapse
 
-For collapse effect, use the `el-collapse-transition` component.
+For collapse effect, use the `tj-collapse-transition` component.
 
 :::demo
+
 ```html
 <template>
   <div>
-    <el-button @click="show3 = !show3">Click Me</el-button>
+    <tj-button @click="show3 = !show3">Click Me</tj-button>
 
     <div style="margin-top: 20px; height: 200px;">
-      <el-collapse-transition>
+      <tj-collapse-transition>
         <div v-show="show3">
-          <div class="transition-box">el-collapse-transition</div>
-          <div class="transition-box">el-collapse-transition</div>
+          <div class="transition-box">tj-collapse-transition</div>
+          <div class="transition-box">tj-collapse-transition</div>
         </div>
-      </el-collapse-transition>
+      </tj-collapse-transition>
     </div>
   </div>
 </template>
 
 <script>
-    export default {
+  export default {
     data: () => ({
-      show3: true
-    })
+      show3: true,
+    }),
   }
 </script>
 
@@ -131,7 +135,7 @@ For collapse effect, use the `el-collapse-transition` component.
     width: 200px;
     height: 100px;
     border-radius: 4px;
-    background-color: #409EFF;
+    background-color: #409eff;
     text-align: center;
     color: #fff;
     padding: 40px 20px;
@@ -140,16 +144,17 @@ For collapse effect, use the `el-collapse-transition` component.
   }
 </style>
 ```
+
 :::
 
 ### On demand
 
 ```js
 // fade/zoom
-import 'element-plus/lib/theme-chalk/base.css';
+import 'element-plus/lib/theme-chalk/base.css'
 // collapse
-import { ElCollapseTransition } from 'element-plus';
+import { TjCollapseTransition } from 'element-plus'
 import Vue from 'vue'
 
-Vue.component(ElCollapseTransition.name, ElCollapseTransition)
+Vue.component(TjCollapseTransition.name, TjCollapseTransition)
 ```

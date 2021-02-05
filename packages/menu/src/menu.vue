@@ -1,27 +1,27 @@
 <template>
-  <el-menu-collapse-transition v-if="props.collapseTransition">
+  <tj-menu-collapse-transition v-if="props.collapseTransition">
     <ul
       :key="+props.collapse"
       role="menubar"
       :style="{ backgroundColor: props.backgroundColor || '' }"
       :class="{
-        'el-menu': true,
-        'el-menu--horizontal': mode === 'horizontal',
-        'el-menu--collapse': props.collapse,
+        'tj-menu': true,
+        'tj-menu--horizontal': mode === 'horizontal',
+        'tj-menu--collapse': props.collapse,
       }"
     >
       <slot></slot>
     </ul>
-  </el-menu-collapse-transition>
+  </tj-menu-collapse-transition>
   <ul
     v-else
     :key="+props.collapse"
     role="menubar"
     :style="{ backgroundColor: props.backgroundColor || '' }"
     :class="{
-      'el-menu': true,
-      'el-menu--horizontal': mode === 'horizontal',
-      'el-menu--collapse': props.collapse,
+      'tj-menu': true,
+      'tj-menu--horizontal': mode === 'horizontal',
+      'tj-menu--collapse': props.collapse,
     }"
   >
     <slot></slot>
@@ -48,14 +48,14 @@ import {
   SubMenuProvider,
 } from './menu'
 import Menubar from '@element-plus/utils/menu/menu-bar'
-import ElMenuCollapseTransition from './menu-collapse-transition.vue'
+import TjMenuCollapseTransition from './menu-collapse-transition.vue'
 import useMenuColor from './useMenuColor'
 
 export default defineComponent({
-  name: 'ElMenu',
-  componentName: 'ElMenu',
+  name: 'TjMenu',
+  componentName: 'TjMenu',
   components: {
-    ElMenuCollapseTransition,
+    TjMenuCollapseTransition,
   },
   props: {
     mode: {
@@ -209,7 +209,7 @@ export default defineComponent({
           activeIndex.value = oldActiveIndex
           if (error) {
             // vue-router 3.1.0+ push/replace cause NavigationDuplicated error
-            // https://github.com/ElemeFE/element/issues/17044
+            // https://github.com/TjemeFE/element/issues/17044
             if (error.name === 'NavigationDuplicated') return
             console.error(error)
           }

@@ -4,7 +4,7 @@ import { hGutter, hColgroup } from '../h-helper'
 import useStyle from './style-helper'
 
 export default defineComponent({
-  name: 'ElTableFooter',
+  name: 'TjTableFooter',
 
   props: {
     fixed: {
@@ -78,7 +78,7 @@ export default defineComponent({
     return h(
       'table',
       {
-        class: 'el-table__footer',
+        class: 'tj-table__footer',
         cellspacing: '0',
         cellpadding: '0',
         border: '0',

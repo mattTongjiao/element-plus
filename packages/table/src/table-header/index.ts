@@ -7,7 +7,7 @@ import {
   ref,
   h,
 } from 'vue'
-import ElCheckbox from '@element-plus/checkbox'
+import TjCheckbox from '@element-plus/checkbox'
 import FilterPanel from '../filter-panel.vue'
 import useLayoutObserver from '../layout-observer'
 import useEvent from './event-helper'
@@ -18,9 +18,9 @@ import { Table, TableHeader } from '../table.type'
 import { TableHeaderProps } from './table-header'
 
 export default defineComponent({
-  name: 'ElTableHeader',
+  name: 'TjTableHeader',
   components: {
-    ElCheckbox,
+    TjCheckbox,
   },
   props: {
     fixed: {
@@ -115,7 +115,7 @@ export default defineComponent({
         border: '0',
         cellpadding: '0',
         cellspacing: '0',
-        class: 'el-table__header',
+        class: 'tj-table__header',
       },
       [
         hColgroup(this.columns, this.hasGutter),

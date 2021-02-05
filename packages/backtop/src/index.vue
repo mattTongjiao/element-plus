@@ -1,16 +1,16 @@
 <template>
-  <transition name="el-fade-in">
+  <transition name="tj-fade-in">
     <div
       v-if="visible"
       :style="{
-        'right': styleRight,
-        'bottom': styleBottom
+        right: styleRight,
+        bottom: styleBottom,
       }"
-      class="el-backtop"
+      class="tj-backtop"
       @click.stop="handleClick"
     >
       <slot>
-        <i class="el-icon-caret-top"></i>
+        <i class="tj-icon-caret-top"></i>
       </slot>
     </div>
   </transition>
@@ -22,7 +22,7 @@ import throttle from 'lodash/throttle'
 import { on, off } from '@element-plus/utils/dom'
 import { easeInOutCubic } from '@element-plus/utils/animation'
 
-interface IElBacktopProps {
+interface ITjBacktopProps {
   visibilityHeight: number
   target: string
   right: number
@@ -30,7 +30,7 @@ interface IElBacktopProps {
 }
 
 export default defineComponent({
-  name: 'ElBacktop',
+  name: 'TjBacktop',
   props: {
     visibilityHeight: {
       type: Number,
@@ -50,7 +50,7 @@ export default defineComponent({
     },
   },
   emits: ['click'],
-  setup(props: IElBacktopProps, ctx) {
+  setup(props: ITjBacktopProps, ctx) {
     const el = ref(null)
     const container = ref(null)
     const visible = ref(false)

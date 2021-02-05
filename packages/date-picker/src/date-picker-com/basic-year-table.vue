@@ -1,5 +1,5 @@
 <template>
-  <table class="el-year-table" @click="handleYearTableClick">
+  <table class="tj-year-table" @click="handleYearTableClick">
     <tbody>
       <tr>
         <td class="available" :class="getCellStyle(startYear + 0)">
@@ -47,11 +47,7 @@
 import { hasClass } from '@element-plus/utils/dom'
 import { rangeArr } from '@element-plus/time-picker'
 import { coerceTruthyValueToArray } from '@element-plus/utils/util'
-import {
-  defineComponent,
-  computed,
-  PropType,
-} from 'vue'
+import { defineComponent, computed, PropType } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 
 const datesInYear = year => {
@@ -88,7 +84,10 @@ export default defineComponent({
         ? datesInYear(year).every(props.disabledDate)
         : false
 
-      style.current = coerceTruthyValueToArray(props.parsedValue).findIndex(_ => _.year() === year) >= 0
+      style.current =
+        coerceTruthyValueToArray(props.parsedValue).findIndex(
+          _ => _.year() === year,
+        ) >= 0
 
       style.today = today.year() === year
 

@@ -12,14 +12,14 @@ import { PartialReturnType } from '@element-plus/utils/types'
 import { elFormKey, elFormItemKey } from '@element-plus/form'
 import { ICheckboxGroupInstance, ICheckboxProps } from './checkbox.type'
 
-import type { ElFormContext, ElFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
 
 export const useCheckboxGroup = () => {
   const ELEMENT = useGlobalConfig()
-  const elForm = inject(elFormKey, {} as ElFormContext)
-  const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+  const elForm = inject(elFormKey, {} as TjFormContext)
+  const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
   const checkboxGroup = inject<ICheckboxGroupInstance>('CheckboxGroup', {})
-  const isGroup = computed(() => checkboxGroup && checkboxGroup?.name === 'ElCheckboxGroup')
+  const isGroup = computed(() => checkboxGroup && checkboxGroup?.name === 'TjCheckboxGroup')
   const elFormItemSize = computed(() => {
     return elFormItem.size
   })

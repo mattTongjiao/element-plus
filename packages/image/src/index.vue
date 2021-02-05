@@ -1,24 +1,27 @@
 <template>
   <div
     ref="container"
-    :class="['el-image', $attrs.class]"
+    :class="['tj-image', $attrs.class]"
     :style="$attrs.style"
   >
     <slot v-if="loading" name="placeholder">
-      <div class="el-image__placeholder"></div>
+      <div class="tj-image__placeholder"></div>
     </slot>
     <slot v-else-if="hasLoadError" name="error">
-      <div class="el-image__error">{{ t('el.image.error') }}</div>
+      <div class="tj-image__error">{{ t('el.image.error') }}</div>
     </slot>
     <img
       v-else
-      class="el-image__inner"
+      class="tj-image__inner"
       v-bind="attrs"
       :src="src"
       :style="imageStyle"
-      :class="{ 'el-image__inner--center': alignCenter, 'el-image__preview': preview }"
+      :class="{
+        'tj-image__inner--center': alignCenter,
+        'tj-image__preview': preview,
+      }"
       @click="clickHandler"
-    >
+    />
     <template v-if="preview">
       <image-viewer
         v-if="showViewer"
@@ -32,7 +35,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 
 import { defineComponent, computed, ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import { isString } from '@vue/shared'
@@ -45,7 +48,7 @@ import ImageViewer from '@element-plus/image-viewer'
 import type { PropType } from 'vue'
 
 const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined
-const isHtmlEle = e => e && e.nodeType === 1
+const isHtmlTje = e => e && e.nodeType === 1
 
 const ObjectFit = {
   NONE: 'none',
@@ -58,7 +61,7 @@ const ObjectFit = {
 let prevOverflow = ''
 
 export default defineComponent({
-  name: 'ElImage',
+  name: 'TjImage',
   components: {
     ImageViewer,
   },
@@ -215,7 +218,7 @@ export default defineComponent({
       if (isServer) return
 
       const { scrollContainer } = props
-      if (isHtmlEle(scrollContainer)) {
+      if (isHtmlTje(scrollContainer)) {
         _scrollContainer = scrollContainer
       } else if (isString(scrollContainer) && scrollContainer !== '') {
         _scrollContainer = document.querySelector(scrollContainer)

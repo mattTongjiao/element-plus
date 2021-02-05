@@ -64,8 +64,8 @@ export const defaultProps = {
 
 export function useSpace(props: ExtractPropTypes<typeof defaultProps>) {
   const classes = computed(() => [
-    'el-space',
-    `el-space--${props.direction}`,
+    'tj-space',
+    `tj-space--${props.direction}`,
     props.class,
   ])
 

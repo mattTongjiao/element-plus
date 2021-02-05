@@ -1,16 +1,16 @@
 <template>
-  <div class="el-badge">
+  <div class="tj-badge">
     <slot></slot>
-    <transition name="el-zoom-in-center">
+    <transition name="tj-zoom-in-center">
       <sup
         v-show="!hidden && (content || content === 0 || isDot)"
-        class="el-badge__content"
+        class="tj-badge__content"
         :class="[
-          'el-badge__content--' + type,
+          'tj-badge__content--' + type,
           {
             'is-fixed': $slots.default,
-            'is-dot': isDot
-          }
+            'is-dot': isDot,
+          },
         ]"
         v-text="content"
       >
@@ -34,7 +34,7 @@ interface IBadgeSetups {
   content: number | string
 }
 export default defineComponent({
-  name: 'ElBadge',
+  name: 'TjBadge',
   props: {
     value: {
       type: [String, Number],

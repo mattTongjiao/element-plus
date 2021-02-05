@@ -6,7 +6,7 @@
       @after-leave="afterLeave"
       @before-leave="beforeLeave"
     >
-      <el-overlay
+      <tj-overlay
         v-show="visible"
         :mask="modal"
         :overlay-class="modalClass"
@@ -17,10 +17,10 @@
           ref="dialogRef"
           v-trap-focus
           :class="[
-            'el-dialog',
+            'tj-dialog',
             {
               'is-fullscreen': fullscreen,
-              'el-dialog--center': center,
+              'tj-dialog--center': center,
             },
             customClass,
           ]"
@@ -30,32 +30,32 @@
           :style="style"
           @click.stop=""
         >
-          <div class="el-dialog__header">
+          <div class="tj-dialog__header">
             <slot name="title">
-              <span class="el-dialog__title">
+              <span class="tj-dialog__title">
                 {{ title }}
               </span>
             </slot>
             <button
               v-if="showClose"
               aria-label="close"
-              class="el-dialog__headerbtn"
+              class="tj-dialog__headerbtn"
               type="button"
               @click="handleClose"
             >
-              <i class="el-dialog__close el-icon el-icon-close"></i>
+              <i class="tj-dialog__close tj-icon tj-icon-close"></i>
             </button>
           </div>
           <template v-if="rendered">
-            <div class="el-dialog__body">
+            <div class="tj-dialog__body">
               <slot></slot>
             </div>
           </template>
-          <div v-if="$slots.footer" class="el-dialog__footer">
+          <div v-if="$slots.footer" class="tj-dialog__footer">
             <slot name="footer"></slot>
           </div>
         </div>
-      </el-overlay>
+      </tj-overlay>
     </transition>
   </teleport>
 </template>
@@ -79,9 +79,9 @@ import type { PropType, SetupContext } from 'vue'
 
 
 export default defineComponent({
-  name: 'ElDialog',
+  name: 'TjDialog',
   components: {
-    'el-overlay': Overlay,
+    'tj-overlay': Overlay,
   },
   directives: {
     TrapFocus,

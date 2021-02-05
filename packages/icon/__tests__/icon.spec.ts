@@ -8,6 +8,6 @@ describe('Icon.vue', () => {
         name: 'search',
       },
     })
-    expect(wrapper.classes()).toContain('el-icon-search')
+    expect(wrapper.classes()).toContain('tj-icon-search')
   })
 })

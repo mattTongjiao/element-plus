@@ -2,22 +2,22 @@
   <div
     :class="[
       {
-        'el-table--fit': fit,
-        'el-table--striped': stripe,
-        'el-table--border': border || isGroup,
-        'el-table--hidden': isHidden,
-        'el-table--group': isGroup,
-        'el-table--fluid-height': maxHeight,
-        'el-table--scrollable-x': layout.scrollX.value,
-        'el-table--scrollable-y': layout.scrollY.value,
-        'el-table--enable-row-hover': !store.states.isComplex.value,
-        'el-table--enable-row-transition':
+        'tj-table--fit': fit,
+        'tj-table--striped': stripe,
+        'tj-table--border': border || isGroup,
+        'tj-table--hidden': isHidden,
+        'tj-table--group': isGroup,
+        'tj-table--fluid-height': maxHeight,
+        'tj-table--scrollable-x': layout.scrollX.value,
+        'tj-table--scrollable-y': layout.scrollY.value,
+        'tj-table--enable-row-hover': !store.states.isComplex.value,
+        'tj-table--enable-row-transition':
           (store.states.data.value || []).length !== 0 &&
           (store.states.data.value || []).length < 100,
       },
-      tableSize ? `el-table--${tableSize}` : '',
+      tableSize ? `tj-table--${tableSize}` : '',
     ]"
-    class="el-table"
+    class="tj-table"
     @mouseleave="handleMouseLeave()"
   >
     <div ref="hiddenColumns" class="hidden-columns">
@@ -27,7 +27,7 @@
       v-if="showHeader"
       ref="headerWrapper"
       v-mousewheel="handleHeaderFooterMousewheel"
-      class="el-table__header-wrapper"
+      class="tj-table__header-wrapper"
     >
       <table-header
         ref="tableHeader"
@@ -40,7 +40,7 @@
         @set-drag-visible="setDragVisible"
       />
     </div>
-    <div ref="bodyWrapper" :style="[bodyHeight]" class="el-table__body-wrapper">
+    <div ref="bodyWrapper" :style="[bodyHeight]" class="tj-table__body-wrapper">
       <table-body
         :context="context"
         :highlight="highlightCurrentRow"
@@ -56,16 +56,16 @@
         v-if="!data || data.length === 0"
         ref="emptyBlock"
         :style="emptyBlockStyle"
-        class="el-table__empty-block"
+        class="tj-table__empty-block"
       >
-        <span class="el-table__empty-text">
+        <span class="tj-table__empty-text">
           <slot name="empty">{{ emptyText || t('el.table.emptyText') }}</slot>
         </span>
       </div>
       <div
         v-if="$slots.append"
         ref="appendWrapper"
-        class="el-table__append-wrapper"
+        class="tj-table__append-wrapper"
       >
         <slot name="append"></slot>
       </div>
@@ -75,7 +75,7 @@
       v-show="data && data.length > 0"
       ref="footerWrapper"
       v-mousewheel="handleHeaderFooterMousewheel"
-      class="el-table__footer-wrapper"
+      class="tj-table__footer-wrapper"
     >
       <table-footer
         :border="border"
@@ -98,12 +98,12 @@
         },
         fixedHeight,
       ]"
-      class="el-table__fixed"
+      class="tj-table__fixed"
     >
       <div
         v-if="showHeader"
         ref="fixedHeaderWrapper"
-        class="el-table__fixed-header-wrapper"
+        class="tj-table__fixed-header-wrapper"
       >
         <table-header
           ref="fixedTableHeader"
@@ -124,7 +124,7 @@
           },
           fixedBodyHeight,
         ]"
-        class="el-table__fixed-body-wrapper"
+        class="tj-table__fixed-body-wrapper"
       >
         <table-body
           :highlight="highlightCurrentRow"
@@ -140,14 +140,14 @@
         <div
           v-if="$slots.append"
           :style="{ height: layout.appendHeight.value + 'px' }"
-          class="el-table__append-gutter"
+          class="tj-table__append-gutter"
         ></div>
       </div>
       <div
         v-if="showSummary"
         v-show="data && data.length > 0"
         ref="fixedFooterWrapper"
-        class="el-table__fixed-footer-wrapper"
+        class="tj-table__fixed-footer-wrapper"
       >
         <table-footer
           :border="border"
@@ -176,12 +176,12 @@
         },
         fixedHeight,
       ]"
-      class="el-table__fixed-right"
+      class="tj-table__fixed-right"
     >
       <div
         v-if="showHeader"
         ref="rightFixedHeaderWrapper"
-        class="el-table__fixed-header-wrapper"
+        class="tj-table__fixed-header-wrapper"
       >
         <table-header
           ref="rightFixedTableHeader"
@@ -197,7 +197,7 @@
       <div
         ref="rightFixedBodyWrapper"
         :style="[{ top: layout.headerHeight.value + 'px' }, fixedBodyHeight]"
-        class="el-table__fixed-body-wrapper"
+        class="tj-table__fixed-body-wrapper"
       >
         <table-body
           :highlight="highlightCurrentRow"
@@ -213,14 +213,14 @@
         <div
           v-if="$slots.append"
           :style="{ height: layout.appendHeight.value + 'px' }"
-          class="el-table__append-gutter"
+          class="tj-table__append-gutter"
         ></div>
       </div>
       <div
         v-if="showSummary"
         v-show="data && data.length > 0"
         ref="rightFixedFooterWrapper"
-        class="el-table__fixed-footer-wrapper"
+        class="tj-table__fixed-footer-wrapper"
       >
         <table-footer
           :border="border"
@@ -241,17 +241,17 @@
         width: layout.scrollY.value ? layout.gutterWidth + 'px' : '0',
         height: layout.headerHeight.value + 'px',
       }"
-      class="el-table__fixed-right-patch"
+      class="tj-table__fixed-right-patch"
     ></div>
     <div
       v-show="resizeProxyVisible"
       ref="resizeProxy"
-      class="el-table__column-resize-proxy"
+      class="tj-table__column-resize-proxy"
     ></div>
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent, getCurrentInstance, computed } from 'vue'
 import { createStore } from './store/helper'
 import { t } from '@element-plus/locale'
@@ -267,7 +267,7 @@ import { TableProps, Table } from './table.type'
 
 let tableIdSeed = 1
 export default defineComponent({
-  name: 'ElTable',
+  name: 'TjTable',
   directives: {
     Mousewheel,
   },
@@ -279,7 +279,7 @@ export default defineComponent({
   props: {
     data: {
       type: Array,
-      default: function () {
+      default: function() {
         return []
       },
     },
@@ -381,14 +381,14 @@ export default defineComponent({
     const shouldUpdateHeight = computed(() => {
       return (
         props.height ||
-          props.maxHeight ||
-          store.states.fixedColumns.value.length > 0 ||
-          store.states.rightFixedColumns.value.length > 0
+        props.maxHeight ||
+        store.states.fixedColumns.value.length > 0 ||
+        store.states.rightFixedColumns.value.length > 0
       )
     })
     /**
-       * open functions
-       */
+     * open functions
+     */
     const {
       setCurrentRow,
       toggleRowSelection,
@@ -420,7 +420,7 @@ export default defineComponent({
 
     const debouncedUpdateLayout = debounce(() => doLayout(), 50)
 
-    const tableId = 'el-table_' + tableIdSeed++
+    const tableId = 'tj-table_' + tableIdSeed++
     table.tableId = tableId
     table.state = {
       isGroup,

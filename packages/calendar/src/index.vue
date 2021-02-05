@@ -1,41 +1,29 @@
 <template>
-  <div class="el-calendar">
-    <div class="el-calendar__header">
-      <div class="el-calendar__title">{{ i18nDate }}</div>
-      <div v-if="validatedRange.length === 0" class="el-calendar__button-group">
-        <el-button-group>
-          <el-button
-            size="mini"
-            @click="selectDate('prev-month')"
-          >
+  <div class="tj-calendar">
+    <div class="tj-calendar__header">
+      <div class="tj-calendar__title">{{ i18nDate }}</div>
+      <div v-if="validatedRange.length === 0" class="tj-calendar__button-group">
+        <tj-button-group>
+          <tj-button size="mini" @click="selectDate('prev-month')">
             {{ t('el.datepicker.prevMonth') }}
-          </el-button>
-          <el-button size="mini" @click="selectDate('today')">
-            {{
-              t('el.datepicker.today')
-            }}
-          </el-button>
-          <el-button
-            size="mini"
-            @click="selectDate('next-month')"
-          >
+          </tj-button>
+          <tj-button size="mini" @click="selectDate('today')">
+            {{ t('el.datepicker.today') }}
+          </tj-button>
+          <tj-button size="mini" @click="selectDate('next-month')">
             {{ t('el.datepicker.nextMonth') }}
-          </el-button>
-        </el-button-group>
+          </tj-button>
+        </tj-button-group>
       </div>
     </div>
-    <div v-if="validatedRange.length === 0" class="el-calendar__body">
-      <date-table
-        :date="date"
-        :selected-day="realSelectedDay"
-        @pick="pickDay"
-      >
+    <div v-if="validatedRange.length === 0" class="tj-calendar__body">
+      <date-table :date="date" :selected-day="realSelectedDay" @pick="pickDay">
         <template v-if="$slots.dateCell" #dateCell="data">
           <slot name="dateCell" v-bind="data"></slot>
         </template>
       </date-table>
     </div>
-    <div v-else class="el-calendar__body">
+    <div v-else class="tj-calendar__body">
       <date-table
         v-for="(range_, index) in validatedRange"
         :key="index"
@@ -55,25 +43,19 @@
 
 <script lang="ts">
 import { t } from '@element-plus/locale'
-import ElButton from '@element-plus/button'
-import ElButtonGroup from '@element-plus/button-group'
+import TjButton from '@element-plus/button'
+import TjButtonGroup from '@element-plus/button-group'
 import DateTable from './date-table.vue'
-import {
-  ref,
-  ComputedRef,
-  PropType,
-  computed,
-  defineComponent,
-} from 'vue'
+import { ref, ComputedRef, PropType, computed, defineComponent } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 
 export default defineComponent({
-  name: 'ElCalendar',
+  name: 'TjCalendar',
 
   components: {
     DateTable,
-    ElButton,
-    ElButtonGroup,
+    TjButton,
+    TjButtonGroup,
   },
 
   props: {
@@ -84,12 +66,7 @@ export default defineComponent({
       type: Array as PropType<Array<Date>>,
       validator: (range: Date): boolean => {
         if (Array.isArray(range)) {
-          return (
-            range.length === 2 &&
-            range.every(
-              item => item instanceof Date,
-            )
-          )
+          return range.length === 2 && range.every(item => item instanceof Date)
         }
         return false
       },
@@ -157,10 +134,7 @@ export default defineComponent({
       }
       if (startDayjs.isSame(endDayjs, 'month')) {
         // same month
-        return [[
-          startDayjs.startOf('week'),
-          endDayjs.endOf('week'),
-        ]]
+        return [[startDayjs.startOf('week'), endDayjs.endOf('week')]]
       } else {
         // two months
         if (startDayjs.add(1, 'month').month() !== endDayjs.month()) {
@@ -176,14 +150,8 @@ export default defineComponent({
           endMonthStart = endMonthFirstDay.endOf('week').add(1, 'day')
         }
         return [
-          [
-            startDayjs.startOf('week'),
-            startDayjs.endOf('month'),
-          ],
-          [
-            endMonthStart,
-            endDayjs.endOf('week'),
-          ],
+          [startDayjs.startOf('week'), startDayjs.endOf('month')],
+          [endMonthStart, endDayjs.endOf('week')],
         ]
       }
     })

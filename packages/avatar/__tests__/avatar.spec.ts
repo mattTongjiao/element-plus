@@ -8,7 +8,7 @@ describe('Avatar.vue', () => {
 
   test('render test', () => {
     const wrapper = mount(Avatar)
-    expect(wrapper.find('.el-avatar').exists()).toBe(true)
+    expect(wrapper.find('.tj-avatar').exists()).toBe(true)
   })
 
   test('size is number', () => {
@@ -22,22 +22,22 @@ describe('Avatar.vue', () => {
     const wrapper = mount(Avatar, {
       props: { size: 'small' },
     })
-    expect(wrapper.classes()).toContain('el-avatar--small')
+    expect(wrapper.classes()).toContain('tj-avatar--small')
   })
 
   test('shape', () => {
     const wrapper = mount(Avatar, {
       props: { size: 'small', shape: 'square' },
     })
-    expect(wrapper.classes()).toContain('el-avatar--square')
+    expect(wrapper.classes()).toContain('tj-avatar--square')
   })
 
   test('icon avatar', () => {
     const wrapper = mount(Avatar, {
-      props: { icon: 'el-icon-user-solid' },
+      props: { icon: 'tj-icon-user-solid' },
     })
-    expect(wrapper.classes()).toContain('el-avatar--icon')
-    expect(wrapper.find('i').classes()).toContain('el-icon-user-solid')
+    expect(wrapper.classes()).toContain('tj-avatar--icon')
+    expect(wrapper.find('i').classes()).toContain('tj-icon-user-solid')
   })
 
   test('image avatar', () => {

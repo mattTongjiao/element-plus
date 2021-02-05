@@ -14,37 +14,37 @@ describe('Switch.vue', () => {
       },
     })
     const vm = wrapper.vm
-    const coreEl = vm.$el.querySelector('.el-switch__core')
-    expect(coreEl.style.backgroundColor).toEqual('rgb(255, 0, 0)')
-    expect(coreEl.style.width).toEqual('100px')
-    const leftLabelWrapper = wrapper.find('.el-switch__label--left span')
+    const coreTj = vm.$el.querySelector('.tj-switch__core')
+    expect(coreTj.style.backgroundColor).toEqual('rgb(255, 0, 0)')
+    expect(coreTj.style.width).toEqual('100px')
+    const leftLabelWrapper = wrapper.find('.tj-switch__label--left span')
     expect(leftLabelWrapper.text()).toEqual('off')
   })
 
   test('switch with icons', () => {
     const wrapper = mount(Switch, {
       props: {
-        activeIconClass: 'el-icon-check',
-        inactiveIconClass: 'el-icon-close',
+        activeIconClass: 'tj-icon-check',
+        inactiveIconClass: 'tj-icon-close',
       },
     })
 
-    const iconWrapper = wrapper.find('.el-switch__label--left i')
-    expect(iconWrapper.classes('el-icon-close')).toBe(true)
+    const iconWrapper = wrapper.find('.tj-switch__label--left i')
+    expect(iconWrapper.classes('tj-icon-close')).toBe(true)
   })
 
   test('value correctly update', async () => {
     const wrapper = mount({
       components: {
-        'el-switch': Switch,
+        'tj-switch': Switch,
       },
       template: `
         <div>
-          <el-switch
+          <tj-switch
             v-model="value"
             activeColor="#0f0"
             inactiveColor="#f00">
-          </el-switch>
+          </tj-switch>
         </div>
       `,
       data() {
@@ -54,11 +54,11 @@ describe('Switch.vue', () => {
       },
     })
     const vm = wrapper.vm
-    const coreEl = vm.$el.querySelector('.el-switch__core')
-    expect(coreEl.style.backgroundColor).toEqual('rgb(0, 255, 0)')
-    const coreWrapper = wrapper.find('.el-switch__core')
+    const coreTj = vm.$el.querySelector('.tj-switch__core')
+    expect(coreTj.style.backgroundColor).toEqual('rgb(0, 255, 0)')
+    const coreWrapper = wrapper.find('.tj-switch__core')
     await coreWrapper.trigger('click')
-    expect(coreEl.style.backgroundColor).toEqual('rgb(255, 0, 0)')
+    expect(coreTj.style.backgroundColor).toEqual('rgb(255, 0, 0)')
     expect(vm.value).toEqual(false)
     await coreWrapper.trigger('click')
     expect(vm.value).toEqual(true)
@@ -67,14 +67,14 @@ describe('Switch.vue', () => {
   test('change event', async () => {
     const wrapper = mount({
       components: {
-        'el-switch': Switch,
+        'tj-switch': Switch,
       },
       template: `
         <div>
-          <el-switch
+          <tj-switch
             v-model="value"
-            @update:modelValue="handleChange">  
-          </el-switch>
+            @update:modelValue="handleChange">
+          </tj-switch>
         </div>
       `,
       methods: {
@@ -92,7 +92,7 @@ describe('Switch.vue', () => {
     const vm = wrapper.vm
 
     expect(vm.target).toEqual(1)
-    const coreWrapper = wrapper.find('.el-switch__core')
+    const coreWrapper = wrapper.find('.tj-switch__core')
     await coreWrapper.trigger('click')
     const switchWrapper = wrapper.findComponent(Switch)
     expect(switchWrapper.emitted()['update:modelValue']).toBeTruthy()
@@ -102,11 +102,11 @@ describe('Switch.vue', () => {
   test('disabled switch should not respond to user click', async () => {
     const wrapper = mount({
       components: {
-        'el-switch': Switch,
+        'tj-switch': Switch,
       },
       template: `
         <div>
-          <el-switch disabled v-model="value"></el-switch>
+          <tj-switch disabled v-model="value"></tj-switch>
         </div>
       `,
       data() {
@@ -118,7 +118,7 @@ describe('Switch.vue', () => {
     const vm = wrapper.vm
 
     expect(vm.value).toEqual(true)
-    const coreWrapper = wrapper.find('.el-switch__core')
+    const coreWrapper = wrapper.find('.tj-switch__core')
     await coreWrapper.trigger('click')
     expect(vm.value).toEqual(true)
   })
@@ -126,11 +126,11 @@ describe('Switch.vue', () => {
   test('expand switch value', async () => {
     const wrapper = mount({
       components: {
-        'el-switch': Switch,
+        'tj-switch': Switch,
       },
       template: `
         <div>
-          <el-switch v-model="value" :active-value="onValue" :inactive-value="offValue"></el-switch>
+          <tj-switch v-model="value" :active-value="onValue" :inactive-value="offValue"></tj-switch>
         </div>
       `,
       data() {
@@ -143,7 +143,7 @@ describe('Switch.vue', () => {
     })
     const vm = wrapper.vm
 
-    const coreWrapper = wrapper.find('.el-switch__core')
+    const coreWrapper = wrapper.find('.tj-switch__core')
     await coreWrapper.trigger('click')
     expect(vm.value).toEqual('0')
     await coreWrapper.trigger('click')
@@ -153,63 +153,63 @@ describe('Switch.vue', () => {
   test('value is the single source of truth', async () => {
     const wrapper = mount({
       components: {
-        'el-switch': Switch,
+        'tj-switch': Switch,
       },
       template: `
         <div>
-          <el-switch :value="true"></el-switch>
+          <tj-switch :value="true"></tj-switch>
         </div>
       `,
     })
     const vm = wrapper.vm
-    const coreWrapper = wrapper.find('.el-switch__core')
+    const coreWrapper = wrapper.find('.tj-switch__core')
     const switchWrapper = wrapper.findComponent(Switch)
     const switchVm = switchWrapper.vm
-    const inputEl = vm.$el.querySelector('input')
+    const inputTj = vm.$el.querySelector('input')
 
     expect(switchVm.checked).toBe(true)
     expect(switchWrapper.classes('is-checked')).toEqual(true)
-    expect(inputEl.checked).toEqual(true)
+    expect(inputTj.checked).toEqual(true)
     await coreWrapper.trigger('click')
     expect(switchVm.checked).toBe(true)
     expect(switchWrapper.classes('is-checked')).toEqual(true)
-    expect(inputEl.checked).toEqual(true)
+    expect(inputTj.checked).toEqual(true)
   })
 
-  test('model-value is the single source of truth', async () => {
+  test('modtj-value is the single source of truth', async () => {
     const wrapper = mount({
       components: {
-        'el-switch': Switch,
+        'tj-switch': Switch,
       },
       template: `
         <div>
-          <el-switch :model-value="true"></el-switch>
+          <tj-switch :modtj-value="true"></tj-switch>
         </div>
       `,
     })
     const vm = wrapper.vm
-    const coreWrapper = wrapper.find('.el-switch__core')
+    const coreWrapper = wrapper.find('.tj-switch__core')
     const switchWrapper = wrapper.findComponent(Switch)
     const switchVm = switchWrapper.vm
-    const inputEl = vm.$el.querySelector('input')
+    const inputTj = vm.$el.querySelector('input')
 
     expect(switchVm.checked).toBe(true)
     expect(switchWrapper.classes('is-checked')).toEqual(true)
-    expect(inputEl.checked).toEqual(true)
+    expect(inputTj.checked).toEqual(true)
     await coreWrapper.trigger('click')
     expect(switchVm.checked).toBe(true)
     expect(switchWrapper.classes('is-checked')).toEqual(true)
-    expect(inputEl.checked).toEqual(true)
+    expect(inputTj.checked).toEqual(true)
   })
 
   test('sets checkbox value', async () => {
     const wrapper = mount({
       components: {
-        'el-switch': Switch,
+        'tj-switch': Switch,
       },
       template: `
         <div>
-          <el-switch v-model="value"></el-switch>
+          <tj-switch v-model="value"></tj-switch>
         </div>
       `,
       data() {
@@ -219,13 +219,13 @@ describe('Switch.vue', () => {
       },
     })
     const vm = wrapper.vm
-    const inputEl = vm.$el.querySelector('input')
+    const inputTj = vm.$el.querySelector('input')
 
     vm.value = true
     await vm.$nextTick()
-    expect(inputEl.checked).toEqual(true)
+    expect(inputTj.checked).toEqual(true)
     vm.value = false
     await vm.$nextTick()
-    expect(inputEl.checked).toEqual(false)
+    expect(inputTj.checked).toEqual(false)
   })
 })

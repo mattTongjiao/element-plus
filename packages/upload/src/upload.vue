@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['el-upload', `el-upload--${listType}`]"
+    :class="['tj-upload', `tj-upload--${listType}`]"
     tabindex="0"
     @click="handleClick"
     @keydown.self.enter.space="handleKeydown"
@@ -15,13 +15,13 @@
     </template>
     <input
       ref="inputRef"
-      class="el-upload__input"
+      class="tj-upload__input"
       type="file"
       :name="name"
       :multiple="multiple"
       :accept="accept"
       @change="handleChange"
-    >
+    />
   </div>
 </template>
 
@@ -33,14 +33,14 @@ import ajax from './ajax'
 import UploadDragger from './upload-dragger.vue'
 
 import type { PropType } from 'vue'
-import type { ListType, UploadFile, ElFile } from './upload.type'
+import type { ListType, UploadFile, TjFile } from './upload.type'
 
 type IFileHanlder = (
-  file: Nullable<ElFile[]>,
+  file: Nullable<TjFile[]>,
   fileList?: UploadFile[],
 ) => unknown
 
-type AjaxEventListener = (e: ProgressEvent, file: ElFile) => unknown
+type AjaxEventListener = (e: ProgressEvent, file: TjFile) => unknown
 
 export default defineComponent({
   components: {
@@ -112,9 +112,9 @@ export default defineComponent({
     },
     onRemove: {
       type: Function as PropType<
-        (file: Nullable<FileList>, rawFile: ElFile) => void
+        (file: Nullable<FileList>, rawFile: TjFile) => void
       >,
-      default: NOOP as (file: Nullable<FileList>, rawFile: ElFile) => void,
+      default: NOOP as (file: Nullable<FileList>, rawFile: TjFile) => void,
     },
     fileList: {
       type: Array as PropType<UploadFile[]>,
@@ -165,11 +165,11 @@ export default defineComponent({
       }
       postFiles.forEach(rawFile => {
         props.onStart(rawFile)
-        if (props.autoUpload) upload(rawFile as ElFile)
+        if (props.autoUpload) upload(rawFile as TjFile)
       })
     }
 
-    function upload(rawFile: ElFile) {
+    function upload(rawFile: TjFile) {
       inputRef.value.value = null
       if (!props.beforeUpload) {
         return post(rawFile)
@@ -220,7 +220,7 @@ export default defineComponent({
       }
     }
 
-    function post(rawFile: ElFile) {
+    function post(rawFile: TjFile) {
       const { uid } = rawFile
       const options = {
         headers: props.headers,

@@ -2,40 +2,46 @@
   <div
     :style="style"
     :class="[
-      'el-step',
+      'tj-step',
       isSimple ? 'is-simple' : `is-${parent.props.direction}`,
       isLast && !space && !isCenter && 'is-flex',
-      isCenter && !isVertical && !isSimple && 'is-center'
+      isCenter && !isVertical && !isSimple && 'is-center',
     ]"
   >
     <!-- icon & line -->
-    <div :class="['el-step__head', `is-${currentStatus}`]">
-      <div class="el-step__line">
-        <i class="el-step__line-inner" :style="lineStyle"></i>
+    <div :class="['tj-step__head', `is-${currentStatus}`]">
+      <div class="tj-step__line">
+        <i class="tj-step__line-inner" :style="lineStyle"></i>
       </div>
 
-      <div :class="['el-step__icon', `is-${icon ? 'icon' : 'text'}`]">
+      <div :class="['tj-step__icon', `is-${icon ? 'icon' : 'text'}`]">
         <slot
           v-if="currentStatus !== 'success' && currentStatus !== 'error'"
           name="icon"
         >
-          <i v-if="icon" :class="['el-step__icon-inner', icon]"></i>
-          <div v-if="!icon && !isSimple" class="el-step__icon-inner">{{ index + 1 }}</div>
+          <i v-if="icon" :class="['tj-step__icon-inner', icon]"></i>
+          <div v-if="!icon && !isSimple" class="tj-step__icon-inner">
+            {{ index + 1 }}
+          </div>
         </slot>
         <i
           v-else
-          :class="['el-step__icon-inner', 'is-status', `el-icon-${currentStatus === 'success' ? 'check' : 'close'}`]"
+          :class="[
+            'tj-step__icon-inner',
+            'is-status',
+            `tj-icon-${currentStatus === 'success' ? 'check' : 'close'}`,
+          ]"
         >
         </i>
       </div>
     </div>
     <!-- title & description -->
-    <div class="el-step__main">
-      <div :class="['el-step__title', `is-${currentStatus}`]">
+    <div class="tj-step__main">
+      <div :class="['tj-step__title', `is-${currentStatus}`]">
         <slot name="title">{{ title }}</slot>
       </div>
-      <div v-if="isSimple" class="el-step__arrow"></div>
-      <div v-else :class="['el-step__description', `is-${currentStatus}`]">
+      <div v-if="isSimple" class="tj-step__arrow"></div>
+      <div v-else :class="['tj-step__description', `is-${currentStatus}`]">
         <slot name="description">{{ description }}</slot>
       </div>
     </div>
@@ -72,7 +78,7 @@ interface IStepsInject {
 }
 
 export default defineComponent({
-  name: 'ElStep',
+  name: 'TjStep',
   props: {
     title: {
       type: String,
@@ -96,7 +102,7 @@ export default defineComponent({
     const index = ref(-1)
     const lineStyle = ref({})
     const internalStatus = ref('')
-    const parent: IStepsInject = inject('ElSteps')
+    const parent: IStepsInject = inject('TjSteps')
     const currentInstance = getCurrentInstance()
 
     onMounted(() => {

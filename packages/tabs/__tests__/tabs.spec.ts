@@ -9,16 +9,16 @@ describe('Tabs.vue', () => {
   test('create', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs>
-          <el-tab-pane label="label-1">A</el-tab-pane>
-          <el-tab-pane label="label-2">B</el-tab-pane>
-          <el-tab-pane label="label-3" ref="pane-click">C</el-tab-pane>
-          <el-tab-pane label="label-4">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs>
+          <tj-tab-pane label="label-1">A</tj-tab-pane>
+          <tj-tab-pane label="label-2">B</tj-tab-pane>
+          <tj-tab-pane label="label-3" ref="pane-click">C</tj-tab-pane>
+          <tj-tab-pane label="label-4">D</tj-tab-pane>
+        </tj-tabs>
       `,
     })
 
@@ -27,10 +27,10 @@ describe('Tabs.vue', () => {
     const panesWrapper = wrapper.findAllComponents(TabPane)
     await nextTick()
 
-    const navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    const navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
     expect(navItemsWrapper[0].classes('is-active')).toBe(true)
-    expect(panesWrapper[0].classes('el-tab-pane')).toBe(true)
+    expect(panesWrapper[0].classes('tj-tab-pane')).toBe(true)
     expect(panesWrapper[0].attributes('id')).toBe('pane-0')
     expect(panesWrapper[0].attributes('aria-hidden')).toEqual('false')
     expect(tabsWrapper.vm.currentName).toEqual('0')
@@ -46,8 +46,8 @@ describe('Tabs.vue', () => {
   test('active-name', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       data() {
         return {
@@ -60,12 +60,12 @@ describe('Tabs.vue', () => {
         },
       },
       template: `
-        <el-tabs :active-name="activeName" @tab-click="handleClick">
-          <el-tab-pane name="a" label="label-1">A</el-tab-pane>
-          <el-tab-pane name="b" label="label-2">B</el-tab-pane>
-          <el-tab-pane name="c" label="label-3" ref="pane-click">C</el-tab-pane>
-          <el-tab-pane name="d" label="label-4">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs :active-name="activeName" @tab-click="handleClick">
+          <tj-tab-pane name="a" label="label-1">A</tj-tab-pane>
+          <tj-tab-pane name="b" label="label-2">B</tj-tab-pane>
+          <tj-tab-pane name="c" label="label-3" ref="pane-click">C</tj-tab-pane>
+          <tj-tab-pane name="d" label="label-4">D</tj-tab-pane>
+        </tj-tabs>
       `,
     })
 
@@ -74,9 +74,9 @@ describe('Tabs.vue', () => {
     const panesWrapper = wrapper.findAllComponents(TabPane)
     await nextTick()
 
-    const navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    const navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
     expect(navItemsWrapper[1].classes('is-active')).toBe(true)
-    expect(panesWrapper[1].classes('el-tab-pane')).toBe(true)
+    expect(panesWrapper[1].classes('tj-tab-pane')).toBe(true)
     expect(panesWrapper[1].attributes('id')).toBe('pane-b')
     expect(panesWrapper[1].attributes('aria-hidden')).toEqual('false')
     expect(tabsWrapper.vm.currentName).toEqual('b')
@@ -92,53 +92,53 @@ describe('Tabs.vue', () => {
   test('card', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs type="card">
-          <el-tab-pane label="label-1">A</el-tab-pane>
-          <el-tab-pane label="label-2">B</el-tab-pane>
-          <el-tab-pane label="label-3" ref="pane-click">C</el-tab-pane>
-          <el-tab-pane label="label-4">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs type="card">
+          <tj-tab-pane label="label-1">A</tj-tab-pane>
+          <tj-tab-pane label="label-2">B</tj-tab-pane>
+          <tj-tab-pane label="label-3" ref="pane-click">C</tj-tab-pane>
+          <tj-tab-pane label="label-4">D</tj-tab-pane>
+        </tj-tabs>
       `,
     })
 
     const tabsWrapper = wrapper.findComponent(Tabs)
-    expect(tabsWrapper.classes('el-tabs--card')).toBe(true)
+    expect(tabsWrapper.classes('tj-tabs--card')).toBe(true)
   })
 
   test('border card', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs type="border-card">
-          <el-tab-pane label="label-1">A</el-tab-pane>
-          <el-tab-pane label="label-2">B</el-tab-pane>
-          <el-tab-pane label="label-3" ref="pane-click">C</el-tab-pane>
-          <el-tab-pane label="label-4">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs type="border-card">
+          <tj-tab-pane label="label-1">A</tj-tab-pane>
+          <tj-tab-pane label="label-2">B</tj-tab-pane>
+          <tj-tab-pane label="label-3" ref="pane-click">C</tj-tab-pane>
+          <tj-tab-pane label="label-4">D</tj-tab-pane>
+        </tj-tabs>
       `,
     })
 
     const tabsWrapper = wrapper.findComponent(Tabs)
-    expect(tabsWrapper.classes('el-tabs--border-card')).toBe(true)
+    expect(tabsWrapper.classes('tj-tabs--border-card')).toBe(true)
   })
 
   test('dynamic', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs type="card" ref="tabs">
-          <el-tab-pane :label="tab.label" :name="tab.name" v-for="tab in tabs" :key="tab.name">Test Content</el-tab-pane>
-        </el-tabs>
+        <tj-tabs type="card" ref="tabs">
+          <tj-tab-pane :label="tab.label" :name="tab.name" v-for="tab in tabs" :key="tab.name">Test Content</tj-tab-pane>
+        </tj-tabs>
       `,
       data() {
         return {
@@ -163,7 +163,7 @@ describe('Tabs.vue', () => {
     let panesWrapper = wrapper.findAllComponents(TabPane)
     await nextTick()
 
-    let navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    let navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
     expect(navItemsWrapper.length).toEqual(4)
     expect(panesWrapper.length).toEqual(4)
@@ -173,7 +173,7 @@ describe('Tabs.vue', () => {
     await nextTick()
     navWrapper = wrapper.findComponent(TabNav)
     panesWrapper = wrapper.findAllComponents(TabPane)
-    navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
     expect(navItemsWrapper.length).toEqual(5)
     expect(panesWrapper.length).toEqual(5)
@@ -182,20 +182,20 @@ describe('Tabs.vue', () => {
   test('editable', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs ref="tabs" v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
-          <el-tab-pane
+        <tj-tabs ref="tabs" v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
+          <tj-tab-pane
             v-for="(item, index) in editableTabs"
             :key="item.name"
             :label="item.title"
             :name="item.name"
           >
             {{item.content}}
-          </el-tab-pane>
-        </el-tabs>
+          </tj-tab-pane>
+        </tj-tabs>
       `,
       data() {
         return {
@@ -251,26 +251,26 @@ describe('Tabs.vue', () => {
     let panesWrapper = wrapper.findAllComponents(TabPane)
     await nextTick()
 
-    let navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    let navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
     expect(navItemsWrapper.length).toEqual(3)
     expect(panesWrapper.length).toEqual(3)
     expect(navItemsWrapper[1].classes('is-active')).toBe(true)
 
     // remove one tab, check panes length
-    await navItemsWrapper[1].find('.el-icon-close').trigger('click')
+    await navItemsWrapper[1].find('.tj-icon-close').trigger('click')
 
     panesWrapper = wrapper.findAllComponents(TabPane)
-    navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
     expect(navItemsWrapper.length).toEqual(2)
     expect(panesWrapper.length).toEqual(2)
 
     // add one tab, check panes length and current tab
-    await navWrapper.find('.el-tabs__new-tab').trigger('click')
+    await navWrapper.find('.tj-tabs__new-tab').trigger('click')
 
     panesWrapper = wrapper.findAllComponents(TabPane)
-    navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
     expect(navItemsWrapper.length).toEqual(3)
     expect(panesWrapper.length).toEqual(3)
@@ -280,11 +280,11 @@ describe('Tabs.vue', () => {
   test('addable & closable', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs
+        <tj-tabs
           ref="tabs"
           v-model="editableTabsValue"
           type="card"
@@ -293,15 +293,15 @@ describe('Tabs.vue', () => {
           @tab-add="addTab"
           @tab-remove="removeTab"
         >
-          <el-tab-pane
+          <tj-tab-pane
             v-for="(item, index) in editableTabs"
             :label="item.title"
             :key="item.name"
             :name="item.name"
           >
             {{item.content}}
-          </el-tab-pane>
-        </el-tabs>
+          </tj-tab-pane>
+        </tj-tabs>
       `,
       data() {
         return {
@@ -350,18 +350,18 @@ describe('Tabs.vue', () => {
     const navWrapper = wrapper.findComponent(TabNav)
     await nextTick()
 
-    await navWrapper.find('.el-tabs__new-tab').trigger('click')
+    await navWrapper.find('.tj-tabs__new-tab').trigger('click')
 
-    let navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    let navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
     let panesWrapper = wrapper.findAllComponents(TabPane)
     expect(navItemsWrapper.length).toEqual(3)
     expect(panesWrapper.length).toEqual(3)
     expect(navItemsWrapper[2].classes('is-active')).toBe(true)
 
-    await navItemsWrapper[2].find('.el-icon-close').trigger('click')
+    await navItemsWrapper[2].find('.tj-icon-close').trigger('click')
 
     panesWrapper = wrapper.findAllComponents(TabPane)
-    navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
     expect(navItemsWrapper.length).toEqual(2)
     expect(panesWrapper.length).toEqual(2)
@@ -370,44 +370,44 @@ describe('Tabs.vue', () => {
   test('closable in tab-pane', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs type="card" ref="tabs">
-          <el-tab-pane label="label-1" closable>A</el-tab-pane>
-          <el-tab-pane label="label-2">B</el-tab-pane>
-          <el-tab-pane label="label-3" closable>C</el-tab-pane>
-          <el-tab-pane label="label-4">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs type="card" ref="tabs">
+          <tj-tab-pane label="label-1" closable>A</tj-tab-pane>
+          <tj-tab-pane label="label-2">B</tj-tab-pane>
+          <tj-tab-pane label="label-3" closable>C</tj-tab-pane>
+          <tj-tab-pane label="label-4">D</tj-tab-pane>
+        </tj-tabs>
       `,
     })
 
     const navWrapper = wrapper.findComponent(TabNav)
     await nextTick()
 
-    expect(navWrapper.findAll('.el-icon-close').length).toBe(2)
+    expect(navWrapper.findAll('.tj-icon-close').length).toBe(2)
   })
 
   test('disabled', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs type="card" ref="tabs">
-          <el-tab-pane label="label-1">A</el-tab-pane>
-          <el-tab-pane disabled label="label-2" ref="disabled">B</el-tab-pane>
-          <el-tab-pane label="label-3">C</el-tab-pane>
-          <el-tab-pane label="label-4">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs type="card" ref="tabs">
+          <tj-tab-pane label="label-1">A</tj-tab-pane>
+          <tj-tab-pane disabled label="label-2" ref="disabled">B</tj-tab-pane>
+          <tj-tab-pane label="label-3">C</tj-tab-pane>
+          <tj-tab-pane label="label-4">D</tj-tab-pane>
+        </tj-tabs>
       `,
     })
 
     const navWrapper = wrapper.findComponent(TabNav)
     await nextTick()
-    const navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    const navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
     expect(navItemsWrapper[1].classes('is-active')).toBe(false)
 
     await navItemsWrapper[1].trigger('click')
@@ -417,43 +417,43 @@ describe('Tabs.vue', () => {
   test('tab-position', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs ref="tabs" tab-position="left">
-          <el-tab-pane label="label-1">A</el-tab-pane>
-          <el-tab-pane label="label-2">B</el-tab-pane>
-          <el-tab-pane label="label-3" ref="pane-click">C</el-tab-pane>
-          <el-tab-pane label="label-4">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs ref="tabs" tab-position="left">
+          <tj-tab-pane label="label-1">A</tj-tab-pane>
+          <tj-tab-pane label="label-2">B</tj-tab-pane>
+          <tj-tab-pane label="label-3" ref="pane-click">C</tj-tab-pane>
+          <tj-tab-pane label="label-4">D</tj-tab-pane>
+        </tj-tabs>
       `,
     })
 
     const tabsWrapper = wrapper.findComponent(Tabs)
     await nextTick()
 
-    expect(tabsWrapper.classes('el-tabs--left')).toBe(true)
-    expect(tabsWrapper.find('.el-tabs__header').classes('is-left')).toBe(true)
-    expect(tabsWrapper.find('.el-tabs__nav-wrap').classes('is-left')).toBe(true)
-    expect(tabsWrapper.find('.el-tabs__nav').classes('is-left')).toBe(true)
-    expect(tabsWrapper.find('.el-tabs__active-bar').classes('is-left')).toBe(true)
-    expect(tabsWrapper.find('.el-tabs__item').classes('is-left')).toBe(true)
+    expect(tabsWrapper.classes('tj-tabs--left')).toBe(true)
+    expect(tabsWrapper.find('.tj-tabs__header').classes('is-left')).toBe(true)
+    expect(tabsWrapper.find('.tj-tabs__nav-wrap').classes('is-left')).toBe(true)
+    expect(tabsWrapper.find('.tj-tabs__nav').classes('is-left')).toBe(true)
+    expect(tabsWrapper.find('.tj-tabs__active-bar').classes('is-left')).toBe(true)
+    expect(tabsWrapper.find('.tj-tabs__item').classes('is-left')).toBe(true)
   })
 
   test('stretch', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-      <el-tabs ref="tabs" stretch :tab-position="tabPosition">
-        <el-tab-pane label="label-1">A</el-tab-pane>
-        <el-tab-pane label="label-2">B</el-tab-pane>
-        <el-tab-pane label="label-3">C</el-tab-pane>
-        <el-tab-pane label="label-4">D</el-tab-pane>
-      </el-tabs>
+      <tj-tabs ref="tabs" stretch :tab-position="tabPosition">
+        <tj-tab-pane label="label-1">A</tj-tab-pane>
+        <tj-tab-pane label="label-2">B</tj-tab-pane>
+        <tj-tab-pane label="label-3">C</tj-tab-pane>
+        <tj-tab-pane label="label-4">D</tj-tab-pane>
+      </tj-tabs>
       `,
       data() {
         return {
@@ -465,12 +465,12 @@ describe('Tabs.vue', () => {
     const tabsWrapper = wrapper.findComponent(Tabs)
     await nextTick()
 
-    expect(tabsWrapper.find('.el-tabs__nav').classes('is-stretch')).toBe(true)
+    expect(tabsWrapper.find('.tj-tabs__nav').classes('is-stretch')).toBe(true)
 
     wrapper.vm.tabPosition = 'left'
     await nextTick()
 
-    expect(tabsWrapper.find('.el-tabs__nav').classes('is-stretch')).toBe(false)
+    expect(tabsWrapper.find('.tj-tabs__nav').classes('is-stretch')).toBe(false)
   })
 
   test('horizonal-scrollable', async () => {
@@ -484,43 +484,43 @@ describe('Tabs.vue', () => {
   test('should work with lazy', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs ref="tabs">
-          <el-tab-pane label="label-1" name="A">A</el-tab-pane>
-          <el-tab-pane label="label-2" name="B">B</el-tab-pane>
-          <el-tab-pane label="label-3" name="C">C</el-tab-pane>
-          <el-tab-pane label="label-4" lazy name="D">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs ref="tabs">
+          <tj-tab-pane label="label-1" name="A">A</tj-tab-pane>
+          <tj-tab-pane label="label-2" name="B">B</tj-tab-pane>
+          <tj-tab-pane label="label-3" name="C">C</tj-tab-pane>
+          <tj-tab-pane label="label-4" lazy name="D">D</tj-tab-pane>
+        </tj-tabs>
       `,
     })
 
     const navWrapper = wrapper.findComponent(TabNav)
     await nextTick()
-    const navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    const navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
-    expect(wrapper.findAll('.el-tab-pane').length).toBe(3)
+    expect(wrapper.findAll('.tj-tab-pane').length).toBe(3)
 
     await navItemsWrapper[3].trigger('click')
 
-    expect(wrapper.findAll('.el-tab-pane').length).toBe(4)
+    expect(wrapper.findAll('.tj-tab-pane').length).toBe(4)
   })
 
   test('before leave', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs ref="tabs" v-model="activeName" :before-leave="beforeLeave">
-          <el-tab-pane name="tab-A" label="label-1">A</el-tab-pane>
-          <el-tab-pane name="tab-B" label="label-2">B</el-tab-pane>
-          <el-tab-pane name="tab-C" label="label-3">C</el-tab-pane>
-          <el-tab-pane name="tab-D" label="label-4">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs ref="tabs" v-model="activeName" :before-leave="beforeLeave">
+          <tj-tab-pane name="tab-A" label="label-1">A</tj-tab-pane>
+          <tj-tab-pane name="tab-B" label="label-2">B</tj-tab-pane>
+          <tj-tab-pane name="tab-C" label="label-3">C</tj-tab-pane>
+          <tj-tab-pane name="tab-D" label="label-4">D</tj-tab-pane>
+        </tj-tabs>
       `,
       data() {
         return {
@@ -539,7 +539,7 @@ describe('Tabs.vue', () => {
     const navWrapper = wrapper.findComponent(TabNav)
     const panesWrapper = wrapper.findAllComponents(TabPane)
     await nextTick()
-    const navItemsWrapper = navWrapper.findAll('.el-tabs__item')
+    const navItemsWrapper = navWrapper.findAll('.tj-tabs__item')
 
     expect(navItemsWrapper[1].classes('is-active')).toBe(true)
     expect(panesWrapper[1].attributes('style')).toBeFalsy()
@@ -553,16 +553,16 @@ describe('Tabs.vue', () => {
   test('keyboard event', async () => {
     const wrapper = mount({
       components: {
-        'el-tabs': Tabs,
-        'el-tab-pane': TabPane,
+        'tj-tabs': Tabs,
+        'tj-tab-pane': TabPane,
       },
       template: `
-        <el-tabs v-model="activeName">
-          <el-tab-pane label="label-1" name="first">A</el-tab-pane>
-          <el-tab-pane label="label-2" name="second">B</el-tab-pane>
-          <el-tab-pane label="label-3" name="third">C</el-tab-pane>
-          <el-tab-pane label="label-4" name="fourth">D</el-tab-pane>
-        </el-tabs>
+        <tj-tabs v-model="activeName">
+          <tj-tab-pane label="label-1" name="first">A</tj-tab-pane>
+          <tj-tab-pane label="label-2" name="second">B</tj-tab-pane>
+          <tj-tab-pane label="label-3" name="third">C</tj-tab-pane>
+          <tj-tab-pane label="label-4" name="fourth">D</tj-tab-pane>
+        </tj-tabs>
       `,
       data() {
         return {

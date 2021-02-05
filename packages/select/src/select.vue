@@ -2,21 +2,21 @@
   <div
     ref="selectWrapper"
     v-click-outside:[popperPaneRef]="handleClose"
-    class="el-select"
-    :class="[selectSize ? 'el-select--' + selectSize : '']"
+    class="tj-select"
+    :class="[selectSize ? 'tj-select--' + selectSize : '']"
     @click.stop="toggleMenu"
   >
-    <el-popper
+    <tj-popper
       ref="popper"
       v-model:visible="dropMenuVisible"
       placement="bottom-start"
       :append-to-body="popperAppendToBody"
-      :popper-class="`el-select__popper ${popperClass}`"
+      :popper-class="`tj-select__popper ${popperClass}`"
       manual-mode
       effect="light"
       pure
       trigger="click"
-      transition="el-zoom-in-top"
+      transition="tj-zoom-in-top"
       :stop-popper-mouse-event="false"
       :gpu-acceleration="false"
       @before-enter="handleMenuEnter"
@@ -26,11 +26,11 @@
           <div
             v-if="multiple"
             ref="tags"
-            class="el-select__tags"
+            class="tj-select__tags"
             :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%' }"
           >
             <span v-if="collapseTags && selected.length">
-              <el-tag
+              <tj-tag
                 :closable="!selectDisabled"
                 :size="collapseTagSize"
                 :hit="selected[0].hitState"
@@ -38,22 +38,28 @@
                 disable-transitions
                 @close="deleteTag($event, selected[0])"
               >
-                <span class="el-select__tags-text" :style="{ 'max-width': inputWidth - 123 + 'px' }">{{ selected[0].currentLabel }}</span>
-              </el-tag>
-              <el-tag
+                <span
+                  class="tj-select__tags-text"
+                  :style="{ 'max-width': inputWidth - 123 + 'px' }"
+                  >{{ selected[0].currentLabel }}</span
+                >
+              </tj-tag>
+              <tj-tag
                 v-if="selected.length > 1"
                 :closable="false"
                 :size="collapseTagSize"
                 type="info"
                 disable-transitions
               >
-                <span class="el-select__tags-text">+ {{ selected.length - 1 }}</span>
-              </el-tag>
+                <span class="tj-select__tags-text"
+                  >+ {{ selected.length - 1 }}</span
+                >
+              </tj-tag>
             </span>
             <!-- <div> -->
             <transition v-if="!collapseTags" @after-leave="resetInputHeight">
               <span>
-                <el-tag
+                <tj-tag
                   v-for="item in selected"
                   :key="getValueKey(item)"
                   :closable="!selectDisabled"
@@ -63,8 +69,12 @@
                   disable-transitions
                   @close="deleteTag($event, item)"
                 >
-                  <span class="el-select__tags-text" :style="{ 'max-width': inputWidth - 75 + 'px' }">{{ item.currentLabel }}</span>
-                </el-tag>
+                  <span
+                    class="tj-select__tags-text"
+                    :style="{ 'max-width': inputWidth - 75 + 'px' }"
+                    >{{ item.currentLabel }}</span
+                  >
+                </tj-tag>
               </span>
             </transition>
             <!-- </div> -->
@@ -73,11 +83,15 @@
               ref="input"
               v-model="query"
               type="text"
-              class="el-select__input"
-              :class="[selectSize ? `is-${ selectSize }` : '']"
+              class="tj-select__input"
+              :class="[selectSize ? `is-${selectSize}` : '']"
               :disabled="selectDisabled"
               :autocomplete="autocomplete"
-              :style="{ 'flex-grow': '1', width: inputLength / (inputWidth - 32) + '%', 'max-width': inputWidth - 42 + 'px' }"
+              :style="{
+                'flex-grow': '1',
+                width: inputLength / (inputWidth - 32) + '%',
+                'max-width': inputWidth - 42 + 'px',
+              }"
               @focus="handleFocus"
               @blur="softFocus = false"
               @keyup="managePlaceholder"
@@ -92,9 +106,9 @@
               @compositionupdate="handleComposition"
               @compositionend="handleComposition"
               @input="debouncedQueryChange"
-            >
+            />
           </div>
-          <el-input
+          <tj-input
             :id="id"
             ref="reference"
             v-model="selectedLabel"
@@ -107,7 +121,7 @@
             :readonly="readonly"
             :validate-event="false"
             :class="{ 'is-focus': visible }"
-            :tabindex="(multiple && filterable) ? '-1' : null"
+            :tabindex="multiple && filterable ? '-1' : null"
             @focus="handleFocus"
             @blur="handleBlur"
             @input="debouncedOnInputChange"
@@ -124,42 +138,54 @@
               <slot name="prefix"></slot>
             </template>
             <template #suffix>
-              <i v-show="!showClose" :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"></i>
+              <i
+                v-show="!showClose"
+                :class="[
+                  'tj-select__caret',
+                  'tj-input__icon',
+                  'tj-icon-' + iconClass,
+                ]"
+              ></i>
               <i
                 v-if="showClose"
-                :class="`el-select__caret el-input__icon ${clearIcon}`"
+                :class="`tj-select__caret tj-input__icon ${clearIcon}`"
                 @click="handleClearClick"
               ></i>
             </template>
-          </el-input>
+          </tj-input>
         </div>
       </template>
       <template #default>
-        <el-select-menu>
-          <el-scrollbar
+        <tj-select-menu>
+          <tj-scrollbar
             v-show="options.length > 0 && !loading"
             ref="scrollbar"
             tag="ul"
-            wrap-class="el-select-dropdown__wrap"
-            view-class="el-select-dropdown__list"
-            :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }"
+            wrap-class="tj-select-dropdown__wrap"
+            view-class="tj-select-dropdown__list"
+            :class="{
+              'is-empty': !allowCreate && query && filteredOptionsCount === 0,
+            }"
           >
-            <el-option
-              v-if="showNewOption"
-              :value="query"
-              :created="true"
-            />
+            <tj-option v-if="showNewOption" :value="query" :created="true" />
             <slot></slot>
-          </el-scrollbar>
-          <template v-if="emptyText && (!allowCreate || loading || (allowCreate && options.length === 0 ))">
+          </tj-scrollbar>
+          <template
+            v-if="
+              emptyText &&
+                (!allowCreate ||
+                  loading ||
+                  (allowCreate && options.length === 0))
+            "
+          >
             <slot v-if="$slots.empty" name="empty"></slot>
-            <p v-else class="el-select-dropdown__empty">
+            <p v-else class="tj-select-dropdown__empty">
               {{ emptyText }}
             </p>
           </template>
-        </el-select-menu>
+        </tj-select-menu>
       </template>
-    </el-popper>
+    </tj-popper>
   </div>
 </template>
 
@@ -174,12 +200,12 @@ import {
   provide,
   computed,
 } from 'vue'
-import ElInput from '@element-plus/input'
-import ElOption from './option.vue'
-import ElSelectMenu from './select-dropdown.vue'
-import ElTag from '@element-plus/tag'
-import ElPopper from '@element-plus/popper'
-import ElScrollbar from '@element-plus/scrollbar'
+import TjInput from '@element-plus/input'
+import TjOption from './option.vue'
+import TjSelectMenu from './select-dropdown.vue'
+import TjTag from '@element-plus/tag'
+import TjPopper from '@element-plus/popper'
+import TjScrollbar from '@element-plus/scrollbar'
 import { ClickOutside } from '@element-plus/directives'
 import { addResizeListener, removeResizeListener } from '@element-plus/utils/resize-event'
 import { t } from '@element-plus/locale'
@@ -192,15 +218,15 @@ import { useFocus } from '@element-plus/hooks'
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElSelect',
-  componentName: 'ElSelect',
+  name: 'TjSelect',
+  componentName: 'TjSelect',
   components: {
-    ElInput,
-    ElSelectMenu,
-    ElOption,
-    ElTag,
-    ElScrollbar,
-    ElPopper,
+    TjInput,
+    TjSelectMenu,
+    TjOption,
+    TjTag,
+    TjScrollbar,
+    TjPopper,
   },
   directives: { ClickOutside },
   props: {
@@ -252,7 +278,7 @@ export default defineComponent({
     },
     clearIcon: {
       type: String,
-      default: 'el-icon-circle-close',
+      default: 'tj-icon-circle-close',
     },
   },
   emits: [UPDATE_MODEL_EVENT, CHANGE_EVENT, 'remove-tag', 'clear', 'visible-change', 'focus', 'blur'],

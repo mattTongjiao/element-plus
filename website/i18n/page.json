@@ -4,7 +4,7 @@
     "pages": {
       "index": {
         "1": "网站快速成型工具",
-        "2": "Element Plus，一套为开发者、设计师和产品经理准备的基于 Vue 3.0 的桌面端组件库",
+        "2": "Tongjiao UI，一套为开发者、设计师和产品经理准备的基于 Vue 3.0 的桌面端组件库",
         "3": "指南",
         "4": "了解设计指南，帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。",
         "5": "查看详情",
@@ -110,7 +110,7 @@
     "pages": {
       "index": {
         "1": "A Desktop UI Library",
-        "2": "Element Plus, a Vue 3.0 based component library for developers, designers and product managers",
+        "2": "Tongjiao UI, a Vue 3.0 based component library for developers, designers and product managers",
         "3": "Guide",
         "4": "Understand the design guidelines, helping designers build product that's logically sound, reasonably structured and easy to use.",
         "5": "View Detail",
@@ -216,7 +216,7 @@
     "pages": {
       "index": {
         "1": "Un kit de interfaz de usuario para la web",
-        "2": "Element Plus, una librería de componentes basada en Vue 3.0 para desarrolladores, diseñadores y jefes de producto",
+        "2": "Tongjiao UI, una librería de componentes basada en Vue 3.0 para desarrolladores, diseñadores y jefes de producto",
         "3": "Guía",
         "4": "Entender los líneamientos de diseño, ayudando a diseñadores a crear productos que sean lógicos, razonablemente estructurados y fáciles de usar.",
         "5": "Ver detalle",
@@ -287,7 +287,7 @@
       "nav": {
         "1": "Navegación",
         "2": "La navegación se centra en resolver los problemas de los usuarios sobre donde ir y como llegar ahí. En general, se puede categorizar en 'navegación de barra lateral' y 'navegación superior'.",
-        "3": "Elige la navegación correcta",
+        "3": "Tjige la navegación correcta",
         "4": "Una navegación apropiada provee a los usuarios una mejor experiencia, mientras que una inapropiada genera confusión. Esta es la diferencia entre la navegación de la barra lateral y la navegación superior.",
         "5": "Navegación lateral",
         "6": "Fija la navegación del lado izquierdo, esto permitirá una mejor visibilidad, lo que facilitará el cambio de pagina. En este caso, el área superior de la pagina contiene herramientas comúnmente utilizadas, por ejemplo, barra de búsqueda, botón de ayuda, botón de aviso, etc. Adecuado para sitios web de gestión.",
@@ -322,7 +322,7 @@
     "pages": {
       "index": {
         "1": "Un kit de composants d'interface pour le web",
-        "2": "Element Plus, une bibliothèque de composants web basée sur Vue 3.0 pour les développeurs, designers et chef de produits.",
+        "2": "Tongjiao UI, une bibliothèque de composants web basée sur Vue 3.0 pour les développeurs, designers et chef de produits.",
         "3": "Guide",
         "4": "Comprendre le design, aider les designers à concevoir un produit adapté, structuré et facile d'utilisation.",
         "5": "Détails",
@@ -428,7 +428,7 @@
     "pages": {
       "index": {
         "1": "デスクトップUIライブラリ",
-        "2": "Element Plus、開発者、デザイナー、プロダクトマネージャーのためのVue 3.0ベースのコンポーネントライブラリ",
+        "2": "Tongjiao UI、開発者、デザイナー、プロダクトマネージャーのためのVue 3.0ベースのコンポーネントライブラリ",
         "3": "ガイド",
         "4": "設計ガイドラインを理解し、論理的に健全で、合理的に構成された使いやすい製品を設計者が構築できるように支援します。",
         "5": "詳細を見る",

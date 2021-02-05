@@ -50,7 +50,7 @@ export interface Tag {
   closable: boolean
 }
 
-export interface ElCascaderPanelContext {
+export interface TjCascaderPanelContext {
   config: CascaderConfig
   expandingNode: Nullable<CascaderNode>
   checkedNodes: CascaderNode[]
@@ -61,4 +61,4 @@ export interface ElCascaderPanelContext {
   handleCheckChange: (node: CascaderNode, checked: boolean, emitClose?: boolean) => void
 }
 
-export const CASCADER_PANEL_INJECTION_KEY: InjectionKey<ElCascaderPanelContext> = Symbol()
+export const CASCADER_PANEL_INJECTION_KEY: InjectionKey<TjCascaderPanelContext> = Symbol()

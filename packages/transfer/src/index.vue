@@ -1,5 +1,5 @@
 <template>
-  <div class="el-transfer">
+  <div class="tj-transfer">
     <transfer-panel
       ref="leftPanel"
       :data="sourceData"
@@ -15,25 +15,25 @@
     >
       <slot name="left-footer"></slot>
     </transfer-panel>
-    <div class="el-transfer__buttons">
-      <el-button
+    <div class="tj-transfer__buttons">
+      <tj-button
         type="primary"
-        :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
+        :class="['tj-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
         :disabled="rightChecked.length === 0"
         @click="addToLeft"
       >
-        <i class="el-icon-arrow-left"></i>
+        <i class="tj-icon-arrow-left"></i>
         <span v-if="buttonTexts[0] !== undefined">{{ buttonTexts[0] }}</span>
-      </el-button>
-      <el-button
+      </tj-button>
+      <tj-button
         type="primary"
-        :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
+        :class="['tj-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
         :disabled="leftChecked.length === 0"
         @click="addToRight"
       >
         <span v-if="buttonTexts[1] !== undefined">{{ buttonTexts[1] }}</span>
-        <i class="el-icon-arrow-right"></i>
-      </el-button>
+        <i class="tj-icon-arrow-right"></i>
+      </tj-button>
     </div>
     <transfer-panel
       ref="rightPanel"
@@ -59,7 +59,7 @@ import {
   reactive, ref, toRefs, watch,
 } from 'vue'
 import { t } from '@element-plus/locale'
-import ElButton from '@element-plus/button'
+import TjButton from '@element-plus/button'
 import TransferPanel from './transfer-panel.vue'
 import { useComputedData } from './useComputedData'
 import { useCheckedChange } from './useCheckedChange'
@@ -71,7 +71,7 @@ import { elFormItemKey } from '@element-plus/form'
 import { LEFT_CHECK_CHANGE_EVENT, RIGHT_CHECK_CHANGE_EVENT } from './useCheckedChange'
 
 import type { PropType, VNode } from 'vue'
-import type { ElFormItemContext } from '@element-plus/form'
+import type { TjFormItemContext } from '@element-plus/form'
 import type {
   DataItem, Format, Key,
   Props, TargetOrder,
@@ -80,11 +80,11 @@ import type {
 export const CHANGE_EVENT = 'change'
 
 export default defineComponent({
-  name: 'ElTransfer',
+  name: 'TjTransfer',
 
   components: {
     TransferPanel,
-    ElButton,
+    TjButton,
   },
 
   props: {
@@ -151,7 +151,7 @@ export default defineComponent({
   ],
 
   setup(props, { emit, slots }) {
-    const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
     const checkedState = reactive({
       leftChecked: [],

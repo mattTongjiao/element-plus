@@ -6,7 +6,7 @@ let clientHeightRestore = null
 
 const _mount = (template: string) => mount({
   components: {
-    'el-affix': Affix,
+    'tj-affix': Affix,
   },
   template,
 }, { attachTo: document.body })
@@ -24,10 +24,10 @@ afterAll(() => {
 describe('Affix.vue', () => {
   test('render test', async () => {
     const wrapper = _mount(`
-      <el-affix>${AXIOM}</el-affix>
+      <tj-affix>${AXIOM}</tj-affix>
     `)
     expect(wrapper.text()).toEqual(AXIOM)
-    const mockAffixRect = jest.spyOn(wrapper.find('.el-affix').element, 'getBoundingClientRect').mockReturnValue({
+    const mockAffixRect = jest.spyOn(wrapper.find('.tj-affix').element, 'getBoundingClientRect').mockReturnValue({
       height: 40,
       width: 1000,
       top: -100,
@@ -39,18 +39,18 @@ describe('Affix.vue', () => {
       top: 0,
       bottom: 200,
     } as DOMRect)
-    expect(wrapper.find('.el-affix--fixed').exists()).toBe(false)
+    expect(wrapper.find('.tj-affix--fixed').exists()).toBe(false)
     await makeScroll(document.documentElement, 'scrollTop', 200)
-    expect(wrapper.find('.el-affix--fixed').exists()).toBe(true)
+    expect(wrapper.find('.tj-affix--fixed').exists()).toBe(true)
     mockAffixRect.mockRestore()
     mockDocumentRect.mockRestore()
   })
 
   test('should render offset props', async () => {
     const wrapper = _mount(`
-      <el-affix :offset="30">${AXIOM}</el-affix>
+      <tj-affix :offset="30">${AXIOM}</tj-affix>
     `)
-    const mockAffixRect = jest.spyOn(wrapper.find('.el-affix').element, 'getBoundingClientRect').mockReturnValue({
+    const mockAffixRect = jest.spyOn(wrapper.find('.tj-affix').element, 'getBoundingClientRect').mockReturnValue({
       height: 40,
       width: 1000,
       top: -100,
@@ -63,18 +63,18 @@ describe('Affix.vue', () => {
       bottom: 200,
     } as DOMRect)
     await makeScroll(document.documentElement, 'scrollTop', 200)
-    expect(wrapper.find('.el-affix--fixed').exists()).toBe(true)
-    expect(wrapper.find('.el-affix--fixed').attributes('style')).toContain('top: 30px;')
+    expect(wrapper.find('.tj-affix--fixed').exists()).toBe(true)
+    expect(wrapper.find('.tj-affix--fixed').attributes('style')).toContain('top: 30px;')
     mockAffixRect.mockRestore()
     mockDocumentRect.mockRestore()
   })
 
   test('should render position props', async () => {
     const wrapper = _mount(`
-      <el-affix position="bottom" :offset="20">${AXIOM}</el-affix>
+      <tj-affix position="bottom" :offset="20">${AXIOM}</tj-affix>
     `)
 
-    const mockAffixRect = jest.spyOn(wrapper.find('.el-affix').element, 'getBoundingClientRect').mockReturnValue({
+    const mockAffixRect = jest.spyOn(wrapper.find('.tj-affix').element, 'getBoundingClientRect').mockReturnValue({
       height: 40,
       width: 1000,
       top: 2000,
@@ -87,8 +87,8 @@ describe('Affix.vue', () => {
       bottom: 200,
     } as DOMRect)
     await makeScroll(document.documentElement, 'scrollTop', 0)
-    expect(wrapper.find('.el-affix--fixed').exists()).toBe(true)
-    expect(wrapper.find('.el-affix--fixed').attributes('style')).toContain('bottom: 20px;')
+    expect(wrapper.find('.tj-affix--fixed').exists()).toBe(true)
+    expect(wrapper.find('.tj-affix--fixed').attributes('style')).toContain('bottom: 20px;')
     mockAffixRect.mockRestore()
     mockDocumentRect.mockRestore()
   })
@@ -96,12 +96,12 @@ describe('Affix.vue', () => {
   test('should render target props', async () => {
     const wrapper = _mount(`
       <div class="target" style="height: 200px">
-        <el-affix target=".target">${AXIOM}</el-affix>
+        <tj-affix target=".target">${AXIOM}</tj-affix>
       </div>
       <div style="height: 1000px"></div>
     `)
 
-    const mockAffixRect = jest.spyOn(wrapper.find('.el-affix').element, 'getBoundingClientRect').mockReturnValue({
+    const mockAffixRect = jest.spyOn(wrapper.find('.tj-affix').element, 'getBoundingClientRect').mockReturnValue({
       height: 40,
       width: 1000,
       top: -100,
@@ -114,7 +114,7 @@ describe('Affix.vue', () => {
       bottom: 100,
     } as DOMRect)
     await makeScroll(document.documentElement, 'scrollTop', 100)
-    expect(wrapper.find('.el-affix--fixed').exists()).toBe(true)
+    expect(wrapper.find('.tj-affix--fixed').exists()).toBe(true)
     mockAffixRect.mockReturnValue({
       height: 40,
       width: 1000,
@@ -128,16 +128,16 @@ describe('Affix.vue', () => {
       bottom: -260,
     } as DOMRect)
     await makeScroll(document.documentElement, 'scrollTop', 300)
-    expect(wrapper.find('.el-affix--fixed').exists()).toBe(false)
+    expect(wrapper.find('.tj-affix--fixed').exists()).toBe(false)
     mockAffixRect.mockRestore()
     mockTargetRect.mockRestore()
   })
 
   test('should render z-index props', async () => {
     const wrapper = _mount(`
-      <el-affix :z-index="1000">${AXIOM}</el-affix>
+      <tj-affix :z-index="1000">${AXIOM}</tj-affix>
     `)
-    const mockAffixRect = jest.spyOn(wrapper.find('.el-affix').element, 'getBoundingClientRect').mockReturnValue({
+    const mockAffixRect = jest.spyOn(wrapper.find('.tj-affix').element, 'getBoundingClientRect').mockReturnValue({
       height: 40,
       width: 1000,
       top: -100,
@@ -150,8 +150,8 @@ describe('Affix.vue', () => {
       bottom: 200,
     } as DOMRect)
     await makeScroll(document.documentElement, 'scrollTop', 200)
-    expect(wrapper.find('.el-affix--fixed').exists()).toBe(true)
-    expect(wrapper.find('.el-affix--fixed').attributes('style')).toContain('z-index: 1000;')
+    expect(wrapper.find('.tj-affix--fixed').exists()).toBe(true)
+    expect(wrapper.find('.tj-affix--fixed').attributes('style')).toContain('z-index: 1000;')
     mockAffixRect.mockRestore()
     mockDocumentRect.mockRestore()
   })

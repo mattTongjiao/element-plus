@@ -5,86 +5,86 @@ import Row from '../src/row'
 describe('Col', () => {
   it('create', () => {
     const wrapper = mount(Col)
-    expect(wrapper.classes()).toContain('el-col')
+    expect(wrapper.classes()).toContain('tj-col')
   })
 
   it('span', () => {
     const wrapper = mount(Col, {
       props: { span: 12 },
     })
-    expect(wrapper.classes()).toContain('el-col-12')
+    expect(wrapper.classes()).toContain('tj-col-12')
   })
 
   it('pull', () => {
     const wrapper = mount(Col, {
       props: { span: 12, pull: 3 },
     })
-    expect(wrapper.classes()).toContain('el-col-pull-3')
+    expect(wrapper.classes()).toContain('tj-col-pull-3')
   })
 
   it('push', () => {
     const wrapper = mount(Col, {
       props: { span: 12, push: 3 },
     })
-    expect(wrapper.classes()).toContain('el-col-push-3')
+    expect(wrapper.classes()).toContain('tj-col-push-3')
   })
 
   it('gutter', () => {
     const TestComponent = {
-      template: `<el-row :gutter="20">
-      <el-col :span="12" ref="col"></el-col>
-    </el-row>`,
+      template: `<tj-row :gutter="20">
+      <tj-col :span="12" ref="col"></tj-col>
+    </tj-row>`,
       components: {
-        'el-col': Col,
-        'el-row':Row,
+        'tj-col': Col,
+        'tj-row':Row,
       },
     }
     const wrapper = mount(TestComponent)
-    const colElm = wrapper.findComponent({ ref: 'col' }).element as HTMLElement
-    expect(colElm.style.paddingLeft === '10px').toBe(true)
-    expect(colElm.style.paddingRight === '10px').toBe(true)
+    const colTjm = wrapper.findComponent({ ref: 'col' }).element as HTMLElement
+    expect(colTjm.style.paddingLeft === '10px').toBe(true)
+    expect(colTjm.style.paddingRight === '10px').toBe(true)
   })
   it('responsive', () => {
     const TestComponent = {
-      template: `<el-row :gutter="20">
-      <el-col ref="col" :sm="{ span: 4, offset: 2 }" :md="8" :lg="{ span: 6, offset: 3 }">
-      </el-col>
-    </el-row>`,
+      template: `<tj-row :gutter="20">
+      <tj-col ref="col" :sm="{ span: 4, offset: 2 }" :md="8" :lg="{ span: 6, offset: 3 }">
+      </tj-col>
+    </tj-row>`,
       components: {
-        'el-col': Col,
-        'el-row':Row,
+        'tj-col': Col,
+        'tj-row':Row,
       },
     }
     const wrapper = mount(TestComponent)
-    const colElmClass = wrapper.findComponent({ ref: 'col' }).classes()
-    expect(colElmClass.includes('el-col-sm-4')).toBe(true)
-    expect(colElmClass.includes('el-col-sm-4')).toBe(true)
-    expect(colElmClass.includes('el-col-sm-offset-2')).toBe(true)
-    expect(colElmClass.includes('el-col-lg-6')).toBe(true)
-    expect(colElmClass.includes('el-col-lg-offset-3')).toBe(true)
-    expect(colElmClass.includes('el-col-md-8')).toBe(true)
+    const colTjmClass = wrapper.findComponent({ ref: 'col' }).classes()
+    expect(colTjmClass.includes('tj-col-sm-4')).toBe(true)
+    expect(colTjmClass.includes('tj-col-sm-4')).toBe(true)
+    expect(colTjmClass.includes('tj-col-sm-offset-2')).toBe(true)
+    expect(colTjmClass.includes('tj-col-lg-6')).toBe(true)
+    expect(colTjmClass.includes('tj-col-lg-offset-3')).toBe(true)
+    expect(colTjmClass.includes('tj-col-md-8')).toBe(true)
   })
 })
 
 describe('Row', () => {
   test('create', () => {
     const wrapper = mount(Row)
-    expect(wrapper.classes()).toContain('el-row')
+    expect(wrapper.classes()).toContain('tj-row')
   })
 
   test('gutter', () => {
     const wrapper = mount(Row, {
       props: { gutter: 20 },
     })
-    const rowElm = wrapper.element as HTMLElement
-    expect(rowElm.style.marginLeft).toEqual('-10px')
-    expect(rowElm.style.marginRight).toEqual('-10px')
+    const rowTjm = wrapper.element as HTMLElement
+    expect(rowTjm.style.marginLeft).toEqual('-10px')
+    expect(rowTjm.style.marginRight).toEqual('-10px')
   })
   test('type', () => {
     const wrapper = mount(Row, {
       props: { type: 'flex' },
     })
-    expect(wrapper.classes()).toContain('el-row--flex')
+    expect(wrapper.classes()).toContain('tj-row--flex')
   })
   test('justify', () => {
     const wrapper = mount(Row, {

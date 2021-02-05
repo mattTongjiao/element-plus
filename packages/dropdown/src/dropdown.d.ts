@@ -4,7 +4,7 @@ import {
   Ref,
 } from 'vue'
 
-export interface IElDropdownInstance {
+export interface ITjDropdownInstance {
   instance?: ComponentInternalInstance
   dropdownSize?: ComputedRef<string>
   visible?: Ref<boolean>
@@ -14,5 +14,5 @@ export interface IElDropdownInstance {
   hide?:  () => void
   trigger?: ComputedRef<string>
   hideOnClick?: ComputedRef<boolean>
-  triggerElm?: ComputedRef<Nullable<HTMLButtonElement>>
+  triggerTjm?: ComputedRef<Nullable<HTMLButtonElement>>
 }

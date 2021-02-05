@@ -4,7 +4,7 @@ import { rAF } from '@element-plus/test-utils/tick'
 import Message from '../src/message'
 
 jest.useFakeTimers()
-const selector = '.el-message'
+const selector = '.tj-message'
 // TODO: testing the original transition with `nextTick`'
 
 describe('Message on command', () => {

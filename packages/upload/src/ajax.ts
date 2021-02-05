@@ -1,10 +1,10 @@
 import type {
-  ElUploadProgressEvent,
-  ElUploadRequestOptions,
-  ElUploadAjaxError,
+  TjUploadProgressEvent,
+  TjUploadRequestOptions,
+  TjUploadAjaxError,
 } from './upload.type'
 
-function getError(action: string, option: ElUploadRequestOptions, xhr: XMLHttpRequest) {
+function getError(action: string, option: TjUploadRequestOptions, xhr: XMLHttpRequest) {
   let msg: string
   if (xhr.response) {
     msg = `${xhr.response.error || xhr.response}`
@@ -14,7 +14,7 @@ function getError(action: string, option: ElUploadRequestOptions, xhr: XMLHttpRe
     msg = `fail to post ${action} ${xhr.status}`
   }
 
-  const err = new Error(msg) as ElUploadAjaxError
+  const err = new Error(msg) as TjUploadAjaxError
   err.status = xhr.status
   err.method = 'post'
   err.url = action
@@ -34,7 +34,7 @@ function getBody(xhr: XMLHttpRequest): XMLHttpRequestResponseType {
   }
 }
 
-export default function upload(option: ElUploadRequestOptions) {
+export default function upload(option: TjUploadRequestOptions) {
   if (typeof XMLHttpRequest === 'undefined') {
     return
   }
@@ -45,7 +45,7 @@ export default function upload(option: ElUploadRequestOptions) {
   if (xhr.upload) {
     xhr.upload.onprogress = function progress(e) {
       if (e.total > 0) {
-        (e as ElUploadProgressEvent).percent = e.loaded / e.total * 100
+        (e as TjUploadProgressEvent).percent = e.loaded / e.total * 100
       }
       option.onProgress(e)
     }

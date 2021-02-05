@@ -1,29 +1,33 @@
 <template>
   <div
-    class="el-picker-panel el-date-range-picker"
-    :class="[{
-      'has-sidebar': $slots.sidebar || hasShortcuts
-    }]"
+    class="tj-picker-panel tj-date-range-picker"
+    :class="[
+      {
+        'has-sidebar': $slots.sidebar || hasShortcuts,
+      },
+    ]"
   >
-    <div class="el-picker-panel__body-wrapper">
-      <slot name="sidebar" class="el-picker-panel__sidebar"></slot>
-      <div v-if="hasShortcuts" class="el-picker-panel__sidebar">
+    <div class="tj-picker-panel__body-wrapper">
+      <slot name="sidebar" class="tj-picker-panel__sidebar"></slot>
+      <div v-if="hasShortcuts" class="tj-picker-panel__sidebar">
         <button
           v-for="(shortcut, key) in shortcuts"
           :key="key"
           type="button"
-          class="el-picker-panel__shortcut"
+          class="tj-picker-panel__shortcut"
           @click="handleShortcutClick(shortcut)"
         >
           {{ shortcut.text }}
         </button>
       </div>
-      <div class="el-picker-panel__body">
-        <div class="el-picker-panel__content el-date-range-picker__content is-left">
-          <div class="el-date-range-picker__header">
+      <div class="tj-picker-panel__body">
+        <div
+          class="tj-picker-panel__content tj-date-range-picker__content is-left"
+        >
+          <div class="tj-date-range-picker__header">
             <button
               type="button"
-              class="el-picker-panel__icon-btn el-icon-d-arrow-left"
+              class="tj-picker-panel__icon-btn tj-icon-d-arrow-left"
               @click="leftPrevYear"
             ></button>
             <button
@@ -31,7 +35,7 @@
               type="button"
               :disabled="!enableYearArrow"
               :class="{ 'is-disabled': !enableYearArrow }"
-              class="el-picker-panel__icon-btn el-icon-d-arrow-right"
+              class="tj-picker-panel__icon-btn tj-icon-d-arrow-right"
               @click="leftNextYear"
             ></button>
             <div>{{ leftLabel }}</div>
@@ -48,19 +52,21 @@
             @select="onSelect"
           />
         </div>
-        <div class="el-picker-panel__content el-date-range-picker__content is-right">
-          <div class="el-date-range-picker__header">
+        <div
+          class="tj-picker-panel__content tj-date-range-picker__content is-right"
+        >
+          <div class="tj-date-range-picker__header">
             <button
               v-if="unlinkPanels"
               type="button"
               :disabled="!enableYearArrow"
               :class="{ 'is-disabled': !enableYearArrow }"
-              class="el-picker-panel__icon-btn el-icon-d-arrow-left"
+              class="tj-picker-panel__icon-btn tj-icon-d-arrow-left"
               @click="rightPrevYear"
             ></button>
             <button
               type="button"
-              class="el-picker-panel__icon-btn el-icon-d-arrow-right"
+              class="tj-picker-panel__icon-btn tj-icon-d-arrow-right"
               @click="rightNextYear"
             ></button>
             <div>{{ rightLabel }}</div>
@@ -86,20 +92,12 @@
 import { t } from '@element-plus/locale'
 import MonthTable from './basic-month-table.vue'
 import dayjs, { Dayjs } from 'dayjs'
-import {
-  defineComponent,
-  computed,
-  ref,
-  PropType,
-  watch,
-  inject,
-} from 'vue'
+import { defineComponent, computed, ref, PropType, watch, inject } from 'vue'
 
 export default defineComponent({
-
   components: { MonthTable },
 
-  props:{
+  props: {
     unlinkPanels: Boolean,
     parsedValue: {
       type: Array as PropType<Dayjs[]>,
@@ -158,7 +156,9 @@ export default defineComponent({
     })
 
     const rightYear = computed(() => {
-      return rightDate.value.year() === leftDate.value.year() ? leftDate.value.year() + 1 : rightDate.value.year()
+      return rightDate.value.year() === leftDate.value.year()
+        ? leftDate.value.year() + 1
+        : rightDate.value.year()
     })
 
     const enableYearArrow = computed(() => {
@@ -195,9 +195,13 @@ export default defineComponent({
     }
 
     const isValidValue = value => {
-      return Array.isArray(value) &&
-          value && value[0] && value[1] &&
-          value[0].valueOf() <= value[1].valueOf()
+      return (
+        Array.isArray(value) &&
+        value &&
+        value[0] &&
+        value[1] &&
+        value[0].valueOf() <= value[1].valueOf()
+      )
     }
 
     const handleConfirm = (visible = false) => {
@@ -214,7 +218,7 @@ export default defineComponent({
     }
 
     const formatToString = value => {
-      return value.map(_=> _.format(format))
+      return value.map(_ => _.format(format))
     }
 
     const getDefaultValue = () => {
@@ -239,26 +243,31 @@ export default defineComponent({
     const pickerBase = inject('EP_PICKER_BASE') as any
     const { shortcuts, disabledDate, format, defaultValue } = pickerBase.props
 
-    watch(() => props.parsedValue, newVal => {
-      if (newVal && newVal.length === 2) {
-        minDate.value = newVal[0]
-        maxDate.value = newVal[1]
-        leftDate.value = minDate.value
-        if (props.unlinkPanels && maxDate.value) {
-          const minDateYear = minDate.value.year()
-          const maxDateYear = maxDate.value.year()
-          rightDate.value = minDateYear === maxDateYear
-            ? maxDate.value.add(1, 'year')
-            : maxDate.value
+    watch(
+      () => props.parsedValue,
+      newVal => {
+        if (newVal && newVal.length === 2) {
+          minDate.value = newVal[0]
+          maxDate.value = newVal[1]
+          leftDate.value = minDate.value
+          if (props.unlinkPanels && maxDate.value) {
+            const minDateYear = minDate.value.year()
+            const maxDateYear = maxDate.value.year()
+            rightDate.value =
+              minDateYear === maxDateYear
+                ? maxDate.value.add(1, 'year')
+                : maxDate.value
+          } else {
+            rightDate.value = leftDate.value.add(1, 'year')
+          }
         } else {
-          rightDate.value = leftDate.value.add(1, 'year')
+          const defaultArr = getDefaultValue()
+          leftDate.value = defaultArr[0]
+          rightDate.value = defaultArr[1]
         }
-      } else {
-        const defaultArr = getDefaultValue()
-        leftDate.value = defaultArr[0]
-        rightDate.value = defaultArr[1]
-      }
-    }, { immediate: true })
+      },
+      { immediate: true },
+    )
 
     return {
       shortcuts,

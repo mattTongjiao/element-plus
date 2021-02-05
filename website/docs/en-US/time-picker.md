@@ -6,25 +6,27 @@ Use Time Picker for time input.
 
 Can pick an arbitrary time.
 
-:::demo Use `el-time-picker` label, and you can limit the time range by specifying `disabledHours` `disabledMinutes` and `disabledSeconds`. By default, you can scroll the mouse wheel to pick time, alternatively you can use the control arrows when the `arrow-control` attribute is set.
+:::demo Use `tj-time-picker` label, and you can limit the time range by specifying `disabledHours` `disabledMinutes` and `disabledSeconds`. By default, you can scroll the mouse wheel to pick time, alternatively you can use the control arrows when the `arrow-control` attribute is set.
 
 ```html
 <template>
-  <el-time-picker
+  <tj-time-picker
     v-model="value1"
     :disabled-hours="disabledHours"
     :disabled-minutes="disabledMinutes"
     :disabled-seconds="disabledSeconds"
-    placeholder="Arbitrary time">
-  </el-time-picker>
-  <el-time-picker
+    placeholder="Arbitrary time"
+  >
+  </tj-time-picker>
+  <tj-time-picker
     arrow-control
     v-model="value2"
     :disabled-hours="disabledHours"
     :disabled-minutes="disabledMinutes"
     :disabled-seconds="disabledSeconds"
-    placeholder="Arbitrary time">
-  </el-time-picker>
+    placeholder="Arbitrary time"
+  >
+  </tj-time-picker>
 </template>
 
 <script>
@@ -39,15 +41,15 @@ Can pick an arbitrary time.
     data() {
       return {
         value1: new Date(2016, 9, 10, 18, 40),
-        value2: new Date(2016, 9, 10, 18, 40)
-      };
+        value2: new Date(2016, 9, 10, 18, 40),
+      }
     },
     methods: {
       // e.g. allow 17:30:00 - 18:30:00
       disabledHours() {
         return makeRange(0, 16).concat(makeRange(19, 23))
       },
-      disabledMinutes (hour) {
+      disabledMinutes(hour) {
         if (hour === 17) {
           return makeRange(0, 29)
         }
@@ -64,6 +66,7 @@ Can pick an arbitrary time.
   }
 </script>
 ```
+
 :::
 
 ### Arbitrary time range
@@ -71,23 +74,26 @@ Can pick an arbitrary time.
 Can pick an arbitrary time range.
 
 :::demo We can pick a time range by adding an `is-range` attribute. Also, `arrow-control` is supported in range mode.
+
 ```html
 <template>
-  <el-time-picker
+  <tj-time-picker
     is-range
     v-model="value1"
     range-separator="To"
     start-placeholder="Start time"
-    end-placeholder="End time">
-  </el-time-picker>
-  <el-time-picker
+    end-placeholder="End time"
+  >
+  </tj-time-picker>
+  <tj-time-picker
     is-range
     arrow-control
     v-model="value2"
     range-separator="To"
     start-placeholder="Start time"
-    end-placeholder="End time">
-  </el-time-picker>
+    end-placeholder="End time"
+  >
+  </tj-time-picker>
 </template>
 
 <script>
@@ -95,47 +101,51 @@ Can pick an arbitrary time range.
     data() {
       return {
         value1: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],
-        value2: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)]
-      };
-    }
+        value2: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],
+      }
+    },
   }
 </script>
 ```
+
 :::
 
 ### Attributes
-| Attribute      | Description          | Type      | Accepted Values       | Default  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| value / v-model | binding value | Date | - | - |
-| readonly | whether TimePicker is read only | boolean | — | false |
-| disabled | whether TimePicker is disabled | boolean | — | false |
-| editable | whether the input is editable | boolean | — | true |
-| clearable | whether to show clear button | boolean | — | true |
-| size | size of Input | string | medium / small / mini | — |
-| placeholder | placeholder in non-range mode | string | — | — |
-| start-placeholder | placeholder for the start time in range mode | string | — | — |
-| end-placeholder | placeholder for the end time in range mode | string | — | — |
-| is-range | whether to pick a time range | boolean | — | false |
-| arrow-control | whether to pick time using arrow buttons | boolean | — | false |
-| align | alignment | left / center / right | left |
-| popper-class | custom class name for TimePicker's dropdown | string | — | — |
-| range-separator | range separator | string | - | '-' |
-| default-value | optional, default date of the calendar | Date for TimePicker, string for TimeSelect | anything accepted by `new Date()` for TimePicker, selectable value for TimeSelect | — |
-| name | same as `name` in native input | string | — | — |
-| prefix-icon | Custom prefix icon class | string | — | el-icon-time |
-| clear-icon | Custom clear icon class | string | — | el-icon-circle-close |
-| disabledHours | To specify the array of hours that cannot be selected | function | — | - |
-| disabledMinutes | To specify the array of minutes that cannot be selected | function(selectedHour) | — | - |
-| disabledSeconds | To specify the array of seconds that cannot be selected | function(selectedHour, selectedMinute) | — | - |
+
+| Attribute         | Description                                             | Type                                       | Accepted Values                                                                   | Default              |
+| ----------------- | ------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------- | -------------------- |
+| value / v-model   | binding value                                           | Date                                       | -                                                                                 | -                    |
+| readonly          | whether TimePicker is read only                         | boolean                                    | —                                                                                 | false                |
+| disabled          | whether TimePicker is disabled                          | boolean                                    | —                                                                                 | false                |
+| editable          | whether the input is editable                           | boolean                                    | —                                                                                 | true                 |
+| clearable         | whether to show clear button                            | boolean                                    | —                                                                                 | true                 |
+| size              | size of Input                                           | string                                     | medium / small / mini                                                             | —                    |
+| placeholder       | placeholder in non-range mode                           | string                                     | —                                                                                 | —                    |
+| start-placeholder | placeholder for the start time in range mode            | string                                     | —                                                                                 | —                    |
+| end-placeholder   | placeholder for the end time in range mode              | string                                     | —                                                                                 | —                    |
+| is-range          | whether to pick a time range                            | boolean                                    | —                                                                                 | false                |
+| arrow-control     | whether to pick time using arrow buttons                | boolean                                    | —                                                                                 | false                |
+| align             | alignment                                               | left / center / right                      | left                                                                              |
+| popper-class      | custom class name for TimePicker's dropdown             | string                                     | —                                                                                 | —                    |
+| range-separator   | range separator                                         | string                                     | -                                                                                 | '-'                  |
+| default-value     | optional, default date of the calendar                  | Date for TimePicker, string for TimeSelect | anything accepted by `new Date()` for TimePicker, selectable value for TimeSelect | —                    |
+| name              | same as `name` in native input                          | string                                     | —                                                                                 | —                    |
+| prefix-icon       | Custom prefix icon class                                | string                                     | —                                                                                 | tj-icon-time         |
+| clear-icon        | Custom clear icon class                                 | string                                     | —                                                                                 | tj-icon-circle-close |
+| disabledHours     | To specify the array of hours that cannot be selected   | function                                   | —                                                                                 | -                    |
+| disabledMinutes   | To specify the array of minutes that cannot be selected | function(selectedHour)                     | —                                                                                 | -                    |
+| disabledSeconds   | To specify the array of seconds that cannot be selected | function(selectedHour, selectedMinute)     | —                                                                                 | -                    |
 
 ### Events
-| Event Name | Description | Parameters |
-|---------|--------|---------|
-| change | triggers when user confirms the value | component's binding value |
-| blur | triggers when Input blurs | component instance |
-| focus | triggers when Input focuses | component instance |
+
+| Event Name | Description                           | Parameters                |
+| ---------- | ------------------------------------- | ------------------------- |
+| change     | triggers when user confirms the value | component's binding value |
+| blur       | triggers when Input blurs             | component instance        |
+| focus      | triggers when Input focuses           | component instance        |
 
 ### Methods
-| Method | Description | Parameters |
-| ---- | ---- | ---- |
-| focus | focus the Input component | - |
+
+| Method | Description               | Parameters |
+| ------ | ------------------------- | ---------- |
+| focus  | focus the Input component | -          |

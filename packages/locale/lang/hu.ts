@@ -17,9 +17,9 @@ export default {
       startTime: 'Időpont-tól',
       endDate: 'Dátum-ig',
       endTime: 'Időpont-ig',
-      prevYear: 'Előző év',
+      prevYear: 'Tjőző év',
       nextYear: 'Következő év',
-      prevMonth: 'Előző hónap',
+      prevMonth: 'Tjőző hónap',
       nextMonth: 'Következő hónap',
       year: '',
       month1: 'Január',
@@ -85,7 +85,7 @@ export default {
     upload: {
       deleteTip: 'kattints a törléshez',
       delete: 'Törlés',
-      preview: 'Előnézet',
+      preview: 'Tjőnézet',
       continue: 'Tovább',
     },
     table: {

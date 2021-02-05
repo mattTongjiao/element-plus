@@ -1,18 +1,19 @@
 <template>
   <div
     :class="[
-      type === 'textarea' ? 'el-textarea' : 'el-input',
-      inputSize ? 'el-input--' + inputSize : '',
+      type === 'textarea' ? 'tj-textarea' : 'tj-input',
+      inputSize ? 'tj-input--' + inputSize : '',
       {
         'is-disabled': inputDisabled,
         'is-exceed': inputExceed,
-        'el-input-group': $slots.prepend || $slots.append,
-        'el-input-group--append': $slots.append,
-        'el-input-group--prepend': $slots.prepend,
-        'el-input--prefix': $slots.prefix || prefixIcon,
-        'el-input--suffix': $slots.suffix || suffixIcon || clearable || showPassword
+        'tj-input-group': $slots.prepend || $slots.append,
+        'tj-input-group--append': $slots.append,
+        'tj-input-group--prepend': $slots.prepend,
+        'tj-input--prefix': $slots.prefix || prefixIcon,
+        'tj-input--suffix':
+          $slots.suffix || suffixIcon || clearable || showPassword,
       },
-      $attrs.class
+      $attrs.class,
     ]"
     :style="$attrs.style"
     @mouseenter="onMouseEnter"
@@ -20,15 +21,15 @@
   >
     <template v-if="type !== 'textarea'">
       <!-- 前置元素 -->
-      <div v-if="$slots.prepend" class="el-input-group__prepend">
+      <div v-if="$slots.prepend" class="tj-input-group__prepend">
         <slot name="prepend"></slot>
       </div>
       <input
         v-if="type !== 'textarea'"
         ref="input"
-        class="el-input__inner"
+        class="tj-input__inner"
         v-bind="attrs"
-        :type="showPassword ? (passwordVisible ? 'text': 'password') : type"
+        :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
         :disabled="inputDisabled"
         :readonly="readonly"
         :autocomplete="autocomplete"
@@ -43,46 +44,50 @@
         @blur="handleBlur"
         @change="handleChange"
         @keydown="handleKeydown"
-      >
+      />
       <!-- 前置内容 -->
-      <span v-if="$slots.prefix || prefixIcon" class="el-input__prefix">
+      <span v-if="$slots.prefix || prefixIcon" class="tj-input__prefix">
         <slot name="prefix"></slot>
-        <i
-          v-if="prefixIcon"
-          :class="['el-input__icon', prefixIcon]"
-        ></i>
+        <i v-if="prefixIcon" :class="['tj-input__icon', prefixIcon]"></i>
       </span>
       <!-- 后置内容 -->
-      <span v-if="getSuffixVisible()" class="el-input__suffix">
-        <span class="el-input__suffix-inner">
+      <span v-if="getSuffixVisible()" class="tj-input__suffix">
+        <span class="tj-input__suffix-inner">
           <template v-if="!showClear || !showPwdVisible || !isWordLimitVisible">
             <slot name="suffix"></slot>
-            <i v-if="suffixIcon" :class="['el-input__icon', suffixIcon]"></i>
+            <i v-if="suffixIcon" :class="['tj-input__icon', suffixIcon]"></i>
           </template>
           <i
             v-if="showClear"
-            class="el-input__icon el-icon-circle-close el-input__clear"
+            class="tj-input__icon tj-icon-circle-close tj-input__clear"
             @mousedown.prevent
             @click="clear"
           ></i>
-          <i v-if="showPwdVisible" class="el-input__icon el-icon-view el-input__clear" @click="handlePasswordVisible"></i>
-          <span v-if="isWordLimitVisible" class="el-input__count">
-            <span class="el-input__count-inner">
+          <i
+            v-if="showPwdVisible"
+            class="tj-input__icon tj-icon-view tj-input__clear"
+            @click="handlePasswordVisible"
+          ></i>
+          <span v-if="isWordLimitVisible" class="tj-input__count">
+            <span class="tj-input__count-inner">
               {{ textLength }}/{{ upperLimit }}
             </span>
           </span>
         </span>
-        <i v-if="validateState" :class="['el-input__icon', 'el-input__validateIcon', validateIcon]"></i>
+        <i
+          v-if="validateState"
+          :class="['tj-input__icon', 'tj-input__validateIcon', validateIcon]"
+        ></i>
       </span>
       <!-- 后置元素 -->
-      <div v-if="$slots.append" class="el-input-group__append">
+      <div v-if="$slots.append" class="tj-input-group__append">
         <slot name="append"></slot>
       </div>
     </template>
     <textarea
       v-else
       ref="textarea"
-      class="el-textarea__inner"
+      class="tj-textarea__inner"
       v-bind="attrs"
       :tabindex="tabindex"
       :disabled="inputDisabled"
@@ -100,11 +105,15 @@
       @change="handleChange"
     >
     </textarea>
-    <span v-if="isWordLimitVisible && type === 'textarea'" class="el-input__count">{{ textLength }}/{{ upperLimit }}</span>
+    <span
+      v-if="isWordLimitVisible && type === 'textarea'"
+      class="tj-input__count"
+      >{{ textLength }}/{{ upperLimit }}</span
+    >
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import {
   defineComponent,
   inject,
@@ -127,7 +136,7 @@ import { elFormKey, elFormItemKey } from '@element-plus/form'
 import calcTextareaHeight from './calcTextareaHeight'
 
 import type { PropType } from 'vue'
-import type { ElFormContext, ElFormItemContext } from '@element-plus/form'
+import type { TjFormContext, TjFormItemContext } from '@element-plus/form'
 
 type AutosizeProp = {
   minRows?: number
@@ -140,7 +149,7 @@ const PENDANT_MAP = {
 }
 
 export default defineComponent({
-  name: 'ElInput',
+  name: 'TjInput',
 
   inheritAttrs: false,
 
@@ -227,8 +236,8 @@ export default defineComponent({
     const attrs = useAttrs()
     const $ELEMENT = useGlobalConfig()
 
-    const elForm = inject(elFormKey, {} as ElFormContext)
-    const elFormItem = inject(elFormItemKey, {} as ElFormItemContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
+    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
 
     const input = ref(null)
     const textarea = ref (null)
@@ -303,7 +312,7 @@ export default defineComponent({
 
     const calcIconOffset = place => {
       const { el } = instance.vnode
-      const elList: HTMLSpanElement[] = Array.from(el.querySelectorAll(`.el-input__${place}`))
+      const elList: HTMLSpanElement[] = Array.from(el.querySelectorAll(`.tj-input__${place}`))
       const target = elList.find(item => item.parentNode === el)
 
       if (!target) return
@@ -311,7 +320,7 @@ export default defineComponent({
       const pendant = PENDANT_MAP[place]
 
       if (ctx.slots[pendant]) {
-        target.style.transform = `translateX(${place === 'suffix' ? '-' : ''}${el.querySelector(`.el-input-group__${pendant}`).offsetWidth}px)`
+        target.style.transform = `translateX(${place === 'suffix' ? '-' : ''}${el.querySelector(`.tj-input-group__${pendant}`).offsetWidth}px)`
       } else {
         target.removeAttribute('style')
       }
@@ -326,10 +335,10 @@ export default defineComponent({
       const { value } = event.target
 
       // should not emit input during composition
-      // see: https://github.com/ElemeFE/element/issues/10516
+      // see: https://github.com/TjemeFE/element/issues/10516
       if (isComposing.value) return
 
-      // hack for https://github.com/ElemeFE/element/issues/8548
+      // hack for https://github.com/TjemeFE/element/issues/8548
       // should remove the following line when we don't support IE
       if (value === nativeInputValue.value) return
 
@@ -337,7 +346,7 @@ export default defineComponent({
       ctx.emit('input', value)
 
       // ensure native input value is controlled
-      // see: https://github.com/ElemeFE/element/issues/12850
+      // see: https://github.com/TjemeFE/element/issues/12850
       nextTick(setNativeInputValue)
     }
 
@@ -346,7 +355,7 @@ export default defineComponent({
     }
 
     const focus = () => {
-      // see: https://github.com/ElemeFE/element/issues/18573
+      // see: https://github.com/TjemeFE/element/issues/18573
       nextTick(() => {
         inputOrTextarea.value.focus()
       })
@@ -419,14 +428,14 @@ export default defineComponent({
 
     // native input value is set explicitly
     // do not use v-model / :value in template
-    // see: https://github.com/ElemeFE/element/issues/14521
+    // see: https://github.com/TjemeFE/element/issues/14521
     watch(nativeInputValue, () => {
       setNativeInputValue()
     })
 
     // when change between <input> and <textarea>,
     // update DOM dependent value and styles
-    // https://github.com/ElemeFE/element/issues/14857
+    // https://github.com/TjemeFE/element/issues/14857
     watch(() => props.type, () => {
       nextTick(() => {
         setNativeInputValue()
@@ -497,5 +506,4 @@ export default defineComponent({
     }
   },
 })
-
 </script>

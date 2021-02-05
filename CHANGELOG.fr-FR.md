@@ -2,7 +2,7 @@
 
 ### 1.0.2-beta.31
 
-*2021-01-31*
+_2021-01-31_
 
 #### Bug fixes
 
@@ -33,7 +33,7 @@
 
 ### 1.0.2-beta.30
 
-*2021-01-25*
+_2021-01-25_
 
 #### Bug fixes
 
@@ -43,7 +43,7 @@
 
 ### 1.0.2-beta.29
 
-*2021-01-25*
+_2021-01-25_
 
 #### New feature
 
@@ -63,7 +63,7 @@
 
 ### 1.0.2-beta.28
 
-*2021-01-20*
+_2021-01-20_
 
 #### New feature
 
@@ -85,7 +85,7 @@
 
 ### 1.0.1-beta.27
 
-*2021-01-15*
+_2021-01-15_
 
 #### Bug fixes
 
@@ -95,7 +95,7 @@
 
 ### 1.0.1-beta.26
 
-*2021-01-14*
+_2021-01-14_
 
 #### New feature
 
@@ -112,7 +112,7 @@
 
 ### 1.0.1-beta.24
 
-*2021-01-11*
+_2021-01-11_
 
 #### Bug fixes
 
@@ -125,11 +125,11 @@
 
 ### 1.0.1-beta.23
 
-*2021-01-07*
+_2021-01-07_
 
 #### New feature
 
-- New component `ElEmpty` (#1210)
+- New component `TjEmpty` (#1210)
 
 #### Bug fixes
 
@@ -142,7 +142,7 @@
 
 ### 1.0.1-beta.22
 
-*2021-01-06*
+_2021-01-06_
 
 #### Bug fixes
 
@@ -155,7 +155,7 @@
 
 ### 1.0.1-beta.21
 
-*2021-01-05*
+_2021-01-05_
 
 #### Bug fixes
 
@@ -169,7 +169,7 @@
 
 ### 1.0.1-beta.19
 
-*2021-01-02*
+_2021-01-02_
 
 #### Bug fixes
 
@@ -179,7 +179,7 @@
 
 ### 1.0.1-beta.18
 
-*2020-12-31*
+_2020-12-31_
 
 #### Bug fixes
 
@@ -192,7 +192,7 @@
 
 ### 1.0.1-beta.15
 
-*2020-12-27*
+_2020-12-27_
 
 #### Bug fixes
 
@@ -203,7 +203,7 @@
 
 ### 1.0.1-beta.14
 
-*2020-12-24*
+_2020-12-24_
 
 #### Bug fixes
 
@@ -219,7 +219,7 @@
 
 ### 1.0.1-beta.11
 
-*2020-12-21*
+_2020-12-21_
 
 #### New features
 
@@ -228,13 +228,13 @@
 #### Bug fixes
 
 - Fix input add placeholder (#1052)
-- Fix date-picker bind $attrs issue (#1069)
+- Fix date-picker bind \$attrs issue (#1069)
 - Fix popper use EmitType to replace string (#1053)
 - Fix table border style (#1056)
 
 ### 1.0.1-beta.10
 
-*2020-12-18*
+_2020-12-18_
 
 #### New features
 
@@ -247,7 +247,7 @@
 
 ### 1.0.1-beta.9
 
-*2020-12-16*
+_2020-12-16_
 
 #### Bug fixes
 
@@ -262,7 +262,7 @@
 
 ### 1.0.1-beta.8
 
-*2020-12-12*
+_2020-12-12_
 
 #### Bug fixes
 
@@ -276,7 +276,7 @@
 
 ### 1.0.1-beta.7
 
-*2020-12-10*
+_2020-12-10_
 
 #### Bug fixes
 
@@ -290,7 +290,7 @@
 
 ### 1.0.1-beta.6
 
-*2020-12-09*
+_2020-12-09_
 
 #### Bug fixes
 
@@ -306,7 +306,7 @@
 
 ### 1.0.1-beta.5
 
-*2020-12-07*
+_2020-12-07_
 
 #### Bug fixes
 
@@ -314,7 +314,7 @@
 - Fix Select.focus is undefined bug (#862)
 - Optimize useAttrs signature (#864)
 - Fix table ts error (#863)
-- Fix table avoiding the error of el-table-column rendering (#828)
+- Fix table avoiding the error of tj-table-column rendering (#828)
 - Fix popper gets covered by dialog/drawer (#861)
 - Fix drawer implementation with hook (#817)
 - Fix exporting fix for volar (#849)
@@ -324,7 +324,7 @@
 
 ### 1.0.1-beta.4
 
-*2020-12-05*
+_2020-12-05_
 
 #### Bug fixes
 
@@ -341,7 +341,7 @@
 
 ### 1.0.1-beta.3
 
-*2020-12-03*
+_2020-12-03_
 
 #### Bug fixes
 
@@ -349,11 +349,11 @@
 - Fix alert style errors when no description (#782)
 - Fix dialog show-close is invalid (#773)
 - Destructing import from lodash (#788)
-- Fix popper transition with 'el-zoom-in-top' (#785)
+- Fix popper transition with 'tj-zoom-in-top' (#785)
 
 ### 1.0.1-beta.2
 
-*2020-12-02*
+_2020-12-02_
 
 #### Bug fixes
 
@@ -361,7 +361,7 @@
 
 ### 1.0.1-beta.1
 
-*2020-12-01*
+_2020-12-01_
 
 #### Bug fixes
 

@@ -1,11 +1,13 @@
 <template>
-  <div v-if="actualVisible" class="el-time-range-picker el-picker-panel">
-    <div class="el-time-range-picker__content">
-      <div class="el-time-range-picker__cell">
-        <div class="el-time-range-picker__header">{{ t('el.datepicker.startTime') }}</div>
+  <div v-if="actualVisible" class="tj-time-range-picker tj-picker-panel">
+    <div class="tj-time-range-picker__content">
+      <div class="tj-time-range-picker__cell">
+        <div class="tj-time-range-picker__header">
+          {{ t('el.datepicker.startTime') }}
+        </div>
         <div
           :class="{ 'has-seconds': showSeconds, 'is-arrow': arrowControl }"
-          class="el-time-range-picker__body el-time-panel__content"
+          class="tj-time-range-picker__body tj-time-panel__content"
         >
           <time-spinner
             ref="minSpinner"
@@ -23,11 +25,13 @@
           />
         </div>
       </div>
-      <div class="el-time-range-picker__cell">
-        <div class="el-time-range-picker__header">{{ t('el.datepicker.endTime') }}</div>
+      <div class="tj-time-range-picker__cell">
+        <div class="tj-time-range-picker__header">
+          {{ t('el.datepicker.endTime') }}
+        </div>
         <div
           :class="{ 'has-seconds': showSeconds, 'is-arrow': arrowControl }"
-          class="el-time-range-picker__body el-time-panel__content"
+          class="tj-time-range-picker__body tj-time-panel__content"
         >
           <time-spinner
             ref="maxSpinner"
@@ -46,17 +50,17 @@
         </div>
       </div>
     </div>
-    <div class="el-time-panel__footer">
+    <div class="tj-time-panel__footer">
       <button
         type="button"
-        class="el-time-panel__btn cancel"
+        class="tj-time-panel__btn cancel"
         @click="handleCancel()"
       >
         {{ t('el.datepicker.cancel') }}
       </button>
       <button
         type="button"
-        class="el-time-panel__btn confirm"
+        class="tj-time-panel__btn confirm"
         :disabled="btnConfirmDisabled"
         @click="handleConfirm()"
       >
@@ -67,13 +71,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  computed,
-  PropType,
-  inject,
-} from 'vue'
+import { defineComponent, ref, computed, PropType, inject } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 import union from 'lodash/union'
 import { t } from '@element-plus/locale'
@@ -89,7 +87,6 @@ const makeSelectRange = (start, end) => {
   return result
 }
 export default defineComponent({
-
   components: { TimeSpinner },
 
   props: {
@@ -137,7 +134,7 @@ export default defineComponent({
     }
 
     const isValidValue = _date => {
-      const parsedDate = _date.map(_=> dayjs(_))
+      const parsedDate = _date.map(_ => dayjs(_))
       const result = getRangeAvaliableTime(parsedDate)
       return parsedDate[0].isSame(result[0]) && parsedDate[1].isSame(result[1])
     }
@@ -150,13 +147,13 @@ export default defineComponent({
       return minDate.value > maxDate.value
     })
 
-    const selectionRange = ref([0,2])
+    const selectionRange = ref([0, 2])
     const setMinSelectionRange = (start, end) => {
       ctx.emit('select-range', start, end, 'min')
       selectionRange.value = [start, end]
     }
 
-    const offset = computed(() => showSeconds.value ? 11 : 8)
+    const offset = computed(() => (showSeconds.value ? 11 : 8))
     const setMaxSelectionRange = (start, end) => {
       ctx.emit('select-range', start, end, 'max')
       selectionRange.value = [start + offset.value, end + offset.value]
@@ -164,7 +161,9 @@ export default defineComponent({
 
     const changeSelectionRange = step => {
       const list = showSeconds.value ? [0, 3, 6, 11, 14, 17] : [0, 3, 8, 11]
-      const mapping = ['hours', 'minutes'].concat(showSeconds.value ? ['seconds'] : [])
+      const mapping = ['hours', 'minutes'].concat(
+        showSeconds.value ? ['seconds'] : [],
+      )
       const index = list.indexOf(selectionRange.value[0])
       const next = (index + step + list.length) % list.length
       const half = list.length / 2
@@ -179,14 +178,14 @@ export default defineComponent({
       const code = event.code
 
       if (code === EVENT_CODE.left || code === EVENT_CODE.right) {
-        const step = (code === EVENT_CODE.left) ? -1 : 1
+        const step = code === EVENT_CODE.left ? -1 : 1
         changeSelectionRange(step)
         event.preventDefault()
         return
       }
 
       if (code === EVENT_CODE.up || code === EVENT_CODE.down) {
-        const step = (code === EVENT_CODE.up) ? -1 : 1
+        const step = code === EVENT_CODE.up ? -1 : 1
         const role = selectionRange.value[0] < offset.value ? 'start' : 'end'
         timePickeOptions[`${role}_scrollDown`](step)
         event.preventDefault()
@@ -199,7 +198,9 @@ export default defineComponent({
       const isStart = role === 'start'
       const compareDate = compare || (isStart ? maxDate.value : minDate.value)
       const compareHour = compareDate.hour()
-      const nextDisable = isStart ? makeSelectRange(compareHour + 1, 23) : makeSelectRange(0, compareHour - 1)
+      const nextDisable = isStart
+        ? makeSelectRange(compareHour + 1, 23)
+        : makeSelectRange(0, compareHour - 1)
       return union(defaultDisable, nextDisable)
     }
     const disabledMinutes_ = (hour, role, compare) => {
@@ -211,11 +212,15 @@ export default defineComponent({
         return defaultDisable
       }
       const compareMinute = compareDate.minute()
-      const nextDisable = isStart ? makeSelectRange(compareMinute + 1, 59) : makeSelectRange(0, compareMinute - 1)
+      const nextDisable = isStart
+        ? makeSelectRange(compareMinute + 1, 59)
+        : makeSelectRange(0, compareMinute - 1)
       return union(defaultDisable, nextDisable)
     }
     const disabledSeconds_ = (hour, minute, role, compare) => {
-      const defaultDisable = disabledSeconds ? disabledSeconds(hour, minute, role) : []
+      const defaultDisable = disabledSeconds
+        ? disabledSeconds(hour, minute, role)
+        : []
       const isStart = role === 'start'
       const compareDate = compare || (isStart ? maxDate.value : minDate.value)
       const compareHour = compareDate.hour()
@@ -224,12 +229,20 @@ export default defineComponent({
         return defaultDisable
       }
       const compareSecond = compareDate.second()
-      const nextDisable = isStart ? makeSelectRange(compareSecond + 1, 59) : makeSelectRange(0, compareSecond - 1)
+      const nextDisable = isStart
+        ? makeSelectRange(compareSecond + 1, 59)
+        : makeSelectRange(0, compareSecond - 1)
       return union(defaultDisable, nextDisable)
     }
 
     const getRangeAvaliableTime = (dates: Array<Dayjs>) => {
-      return dates.map((_, index) => getRangeAvaliableTimeEach(dates[0], dates[1], index === 0 ? 'start' : 'end'))
+      return dates.map((_, index) =>
+        getRangeAvaliableTimeEach(
+          dates[0],
+          dates[1],
+          index === 0 ? 'start' : 'end',
+        ),
+      )
     }
 
     const {
@@ -238,7 +251,11 @@ export default defineComponent({
       getAvaliableSeconds,
     } = getAvaliableArrs(disabledHours_, disabledMinutes_, disabledSeconds_)
 
-    const getRangeAvaliableTimeEach = (startDate: Dayjs, endDate: Dayjs, role) => {
+    const getRangeAvaliableTimeEach = (
+      startDate: Dayjs,
+      endDate: Dayjs,
+      role,
+    ) => {
       const avaliableMap = {
         hour: getAvaliableHours,
         minute: getAvaliableMinutes,
@@ -246,19 +263,28 @@ export default defineComponent({
       }
       const isStart = role === 'start'
       let result = isStart ? startDate : endDate
-      const compareDate = isStart ? endDate : startDate;
-      ['hour', 'minute', 'second'].forEach(_ => {
+      const compareDate = isStart ? endDate : startDate
+      ;['hour', 'minute', 'second'].forEach(_ => {
         if (avaliableMap[_]) {
           let avaliableArr
           const method = avaliableMap[_]
           if (_ === 'minute') {
             avaliableArr = method(result.hour(), role, compareDate)
           } else if (_ === 'second') {
-            avaliableArr = method(result.hour(), result.minute(), role, compareDate)
+            avaliableArr = method(
+              result.hour(),
+              result.minute(),
+              role,
+              compareDate,
+            )
           } else {
             avaliableArr = method(role, compareDate)
           }
-          if (avaliableArr && avaliableArr.length && !avaliableArr.includes(result[_]())) {
+          if (
+            avaliableArr &&
+            avaliableArr.length &&
+            !avaliableArr.includes(result[_]())
+          ) {
             const pos = isStart ? 0 : avaliableArr.length - 1
             result = result[_](avaliableArr[pos])
           }
@@ -270,7 +296,7 @@ export default defineComponent({
     const parseUserInput = value => {
       if (!value) return null
       if (Array.isArray(value)) {
-        return value.map(_=> dayjs(_, props.format))
+        return value.map(_ => dayjs(_, props.format))
       }
       return dayjs(value, props.format)
     }
@@ -278,27 +304,27 @@ export default defineComponent({
     const formatToString = value => {
       if (!value) return null
       if (Array.isArray(value)) {
-        return value.map(_=> _.format(props.format))
+        return value.map(_ => _.format(props.format))
       }
       return value.format(props.format)
     }
 
     const getDefaultValue = () => {
       if (Array.isArray(defaultValue)) {
-        return defaultValue.map(_=> dayjs(_))
+        return defaultValue.map(_ => dayjs(_))
       }
-      return [
-        dayjs(defaultValue),
-        dayjs(defaultValue).add(60,'m'),
-      ]
+      return [dayjs(defaultValue), dayjs(defaultValue).add(60, 'm')]
     }
 
-    ctx.emit('set-picker-option',['formatToString', formatToString])
-    ctx.emit('set-picker-option',['parseUserInput', parseUserInput])
-    ctx.emit('set-picker-option',['isValidValue', isValidValue])
-    ctx.emit('set-picker-option',['handleKeydown', handleKeydown])
-    ctx.emit('set-picker-option',['getDefaultValue', getDefaultValue])
-    ctx.emit('set-picker-option',['getRangeAvaliableTime', getRangeAvaliableTime])
+    ctx.emit('set-picker-option', ['formatToString', formatToString])
+    ctx.emit('set-picker-option', ['parseUserInput', parseUserInput])
+    ctx.emit('set-picker-option', ['isValidValue', isValidValue])
+    ctx.emit('set-picker-option', ['handleKeydown', handleKeydown])
+    ctx.emit('set-picker-option', ['getDefaultValue', getDefaultValue])
+    ctx.emit('set-picker-option', [
+      'getRangeAvaliableTime',
+      getRangeAvaliableTime,
+    ])
 
     const timePickeOptions = {} as any
     const onSetOption = e => {
@@ -306,7 +332,13 @@ export default defineComponent({
     }
 
     const pickerBase = inject('EP_PICKER_BASE') as any
-    const { arrowControl, disabledHours, disabledMinutes, disabledSeconds, defaultValue } = pickerBase.props
+    const {
+      arrowControl,
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      defaultValue,
+    } = pickerBase.props
 
     return {
       arrowControl,

@@ -3,13 +3,13 @@ import { ref, watch } from 'vue'
 import { NOOP } from '@vue/shared'
 
 // Inline types
-import type { ListType, UploadFile, ElFile, ElUploadProgressEvent, IUseHandlersProps } from './upload.type'
+import type { ListType, UploadFile, TjFile, TjUploadProgressEvent, IUseHandlersProps } from './upload.type'
 type UploadRef = {
   abort: (file: UploadFile) => void
-  upload: (file: ElFile) => void
+  upload: (file: TjFile) => void
 }
 // helpers
-function getFile(rawFile: ElFile, uploadFiles: UploadFile[]) {
+function getFile(rawFile: TjFile, uploadFiles: UploadFile[]) {
   return uploadFiles.find(file => file.uid === rawFile.uid)
 }
 
@@ -32,7 +32,7 @@ export default (props: IUseHandlersProps) => {
     uploadFiles.value = []
   }
 
-  function handleError(err: Error, rawFile: ElFile) {
+  function handleError(err: Error, rawFile: TjFile) {
     const file = getFile(rawFile, uploadFiles.value)
     file.status = 'fail'
     uploadFiles.value.splice(uploadFiles.value.indexOf(file), 1)
@@ -40,14 +40,14 @@ export default (props: IUseHandlersProps) => {
     props.onChange(file, uploadFiles.value)
   }
 
-  function handleProgress(ev: ElUploadProgressEvent, rawFile: ElFile) {
+  function handleProgress(ev: TjUploadProgressEvent, rawFile: TjFile) {
     const file = getFile(rawFile, uploadFiles.value)
     props.onProgress(ev, file, uploadFiles.value)
     file.status = 'uploading'
     file.percentage = ev.percent || 0
   }
 
-  function handleSuccess(res: any, rawFile: ElFile) {
+  function handleSuccess(res: any, rawFile: TjFile) {
     const file = getFile(rawFile, uploadFiles.value)
     if (file) {
       file.status = 'success'
@@ -57,7 +57,7 @@ export default (props: IUseHandlersProps) => {
     }
   }
 
-  function handleStart(rawFile: ElFile) {
+  function handleStart(rawFile: TjFile) {
     const uid = genUid(tempIndex++)
     rawFile.uid = uid
     const file: UploadFile = {
@@ -80,7 +80,7 @@ export default (props: IUseHandlersProps) => {
     props.onChange(file, uploadFiles.value)
   }
 
-  function handleRemove(file: UploadFile, raw: ElFile) {
+  function handleRemove(file: UploadFile, raw: TjFile) {
     if (raw) {
       file = getFile(raw, uploadFiles.value)
     }

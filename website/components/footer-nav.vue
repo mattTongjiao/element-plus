@@ -5,7 +5,7 @@
       class="footer-nav-link footer-nav-left"
       @click="handleNavClick('prev')"
     >
-      <i class="el-icon-arrow-left"></i>
+      <i class="tj-icon-arrow-left"></i>
       {{ leftNav.title || leftNav.name }}
     </span>
     <span
@@ -14,7 +14,7 @@
       @click="handleNavClick('next')"
     >
       {{ rightNav.title || rightNav.name }}
-      <i class="el-icon-arrow-right"></i>
+      <i class="tj-icon-arrow-right"></i>
     </span>
   </div>
 </template>
@@ -55,9 +55,11 @@ export default {
     setNav() {
       let nav = navConfig[this.lang]
       this.nav = [nav[0]].concat(nav[3].children)
-      nav[4].groups.map(group => group.list).forEach(list => {
-        this.nav = this.nav.concat(list)
-      })
+      nav[4].groups
+        .map(group => group.list)
+        .forEach(list => {
+          this.nav = this.nav.concat(list)
+        })
     },
 
     updateNav() {
@@ -73,50 +75,54 @@ export default {
     },
 
     handleNavClick(direction) {
-      this.$router.push(`/${ this.lang }/component${ direction === 'prev' ? this.leftNav.path : this.rightNav.path }`)
+      this.$router.push(
+        `/${this.lang}/component${
+          direction === 'prev' ? this.leftNav.path : this.rightNav.path
+        }`,
+      )
     },
   },
 }
 </script>
 <style lang="scss" scoped>
-  .footer-nav {
-    padding: 40px 0;
-    color: #333;
-    font-size: 14px;
+.footer-nav {
+  padding: 40px 0;
+  color: #333;
+  font-size: 14px;
 
-    &::after {
-      content: '';
-      display: block;
-      clear: both;
-    }
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  & i {
+    transition: 0.3s;
+    color: #999;
+    vertical-align: baseline;
+  }
+}
+
+.footer-nav-link {
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    color: #409eff;
 
     & i {
-      transition: .3s;
-      color: #999;
-      vertical-align: baseline;
+      color: #409eff;
     }
   }
+}
 
-  .footer-nav-link {
-    cursor: pointer;
-    transition: .3s;
+.footer-nav-left {
+  float: left;
+  margin-left: -4px;
+}
 
-    &:hover {
-      color: #409EFF;
-
-      & i {
-        color: #409EFF;
-      }
-    }
-  }
-
-  .footer-nav-left {
-    float: left;
-    margin-left: -4px;
-  }
-
-  .footer-nav-right {
-    float: right;
-    margin-right: -4px;
-  }
+.footer-nav-right {
+  float: right;
+  margin-right: -4px;
+}
 </style>

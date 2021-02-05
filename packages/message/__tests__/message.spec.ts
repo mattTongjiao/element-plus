@@ -33,7 +33,7 @@ describe('Message.vue', () => {
 
       expect(wrapper.text()).toEqual(AXIOM)
       expect(vm.visible).toBe(true)
-      expect(vm.typeClass).toBe('el-message__icon el-icon-info')
+      expect(vm.typeClass).toBe('tj-message__icon tj-icon-info')
       expect(vm.customStyle).toEqual({ top: '20px', zIndex: 0 })
     })
 
@@ -91,8 +91,8 @@ describe('Message.vue', () => {
       for (const type of ['success', 'warning', 'info', 'error'] as const) {
         const wrapper = _mount({ props: { type } })
 
-        const renderedClasses = wrapper.find('.el-message__icon').classes()
-        expect(renderedClasses).toContain(`el-icon-${type}`)
+        const renderedClasses = wrapper.find('.tj-message__icon').classes()
+        expect(renderedClasses).toContain(`tj-icon-${type}`)
       }
     })
 
@@ -100,7 +100,7 @@ describe('Message.vue', () => {
       const type = 'some-type'
       const wrapper = _mount({ props: { type } })
 
-      expect(wrapper.find('.el-message__icon').exists()).toBe(false)
+      expect(wrapper.find('.tj-message__icon').exists()).toBe(false)
     })
   })
 
@@ -115,7 +115,7 @@ describe('Message.vue', () => {
         },
       })
 
-      const closeBtn = wrapper.find('.el-message__closeBtn')
+      const closeBtn = wrapper.find('.tj-message__closeBtn')
       expect(closeBtn.exists()).toBe(true)
       await closeBtn.trigger('click')
       expect((wrapper.vm as MessageInstance).visible).toBe(false)

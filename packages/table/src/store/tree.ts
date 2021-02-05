@@ -101,7 +101,7 @@ function useTree(watcherData: WatcherPropsData) {
           if (rootLazyRowKeys.indexOf(key) !== -1) {
             // 懒加载的 root 节点，更新一下原有的数据，原来的 children 一定是空数组
             if (newTreeData[key].children.length !== 0) {
-              throw new Error('[ElTable]children must be an empty array.')
+              throw new Error('[TjTable]children must be an empty array.')
             }
             newTreeData[key].children = lazyNodeChildren
           } else {
@@ -165,7 +165,7 @@ function useTree(watcherData: WatcherPropsData) {
       treeData.value[key].loading = true
       ;(load as fn)(row, treeNode, data => {
         if (!Array.isArray(data)) {
-          throw new Error('[ElTable] data must be an array')
+          throw new Error('[TjTable] data must be an array')
         }
         treeData.value[key].loading = false
         treeData.value[key].loaded = true

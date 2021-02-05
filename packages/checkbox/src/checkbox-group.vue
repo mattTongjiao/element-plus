@@ -1,5 +1,5 @@
 <template>
-  <div class="el-checkbox-group" role="group" aria-label="checkbox-group">
+  <div class="tj-checkbox-group" role="group" aria-label="checkbox-group">
     <slot></slot>
   </div>
 </template>
@@ -13,7 +13,7 @@ import { useCheckboxGroup } from './useCheckbox'
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElCheckboxGroup',
+  name: 'TjCheckboxGroup',
 
   props: {
     modelValue: {
@@ -66,7 +66,7 @@ export default defineComponent({
     })
 
     provide('CheckboxGroup', {
-      name: 'ElCheckboxGroup',
+      name: 'TjCheckboxGroup',
       modelValue,
       ...toRefs(props),
       checkboxGroupSize,

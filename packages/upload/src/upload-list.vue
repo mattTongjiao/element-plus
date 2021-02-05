@@ -2,16 +2,20 @@
   <transition-group
     tag="ul"
     :class="[
-      'el-upload-list',
-      'el-upload-list--' + listType,
-      { 'is-disabled': disabled }
+      'tj-upload-list',
+      'tj-upload-list--' + listType,
+      { 'is-disabled': disabled },
     ]"
-    name="el-list"
+    name="tj-list"
   >
     <li
       v-for="file in files"
       :key="file"
-      :class="['el-upload-list__item', 'is-' + file.status, focusing ? 'focusing' : '']"
+      :class="[
+        'tj-upload-list__item',
+        'is-' + file.status,
+        focusing ? 'focusing' : '',
+      ]"
       tabindex="0"
       @keydown.delete="!disabled && handleRemove($event, file)"
       @focus="focusing = true"
@@ -20,47 +24,59 @@
     >
       <slot :file="file">
         <img
-          v-if="file.status !== 'uploading' && ['picture-card', 'picture'].includes(listType)"
-          class="el-upload-list__item-thumbnail"
+          v-if="
+            file.status !== 'uploading' &&
+              ['picture-card', 'picture'].includes(listType)
+          "
+          class="tj-upload-list__item-thumbnail"
           :src="file.url"
           alt=""
-        >
-        <a class="el-upload-list__item-name" @click="handleClick(file)">
-          <i class="el-icon-document"></i>{{ file.name }}
+        />
+        <a class="tj-upload-list__item-name" @click="handleClick(file)">
+          <i class="tj-icon-document"></i>{{ file.name }}
         </a>
-        <label class="el-upload-list__item-status-label">
+        <label class="tj-upload-list__item-status-label">
           <i
             :class="{
-              'el-icon-upload-success': true,
-              'el-icon-circle-check': listType === 'text',
-              'el-icon-check': ['picture-card', 'picture'].includes(listType)
+              'tj-icon-upload-success': true,
+              'tj-icon-circle-check': listType === 'text',
+              'tj-icon-check': ['picture-card', 'picture'].includes(listType),
             }"
           ></i>
         </label>
-        <i v-if="!disabled" class="el-icon-close" @click="handleRemove($event, file)"></i>
+        <i
+          v-if="!disabled"
+          class="tj-icon-close"
+          @click="handleRemove($event, file)"
+        ></i>
         <!-- Due to close btn only appears when li gets focused disappears after li gets blurred, thus keyboard navigation can never reach close btn-->
         <!-- This is a bug which needs to be fixed -->
         <!-- TODO: Fix the incorrect navigation interaction -->
-        <i v-if="!disabled" class="el-icon-close-tip">{{ t('el.upload.deleteTip') }}</i>
-        <el-progress
+        <i v-if="!disabled" class="tj-icon-close-tip">{{
+          t('el.upload.deleteTip')
+        }}</i>
+        <tj-progress
           v-if="file.status === 'uploading'"
           :type="listType === 'picture-card' ? 'circle' : 'line'"
           :stroke-width="listType === 'picture-card' ? 6 : 2"
           :percentage="parsePercentage(file.percentage)"
         />
-        <span v-if="listType === 'picture-card'" class="el-upload-list__item-actions">
+        <span
+          v-if="listType === 'picture-card'"
+          class="tj-upload-list__item-actions"
+        >
           <span
-            class="el-upload-list__item-preview"
+            class="tj-upload-list__item-preview"
             @click="handlePreview(file)"
           >
-            <i class="el-icon-zoom-in"></i>
+            <i class="tj-icon-zoom-in"></i>
           </span>
           <span
             v-if="!disabled"
-            class="el-upload-list__item-delete"
+            class="tj-upload-list__item-delete"
             @click="handleRemove($event, file)"
           >
-            <i class="el-icon-delete"></i>
+            <i class="tj-icon-delete"></i>
           </span>
         </span>
       </slot>
@@ -72,13 +88,13 @@ import { defineComponent, ref } from 'vue'
 import { NOOP } from '@vue/shared'
 
 import { t } from '@element-plus/locale'
-import ElProgress from '@element-plus/progress'
+import TjProgress from '@element-plus/progress'
 
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElUploadList',
-  components: { ElProgress },
+  name: 'TjUploadList',
+  components: { TjProgress },
   props: {
     files: {
       type: Array as PropType<File[]>,

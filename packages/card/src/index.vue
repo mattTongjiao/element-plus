@@ -1,19 +1,22 @@
 <template>
   <div>
-    <div class="el-card" :class="shadow ? 'is-' + shadow + '-shadow' : 'is-always-shadow'">
-      <div v-if="$slots.header || header" class="el-card__header">
+    <div
+      class="tj-card"
+      :class="shadow ? 'is-' + shadow + '-shadow' : 'is-always-shadow'"
+    >
+      <div v-if="$slots.header || header" class="tj-card__header">
         <slot name="header">{{ header }}</slot>
       </div>
-      <div class="el-card__body" :style="bodyStyle">
+      <div class="tj-card__body" :style="bodyStyle">
         <slot></slot>
       </div>
     </div>
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent } from 'vue'
 export default defineComponent({
-  name: 'ElCard',
+  name: 'TjCard',
   props: {
     header: {
       type: String,

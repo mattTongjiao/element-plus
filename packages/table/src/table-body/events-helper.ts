@@ -69,7 +69,7 @@ function useEvents(props: TableBodyProps) {
     const cellChild = (event.target as HTMLElement).querySelector(
       '.cell',
     ) as HTMLElement
-    if (!(hasClass(cellChild, 'el-tooltip') && cellChild.childNodes.length)) {
+    if (!(hasClass(cellChild, 'tj-tooltip') && cellChild.childNodes.length)) {
       return
     }
     // use range width instead of scrollWidth to determine whether the text is overflowing

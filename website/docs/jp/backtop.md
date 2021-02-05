@@ -10,7 +10,7 @@
 ```html
 <template>
   Scroll down to see the bottom-right button.
-  <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
+  <tj-backtop target=".page-component__scroll .tj-scrollbar__wrap"></tj-backtop>
 </template>
 ```
 
@@ -18,13 +18,16 @@
 
 ### カスタマイズ
 
-表示エリアは40px \* 40pxです。
+表示エリアは 40px \* 40px です。
 :::demo
 
 ```html
 <template>
   Scroll down to see the bottom-right button.
-  <el-backtop target=".page-component__scroll .el-scrollbar__wrap" :bottom="100">
+  <tj-backtop
+    target=".page-component__scroll .tj-scrollbar__wrap"
+    :bottom="100"
+  >
     <div
       style="{
         height: 100%;
@@ -38,7 +41,7 @@
     >
       UP
     </div>
-  </el-backtop>
+  </tj-backtop>
 </template>
 ```
 
@@ -46,15 +49,15 @@
 
 ### 属性
 
-| Attribute         | Description                                                         | Type            | Accepted Values | Default |
-| ----------------- | ------------------------------------------------------------------- | --------------- | --------------- | ------- |
-| target            | スクロール対象                                                        | string          |                 |         |
-| visibility-height | ボタンはスクロールの高さがこの値に達するまで表示されません。                  | number |                 | 200     |
-| right             | ライトディスタンス                                                     | number |                 | 40      |
-| bottom            | ボトムディスタンス                                                     | number |                 | 40      |
+| Attribute         | Description                                                  | Type   | Accepted Values | Default |
+| ----------------- | ------------------------------------------------------------ | ------ | --------------- | ------- |
+| target            | スクロール対象                                               | string |                 |         |
+| visibility-height | ボタンはスクロールの高さがこの値に達するまで表示されません。 | number |                 | 200     |
+| right             | ライトディスタンス                                           | number |                 | 40      |
+| bottom            | ボトムディスタンス                                           | number |                 | 40      |
 
 ### イベント
 
-| Event Name | Description         | Parameters  |
-| ---------- | ------------------- | ----------- |
-| click      | クリックするとトリガー  | click event |
+| Event Name | Description            | Parameters  |
+| ---------- | ---------------------- | ----------- |
+| click      | クリックするとトリガー | click event |

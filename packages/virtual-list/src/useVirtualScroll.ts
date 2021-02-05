@@ -5,7 +5,7 @@ import throwError from '@element-plus/utils/error'
 
 export type Direction = 'h' | 'v'
 export type Alignment = 'head' | 'center' | 'tail'
-export interface ElVirtualScrollProps<T> {
+export interface TjVirtualScrollProps<T> {
   windowSize: number
   direction: Direction // h stands for horizontal, v stands for vertical, defaults to vertical
   data: Array<T>
@@ -13,7 +13,7 @@ export interface ElVirtualScrollProps<T> {
   poolSize: number
 }
 
-export default function useVirtualScroll<T>(props: ElVirtualScrollProps<T>) {
+export default function useVirtualScroll<T>(props: TjVirtualScrollProps<T>) {
   const viewportRef = ref<HTMLElement>()
   const offset = ref(0)
   const cache = ref(0)
@@ -105,7 +105,7 @@ export default function useVirtualScroll<T>(props: ElVirtualScrollProps<T>) {
   const scrollTo = (idx: number, alignment: Alignment = 'head') => {
     if (isServer) return
     if (idx < 0 || idx > props.data.length) {
-      throwError('ElVirtualList]', 'Out of list range')
+      throwError('TjVirtualList]', 'Out of list range')
     }
     let _offset: number
     switch (alignment) {
@@ -126,7 +126,7 @@ export default function useVirtualScroll<T>(props: ElVirtualScrollProps<T>) {
         break
       }
       default: {
-        throwError('[ElVirtualList]', 'Unsupported alignment')
+        throwError('[TjVirtualList]', 'Unsupported alignment')
       }
     }
     requestAnimationFrame(() => {

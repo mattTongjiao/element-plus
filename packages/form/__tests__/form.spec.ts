@@ -33,11 +33,11 @@ describe('Form', () => {
   test('label width', async () => {
     const wrapper = mountForm({
       template: `
-        <el-form ref="form" :model="form" label-width="80px">
-          <el-form-item label="Activity Name">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form ref="form" :model="form" label-width="80px">
+          <tj-form-item label="Activity Name">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -47,8 +47,8 @@ describe('Form', () => {
         }
       },
     })
-    expect(findStyle(wrapper, '.el-form-item__label').width).toBe('80px')
-    expect(findStyle(wrapper, '.el-form-item__content').marginLeft).toBe('80px')
+    expect(findStyle(wrapper, '.tj-form-item__label').width).toBe('80px')
+    expect(findStyle(wrapper, '.tj-form-item__content').marginLeft).toBe('80px')
   })
 
   /*
@@ -56,14 +56,14 @@ describe('Form', () => {
   test('auto label width', async() => {
     const wrapper = mountForm({
       template: `
-        <el-form ref="form" :model="form" label-width="auto">
-          <el-form-item label="Name">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-          <el-form-item label="Intro" v-if="display">
-            <el-input v-model="form.intro"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form ref="form" :model="form" label-width="auto">
+          <tj-form-item label="Name">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+          <tj-form-item label="Intro" v-if="display">
+            <tj-input v-model="form.intro"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -78,7 +78,7 @@ describe('Form', () => {
 
     await nextTick()
 
-    const formItems = wrapper.findAll<HTMLElement>('.el-form-item__content')
+    const formItems = wrapper.findAll<HTMLElement>('.tj-form-item__content')
     const marginLeft = parseInt(formItems[0].element.style.marginLeft, 10)
     const marginLeft1 = parseInt(formItems[1].element.style.marginLeft, 10)
     expect(marginLeft).toEqual(marginLeft1)
@@ -86,7 +86,7 @@ describe('Form', () => {
     wrapper.vm.display = false
     await nextTick()
 
-    const formItemStyle = findStyle(wrapper, '.el-form-item__content')
+    const formItemStyle = findStyle(wrapper, '.tj-form-item__content')
     const newMarginLeft = parseInt(formItemStyle.marginLeft, 10)
     expect(newMarginLeft).toBeLessThan(marginLeft)
   })
@@ -95,14 +95,14 @@ describe('Form', () => {
   test('inline form', () => {
     const wrapper = mountForm({
       template: `
-        <el-form ref="form" :model="form" inline>
-          <el-form-item>
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-input v-model="form.address"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form ref="form" :model="form" inline>
+          <tj-form-item>
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+          <tj-form-item>
+            <tj-input v-model="form.address"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -113,29 +113,29 @@ describe('Form', () => {
         }
       },
     })
-    expect(wrapper.classes()).toContain('el-form--inline')
+    expect(wrapper.classes()).toContain('tj-form--inline')
   })
 
   test('label position', () => {
     const wrapper = mountForm({
       template: `
         <div>
-          <el-form :model="form" label-position="top" ref="labelTop">
-            <el-form-item>
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-input v-model="form.address"></el-input>
-            </el-form-item>
-          </el-form>
-          <el-form :model="form" label-position="left" ref="labelLeft">
-            <el-form-item>
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-input v-model="form.address"></el-input>
-            </el-form-item>
-          </el-form>
+          <tj-form :model="form" label-position="top" ref="labelTop">
+            <tj-form-item>
+              <tj-input v-model="form.name"></tj-input>
+            </tj-form-item>
+            <tj-form-item>
+              <tj-input v-model="form.address"></tj-input>
+            </tj-form-item>
+          </tj-form>
+          <tj-form :model="form" label-position="left" ref="labelLeft">
+            <tj-form-item>
+              <tj-input v-model="form.name"></tj-input>
+            </tj-form-item>
+            <tj-form-item>
+              <tj-input v-model="form.address"></tj-input>
+            </tj-form-item>
+          </tj-form>
         </div>
       `,
       data() {
@@ -147,19 +147,19 @@ describe('Form', () => {
         }
       },
     })
-    expect(wrapper.findComponent({ ref: 'labelTop' }).classes()).toContain('el-form--label-top')
-    expect(wrapper.findComponent({ ref: 'labelLeft' }).classes()).toContain('el-form--label-left')
+    expect(wrapper.findComponent({ ref: 'labelTop' }).classes()).toContain('tj-form--label-top')
+    expect(wrapper.findComponent({ ref: 'labelLeft' }).classes()).toContain('tj-form--label-left')
   })
 
   test('label size', () => {
     const wrapper = mountForm({
       template: `
         <div>
-          <el-form :model="form" size="mini" ref="labelMini">
-            <el-form-item>
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-          </el-form>
+          <tj-form :model="form" size="mini" ref="labelMini">
+            <tj-form-item>
+              <tj-input v-model="form.name"></tj-input>
+            </tj-form-item>
+          </tj-form>
         </div>
       `,
       data() {
@@ -170,14 +170,14 @@ describe('Form', () => {
         }
       },
     })
-    expect(wrapper.findComponent(FormItem).classes()).toContain('el-form-item--mini')
+    expect(wrapper.findComponent(FormItem).classes()).toContain('tj-form-item--mini')
   })
 
   test('show message', done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" ref="form">
-          <el-form-item label="Name" prop="name" :show-message="false"
+        <tj-form :model="form" ref="form">
+          <tj-form-item label="Name" prop="name" :show-message="false"
             :rules="{
               required: true,
               message: 'Please input name',
@@ -186,9 +186,9 @@ describe('Form', () => {
               max: 6
             }"
           >
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -202,7 +202,7 @@ describe('Form', () => {
     form.validate(async valid => {
       expect(valid).toBe(false)
       await nextTick()
-      expect(wrapper.find('.el-form-item__error').exists()).toBe(false)
+      expect(wrapper.find('.tj-form-item__error').exists()).toBe(false)
       done()
     })
   })
@@ -210,22 +210,22 @@ describe('Form', () => {
   test('reset field', async () => {
     const wrapper = mountForm({
       template: `
-        <el-form ref="form" :model="form" :rules="rules">
-          <el-form-item label="name" prop="name">
-            <el-input v-model="form.name" ref="fieldName"></el-input>
-          </el-form-item>
-          <el-form-item label="address" prop="address">
-            <el-input v-model="form.address" ref="fieldAddr"></el-input>
-          </el-form-item>
-          <el-form-item label="type" prop="type">
-            <el-checkbox-group v-model="form.type">
-              <el-checkbox label="type1" name="type"></el-checkbox>
-              <el-checkbox label="type2" name="type"></el-checkbox>
-              <el-checkbox label="type3" name="type"></el-checkbox>
-              <el-checkbox label="type4" name="type"></el-checkbox>
-            </el-checkbox-group>
-          </el-form-item>
-        </el-form>
+        <tj-form ref="form" :model="form" :rules="rules">
+          <tj-form-item label="name" prop="name">
+            <tj-input v-model="form.name" ref="fieldName"></tj-input>
+          </tj-form-item>
+          <tj-form-item label="address" prop="address">
+            <tj-input v-model="form.address" ref="fieldAddr"></tj-input>
+          </tj-form-item>
+          <tj-form-item label="type" prop="type">
+            <tj-checkbox-group v-model="form.type">
+              <tj-checkbox label="type1" name="type"></tj-checkbox>
+              <tj-checkbox label="type2" name="type"></tj-checkbox>
+              <tj-checkbox label="type3" name="type"></tj-checkbox>
+              <tj-checkbox label="type4" name="type"></tj-checkbox>
+            </tj-checkbox-group>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -268,22 +268,22 @@ describe('Form', () => {
   test('clear validate', async () => {
     const wrapper = mountForm({
       template: `
-        <el-form ref="form" :model="form" :rules="rules">
-          <el-form-item label="name" prop="name" ref="name">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-          <el-form-item label="address" prop="address" ref="address">
-            <el-input v-model="form.address"></el-input>
-          </el-form-item>
-          <el-form-item label="type" prop="type">
-            <el-checkbox-group v-model="form.type">
-              <el-checkbox label="type1" name="type"></el-checkbox>
-              <el-checkbox label="type2" name="type"></el-checkbox>
-              <el-checkbox label="type3" name="type"></el-checkbox>
-              <el-checkbox label="type4" name="type"></el-checkbox>
-            </el-checkbox-group>
-          </el-form-item>
-        </el-form>
+        <tj-form ref="form" :model="form" :rules="rules">
+          <tj-form-item label="name" prop="name" ref="name">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+          <tj-form-item label="address" prop="address" ref="address">
+            <tj-input v-model="form.address"></tj-input>
+          </tj-form-item>
+          <tj-form-item label="type" prop="type">
+            <tj-checkbox-group v-model="form.type">
+              <tj-checkbox label="type1" name="type"></tj-checkbox>
+              <tj-checkbox label="type2" name="type"></tj-checkbox>
+              <tj-checkbox label="type3" name="type"></tj-checkbox>
+              <tj-checkbox label="type4" name="type"></tj-checkbox>
+            </tj-checkbox-group>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -326,21 +326,21 @@ describe('Form', () => {
   test('form item nest', done => {
     const wrapper = mountForm({
       template: `
-        <el-form ref="form" :model="form" :rules="rules">
-          <el-form-item label="活动时间" required>
-            <el-col :span="11">
-              <el-form-item prop="date1">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%"></el-date-picker>
-              </el-form-item>
-            </el-col>
-            <el-col class="line" :span="2">-</el-col>
-            <el-col :span="11">
-              <el-form-item prop="date2">
-                <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%"></el-time-picker>
-              </el-form-item>
-            </el-col>
-          </el-form-item>
-        </el-form>
+        <tj-form ref="form" :model="form" :rules="rules">
+          <tj-form-item label="活动时间" required>
+            <tj-col :span="11">
+              <tj-form-item prop="date1">
+                <tj-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%"></tj-date-picker>
+              </tj-form-item>
+            </tj-col>
+            <tj-col class="line" :span="2">-</tj-col>
+            <tj-col :span="11">
+              <tj-form-item prop="date2">
+                <tj-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%"></tj-time-picker>
+              </tj-form-item>
+            </tj-col>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -374,14 +374,14 @@ describe('Form', () => {
   test('validate event', async done => {
     const wrapper = mountForm({
       template: `
-          <el-form :model="form" :rules="rules" ref="form" @validate="onValidate">
-            <el-form-item label="name" prop="name" ref="name">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item label="活动地点" prop="addr" ref="addr">
-              <el-input v-model="form.addr"></el-input>
-            </el-form-item>
-          </el-form>
+          <tj-form :model="form" :rules="rules" ref="form" @validate="onValidate">
+            <tj-form-item label="name" prop="name" ref="name">
+              <tj-input v-model="form.name"></tj-input>
+            </tj-form-item>
+            <tj-form-item label="活动地点" prop="addr" ref="addr">
+              <tj-input v-model="form.addr"></tj-input>
+            </tj-form-item>
+          </tj-form>
         `,
       data() {
         return {
@@ -441,11 +441,11 @@ describe('validate', () => {
   test('input', async () => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="name" ref="field">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="name" ref="field">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -484,11 +484,11 @@ describe('validate', () => {
   test('textarea', async () => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="name" ref="field">
-            <el-input type="textarea" v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="name" ref="field">
+            <tj-input type="textarea" v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -528,14 +528,14 @@ describe('validate', () => {
   test('selector', done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="记住密码" prop="region" ref="field">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" ref="opt" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="记住密码" prop="region" ref="field">
+            <tj-select v-model="form.region" placeholder="请选择活动区域">
+              <tj-option label="区域一" value="shanghai"></tj-option>
+              <tj-option label="区域二" ref="opt" value="beijing"></tj-option>
+            </tj-select>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -576,11 +576,11 @@ describe('validate', () => {
   test('datepicker', done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="记住密码" prop="date" ref="field">
-            <el-date-picker type="date" ref="picker" placeholder="选择日期" v-model="form.date" style="width: 100%"></el-date-picker>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="记住密码" prop="date" ref="field">
+            <tj-date-picker type="date" ref="picker" placeholder="选择日期" v-model="form.date" style="width: 100%"></tj-date-picker>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -632,11 +632,11 @@ describe('validate', () => {
   test('timepicker', done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="记住密码" prop="date" ref="field">
-            <el-time-picker ref="picker" placeholder="选择时间" v-model="form.date" style="width: 100%"></el-time-picker>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="记住密码" prop="date" ref="field">
+            <tj-time-picker ref="picker" placeholder="选择时间" v-model="form.date" style="width: 100%"></tj-time-picker>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -679,13 +679,13 @@ describe('validate', () => {
   test('checkbox', async done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="Accept Term" prop="accept" ref="field">
-            <el-checkbox v-model="form.accept">
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="Accept Term" prop="accept" ref="field">
+            <tj-checkbox v-model="form.accept">
               <span>Accept</span>
-            </el-checkbox>
-          </el-form-item>
-        </el-form>
+            </tj-checkbox>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -728,16 +728,16 @@ describe('validate', () => {
   test('checkbox group', done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="type" ref="field">
-            <el-checkbox-group v-model="form.type">
-              <el-checkbox label="type1" name="type"></el-checkbox>
-              <el-checkbox label="type2" name="type"></el-checkbox>
-              <el-checkbox label="type3" name="type"></el-checkbox>
-              <el-checkbox label="type4" name="type"></el-checkbox>
-            </el-checkbox-group>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="type" ref="field">
+            <tj-checkbox-group v-model="form.type">
+              <tj-checkbox label="type1" name="type"></tj-checkbox>
+              <tj-checkbox label="type2" name="type"></tj-checkbox>
+              <tj-checkbox label="type3" name="type"></tj-checkbox>
+              <tj-checkbox label="type4" name="type"></tj-checkbox>
+            </tj-checkbox-group>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -774,14 +774,14 @@ describe('validate', () => {
   test('radio group', done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="type" ref="field">
-            <el-radio-group v-model="form.type">
-              <el-radio label="type1"></el-radio>
-              <el-radio label="type2"></el-radio>
-            </el-radio-group>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="type" ref="field">
+            <tj-radio-group v-model="form.type">
+              <tj-radio label="type1"></tj-radio>
+              <tj-radio label="type2"></tj-radio>
+            </tj-radio-group>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -818,11 +818,11 @@ describe('validate', () => {
   test('validate field', done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="name" ref="field">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="name" ref="field">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -859,11 +859,11 @@ describe('validate', () => {
     }
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="name" ref="field">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="name" ref="field">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -900,11 +900,11 @@ describe('validate', () => {
   test('error', done => {
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="name" :error="error" ref="field">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="name" :error="error" ref="field">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -947,11 +947,11 @@ describe('validate', () => {
     }
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="name" ref="field">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="name" ref="field">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {
@@ -983,11 +983,11 @@ describe('validate', () => {
     }
     const wrapper = mountForm({
       template: `
-        <el-form :model="form" :rules="rules" ref="form">
-          <el-form-item label="name" prop="name" ref="field">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-        </el-form>
+        <tj-form :model="form" :rules="rules" ref="form">
+          <tj-form-item label="name" prop="name" ref="field">
+            <tj-input v-model="form.name"></tj-input>
+          </tj-form-item>
+        </tj-form>
       `,
       data() {
         return {

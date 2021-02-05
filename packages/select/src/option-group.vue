@@ -1,8 +1,8 @@
 <template>
-  <ul v-show="visible" class="el-select-group__wrap">
-    <li class="el-select-group__title">{{ label }}</li>
+  <ul v-show="visible" class="tj-select-group__wrap">
+    <li class="tj-select-group__title">{{ label }}</li>
     <li>
-      <ul class="el-select-group">
+      <ul class="tj-select-group">
         <slot></slot>
       </ul>
     </li>
@@ -14,8 +14,8 @@ import { defineComponent, provide, inject, ref, reactive, toRefs } from 'vue'
 import { selectGroupKey, selectKey, selectEvents } from './token'
 
 export default defineComponent({
-  name: 'ElOptionGroup',
-  componentName: 'ElOptionGroup',
+  name: 'TjOptionGroup',
+  componentName: 'TjOptionGroup',
 
   props: {
     label: String,

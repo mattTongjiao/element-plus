@@ -21,8 +21,8 @@ interface SelectProps {
 
 const _mount = (template: string, data: any = () => ({}), otherObj?) => mount({
   components: {
-    'el-select': Select,
-    'el-option': Option,
+    'tj-select': Select,
+    'tj-option': Option,
   },
   template,
   data,
@@ -33,7 +33,7 @@ const _mount = (template: string, data: any = () => ({}), otherObj?) => mount({
 
 function getOptions(): HTMLElement[] {
   return Array.from(document.querySelectorAll<HTMLElement>(
-    'body > div:last-child .el-select-dropdown__item',
+    'body > div:last-child .tj-select-dropdown__item',
   ))
 }
 
@@ -67,7 +67,7 @@ const getSelectVm = (configs: SelectProps = {}, options?) => {
   }
 
   return _mount(`
-    <el-select
+    <tj-select
       ref="select"
       v-model="value"
       :multiple="multiple"
@@ -82,14 +82,14 @@ const getSelectVm = (configs: SelectProps = {}, options?) => {
       :loading="loading"
       :remoteMethod="remoteMethod"
       :automatic-dropdown="automaticDropdown">
-      <el-option
+      <tj-option
         v-for="item in options"
         :label="item.label"
         :key="item.value"
         :disabled="item.disabled"
         :value="item.value">
-      </el-option>
-    </el-select>
+      </tj-option>
+    </tj-select>
   `, () => ({
     options,
     multiple: configs.multiple,
@@ -114,17 +114,17 @@ describe('Select', () => {
     document.body.innerHTML = ''
   })
   test('create', async () => {
-    const wrapper = _mount(`<el-select v-model="value"></el-select>`, () => ({ value: '' }))
-    expect(wrapper.classes()).toContain('el-select')
-    expect(wrapper.find('.el-input__inner').element.placeholder).toBe('Select')
-    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const wrapper = _mount(`<tj-select v-model="value"></tj-select>`, () => ({ value: '' }))
+    expect(wrapper.classes()).toContain('tj-select')
+    expect(wrapper.find('.tj-input__inner').element.placeholder).toBe('Select')
+    const select = wrapper.findComponent({ name: 'TjSelect' })
     wrapper.trigger('click')
     expect((select.vm as any).visible).toBe(true)
   })
 
   test('options rendered correctly', () => {
     const wrapper = getSelectVm()
-    const options = wrapper.element.querySelectorAll('.el-select-dropdown__item')
+    const options = wrapper.element.querySelectorAll('.tj-select-dropdown__item')
     const result = [].every.call(options, (option, index) => {
       const text = option.querySelector('span').textContent
       const vm = wrapper.vm as any
@@ -135,20 +135,20 @@ describe('Select', () => {
 
   test('custom dropdown class', () => {
     const wrapper = getSelectVm({ popperClass: 'custom-dropdown' })
-    const dropdown = wrapper.findComponent({ name: 'ElSelectDropdown' })
+    const dropdown = wrapper.findComponent({ name: 'TjSelectDropdown' })
     expect(dropdown.classes()).toContain('custom-dropdown')
   })
 
   test('default value', async() => {
     const wrapper = _mount(`
-      <el-select v-model="value">
-        <el-option
+      <tj-select v-model="value">
+        <tj-option
           v-for="item in options"
           :label="item.label"
           :key="item.value"
           :value="item.value">
-        </el-option>
-      </el-select>
+        </tj-option>
+      </tj-select>
     `,
     () => ({
       options: [{
@@ -161,20 +161,20 @@ describe('Select', () => {
       value: '选项2',
     }))
     await wrapper.vm.$nextTick()
-    expect(wrapper.find('.el-input__inner').element.value).toBe('双皮奶')
+    expect(wrapper.find('.tj-input__inner').element.value).toBe('双皮奶')
   })
 
   test('single select', async () => {
     const wrapper = _mount(`
-      <el-select v-model="value" @change="handleChange">
-        <el-option
+      <tj-select v-model="value" @change="handleChange">
+        <tj-option
           v-for="item in options"
           :label="item.label"
           :key="item.value"
           :value="item.value">
           <p>{{item.label}} {{item.value}}</p>
-        </el-option>
-      </el-select>
+        </tj-option>
+      </tj-select>
     `,
     () => ({
       options: [{
@@ -208,16 +208,16 @@ describe('Select', () => {
     const options = getOptions()
     const vm = wrapper.vm as any
     expect(vm.value).toBe('')
-    expect(wrapper.find('.el-input__inner').element.value).toBe('')
+    expect(wrapper.find('.tj-input__inner').element.value).toBe('')
     options[2].click()
     await nextTick()
     expect(vm.value).toBe('选项3')
-    expect(wrapper.find('.el-input__inner').element.value).toBe('蚵仔煎')
+    expect(wrapper.find('.tj-input__inner').element.value).toBe('蚵仔煎')
     expect(vm.count).toBe(1)
     options[4].click()
     await nextTick()
     expect(vm.value).toBe('选项5')
-    expect(wrapper.find('.el-input__inner').element.value).toBe('北京烤鸭')
+    expect(wrapper.find('.tj-input__inner').element.value).toBe('北京烤鸭')
     expect(vm.count).toBe(2)
   })
 
@@ -235,20 +235,20 @@ describe('Select', () => {
   })
 
   test('disabled select', () => {
-    const wrapper = _mount(`<el-select disabled></el-select>`)
-    expect(wrapper.find('.el-input').classes()).toContain('is-disabled')
+    const wrapper = _mount(`<tj-select disabled></tj-select>`)
+    expect(wrapper.find('.tj-input').classes()).toContain('is-disabled')
   })
 
   test('visible event', async() => {
     const wrapper = _mount(`
-    <el-select v-model="value" @visible-change="handleVisibleChange">
-      <el-option
+    <tj-select v-model="value" @visible-change="handleVisibleChange">
+      <tj-option
         v-for="item in options"
         :label="item.label"
         :key="item.value"
         :value="item.value">
-      </el-option>
-    </el-select>`,
+      </tj-option>
+    </tj-select>`,
     () => ({
       options: [],
       value: '',
@@ -261,7 +261,7 @@ describe('Select', () => {
         },
       },
     })
-    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const select = wrapper.findComponent({ name: 'TjSelect' })
     const vm = wrapper.vm as any
     const selectVm = select.vm as any
     selectVm.visible = true
@@ -271,7 +271,7 @@ describe('Select', () => {
 
   test('keyboard operations', async() => {
     const wrapper = getSelectVm()
-    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const select = wrapper.findComponent({ name: 'TjSelect' })
     const vm = select.vm as any
     let i = 8
     while (i--) {
@@ -287,14 +287,14 @@ describe('Select', () => {
 
   test('clearable', async () => {
     const wrapper = getSelectVm({ clearable: true })
-    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const select = wrapper.findComponent({ name: 'TjSelect' })
     const vm = wrapper.vm as any
     const selectVm = select.vm as any
     vm.value = '选项1'
     await vm.$nextTick()
     selectVm.inputHovering = true
     await selectVm.$nextTick()
-    const iconClear = wrapper.find('.el-input__icon.el-icon-circle-close')
+    const iconClear = wrapper.find('.tj-input__icon.tj-icon-circle-close')
     expect(iconClear.exists()).toBe(true)
     await iconClear.trigger('click')
     expect(vm.value).toBe('')
@@ -302,7 +302,7 @@ describe('Select', () => {
 
   test('allow create', async () => {
     const wrapper = getSelectVm({ filterable: true, allowCreate: true })
-    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const select = wrapper.findComponent({ name: 'TjSelect' })
     const selectVm = select.vm as any
     const input = wrapper.find('input')
     input.element.focus()
@@ -327,17 +327,17 @@ describe('Select', () => {
     options[3].click()
     await nextTick()
     expect(vm.value.indexOf('选项2') > -1 && vm.value.indexOf('选项4') > -1).toBe(true)
-    const tagCloseIcons = wrapper.findAll('.el-tag__close')
+    const tagCloseIcons = wrapper.findAll('.tj-tag__close')
     await tagCloseIcons[0].trigger('click')
     expect(vm.value.indexOf('选项1')).toBe(-1)
   })
 
   test('multiple select when content overflow', async () => {
     const wrapper = _mount(`
-      <el-select v-model="selectedList" multiple placeholder="请选择">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-        </el-option>
-      </el-select>
+      <tj-select v-model="selectedList" multiple placeholder="请选择">
+        <tj-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+        </tj-option>
+      </tj-select>
     `,
     () => ({
       options: [{
@@ -378,7 +378,7 @@ describe('Select', () => {
     await nextTick()
     options[2].click()
     await nextTick()
-    const tagWrappers = wrapper.findAll('.el-select__tags-text')
+    const tagWrappers = wrapper.findAll('.tj-select__tags-text')
     for(let i=0;i<tagWrappers.length;i++) {
       const tagWrapperDom = tagWrappers[i].element
       expect(parseInt(tagWrapperDom.style.maxWidth) === inputRect.width - 75).toBe(true)
@@ -388,10 +388,10 @@ describe('Select', () => {
 
   test('multiple select with collapseTags when content overflow', async () => {
     const wrapper = _mount(`
-      <el-select v-model="selectedList" multiple collapseTags placeholder="请选择">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-        </el-option>
-      </el-select>
+      <tj-select v-model="selectedList" multiple collapseTags placeholder="请选择">
+        <tj-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+        </tj-option>
+      </tj-select>
     `,
     () => ({
       options: [{
@@ -432,7 +432,7 @@ describe('Select', () => {
     await nextTick()
     options[2].click()
     await nextTick()
-    const tagWrappers = wrapper.findAll('.el-select__tags-text')
+    const tagWrappers = wrapper.findAll('.tj-select__tags-text')
     const tagWrapperDom = tagWrappers[0].element
     expect(parseInt(tagWrapperDom.style.maxWidth) === inputRect.width - 123).toBe(true)
     mockInputWidth.mockRestore()
@@ -440,15 +440,15 @@ describe('Select', () => {
 
   test('multiple remove-tag', async () => {
     const wrapper = _mount(`
-      <el-select v-model="value" multiple @remove-tag="handleRemoveTag">
-        <el-option
+      <tj-select v-model="value" multiple @remove-tag="handleRemoveTag">
+        <tj-option
           v-for="item in options"
           :label="item.label"
           :key="item.value"
           :value="item.value">
           <p>{{item.label}} {{item.value}}</p>
-        </el-option>
-      </el-select>
+        </tj-option>
+      </tj-select>
     `,
     () => ({
       options: [{
@@ -480,7 +480,7 @@ describe('Select', () => {
     const vm = wrapper.vm as any
     await vm.$nextTick()
     expect(vm.value.length).toBe(2)
-    const tagCloseIcons = wrapper.findAll('.el-tag__close')
+    const tagCloseIcons = wrapper.findAll('.tj-tag__close')
     await tagCloseIcons[1].trigger('click')
     expect(vm.value.length).toBe(1)
     await tagCloseIcons[0].trigger('click')
@@ -503,13 +503,13 @@ describe('Select', () => {
   test('event:focus & blur', async () => {
     const handleFocus = jest.fn()
     const handleBlur = jest.fn()
-    const wrapper = _mount(`<el-select
+    const wrapper = _mount(`<tj-select
       @focus="handleFocus"
       @blur="handleBlur" />`, () => ({
       handleFocus,
       handleBlur,
     }))
-    const select = wrapper.findComponent(({ name: 'ElSelect' }))
+    const select = wrapper.findComponent(({ name: 'TjSelect' }))
     const input = select.find('input')
 
     expect(input.exists()).toBe(true)
@@ -521,7 +521,7 @@ describe('Select', () => {
 
   test('should not open popper when automatic-dropdown not set', async () => {
     const wrapper = getSelectVm()
-    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const select = wrapper.findComponent({ name: 'TjSelect' })
     await select.findComponent({ ref: 'reference' })
       .find('input')
       .element.focus()
@@ -530,7 +530,7 @@ describe('Select', () => {
 
   test('should open popper when automatic-dropdown is set', async () => {
     const wrapper = getSelectVm({ automaticDropdown: true })
-    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const select = wrapper.findComponent({ name: 'TjSelect' })
     await select.findComponent({ ref: 'reference' }).find('input').trigger('focus')
     expect((select.vm as any).visible).toBe(true)
   })
@@ -538,11 +538,11 @@ describe('Select', () => {
   test('only emit change on user input', async () => {
     let callCount = 0
     const wrapper = _mount(`
-    <el-select v-model="value" @change="change" ref="select">
-      <el-option label="1" value="1" />
-      <el-option label="2" value="2" />
-      <el-option label="3" value="3" />
-    </el-select>`,
+    <tj-select v-model="value" @change="change" ref="select">
+      <tj-option label="1" value="1" />
+      <tj-option label="2" value="2" />
+      <tj-option label="3" value="3" />
+    </tj-select>`,
     () => ({
       value: '1',
       change: () => ++callCount,
@@ -557,11 +557,11 @@ describe('Select', () => {
 
   test('render slot `empty`', async () => {
     const wrapper = _mount(`
-      <el-select v-model="value">
+      <tj-select v-model="value">
         <template #empty>
           <div class="empty-slot">EmptySlot</div>
         </template>
-      </el-select>`,
+      </tj-select>`,
     () => ({
       value: '1',
     }))
@@ -571,28 +571,28 @@ describe('Select', () => {
 
   test('should set placeholder to label of selected option when filterable is true and multiple is false', async() => {
     const wrapper = _mount(`
-      <el-select ref="select" v-model="value" filterable>
-        <el-option label="test" value="test" />
-      </el-select>`,
+      <tj-select ref="select" v-model="value" filterable>
+        <tj-option label="test" value="test" />
+      </tj-select>`,
     () => ({ value: 'test' }))
     const vm = wrapper.vm as any
     await wrapper.trigger('click')
-    const selectVm = wrapper.findComponent({ name: 'ElSelect' }).vm as any
+    const selectVm = wrapper.findComponent({ name: 'TjSelect' }).vm as any
     expect(selectVm.visible).toBe(true)
-    expect(wrapper.find('.el-input__inner').element.placeholder).toBe('test')
+    expect(wrapper.find('.tj-input__inner').element.placeholder).toBe('test')
     expect(vm.value).toBe('test')
   })
 
   test('default value is null or undefined', async() => {
     const wrapper = _mount(`
-    <el-select v-model="value">
-      <el-option
+    <tj-select v-model="value">
+      <tj-option
         v-for="item in options"
         :label="item.label"
         :key="item.value"
         :value="item.value">
-      </el-option>
-    </el-select>`,
+      </tj-option>
+    </tj-select>`,
     () => ({
       options: [{
         value: '选项1',
@@ -606,22 +606,22 @@ describe('Select', () => {
     const vm = wrapper.vm as any
     vm.value = null
     await vm.$nextTick()
-    expect(wrapper.find('.el-input__inner').element.value).toBe('')
+    expect(wrapper.find('.tj-input__inner').element.value).toBe('')
     vm.value = '选项1'
     await vm.$nextTick()
-    expect(wrapper.find('.el-input__inner').element.value).toBe('黄金糕')
+    expect(wrapper.find('.tj-input__inner').element.value).toBe('黄金糕')
   })
 
   test('emptyText error show', async () => {
     const wrapper = _mount(`
-    <el-select :model-value="value" filterable placeholder="Select">
-      <el-option
+    <tj-select :modtj-value="value" filterable placeholder="Select">
+      <tj-option
         v-for="item in options"
         :key="item.value"
         :label="item.label"
         :value="item.value">
-      </el-option>
-    </el-select>`,
+      </tj-option>
+    </tj-select>`,
     () => ({
       options: [{
         value: 'Option1',
@@ -641,17 +641,17 @@ describe('Select', () => {
       }],
       value: 'test',
     }))
-    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const select = wrapper.findComponent({ name: 'TjSelect' })
     select.trigger('click')
     await nextTick()
-    expect(!!document.querySelector('.el-select__popper').style.display).toBeFalsy()
-    expect(wrapper.findAll('.el-select-dropdown__empty').length).toBe(0)
+    expect(!!document.querySelector('.tj-select__popper').style.display).toBeFalsy()
+    expect(wrapper.findAll('.tj-select-dropdown__empty').length).toBe(0)
   })
 
   test('multiple select with remote load', async () => {
     const wrapper = mount({
       template: `
-      <el-select
+      <tj-select
         v-model="value"
         multiple
         filterable
@@ -661,14 +661,14 @@ describe('Select', () => {
         :remote-method="remoteMethod"
         :loading="loading"
       >
-        <el-option
+        <tj-option
           v-for="item in options"
           :key="item.value"
           :label="item.label"
           :value="item"
         />
-      </el-select>`,
-      components: { ElSelect: Select, ElOption: Option },
+      </tj-select>`,
+      components: { TjSelect: Select, TjOption: Option },
       data() {
         return {
           options: [],
@@ -717,7 +717,7 @@ describe('Select', () => {
       },
     })
 
-    const select = wrapper.findComponent({ name: 'ElSelect' }).vm
+    const select = wrapper.findComponent({ name: 'TjSelect' }).vm
     select.debouncedQueryChange({
       target: {
         value: '',

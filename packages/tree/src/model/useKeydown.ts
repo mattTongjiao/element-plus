@@ -32,7 +32,7 @@ export function useKeydown({ el$ }: UseKeydownOption, store: Ref<TreeStore>) {
 
   const handleKeydown = (ev: KeyboardEvent): void => {
     const currentItem = ev.target as HTMLElement
-    if (currentItem.className.indexOf('el-tree-node') === -1) return
+    if (currentItem.className.indexOf('tj-tree-node') === -1) return
     const code = ev.code
     treeItems.value = Array.from(el$.value.querySelectorAll('.is-focusable[role=treeitem]'))
     const currentIndex = treeItems.value.indexOf(currentItem)

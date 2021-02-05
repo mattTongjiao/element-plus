@@ -8,8 +8,8 @@ import type {
   Action,
   Callback,
   MessageBoxState,
-  ElMessageBox,
-  ElMessageBoxOptions,
+  TjMessageBox,
+  TjMessageBoxOptions,
   MessageBoxData,
 } from './message-box.type'
 
@@ -94,9 +94,9 @@ const showMessage = (options: any) => {
   return vm
 }
 
-async function MessageBox(options: ElMessageBoxOptions): Promise<MessageBoxData>
+async function MessageBox(options: TjMessageBoxOptions): Promise<MessageBoxData>
 function MessageBox(
-  options: ElMessageBoxOptions | string | VNode,
+  options: TjMessageBoxOptions | string | VNode,
 ): Promise<{value: string; action: Action;} | Action> {
   if (isServer) return
   let callback
@@ -123,7 +123,7 @@ function MessageBox(
 MessageBox.alert = (
   message: string,
   title: string,
-  options?: ElMessageBoxOptions,
+  options?: TjMessageBoxOptions,
 ) => {
   if (typeof title === 'object') {
     options = title
@@ -149,7 +149,7 @@ MessageBox.alert = (
 MessageBox.confirm = (
   message: string,
   title: string,
-  options?: ElMessageBoxOptions,
+  options?: TjMessageBoxOptions,
 ) => {
   if (typeof title === 'object') {
     options = title
@@ -173,7 +173,7 @@ MessageBox.confirm = (
 MessageBox.prompt = (
   message: string,
   title: string,
-  options?: ElMessageBoxOptions,
+  options?: TjMessageBoxOptions,
 ) => {
   if (typeof title === 'object') {
     options = title
@@ -206,4 +206,4 @@ MessageBox.close = () => {
   messageInstance.clear()
 }
 
-export default MessageBox as ElMessageBox
+export default MessageBox as TjMessageBox

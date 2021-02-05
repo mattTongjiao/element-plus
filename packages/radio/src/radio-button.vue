@@ -1,12 +1,13 @@
 <template>
   <label
-    class="el-radio-button"
+    class="tj-radio-button"
     :class="[
-      size ? 'el-radio-button--' + size : '',
-      { 'is-active': value === label,
+      size ? 'tj-radio-button--' + size : '',
+      {
+        'is-active': value === label,
         'is-disabled': isDisabled,
         'is-focus': focus,
-      }
+      },
     ]"
     role="radio"
     :aria-checked="value === label"
@@ -16,7 +17,7 @@
   >
     <input
       v-model="value"
-      class="el-radio-button__orig-radio"
+      class="tj-radio-button__orig-radio"
       :value="label"
       type="radio"
       :name="name"
@@ -24,9 +25,9 @@
       tabindex="-1"
       @focus="focus = true"
       @blur="focus = false"
-    >
+    />
     <span
-      class="el-radio-button__inner"
+      class="tj-radio-button__inner"
       :style="value === label ? activeStyle : null"
       @keydown.stop
     >
@@ -41,7 +42,7 @@ import { computed, defineComponent } from 'vue'
 import { useRadio, useRadioAttrs } from './useRadio'
 
 export default defineComponent({
-  name: 'ElRadioButton',
+  name: 'TjRadioButton',
 
   props: {
     label: {
@@ -77,10 +78,7 @@ export default defineComponent({
       },
     })
 
-    const {
-      isDisabled,
-      tabIndex,
-    } = useRadioAttrs(props, {
+    const { isDisabled, tabIndex } = useRadioAttrs(props, {
       model: value,
       elForm,
       radioGroup: radioGroup,

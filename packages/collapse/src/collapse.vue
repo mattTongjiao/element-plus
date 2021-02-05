@@ -1,5 +1,5 @@
 <template>
-  <div class="el-collapse" role="tablist" aria-multiselectable="true">
+  <div class="tj-collapse" role="tablist" aria-multiselectable="true">
     <slot></slot>
   </div>
 </template>
@@ -22,7 +22,7 @@ export interface CollapseProvider {
   collapseMitt: Emitter
 }
 export default defineComponent({
-  name: 'ElCollapse',
+  name: 'TjCollapse',
   props: {
     accordion: Boolean,
     modelValue: {

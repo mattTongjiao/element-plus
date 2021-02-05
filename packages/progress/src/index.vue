@@ -1,30 +1,39 @@
 <template>
   <div
-    class="el-progress"
+    class="tj-progress"
     :class="[
-      `el-progress--${type}`,
+      `tj-progress--${type}`,
       status ? `is-${status}` : '',
       {
-        'el-progress--without-text': !showText,
-        'el-progress--text-inside': textInside,
-      }
+        'tj-progress--without-text': !showText,
+        'tj-progress--text-inside': textInside,
+      },
     ]"
     role="progressbar"
     :aria-valuenow="percentage"
     aria-valuemin="0"
     aria-valuemax="100"
   >
-    <div v-if="type === 'line'" class="el-progress-bar">
-      <div class="el-progress-bar__outer" :style="{height: `${strokeWidth}px`}">
-        <div class="el-progress-bar__inner" :style="barStyle">
-          <div v-if="showText && textInside" class="el-progress-bar__innerText">{{ content }}</div>
+    <div v-if="type === 'line'" class="tj-progress-bar">
+      <div
+        class="tj-progress-bar__outer"
+        :style="{ height: `${strokeWidth}px` }"
+      >
+        <div class="tj-progress-bar__inner" :style="barStyle">
+          <div v-if="showText && textInside" class="tj-progress-bar__innerText">
+            {{ content }}
+          </div>
         </div>
       </div>
     </div>
-    <div v-else class="el-progress-circle" :style="{height: `${width}px`, width: `${width}px`}">
+    <div
+      v-else
+      class="tj-progress-circle"
+      :style="{ height: `${width}px`, width: `${width}px` }"
+    >
       <svg viewBox="0 0 100 100">
         <path
-          class="el-progress-circle__track"
+          class="tj-progress-circle__track"
           :d="trackPath"
           stroke="#e5e9f2"
           :stroke-width="relativeStrokeWidth"
@@ -32,7 +41,7 @@
           :style="trailPathStyle"
         />
         <path
-          class="el-progress-circle__path"
+          class="tj-progress-circle__path"
           :d="trackPath"
           :stroke="stroke"
           fill="none"
@@ -44,8 +53,8 @@
     </div>
     <div
       v-if="showText && !textInside"
-      class="el-progress__text"
-      :style="{fontSize: `${progressTextSize}px`}"
+      class="tj-progress__text"
+      :style="{ fontSize: `${progressTextSize}px` }"
     >
       <template v-if="!status">{{ content }}</template>
       <i v-else :class="iconClass"></i>
@@ -56,7 +65,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 
-type ProgressFuncType = (percentage: number) => string;
+type ProgressFuncType = (percentage: number) => string
 
 interface IProgressProps {
   type: string
@@ -67,17 +76,21 @@ interface IProgressProps {
   textInside: boolean
   width: number
   showText: boolean
-  color: string | Array<string | { color: string; percentage: number; }> | ProgressFuncType
+  color:
+    | string
+    | Array<string | { color: string; percentage: number }>
+    | ProgressFuncType
   format: ProgressFuncType
 }
 
 export default defineComponent({
-  name: 'ElProgress',
+  name: 'TjProgress',
   props: {
     type: {
       type: String,
       default: 'line',
-      validator: (val: string): boolean => ['line', 'circle', 'dashboard'].indexOf(val) > -1,
+      validator: (val: string): boolean =>
+        ['line', 'circle', 'dashboard'].indexOf(val) > -1,
     },
     percentage: {
       type: Number,
@@ -88,7 +101,8 @@ export default defineComponent({
     status: {
       type: String,
       default: '',
-      validator: (val: string): boolean => ['', 'success', 'exception', 'warning'].indexOf(val) > -1,
+      validator: (val: string): boolean =>
+        ['', 'success', 'exception', 'warning'].indexOf(val) > -1,
     },
     strokeWidth: {
       type: Number,
@@ -128,7 +142,7 @@ export default defineComponent({
     })
 
     const relativeStrokeWidth = computed(() => {
-      return (props.strokeWidth / props.width * 100).toFixed(1)
+      return ((props.strokeWidth / props.width) * 100).toFixed(1)
     })
 
     const radius = computed(() => {
@@ -159,20 +173,24 @@ export default defineComponent({
     })
 
     const strokeDashoffset = computed(() => {
-      const offset = -1 * perimeter.value * (1 - rate.value) / 2
+      const offset = (-1 * perimeter.value * (1 - rate.value)) / 2
       return `${offset}px`
     })
 
     const trailPathStyle = computed(() => {
       return {
-        strokeDasharray: `${(perimeter.value * rate.value)}px, ${perimeter.value}px`,
+        strokeDasharray: `${perimeter.value * rate.value}px, ${
+          perimeter.value
+        }px`,
         strokeDashoffset: strokeDashoffset.value,
       }
     })
 
     const circlePathStyle = computed(() => {
       return {
-        strokeDasharray: `${perimeter.value * rate.value * (props.percentage / 100) }px, ${perimeter.value}px`,
+        strokeDasharray: `${perimeter.value *
+          rate.value *
+          (props.percentage / 100)}px, ${perimeter.value}px`,
         strokeDashoffset: strokeDashoffset.value,
         transition: 'stroke-dasharray 0.6s ease 0s, stroke 0.6s ease',
       }
@@ -202,12 +220,14 @@ export default defineComponent({
 
     const iconClass = computed(() => {
       if (props.status === 'warning') {
-        return 'el-icon-warning'
+        return 'tj-icon-warning'
       }
       if (props.type === 'line') {
-        return props.status === 'success' ? 'el-icon-circle-check' : 'el-icon-circle-close'
+        return props.status === 'success'
+          ? 'tj-icon-circle-check'
+          : 'tj-icon-circle-close'
       } else {
-        return props.status === 'success' ? 'el-icon-check' : 'el-icon-close'
+        return props.status === 'success' ? 'tj-icon-check' : 'tj-icon-close'
       }
     })
 
@@ -238,7 +258,9 @@ export default defineComponent({
           }
           return seriesColor
         })
-        const colorArray = seriesColors.sort((a, b) => a.percentage - b.percentage)
+        const colorArray = seriesColors.sort(
+          (a, b) => a.percentage - b.percentage,
+        )
 
         for (let i = 0; i < colorArray.length; i++) {
           if (colorArray[i].percentage > percentage) {

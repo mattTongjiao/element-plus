@@ -5,15 +5,15 @@ import Step from '../src/item.vue'
 
 const _mount = (template: string) => mount({
   components: {
-    'el-steps': Steps,
-    'el-step': Step,
+    'tj-steps': Steps,
+    'tj-step': Step,
   },
   template,
 }, {
   attachTo: document.body,
   global: {
     provide: {
-      ElSteps: {},
+      TjSteps: {},
     },
   },
 })
@@ -21,130 +21,130 @@ const _mount = (template: string) => mount({
 describe('Steps.vue', () => {
   test('render', () => {
     const wrapper = _mount(`
-      <el-steps>
-        <el-step />
-        <el-step />
-        <el-step />
-      </el-steps>
+      <tj-steps>
+        <tj-step />
+        <tj-step />
+        <tj-step />
+      </tj-steps>
     `)
-    expect(wrapper.findAll('.el-step').length).toBe(3)
-    expect(wrapper.classes()).toContain('el-steps--horizontal')
-    expect(wrapper.find('.el-step').classes()).toContain('is-horizontal')
+    expect(wrapper.findAll('.tj-step').length).toBe(3)
+    expect(wrapper.classes()).toContain('tj-steps--horizontal')
+    expect(wrapper.find('.tj-step').classes()).toContain('is-horizontal')
   })
 
   test('space', () => {
     const wrapper = _mount(`
-      <el-steps :space="100">
-        <el-step />
-      </el-steps>
+      <tj-steps :space="100">
+        <tj-step />
+      </tj-steps>
     `)
-    expect(wrapper.find('.el-step').attributes('style')).toMatch('flex-basis: 100px;')
+    expect(wrapper.find('.tj-step').attributes('style')).toMatch('flex-basis: 100px;')
   })
 
   test('alignCenter', () => {
     const wrapper = _mount(`
-      <el-steps alignCenter>
-        <el-step />
-      </el-steps>
+      <tj-steps alignCenter>
+        <tj-step />
+      </tj-steps>
     `)
-    expect(wrapper.find('.el-step').classes()).toContain('is-center')
+    expect(wrapper.find('.tj-step').classes()).toContain('is-center')
   })
 
   test('direction', () => {
     const wrapper = _mount(`
-      <el-steps direction="vertical">
-        <el-step />
-      </el-steps>
+      <tj-steps direction="vertical">
+        <tj-step />
+      </tj-steps>
     `)
-    expect(wrapper.classes()).toContain('el-steps--vertical')
-    expect(wrapper.find('.el-step').classes()).toContain('is-vertical')
+    expect(wrapper.classes()).toContain('tj-steps--vertical')
+    expect(wrapper.find('.tj-step').classes()).toContain('is-vertical')
   })
 
   test('simple', () => {
     const wrapper = _mount(`
-      <el-steps simple direction="vertical" :space="100" alignCenter>
-        <el-step />
-      </el-steps>
+      <tj-steps simple direction="vertical" :space="100" alignCenter>
+        <tj-step />
+      </tj-steps>
     `)
-    expect(wrapper.classes()).toContain('el-steps--simple')
+    expect(wrapper.classes()).toContain('tj-steps--simple')
     expect(wrapper.find('is-center').exists()).toBe(false)
     expect(wrapper.find('is-vertical').exists()).toBe(false)
   })
 
   test('active', async () => {
     const wrapper = _mount(`
-      <el-steps :active="0">
-        <el-step />
-        <el-step />
-        <el-step />
-      </el-steps>
+      <tj-steps :active="0">
+        <tj-step />
+        <tj-step />
+        <tj-step />
+      </tj-steps>
     `)
     await nextTick()
-    expect(wrapper.findAll('.el-step')[0].find('.el-step__head').classes()).toContain('is-process')
-    expect(wrapper.findAll('.el-step')[1].find('.el-step__head').classes()).toContain('is-wait')
-    expect(wrapper.findAll('.el-step')[2].find('.el-step__head').classes()).toContain('is-wait')
+    expect(wrapper.findAll('.tj-step')[0].find('.tj-step__head').classes()).toContain('is-process')
+    expect(wrapper.findAll('.tj-step')[1].find('.tj-step__head').classes()).toContain('is-wait')
+    expect(wrapper.findAll('.tj-step')[2].find('.tj-step__head').classes()).toContain('is-wait')
     await wrapper.setProps({ active: 1 })
-    expect(wrapper.findAll('.el-step')[0].find('.el-step__head').classes()).toContain('is-finish')
-    expect(wrapper.findAll('.el-step')[1].find('.el-step__head').classes()).toContain('is-process')
-    expect(wrapper.findAll('.el-step')[2].find('.el-step__head').classes()).toContain('is-wait')
+    expect(wrapper.findAll('.tj-step')[0].find('.tj-step__head').classes()).toContain('is-finish')
+    expect(wrapper.findAll('.tj-step')[1].find('.tj-step__head').classes()).toContain('is-process')
+    expect(wrapper.findAll('.tj-step')[2].find('.tj-step__head').classes()).toContain('is-wait')
     await wrapper.setProps({ active: 2 })
-    expect(wrapper.findAll('.el-step')[0].find('.el-step__head').classes()).toContain('is-finish')
-    expect(wrapper.findAll('.el-step')[1].find('.el-step__head').classes()).toContain('is-finish')
-    expect(wrapper.findAll('.el-step')[2].find('.el-step__head').classes()).toContain('is-process')
+    expect(wrapper.findAll('.tj-step')[0].find('.tj-step__head').classes()).toContain('is-finish')
+    expect(wrapper.findAll('.tj-step')[1].find('.tj-step__head').classes()).toContain('is-finish')
+    expect(wrapper.findAll('.tj-step')[2].find('.tj-step__head').classes()).toContain('is-process')
     await wrapper.setProps({ active: 3 })
-    expect(wrapper.findAll('.el-step')[2].find('.el-step__head').classes()).toContain('is-finish')
+    expect(wrapper.findAll('.tj-step')[2].find('.tj-step__head').classes()).toContain('is-finish')
   })
 
   test('process-status', async () => {
     const wrapper = _mount(`
-      <el-steps :active="2" process-status="success">
-        <el-step />
-        <el-step />
-        <el-step />
-      </el-steps>
+      <tj-steps :active="2" process-status="success">
+        <tj-step />
+        <tj-step />
+        <tj-step />
+      </tj-steps>
     `)
     await nextTick()
-    expect(wrapper.findAll('.el-step')[2].find('.el-step__head').classes()).toContain('is-success')
+    expect(wrapper.findAll('.tj-step')[2].find('.tj-step__head').classes()).toContain('is-success')
     await wrapper.setProps({ processStatus: 'error' })
-    expect(wrapper.findAll('.el-step')[2].find('.el-step__head').classes()).toContain('is-error')
+    expect(wrapper.findAll('.tj-step')[2].find('.tj-step__head').classes()).toContain('is-error')
   })
 
   test('finish-status', async () => {
     const wrapper = _mount(`
-      <el-steps :active="2" finish-status="error">
-        <el-step />
-        <el-step />
-        <el-step />
-      </el-steps>
+      <tj-steps :active="2" finish-status="error">
+        <tj-step />
+        <tj-step />
+        <tj-step />
+      </tj-steps>
     `)
     await nextTick()
-    expect(wrapper.findAll('.el-step')[0].find('.el-step__head').classes()).toContain('is-error')
+    expect(wrapper.findAll('.tj-step')[0].find('.tj-step__head').classes()).toContain('is-error')
     await wrapper.setProps({ finishStatus: 'success' })
-    expect(wrapper.findAll('.el-step')[0].find('.el-step__head').classes()).toContain('is-success')
+    expect(wrapper.findAll('.tj-step')[0].find('.tj-step__head').classes()).toContain('is-success')
   })
 
   test('step attribute', () => {
     const wrapper = _mount(`
-      <el-steps :active="0">
-        <el-step icon="el-icon-edit" title="title" description="description" status="wait" />
-      </el-steps>
+      <tj-steps :active="0">
+        <tj-step icon="tj-icon-edit" title="title" description="description" status="wait" />
+      </tj-steps>
     `)
-    expect(wrapper.find('.el-step__head').classes()).toContain('is-wait')
-    expect(wrapper.find('.el-icon-edit').exists()).toBe(true)
-    expect(wrapper.find('.el-step__title').text()).toBe('title')
-    expect(wrapper.find('.el-step__description').text()).toBe('description')
+    expect(wrapper.find('.tj-step__head').classes()).toContain('is-wait')
+    expect(wrapper.find('.tj-icon-edit').exists()).toBe(true)
+    expect(wrapper.find('.tj-step__title').text()).toBe('title')
+    expect(wrapper.find('.tj-step__description').text()).toBe('description')
   })
 
   test('step slot', () => {
     const wrapper = _mount(`
-      <el-steps :active="0">
-        <el-step>
+      <tj-steps :active="0">
+        <tj-step>
           <template #title>A</template>
           <template #description>B</template>
-        </el-step>
-      </el-steps>
+        </tj-step>
+      </tj-steps>
     `)
-    expect(wrapper.find('.el-step__title').text()).toBe('A')
-    expect(wrapper.find('.el-step__description').text()).toBe('B')
+    expect(wrapper.find('.tj-step__title').text()).toBe('A')
+    expect(wrapper.find('.tj-step__description').text()).toBe('B')
   })
 })

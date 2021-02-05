@@ -1,8 +1,8 @@
 <template>
   <table
     :class="{
-      'el-calendar-table': true,
-      'is-range': isInRange
+      'tj-calendar-table': true,
+      'is-range': isInRange,
     }"
     cellspacing="0"
     cellpadding="0"
@@ -15,8 +15,8 @@
         v-for="(row, index) in rows"
         :key="index"
         :class="{
-          'el-calendar-table__row': true,
-          'el-calendar-table__row--hide-border': index === 0 && hideHeader
+          'tj-calendar-table__row': true,
+          'tj-calendar-table__row--hide-border': index === 0 && hideHeader,
         }"
       >
         <td
@@ -25,11 +25,8 @@
           :class="getCellClass(cell)"
           @click="pickDay(cell)"
         >
-          <div class="el-calendar-day">
-            <slot
-              name="dateCell"
-              :data="getSlotData(cell)"
-            >
+          <div class="tj-calendar-day">
+            <slot name="dateCell" :data="getSlotData(cell)">
               <span>{{ cell.text }}</span>
             </slot>
           </div>
@@ -40,19 +37,17 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  ref,
-  PropType,
-} from 'vue'
+import { computed, defineComponent, ref, PropType } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
 import { rangeArr } from '@element-plus/time-picker'
 dayjs.extend(localeData)
 
 export const getPrevMonthLastDays = (date: Dayjs, amount) => {
-  const lastDay = date.subtract(1, 'month').endOf('month').date()
+  const lastDay = date
+    .subtract(1, 'month')
+    .endOf('month')
+    .date()
   return rangeArr(amount).map((_, index) => lastDay - (amount - index - 1))
 }
 
@@ -78,7 +73,11 @@ export default defineComponent({
   },
   emits: ['pick'],
   setup(props, ctx) {
-    const WEEK_DAYS = ref(dayjs().localeData().weekdaysShort())
+    const WEEK_DAYS = ref(
+      dayjs()
+        .localeData()
+        .weekdaysShort(),
+    )
 
     const now = dayjs()
 
@@ -95,9 +94,15 @@ export default defineComponent({
     const getFormattedDate = (day, type): Dayjs => {
       let result
       if (type === 'prev') {
-        result = props.date.startOf('month').subtract(1, 'month').date(day)
+        result = props.date
+          .startOf('month')
+          .subtract(1, 'month')
+          .date(day)
       } else if (type === 'next') {
-        result = props.date.startOf('month').add(1, 'month').date(day)
+        result = props.date
+          .startOf('month')
+          .add(1, 'month')
+          .date(day)
       } else {
         result = props.date.date(day)
       }
@@ -141,12 +146,12 @@ export default defineComponent({
       let days = []
       if (isInRange.value) {
         const [start, end] = props.range
-        const currentMonthRange = rangeArr(
-          end.date() - start.date() + 1,
-        ).map((_, index) => ({
-          text: start.date() + index,
-          type: 'current',
-        }))
+        const currentMonthRange = rangeArr(end.date() - start.date() + 1).map(
+          (_, index) => ({
+            text: start.date() + index,
+            type: 'current',
+          }),
+        )
 
         let remaining = currentMonthRange.length % 7
         remaining = remaining === 0 ? 0 : 7 - remaining
@@ -200,5 +205,4 @@ export default defineComponent({
     }
   },
 })
-
 </script>

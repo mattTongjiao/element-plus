@@ -31,7 +31,7 @@ const addStyle = async (options: ILoadingOptions, parent: HTMLElement, instance:
     /**
      * await dom render when visible is true in init,
      * because some component's height maybe 0.
-     * e.g. el-table.
+     * e.g. tj-table.
      */
     await nextTick();
     ['top', 'left'].forEach(property => {
@@ -55,14 +55,14 @@ const addStyle = async (options: ILoadingOptions, parent: HTMLElement, instance:
 
 const addClassList = (options: ILoadingOptions, parent: HTMLElement, instance: ILoadingInstance) => {
   if (instance.originalPosition.value !== 'absolute' && instance.originalPosition.value !== 'fixed') {
-    addClass(parent, 'el-loading-parent--relative')
+    addClass(parent, 'tj-loading-parent--relative')
   } else {
-    removeClass(parent, 'el-loading-parent--relative')
+    removeClass(parent, 'tj-loading-parent--relative')
   }
   if (options.fullscreen && options.lock) {
-    addClass(parent, 'el-loading-parent--hidden')
+    addClass(parent, 'tj-loading-parent--hidden')
   } else {
-    removeClass(parent, 'el-loading-parent--hidden')
+    removeClass(parent, 'tj-loading-parent--hidden')
   }
 }
 
@@ -107,7 +107,7 @@ const Loading = function (options: ILoadingOptions = {}): ILoadingInstance {
    * because if a fullscreen loading is triggered when somewhere
    * a v-loading.body was triggered before and it's parent is
    * document.body which with a margin , the fullscreen loading's
-   * destroySelf function will remove 'el-loading-parent--relative',
+   * destroySelf function will remove 'tj-loading-parent--relative',
    * and then the position of v-loading.body will be error.
    */
   let loadingNumber: number | string = parent.getAttribute('loading-number')

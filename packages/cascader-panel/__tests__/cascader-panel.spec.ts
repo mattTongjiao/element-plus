@@ -88,12 +88,12 @@ const CUSTOM_PROPS_OPTIONS = [
   },
 ]
 
-const MENU = '.el-cascader-menu'
-const NODE = '.el-cascader-node'
-const VALID_NODE = '.el-cascader-node:not(.is-disabled)'
-const EXPAND_ARROW = '.el-icon-arrow-right.el-cascader-node__postfix'
-const CHECKBOX = '.el-checkbox__input'
-const RADIO = '.el-radio__input'
+const MENU = '.tj-cascader-menu'
+const NODE = '.tj-cascader-node'
+const VALID_NODE = '.tj-cascader-node:not(.is-disabled)'
+const EXPAND_ARROW = '.tj-icon-arrow-right.tj-cascader-node__postfix'
+const CHECKBOX = '.tj-checkbox__input'
+const RADIO = '.tj-radio__input'
 
 let id = 0
 
@@ -192,7 +192,7 @@ describe('CascaderPanel.vue', () => {
     expect(menus.length).toBe(2)
     expect(zjNode.classes('in-active-path')).toBe(true)
     expect(hzNode.classes('is-active')).toBe(true)
-    expect(hzNode.find('.el-icon-check').exists()).toBe(true)
+    expect(hzNode.find('.tj-icon-check').exists()).toBe(true)
 
     await wrapper.setProps({ modelValue: ['beijing'] })
 
@@ -509,10 +509,10 @@ describe('CascaderPanel.vue', () => {
     expect(firstOption.exists()).toBe(true)
 
     await firstOption.trigger('click')
-    expect(firstOption.find('.el-icon-loading').exists()).toBe(true)
+    expect(firstOption.find('.tj-icon-loading').exists()).toBe(true)
     jest.runAllTimers()
     await nextTick()
-    expect(firstOption.find('.el-icon-loading').exists()).toBe(false)
+    expect(firstOption.find('.tj-icon-loading').exists()).toBe(false)
 
     const secondMenu = wrapper.findAll(MENU)[1]
     expect(secondMenu.exists()).toBe(true)

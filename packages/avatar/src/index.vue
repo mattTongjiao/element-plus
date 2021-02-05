@@ -7,7 +7,7 @@
       :srcset="srcSet"
       :style="fitStyle"
       @error="handleError"
-    >
+    />
     <i v-else-if="icon" :class="icon"></i>
     <slot v-else></slot>
   </span>
@@ -18,7 +18,7 @@ import { defineComponent, computed, ref, PropType } from 'vue'
 
 const ERROR_EVENT = 'error'
 export default defineComponent({
-  name: 'ElAvatar',
+  name: 'TjAvatar',
   props: {
     size: {
       type: [Number, String] as PropType<number | string>,
@@ -52,26 +52,28 @@ export default defineComponent({
 
     const avatarClass = computed(() => {
       const { size, icon, shape } = props
-      let classList = ['el-avatar']
+      let classList = ['tj-avatar']
       if (size && typeof size === 'string') {
-        classList.push(`el-avatar--${size}`)
+        classList.push(`tj-avatar--${size}`)
       }
       if (icon) {
-        classList.push('el-avatar--icon')
+        classList.push('tj-avatar--icon')
       }
       if (shape) {
-        classList.push(`el-avatar--${shape}`)
+        classList.push(`tj-avatar--${shape}`)
       }
       return classList
     })
 
     const sizeStyle = computed(() => {
       const { size } = props
-      return typeof size === 'number' ? {
-        height: `${size}px`,
-        width: `${size}px`,
-        lineHeight: `${size}px`,
-      } : {}
+      return typeof size === 'number'
+        ? {
+            height: `${size}px`,
+            width: `${size}px`,
+            lineHeight: `${size}px`,
+          }
+        : {}
     })
 
     const fitStyle = computed(() => ({
@@ -83,7 +85,10 @@ export default defineComponent({
       emit(ERROR_EVENT, e)
     }
     return {
-      hasLoadError, avatarClass, sizeStyle, handleError,
+      hasLoadError,
+      avatarClass,
+      sizeStyle,
+      handleError,
       fitStyle,
     }
   },

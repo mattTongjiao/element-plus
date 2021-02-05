@@ -7,12 +7,13 @@ Les tags sont utiles sont marquer certaines données afin d'ajouter des informat
 :::demo Utilisez l'attribut `type` pour définir le type de tag. De plus, l'attribut `color` détermine la couleur de fond.
 
 ```html
-<el-tag>Tag 1</el-tag>
-<el-tag type="success">Tag 2</el-tag>
-<el-tag type="info">Tag 3</el-tag>
-<el-tag type="warning">Tag 4</el-tag>
-<el-tag type="danger">Tag 5</el-tag>
+<tj-tag>Tag 1</tj-tag>
+<tj-tag type="success">Tag 2</tj-tag>
+<tj-tag type="info">Tag 3</tj-tag>
+<tj-tag type="warning">Tag 4</tj-tag>
+<tj-tag type="danger">Tag 5</tj-tag>
 ```
+
 :::
 
 ### Supprimer des tags
@@ -20,13 +21,9 @@ Les tags sont utiles sont marquer certaines données afin d'ajouter des informat
 :::demo L'attribut `closable` détermine si un tag est supprimable grâce à un `Boolean`. Par défaut la suppression bénéficie d'un animation de fading. Utilisez `disable-transitions` si vous ne souhaitez pas d'animations en utilisant un `Boolean` à `true`. L'évènement `close` se déclenche quand un tag est supprimé.
 
 ```html
-<el-tag
-  v-for="tag in tags"
-  :key="tag.name"
-  closable
-  :type="tag.type">
+<tj-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type">
   {{tag.name}}
-</el-tag>
+</tj-tag>
 
 <script>
   export default {
@@ -37,13 +34,14 @@ Les tags sont utiles sont marquer certaines données afin d'ajouter des informat
           { name: 'Tag 2', type: 'success' },
           { name: 'Tag 3', type: 'info' },
           { name: 'Tag 4', type: 'warning' },
-          { name: 'Tag 5', type: 'danger' }
-        ]
-      };
-    }
+          { name: 'Tag 5', type: 'danger' },
+        ],
+      }
+    },
   }
 </script>
 ```
+
 :::
 
 ### Édition dynamique
@@ -51,16 +49,18 @@ Les tags sont utiles sont marquer certaines données afin d'ajouter des informat
 Vous pouvez utiliser l'évènement `close` pour ajouter et supprimer des tags dynamiquement.
 
 :::demo
+
 ```html
-<el-tag
+<tj-tag
   :key="tag"
   v-for="tag in dynamicTags"
   closable
   :disable-transitions="false"
-  @close="handleClose(tag)">
+  @close="handleClose(tag)"
+>
   {{tag}}
-</el-tag>
-<el-input
+</tj-tag>
+<tj-input
   class="input-new-tag"
   v-if="inputVisible"
   v-model="inputValue"
@@ -69,11 +69,13 @@ Vous pouvez utiliser l'évènement `close` pour ajouter et supprimer des tags dy
   @keyup.enter.native="handleInputConfirm"
   @blur="handleInputConfirm"
 >
-</el-input>
-<el-button v-else class="button-new-tag" size="small" @click="showInput">+ Nouveau Tag</el-button>
+</tj-input>
+<tj-button v-else class="button-new-tag" size="small" @click="showInput"
+  >+ Nouveau Tag</tj-button
+>
 
 <style>
-  .el-tag + .el-tag {
+  .tj-tag + .tj-tag {
     margin-left: 10px;
   }
   .button-new-tag {
@@ -96,33 +98,34 @@ Vous pouvez utiliser l'évènement `close` pour ajouter et supprimer des tags dy
       return {
         dynamicTags: ['Tag 1', 'Tag 2', 'Tag 3'],
         inputVisible: false,
-        inputValue: ''
-      };
+        inputValue: '',
+      }
     },
     methods: {
       handleClose(tag) {
-        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1)
       },
 
       showInput() {
-        this.inputVisible = true;
+        this.inputVisible = true
         this.$nextTick(_ => {
-          this.$refs.saveTagInput.$refs.input.focus();
-        });
+          this.$refs.saveTagInput.$refs.input.focus()
+        })
       },
 
       handleInputConfirm() {
-        let inputValue = this.inputValue;
+        let inputValue = this.inputValue
         if (inputValue) {
-          this.dynamicTags.push(inputValue);
+          this.dynamicTags.push(inputValue)
         }
-        this.inputVisible = false;
-        this.inputValue = '';
-      }
-    }
+        this.inputVisible = false
+        this.inputValue = ''
+      },
+    },
   }
 </script>
 ```
+
 :::
 
 ### Tailles
@@ -132,11 +135,12 @@ En plus de la taille par défaut, Tag fournit d'autres tailles pour vos composan
 :::demo Utilisez `size` pour choisir une autre taille parmi `medium`, `small` ou `mini`.
 
 ```html
-<el-tag>Défaut</el-tag>
-<el-tag size="medium">Medium</el-tag>
-<el-tag size="small">Small</el-tag>
-<el-tag size="mini">Mini</el-tag>
+<tj-tag>Défaut</tj-tag>
+<tj-tag size="medium">Medium</tj-tag>
+<tj-tag size="small">Small</tj-tag>
+<tj-tag size="mini">Mini</tj-tag>
 ```
+
 :::
 
 ### Theme
@@ -144,26 +148,29 @@ En plus de la taille par défaut, Tag fournit d'autres tailles pour vos composan
 Les balises utilisent trois thèmes différents: `dark`, `light` et `plain`
 
 :::demo Utilisez `effect` pour changer. La valeur par défaut est `light`
+
 ```html
 <div class="tag-group">
   <span class="tag-group__title">Dark</span>
-  <el-tag
+  <tj-tag
     v-for="item in items"
     :key="item.label"
     :type="item.type"
-    effect="dark">
+    effect="dark"
+  >
     {{ item.label }}
-  </el-tag>
+  </tj-tag>
 </div>
 <div class="tag-group">
   <span class="tag-group__title">Plain</span>
-  <el-tag
+  <tj-tag
     v-for="item in items"
     :key="item.label"
     :type="item.type"
-    effect="plain">
+    effect="plain"
+  >
     {{ item.label }}
-  </el-tag>
+  </tj-tag>
 </div>
 
 <script>
@@ -175,30 +182,31 @@ Les balises utilisent trois thèmes différents: `dark`, `light` et `plain`
           { type: 'success', label: 'Tag 2' },
           { type: 'info', label: 'Tag 3' },
           { type: 'danger', label: 'Tag 4' },
-          { type: 'warning', label: 'Tag 5' }
-        ]
+          { type: 'warning', label: 'Tag 5' },
+        ],
       }
-    }
+    },
   }
 </script>
 ```
+
 :::
 
 ### Attributs
 
-| Attribut      | Description          | Type      | Valeurs acceptées       | Défaut  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| type | Type du tag. | string | success/info/warning/danger | — |
-| closable | Si le tag peut être supprimé. | boolean | — | false |
-| disable-transitions | Si les animations sont désactivées. | boolean | — | false |
-| hit | Si le tag à une bordure mise en valeur. | boolean | — | false |
-| color | Couleur de fond du tag. | string | — | — |
-| size | Taille du tag. | string | medium / small / mini | — |
-| effect | component theme | string | dark / light / plain | light |
+| Attribut            | Description                             | Type    | Valeurs acceptées           | Défaut |
+| ------------------- | --------------------------------------- | ------- | --------------------------- | ------ |
+| type                | Type du tag.                            | string  | success/info/warning/danger | —      |
+| closable            | Si le tag peut être supprimé.           | boolean | —                           | false  |
+| disable-transitions | Si les animations sont désactivées.     | boolean | —                           | false  |
+| hit                 | Si le tag à une bordure mise en valeur. | boolean | —                           | false  |
+| color               | Couleur de fond du tag.                 | string  | —                           | —      |
+| size                | Taille du tag.                          | string  | medium / small / mini       | —      |
+| effect              | component theme                         | string  | dark / light / plain        | light  |
 
 ### Évènements
 
-| Nom | Description | Paramètres |
-|---------- |-------- |---------- |
-| click | Se déclenche quand le tag est cliqué. | — |
-| close | Se déclenche quand le tag est supprimé. | — |
+| Nom   | Description                             | Paramètres |
+| ----- | --------------------------------------- | ---------- |
+| click | Se déclenche quand le tag est cliqué.   | —          |
+| close | Se déclenche quand le tag est supprimé. | —          |

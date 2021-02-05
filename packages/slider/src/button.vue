@@ -1,7 +1,7 @@
 <template>
   <div
     ref="button"
-    class="el-slider__button-wrapper"
+    class="tj-slider__button-wrapper"
     :class="{ hover: hovering, dragging: dragging }"
     :style="wrapperStyle"
     tabindex="0"
@@ -16,7 +16,7 @@
     @keydown.down.prevent="onLeftKeyDown"
     @keydown.up.prevent="onRightKeyDown"
   >
-    <el-tooltip
+    <tj-tooltip
       ref="tooltip"
       v-model="tooltipVisible"
       placement="top"
@@ -29,24 +29,24 @@
         <span>{{ formatValue }}</span>
       </template>
       <div
-        class="el-slider__button"
+        class="tj-slider__button"
         :class="{ hover: hovering, dragging: dragging }"
       ></div>
-    </el-tooltip>
+    </tj-tooltip>
   </div>
 </template>
 
 <script lang="ts">
-import ElTooltip from '@element-plus/tooltip'
+import TjTooltip from '@element-plus/tooltip'
 import { UPDATE_MODEL_EVENT } from '@element-plus/utils/constants'
 import { defineComponent, reactive, toRefs } from 'vue'
 import { useSliderButton } from './useSliderButton'
 
 export default defineComponent({
-  name: 'ElSliderButton',
+  name: 'TjSliderButton',
 
   components: {
-    ElTooltip,
+    TjTooltip,
   },
 
   props: {

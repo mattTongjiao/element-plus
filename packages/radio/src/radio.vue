@@ -1,12 +1,12 @@
 <template>
   <label
-    class="el-radio"
+    class="tj-radio"
     :class="{
-      [`el-radio--${radioSize || ''}`]: border && radioSize,
+      [`tj-radio--${radioSize || ''}`]: border && radioSize,
       'is-disabled': isDisabled,
       'is-focus': focus,
       'is-bordered': border,
-      'is-checked': model === label
+      'is-checked': model === label,
     }"
     role="radio"
     :aria-checked="model === label"
@@ -15,17 +15,17 @@
     @keydown.space.stop.prevent="model = isDisabled ? model : label"
   >
     <span
-      class="el-radio__input"
+      class="tj-radio__input"
       :class="{
         'is-disabled': isDisabled,
-        'is-checked': model === label
+        'is-checked': model === label,
       }"
     >
-      <span class="el-radio__inner"></span>
+      <span class="tj-radio__inner"></span>
       <input
         ref="radioRef"
         v-model="model"
-        class="el-radio__original"
+        class="tj-radio__original"
         :value="label"
         type="radio"
         aria-hidden="true"
@@ -35,9 +35,9 @@
         @focus="focus = true"
         @blur="focus = false"
         @change="handleChange"
-      >
+      />
     </span>
-    <span class="el-radio__label" @keydown.stop>
+    <span class="tj-radio__label" @keydown.stop>
       <slot>
         {{ label }}
       </slot>
@@ -45,7 +45,7 @@
   </label>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import {
   defineComponent,
   computed, nextTick, ref,
@@ -57,8 +57,8 @@ import { useRadio, useRadioAttrs } from './useRadio'
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElRadio',
-  componentName: 'ElRadio',
+  name: 'TjRadio',
+  componentName: 'TjRadio',
 
   props: {
     modelValue: {
@@ -144,5 +144,3 @@ export default defineComponent({
   },
 })
 </script>
-
-

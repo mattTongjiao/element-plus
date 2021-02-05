@@ -19,7 +19,7 @@ import Pager from './pager.vue'
 const getValidPageSize = (val: number) => Number.isNaN(val) ? 10 : val
 
 export default defineComponent({
-  name: 'ElPagination',
+  name: 'TjPagination',
 
   components: {
     Prev,
@@ -246,15 +246,15 @@ export default defineComponent({
 
     const rootNode = h('div', {
       class: [
-        'el-pagination',
+        'tj-pagination',
         {
           'is-background': this.background,
-          'el-pagination--small': this.small,
+          'tj-pagination--small': this.small,
         },
       ],
     })
     const rootChildren = []
-    const rightWrapperRoot = h('div', { class: 'el-pagination__rightwrapper' })
+    const rightWrapperRoot = h('div', { class: 'tj-pagination__rightwrapper' })
     const rightWrapperChildren = []
     const TEMPLATE_MAP = {
       prev: h(Prev, {

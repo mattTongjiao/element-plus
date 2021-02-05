@@ -8,8 +8,8 @@ export function createStore(table: Table, initialState = {}) {
   }
 
   const store = Store()
-  // fix https://github.com/ElemeFE/element/issues/14075
-  // related pr https://github.com/ElemeFE/element/pull/14146
+  // fix https://github.com/TjemeFE/element/issues/14075
+  // related pr https://github.com/TjemeFE/element/pull/14146
   store.toggleAllSelection = debounce(store._toggleAllSelection, 10)
   Object.keys(initialState).forEach(key => {
     store.states[key].value = initialState[key]

@@ -119,8 +119,8 @@ describe('Notification.vue', () => {
             type,
           },
         })
-        expect(wrapper.find('.el-notification__icon').classes()).toContain(
-          `el-icon-${type}`,
+        expect(wrapper.find('.tj-notification__icon').classes()).toContain(
+          `tj-icon-${type}`,
         )
       }
     })
@@ -133,8 +133,8 @@ describe('Notification.vue', () => {
         },
       })
 
-      expect(wrapper.find('.el-notification__icon').classes()).not.toContain(
-        `el-icon-${type}`,
+      expect(wrapper.find('.tj-notification__icon').classes()).not.toContain(
+        `tj-icon-${type}`,
       )
     })
   })
@@ -150,7 +150,7 @@ describe('Notification.vue', () => {
       })
       await rAF()
 
-      const closeBtn = wrapper.find('.el-notification__closeBtn')
+      const closeBtn = wrapper.find('.tj-notification__closeBtn')
       expect(closeBtn.exists()).toBe(true)
       await closeBtn.trigger('click')
       await rAF()

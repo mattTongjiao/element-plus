@@ -1,21 +1,21 @@
 <template>
   <ul
-    v-clickOutside:[triggerElm]="innerHide"
-    :class="[size && `el-dropdown-menu--${size}`]"
-    class="el-dropdown-menu"
+    v-clickOutside:[triggerTjm]="innerHide"
+    :class="[size && `tj-dropdown-menu--${size}`]"
+    class="tj-dropdown-menu"
     @mouseenter.stop="show"
     @mouseleave.stop="hide"
   >
     <slot></slot>
   </ul>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent, getCurrentInstance, onMounted } from 'vue'
 import { ClickOutside } from '@element-plus/directives'
 import { useDropdown, initDropdownDomEvent } from './useDropdown'
 
 export default defineComponent({
-  name: 'ElDropdownMenu',
+  name: 'TjDropdownMenu',
   directives: {
     ClickOutside,
   },
@@ -36,7 +36,11 @@ export default defineComponent({
 
     onMounted(() => {
       const dropdownMenu = getCurrentInstance()
-      initDropdownDomEvent(dropdownMenu, elDropdown.triggerElm.value, elDropdown.instance)
+      initDropdownDomEvent(
+        dropdownMenu,
+        elDropdown.triggerTjm.value,
+        elDropdown.instance,
+      )
     })
 
     return {
@@ -44,9 +48,8 @@ export default defineComponent({
       show,
       hide,
       innerHide: _hide,
-      triggerElm: elDropdown.triggerElm,
+      triggerTjm: elDropdown.triggerTjm,
     }
   },
 })
 </script>
-

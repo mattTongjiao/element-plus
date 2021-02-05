@@ -1,7 +1,10 @@
 <template>
   <transition :name="transitionName">
-    <div v-if="actualVisible || visible" class="el-time-panel">
-      <div class="el-time-panel__content" :class="{ 'has-seconds': showSeconds }">
+    <div v-if="actualVisible || visible" class="tj-time-panel">
+      <div
+        class="tj-time-panel__content"
+        :class="{ 'has-seconds': showSeconds }"
+      >
         <time-spinner
           ref="spinner"
           :role="datetimeRole || 'start'"
@@ -17,17 +20,17 @@
           @select-range="setSelectionRange"
         />
       </div>
-      <div class="el-time-panel__footer">
+      <div class="tj-time-panel__footer">
         <button
           type="button"
-          class="el-time-panel__btn cancel"
+          class="tj-time-panel__btn cancel"
           @click="handleCancel"
         >
           {{ t('el.datepicker.cancel') }}
         </button>
         <button
           type="button"
-          class="el-time-panel__btn confirm"
+          class="tj-time-panel__btn confirm"
           @click="handleConfirm()"
         >
           {{ t('el.datepicker.confirm') }}
@@ -38,13 +41,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  computed,
-  inject,
-  PropType,
-} from 'vue'
+import { defineComponent, ref, computed, inject, PropType } from 'vue'
 import { EVENT_CODE } from '@element-plus/utils/aria'
 import { t } from '@element-plus/locale'
 import TimeSpinner from './basic-time-spinner.vue'
@@ -82,7 +79,7 @@ export default defineComponent({
     const oldValue = ref(props.parsedValue)
     // computed
     const transitionName = computed(() => {
-      return props.actualVisible === undefined ? 'el-zoom-in-top' : ''
+      return props.actualVisible === undefined ? 'tj-zoom-in-top' : ''
     })
     const showSeconds = computed(() => {
       return props.format.includes('ss')
@@ -107,7 +104,9 @@ export default defineComponent({
     }
     const handleChange = (_date: Dayjs) => {
       // visible avoids edge cases, when use scrolls during panel closing animation
-      if (!props.visible) { return }
+      if (!props.visible) {
+        return
+      }
       const result = getRangeAvaliableTime(_date).millisecond(0)
       ctx.emit('pick', result, true)
     }
@@ -119,7 +118,9 @@ export default defineComponent({
 
     const changeSelectionRange = step => {
       const list = [0, 3].concat(showSeconds.value ? [6] : [])
-      const mapping = ['hours', 'minutes'].concat(showSeconds.value ? ['seconds'] : [])
+      const mapping = ['hours', 'minutes'].concat(
+        showSeconds.value ? ['seconds'] : [],
+      )
       const index = list.indexOf(selectionRange.value[0])
       const next = (index + step + list.length) % list.length
       timePickeOptions['start_emitSelectRange'](mapping[next])
@@ -129,14 +130,14 @@ export default defineComponent({
       const code = event.code
 
       if (code === EVENT_CODE.left || code === EVENT_CODE.right) {
-        const step = (code === EVENT_CODE.left) ? -1 : 1
+        const step = code === EVENT_CODE.left ? -1 : 1
         changeSelectionRange(step)
         event.preventDefault()
         return
       }
 
       if (code === EVENT_CODE.up || code === EVENT_CODE.down) {
-        const step = (code === EVENT_CODE.up) ? -1 : 1
+        const step = code === EVENT_CODE.up ? -1 : 1
         timePickeOptions['start_scrollDown'](step)
         event.preventDefault()
         return
@@ -149,19 +150,27 @@ export default defineComponent({
         minute: getAvaliableMinutes,
         second: getAvaliableSeconds,
       }
-      let result = date;
-      ['hour', 'minute', 'second'].forEach(_ => {
+      let result = date
+      ;['hour', 'minute', 'second'].forEach(_ => {
         if (avaliableMap[_]) {
           let avaliableArr
           const method = avaliableMap[_]
           if (_ === 'minute') {
             avaliableArr = method(result.hour(), props.datetimeRole)
           } else if (_ === 'second') {
-            avaliableArr = method(result.hour(), result.minute(), props.datetimeRole)
+            avaliableArr = method(
+              result.hour(),
+              result.minute(),
+              props.datetimeRole,
+            )
           } else {
             avaliableArr = method(props.datetimeRole)
           }
-          if (avaliableArr && avaliableArr.length && !avaliableArr.includes(result[_]())) {
+          if (
+            avaliableArr &&
+            avaliableArr.length &&
+            !avaliableArr.includes(result[_]())
+          ) {
             result = result[_](avaliableArr[0])
           }
         }
@@ -186,15 +195,24 @@ export default defineComponent({
     ctx.emit('set-picker-option', ['isValidValue', isValidValue])
     ctx.emit('set-picker-option', ['formatToString', formatToString])
     ctx.emit('set-picker-option', ['parseUserInput', parseUserInput])
-    ctx.emit('set-picker-option',['handleKeydown', handleKeydown])
-    ctx.emit('set-picker-option',['getRangeAvaliableTime', getRangeAvaliableTime])
-    ctx.emit('set-picker-option',['getDefaultValue', getDefaultValue])
+    ctx.emit('set-picker-option', ['handleKeydown', handleKeydown])
+    ctx.emit('set-picker-option', [
+      'getRangeAvaliableTime',
+      getRangeAvaliableTime,
+    ])
+    ctx.emit('set-picker-option', ['getDefaultValue', getDefaultValue])
     const timePickeOptions = {} as any
     const onSetOption = e => {
       timePickeOptions[e[0]] = e[1]
     }
     const pickerBase = inject('EP_PICKER_BASE') as any
-    const { arrowControl, disabledHours, disabledMinutes, disabledSeconds, defaultValue } = pickerBase.props
+    const {
+      arrowControl,
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      defaultValue,
+    } = pickerBase.props
     const {
       getAvaliableHours,
       getAvaliableMinutes,

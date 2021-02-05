@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
 import {
   computed,
   defineComponent,
@@ -18,7 +18,7 @@ import Upload from './upload.vue'
 import useHandlers from './useHandlers'
 
 import type { PropType } from 'vue'
-import type { ElFormContext } from '@element-plus/form'
+import type { TjFormContext } from '@element-plus/form'
 import type {
   ListType,
   UploadFile,
@@ -30,7 +30,7 @@ type PFileHandler<T> = PropType<FileHandler<T>>
 type PFileResultHandler<T = any> = PropType<FileResultHandler<T>>
 
 export default defineComponent({
-  name: 'ElUpload',
+  name: 'TjUpload',
   components: {
     Upload,
     UploadList,
@@ -134,7 +134,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const elForm = inject(elFormKey, {} as ElFormContext)
+    const elForm = inject(elFormKey, {} as TjFormContext)
 
     const uploadDisabled = computed(() => {
       return props.disabled || elForm.disabled

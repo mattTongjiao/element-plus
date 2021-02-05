@@ -11,7 +11,7 @@ class MenuItem {
 
   init(): void {
     this.domNode.setAttribute('tabindex', '0')
-    const menuChild = this.domNode.querySelector('.el-menu')
+    const menuChild = this.domNode.querySelector('.tj-menu')
     if (menuChild) {
       this.submenu = new SubMenu(this, menuChild)
     }

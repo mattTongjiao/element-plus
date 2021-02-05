@@ -1,6 +1,6 @@
 ## 从 Element 2.x 升级
 
-本文档将帮助你从 Element 2.x 升级至 Element Plus.
+本文档将帮助你从 Element 2.x 升级至 Tongjiao UI.
 
 ### 不兼容更新
 
