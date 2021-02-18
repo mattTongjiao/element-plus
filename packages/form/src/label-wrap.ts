@@ -12,7 +12,7 @@ import {
 } from 'vue'
 
 import {
-  elFormKey, elFormItemKey,
+  tjFormKey, tjFormItemKey,
 } from './token'
 import {
   addResizeListener,
@@ -28,14 +28,14 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     const el = ref<Nullable<HTMLElement>>(null)
-    const elForm = inject(elFormKey)
-    const elFormItem = inject(elFormItemKey)
+    const tjForm = inject(tjFormKey)
+    const tjFormItem = inject(tjFormItemKey)
 
     const computedWidth = ref(0)
     watch(computedWidth, (val, oldVal) => {
       if (props.updateAll) {
-        elForm.registerLabelWidth(val, oldVal)
-        elFormItem.updateComputedLabelWidth(val)
+        tjForm.registerLabelWidth(val, oldVal)
+        tjFormItem.updateComputedLabelWidth(val)
       }
     })
 
@@ -54,7 +54,7 @@ export default defineComponent({
           if (action === 'update') {
             computedWidth.value = getLabelWidth()
           } else if (action === 'remove') {
-            elForm.deregisterLabelWidth(computedWidth.value)
+            tjForm.deregisterLabelWidth(computedWidth.value)
           }
         }
       })
@@ -76,7 +76,7 @@ export default defineComponent({
     function render() {
       if (!slots) return null
       if (props.isAutoWidth) {
-        const autoLabelWidth = elForm.autoLabelWidth
+        const autoLabelWidth = tjForm.autoLabelWidth
         const style = {} as CSSStyleDeclaration
         if (autoLabelWidth && autoLabelWidth !== 'auto') {
           const marginLeft = parseInt(autoLabelWidth, 10) - computedWidth.value

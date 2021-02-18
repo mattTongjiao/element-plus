@@ -11,7 +11,7 @@
 
 呼出一个临时的侧边栏, 可以从多个方向呼出
 
-:::demo 需要设置 `modtj-value` 属性，它的**类型**是 `boolean`,当为 **true** 时显示 Drawer。Drawer 分为两个部分：`title` 和 `body`，`title` 需要具名为 **title** 的 `slot`, 也可以通过 `title` 属性来定义，默认值为空。需要注意的是, Drawer 默认是从右往左打开, 当然可以设置对应的 `direction`, 详细请参考 `direction` 用法 最后，本例还展示了 `before-close` 的用法
+:::demo 需要设置 `model-value` 属性，它的**类型**是 `boolean`,当为 **true** 时显示 Drawer。Drawer 分为两个部分：`title` 和 `body`，`title` 需要具名为 **title** 的 `slot`, 也可以通过 `title` 属性来定义，默认值为空。需要注意的是, Drawer 默认是从右往左打开, 当然可以设置对应的 `direction`, 详细请参考 `direction` 用法 最后，本例还展示了 `before-close` 的用法
 
 ```html
 <tj-radio-group v-model="direction">
@@ -286,7 +286,7 @@ Drawer has almost identical attributes as Dialog.
 | show-close            | 是否显示关闭按钮                                                                                                           | boolean                              | —                     | true   |
 | size                  | Drawer 窗体的大小, 当使用 `number` 类型时, 以像素为单位, 当使用 `string` 类型时, 请传入 'x%', 否则便会以 `number` 类型解释 | number / string                      | -                     | '30%'  |
 | title                 | Drawer 的标题，也可通过具名 slot （见下表）传入                                                                            | string                               | —                     | —      |
-| modtj-value / v-model | 是否显示 Drawer                                                                                                            | boolean                              | —                     | false  |
+| model-value / v-model | 是否显示 Drawer                                                                                                            | boolean                              | —                     | false  |
 | withHeader            | 控制是否显示 header 栏, 默认为 true, 当此项为 false 时, title attribute 和 title slot 均不生效                             | boolean                              | -                     | true   |
 
 ### Drawer Slot

@@ -142,7 +142,7 @@ function useRender(props: TableColumnCtx, slots, owner: ComputedRef<any>) {
       return prev
     }, {})
   }
-  const getColumnTjIndex = (children, child) => {
+  const getColumnElIndex = (children, child) => {
     return [].indexOf.call(children, child)
   }
 
@@ -156,7 +156,7 @@ function useRender(props: TableColumnCtx, slots, owner: ComputedRef<any>) {
     setColumnForcedProps,
     setColumnRenders,
     getPropsData,
-    getColumnTjIndex,
+    getColumnElIndex,
   }
 }
 

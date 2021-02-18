@@ -220,7 +220,7 @@ By default, `direction` is `horizontal`. Let carousel be displayed in the vertic
 | prev          | switch to the previous slide | —                                                                                                        |
 | next          | switch to the next slide     | —                                                                                                        |
 
-### Caroustj-Item Attributes
+### Carousel-Item Attributes
 
 | Attribute | Description                                      | Type   | Accepted Values | Default |
 | --------- | ------------------------------------------------ | ------ | --------------- | ------- |

@@ -27,7 +27,7 @@
 import { computed, inject, defineComponent } from 'vue'
 import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
 import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
-import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormKey, tjFormItemKey } from '@tongjiaoui-plus/form'
 
 import type { PropType } from 'vue'
 import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
@@ -97,14 +97,14 @@ export default defineComponent({
   setup(props, ctx) {
     const $ELEMENT = useGlobalConfig()
 
-    const elForm = inject(elFormKey, {} as TjFormContext)
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
     const buttonSize = computed(() => {
-      return props.size || elFormItem.size || $ELEMENT.size
+      return props.size || tjFormItem.size || $ELEMENT.size
     })
     const buttonDisabled = computed(() => {
-      return props.disabled || elForm.disabled
+      return props.disabled || tjForm.disabled
     })
 
     //methods

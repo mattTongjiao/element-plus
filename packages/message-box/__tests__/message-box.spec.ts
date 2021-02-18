@@ -134,13 +134,13 @@ describe('MessageBox', () => {
       inputErrorMessage: 'validation failed',
     })
     await rAF()
-    const inputTjm = document
+    const inputElm = document
       .querySelector(selector)
       .querySelector('.tj-message-box__input')
-    const haveFocus = inputTjm
+    const haveFocus = inputElm
       .querySelector('input')
       .isSameNode(document.activeElement)
-    expect(inputTjm).toBeDefined()
+    expect(inputElm).toBeDefined()
     expect(haveFocus).toBe(true)
   })
 
@@ -150,10 +150,10 @@ describe('MessageBox', () => {
       title: '标题名称',
     })
     await rAF()
-    const textareaTjm = document
+    const textareaElm = document
       .querySelector(selector)
       .querySelector('textarea')
-    const haveFocus = textareaTjm.isSameNode(document.activeElement)
+    const haveFocus = textareaElm.isSameNode(document.activeElement)
     expect(haveFocus).toBe(true)
   })
 

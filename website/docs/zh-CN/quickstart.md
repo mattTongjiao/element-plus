@@ -1,16 +1,14 @@
 ## 快速上手
 
-本节将介绍如何在项目中使用 Element。
+本节将介绍如何在项目中使用 Tongjiao UI 组件库。
 
 ### 使用 vue-cli@4.5
 
-我们为新版的 vue-cli 准备了相应的 [Tongjiao UI 插件](https://github.com/tongjiaoui-plus/vue-cli-plugin-tongjiaoui-plus)，你可以用它们快速地搭建一个基于 Tongjiao UI 的项目。
+TODO
 
 ### 使用 Starter Kit
 
-我们提供了通用的[项目模板](https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter)，你可以直接使用，另外我们还提供了 Vite [模板](https://github.com/tongjiaoui-plus/tongjiaoui-plus-vite-starter)。对于 Laravel 用户，我们也准备了相应的[模板](https://github.com/tongjiaoui-plus/tongjiaoui-plus-in-laravtj-starter)，同样可以直接下载使用。
-
-如果不希望使用我们提供的模板，请继续阅读。
+TODO
 
 ### 引入 Tongjiao UI
 

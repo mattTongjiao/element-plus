@@ -52,7 +52,7 @@ import {
 import { isObject, isArray } from '@vue/shared'
 import { hasClass } from '@tongjiaoui-plus/utils/dom'
 import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
-import { elFormKey } from '@tongjiaoui-plus/form'
+import { tjFormKey } from '@tongjiaoui-plus/form'
 
 import type { TjFormContext } from '@tongjiaoui-plus/form'
 
@@ -130,11 +130,11 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
-    const elForm = inject(elFormKey, {} as TjFormContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
 
     const currentValue = ref(props.modelValue)
 
-    const rateDisabled = computed(() => props.disabled || elForm.disabled)
+    const rateDisabled = computed(() => props.disabled || tjForm.disabled)
 
     const text = computed(() => {
       let result = ''

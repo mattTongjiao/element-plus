@@ -29,7 +29,7 @@ describe('InputNumber.vue', () => {
   })
   test('modelValue', () => {
     const wrapper = _mount({
-      template: '<tj-input-number :modtj-value="inputText" />',
+      template: '<tj-input-number :model-value="inputText" />',
       setup() {
         const inputText = ref(1)
         return {

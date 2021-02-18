@@ -6,7 +6,7 @@
     @mouseenter="isFade = false"
   >
     <ul>
-      <li class="nav-item sponsors">
+      <!-- <li class="nav-item sponsors">
         <a>{{ lang === 'zh-CN' ? '赞助商' : 'Sponsors' }}</a>
         <ul class="pure-menu-list sub-nav">
           <li class="nav-item">
@@ -28,7 +28,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> -->
       <li v-for="(item, keyy) in data" :key="keyy" class="nav-item">
         <a v-if="!item.path && !item.href" @click="expandMenu">{{
           item.name

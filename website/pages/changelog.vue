@@ -1,13 +1,13 @@
 <template>
   <div class="page-changelog">
     <div class="heading">
-      <tj-button class="fr">
+      <!-- <tj-button class="fr">
         <a
           href="https://github.com/tongjiaoui-plus/tongjiaoui-plus/releases"
           target="_blank"
           >GitHub Releases</a
         >
-      </tj-button>
+      </tj-button> -->
       {{ langConfig[1] }}
     </div>
     <ul ref="timeline" class="timeline"></ul>
@@ -50,7 +50,8 @@ export default {
     let a = changeLogNodes[1].querySelector('a')
     a && a.remove()
     let release = changeLogNodes[1].textContent.trim()
-    let fragments = `<li><h3><a href="https://github.com/tongjiaoui-plus/tongjiaoui-plus/releases/tag/v${release}" target="_blank">${release}</a></h3>`
+    // let fragments = `<li><h3><a href="https://github.com/tongjiaoui-plus/tongjiaoui-plus/releases/tag/v${release}" target="_blank">${release}</a></h3>`
+    let fragments = `<li><h3>${release}</h3>`
 
     for (let len = changeLogNodes.length, i = 2; i < len; i++) {
       let node = changeLogNodes[i]
@@ -60,7 +61,8 @@ export default {
         fragments += changeLogNodes[i].outerHTML
       } else {
         release = changeLogNodes[i].textContent.trim()
-        fragments += `</li><li><h3><a href="https://github.com/tongjiaoui-plus/tongjiaoui-plus/releases/tag/v${release}" target="_blank">${release}</a></h3>`
+        // fragments += `</li><li><h3><a href="https://github.com/tongjiaoui-plus/tongjiaoui-plus/releases/tag/v${release}" target="_blank">${release}</a></h3>`
+        fragments += `</li><li><h3>${release}</h3>`
       }
     }
     fragments = fragments.replace(

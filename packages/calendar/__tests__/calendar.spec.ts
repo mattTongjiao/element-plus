@@ -16,15 +16,15 @@ describe('Calendar.vue', () => {
     const wrapper = _mount(`
     <tj-calendar v-model="value"></tj-calendar>
     `, () => ({ value: new Date('2019-04-01') }))
-    const titleTj = wrapper.find('.tj-calendar__title')
-    expect(/2019.*April/.test((titleTj.element as HTMLElement).innerHTML)).toBeTruthy()
+    const titleEl = wrapper.find('.tj-calendar__title')
+    expect(/2019.*April/.test((titleEl.element as HTMLElement).innerHTML)).toBeTruthy()
     expect(wrapper.element.querySelectorAll('thead th').length).toBe(7)
     const rows = wrapper.element.querySelectorAll('.tj-calendar-table__row')
     expect(rows.length).toBe(6);
     (rows[5].firstElementChild as HTMLElement).click()
 
     await nextTick()
-    expect(/2019.*May/.test((titleTj.element as HTMLElement).innerHTML)).toBeTruthy()
+    expect(/2019.*May/.test((titleEl.element as HTMLElement).innerHTML)).toBeTruthy()
     const vm = wrapper.vm as any
     const date = vm.value
     expect(date.getFullYear()).toBe(2019)
@@ -36,8 +36,8 @@ describe('Calendar.vue', () => {
     const wrapper = _mount(`
     <tj-calendar :range="[new Date(2019, 2, 4), new Date(2019, 2, 24)]"></tj-calendar>
     `)
-    const titleTj = wrapper.find('.tj-calendar__title')
-    expect(/2019.*March/.test((titleTj.element as HTMLElement).innerHTML)).toBeTruthy()
+    const titleEl = wrapper.find('.tj-calendar__title')
+    expect(/2019.*March/.test((titleEl.element as HTMLElement).innerHTML)).toBeTruthy()
     const rows = wrapper.element.querySelectorAll('.tj-calendar-table__row')
     expect(rows.length).toBe(4)
     expect(wrapper.element.querySelector('.tj-calendar__button-group')).toBeNull()
@@ -47,8 +47,8 @@ describe('Calendar.vue', () => {
     const wrapper = _mount(`
     <tj-calendar :range="[new Date(2019, 3, 14), new Date(2019, 4, 18)]"></tj-calendar>
     `)
-    const titleTj = wrapper.find('.tj-calendar__title')
-    expect(/2019.*April/.test((titleTj.element as HTMLElement).innerHTML)).toBeTruthy()
+    const titleEl = wrapper.find('.tj-calendar__title')
+    expect(/2019.*April/.test((titleEl.element as HTMLElement).innerHTML)).toBeTruthy()
     const dateTables = wrapper.element.querySelectorAll('.tj-calendar-table.is-range')
     expect(dateTables.length).toBe(2)
     const rows = wrapper.element.querySelectorAll('.tj-calendar-table__row')
@@ -58,7 +58,7 @@ describe('Calendar.vue', () => {
 
     await nextTick()
 
-    expect(/2019.*May/.test((titleTj.element as HTMLElement).innerHTML)).toBeTruthy()
+    expect(/2019.*May/.test((titleEl.element as HTMLElement).innerHTML)).toBeTruthy()
     expect(cell.classList.contains('is-selected')).toBeTruthy()
   })
 

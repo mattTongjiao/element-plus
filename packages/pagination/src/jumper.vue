@@ -7,7 +7,7 @@
       :min="1"
       :max="pageCount"
       :disabled="disabled"
-      :modtj-value="innerValue"
+      :model-value="innerValue"
       type="number"
       @update:modelValue="handleInput"
       @change="handleChange"

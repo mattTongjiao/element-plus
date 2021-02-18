@@ -110,7 +110,7 @@ export default defineComponent({
       setColumnForcedProps,
       setColumnRenders,
       getPropsData,
-      getColumnTjIndex,
+      getColumnElIndex,
       realAlign,
     } = useRender(props, slots, owner)
 
@@ -187,7 +187,7 @@ export default defineComponent({
       const children = isSubColumn.value
         ? parent.vnode.el.children
         : parent.refs.hiddenColumns?.children
-      const getColumnIndex = () => getColumnTjIndex(children || [], instance.vnode.el)
+      const getColumnIndex = () => getColumnElIndex(children || [], instance.vnode.el)
       columnConfig.value.getColumnIndex = getColumnIndex
       const columnIndex = getColumnIndex()
       columnIndex > -1 && owner.value.store.commit(

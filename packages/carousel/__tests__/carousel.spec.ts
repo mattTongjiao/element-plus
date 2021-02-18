@@ -197,4 +197,21 @@ describe('Carousel', () => {
     expect(wrapper.vm.$refs.carousel.direction).toBe('vertical')
     expect(items[0].style.transform.indexOf('translateY') !== -1).toBeTruthy()
   })
+
+  it('pause auto play on hover', async done => {
+    const wrapper = _mount(`
+        <div>
+          <tj-carousel :interval="50" :pause-on-hover="false">
+            <tj-carousel-item v-for="item in 3" :key="item"></tj-carousel-item>
+          </tj-carousel>
+        </div>
+      `)
+
+    await nextTick()
+    await wrapper.find('.tj-carousel').trigger('mouseenter')
+    const items = wrapper.vm.$el.querySelectorAll('.tj-carousel__item')
+    await wait(60)
+    expect(items[1].classList.contains('is-active')).toBeTruthy()
+    done()
+  })
 })

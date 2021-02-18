@@ -19,7 +19,7 @@
       <tj-input
         v-if="!isRangeInput"
         v-clickoutside="onClickOutside"
-        :modtj-value="displayValue"
+        :model-value="displayValue"
         :name="name"
         :size="pickerSize"
         :disabled="pickerDisabled"
@@ -130,7 +130,7 @@ import TjInput from '@tongjiaoui-plus/input'
 import TjPopper from '@tongjiaoui-plus/popper'
 import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
 import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
-import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormKey, tjFormItemKey } from '@tongjiaoui-plus/form'
 import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 import { defaultProps } from './props'
 
@@ -185,8 +185,8 @@ export default defineComponent({
   setup(props, ctx) {
     const ELEMENT = useGlobalConfig()
 
-    const elForm = inject(elFormKey, {} as TjFormContext)
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
     const refPopper = ref(null)
     const pickerVisible = ref(false)
@@ -198,16 +198,16 @@ export default defineComponent({
         userInput.value = null
         ctx.emit('blur')
         blurInput()
-        props.validateEvent && elFormItem.formItemMitt?.emit('el.form.blur')
+        props.validateEvent && tjFormItem.formItemMitt?.emit('el.form.blur')
       } else {
         valueOnOpen.value = props.modelValue
       }
     })
-    const emitChange = val => {
+    const emitChange = (val, isClear) => {
       // determine user real change only
-      if (!valueEquals(val, valueOnOpen.value)) {
+      if (isClear || !valueEquals(val, valueOnOpen.value)) {
         ctx.emit('change', val)
-        props.validateEvent && elFormItem.formItemMitt?.emit('el.form.change', val)
+        props.validateEvent && tjFormItem.formItemMitt?.emit('el.form.change', val)
       }
     }
     const emitInput = val => {
@@ -253,7 +253,7 @@ export default defineComponent({
     }
 
     const pickerDisabled = computed(() => {
-      return props.disabled || elForm.disabled
+      return props.disabled || tjForm.disabled
     })
 
     const parsedValue = computed(() => {
@@ -278,8 +278,6 @@ export default defineComponent({
 
     const displayValue = computed(() => {
       if (!pickerOptions.value.panelReady) return
-      if (!isTimePicker.value && valueIsEmpty.value) return
-      if (!pickerVisible.value && valueIsEmpty.value) return
       const formattedValue = formatDayjsToString(parsedValue.value)
       if (Array.isArray(userInput.value)) {
         return [
@@ -289,6 +287,8 @@ export default defineComponent({
       } else if (userInput.value !== null) {
         return userInput.value
       }
+      if (!isTimePicker.value && valueIsEmpty.value) return
+      if (!pickerVisible.value && valueIsEmpty.value) return
       if (formattedValue) {
         return isDatesPicker.value
           ? (formattedValue as Array<string>).join(', ')
@@ -318,7 +318,7 @@ export default defineComponent({
       if (showClose.value) {
         event.stopPropagation()
         emitInput(null)
-        emitChange(null)
+        emitChange(null, true)
         showClose.value = false
         pickerVisible.value = false
         pickerOptions.value.handleClear && pickerOptions.value.handleClear()
@@ -341,7 +341,7 @@ export default defineComponent({
     })
 
     const pickerSize = computed(() => {
-      return props.size || elFormItem.size || ELEMENT.size
+      return props.size || tjFormItem.size || ELEMENT.size
     })
     const onClickOutside = () => {
       if (!pickerVisible.value) return
@@ -355,7 +355,7 @@ export default defineComponent({
         const value = parseUserInputToDayjs(displayValue.value)
         if (value) {
           if (isValidValue(value)) {
-            emitInput(value.toDate())
+            emitInput(Array.isArray(value) ? value.map(_=> _.toDate()) : value.toDate())
             userInput.value = null
           }
         }
@@ -452,7 +452,7 @@ export default defineComponent({
 
     const handleStartChange = () => {
       const value = parseUserInputToDayjs(userInput.value && userInput.value[0])
-      if (value) {
+      if (value && value.isValid()) {
         userInput.value = [formatDayjsToString(value), displayValue.value[1]]
         const newValue = [value, parsedValue.value && parsedValue.value[1]]
         if (isValidValue(newValue)) {
@@ -464,7 +464,7 @@ export default defineComponent({
 
     const handleEndChange = () => {
       const value = parseUserInputToDayjs(userInput.value && userInput.value[1])
-      if (value) {
+      if (value && value.isValid()) {
         userInput.value = [displayValue.value[0], formatDayjsToString(value)]
         const newValue = [parsedValue.value && parsedValue.value[0], value]
         if (isValidValue(newValue)) {

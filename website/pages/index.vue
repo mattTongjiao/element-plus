@@ -17,7 +17,7 @@
         <img src="~examples/assets/images/theme-index-red.png" alt="" />
       </div>
     </div>
-    <div class="sponsors">
+    <!-- <div class="sponsors">
       <a
         class="sponsor"
         href="https://www.duohui.cn/?utm_source=element&utm_medium=web&utm_campaign=element-index"
@@ -40,7 +40,7 @@
           <p>Share Code</p>
         </div>
       </a>
-    </div>
+    </div> -->
     <div class="cards">
       <ul class="container">
         <li>

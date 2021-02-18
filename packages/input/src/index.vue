@@ -132,7 +132,7 @@ import { isObject, useGlobalConfig } from '@tongjiaoui-plus/utils/util'
 import isServer from '@tongjiaoui-plus/utils/isServer'
 import { isKorean } from '@tongjiaoui-plus/utils/isDef'
 import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
-import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormKey, tjFormItemKey } from '@tongjiaoui-plus/form'
 import calcTextareaHeight from './calcTextareaHeight'
 
 import type { PropType } from 'vue'
@@ -236,8 +236,8 @@ export default defineComponent({
     const attrs = useAttrs()
     const $ELEMENT = useGlobalConfig()
 
-    const elForm = inject(elFormKey, {} as TjFormContext)
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
     const input = ref(null)
     const textarea = ref (null)
@@ -248,15 +248,15 @@ export default defineComponent({
     const _textareaCalcStyle = shallowRef({})
 
     const inputOrTextarea = computed(() => input.value || textarea.value)
-    const inputSize = computed(() => props.size || elFormItem.size || $ELEMENT.size)
-    const needStatusIcon = computed(() => elForm.statusIcon)
-    const validateState = computed(() => elFormItem.validateState || '')
+    const inputSize = computed(() => props.size || tjFormItem.size || $ELEMENT.size)
+    const needStatusIcon = computed(() => tjForm.statusIcon)
+    const validateState = computed(() => tjFormItem.validateState || '')
     const validateIcon = computed(() => VALIDATE_STATE_MAP[validateState.value])
     const textareaStyle = computed(() => ({
       ..._textareaCalcStyle.value,
       resize: props.resize,
     }))
-    const inputDisabled = computed(() => props.disabled || elForm.disabled)
+    const inputDisabled = computed(() => props.disabled || tjForm.disabled)
     const nativeInputValue = computed(() => (props.modelValue === null || props.modelValue === undefined) ? '' : String(props.modelValue))
     const upperLimit = computed(() => ctx.attrs.maxlength)
     const showClear = computed(() => {
@@ -335,10 +335,10 @@ export default defineComponent({
       const { value } = event.target
 
       // should not emit input during composition
-      // see: https://github.com/TjemeFE/element/issues/10516
+      // see: https://github.com/ElemeFE/element/issues/10516
       if (isComposing.value) return
 
-      // hack for https://github.com/TjemeFE/element/issues/8548
+      // hack for https://github.com/ElemeFE/element/issues/8548
       // should remove the following line when we don't support IE
       if (value === nativeInputValue.value) return
 
@@ -346,7 +346,7 @@ export default defineComponent({
       ctx.emit('input', value)
 
       // ensure native input value is controlled
-      // see: https://github.com/TjemeFE/element/issues/12850
+      // see: https://github.com/ElemeFE/element/issues/12850
       nextTick(setNativeInputValue)
     }
 
@@ -355,7 +355,7 @@ export default defineComponent({
     }
 
     const focus = () => {
-      // see: https://github.com/TjemeFE/element/issues/18573
+      // see: https://github.com/ElemeFE/element/issues/18573
       nextTick(() => {
         inputOrTextarea.value.focus()
       })
@@ -374,7 +374,7 @@ export default defineComponent({
       focused.value = false
       ctx.emit('blur', event)
       if (props.validateEvent) {
-        elFormItem.formItemMitt?.emit('el.form.blur', [props.modelValue])
+        tjFormItem.formItemMitt?.emit('el.form.blur', [props.modelValue])
       }
     }
 
@@ -422,20 +422,20 @@ export default defineComponent({
     watch(() => props.modelValue, val => {
       nextTick(resizeTextarea)
       if (props.validateEvent) {
-        elFormItem.formItemMitt?.emit('el.form.change', [val])
+        tjFormItem.formItemMitt?.emit('el.form.change', [val])
       }
     })
 
     // native input value is set explicitly
     // do not use v-model / :value in template
-    // see: https://github.com/TjemeFE/element/issues/14521
+    // see: https://github.com/ElemeFE/element/issues/14521
     watch(nativeInputValue, () => {
       setNativeInputValue()
     })
 
     // when change between <input> and <textarea>,
     // update DOM dependent value and styles
-    // https://github.com/TjemeFE/element/issues/14857
+    // https://github.com/ElemeFE/element/issues/14857
     watch(() => props.type, () => {
       nextTick(() => {
         setNativeInputValue()

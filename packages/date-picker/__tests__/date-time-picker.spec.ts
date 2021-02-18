@@ -253,14 +253,14 @@ describe('Datetime Picker', () => {
     input1.focus()
     await nextTick()
     const list = document.querySelectorAll('.tj-time-spinner__list')
-    const hoursTj = list[0]
+    const hoursEl = list[0]
     const disabledHours = [].slice
-      .call(hoursTj.querySelectorAll('.disabled'))
+      .call(hoursEl.querySelectorAll('.disabled'))
       .map(node => Number(node.textContent))
     expect(disabledHours).toStrictEqual(disabledHoursArr)
-    const minutesTj = list[1]
+    const minutesEl = list[1]
     const disabledMinutes = [].slice
-      .call(minutesTj.querySelectorAll('.disabled'))
+      .call(minutesEl.querySelectorAll('.disabled'))
       .map(node => Number(node.textContent))
     expect(disabledMinutes.length).toBe(19)
   })
@@ -454,9 +454,9 @@ describe('Datetimerange', () => {
     leftDateInput.focus()
     await nextTick()
     const listleft = document.querySelectorAll('.tj-date-range-picker__editors-wrap .tj-time-spinner__list')
-    const hoursTj = listleft[0]
+    const hoursEl = listleft[0]
     const disabledHours = [].slice
-      .call(hoursTj.querySelectorAll('.disabled'))
+      .call(hoursEl.querySelectorAll('.disabled'))
       .map(node => Number(node.textContent))
     expect(disabledHours).toStrictEqual(disabledHoursArr)
     const button = document.querySelector('.tj-date-range-picker__time-picker-wrap .tj-time-panel .confirm') as HTMLElement
@@ -466,9 +466,9 @@ describe('Datetimerange', () => {
     rightDateInput.focus()
     await nextTick()
     const listright = document.querySelectorAll('.tj-date-range-picker__editors-wrap.is-right .tj-time-spinner__list')
-    const hoursTj2 = listright[0]
+    const hoursEl2 = listright[0]
     const disabledHours2 = [].slice
-      .call(hoursTj2.querySelectorAll('.disabled'))
+      .call(hoursEl2.querySelectorAll('.disabled'))
       .map(node => Number(node.textContent))
     expect(disabledHours2).toStrictEqual(disabledHoursRightArr)
   })

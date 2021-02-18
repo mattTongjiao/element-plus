@@ -89,10 +89,10 @@ class TableLayout {
 
     if (typeof value === 'number') {
       el.style[prop] = value + 'px'
-      this.updateTjsHeight()
+      this.updateElsHeight()
     } else if (typeof value === 'string') {
       el.style[prop] = value
-      this.updateTjsHeight()
+      this.updateElsHeight()
     }
   }
 
@@ -115,8 +115,8 @@ class TableLayout {
     return flattenColumns
   }
 
-  updateTjsHeight() {
-    if (!this.table.$ready) return nextTick(() => this.updateTjsHeight())
+  updateElsHeight() {
+    if (!this.table.$ready) return nextTick(() => this.updateElsHeight())
     const {
       headerWrapper: headerWrapper_,
       appendWrapper: appendWrapper_,
@@ -129,11 +129,11 @@ class TableLayout {
 
     if (this.showHeader && !headerWrapper) return
 
-    // fix issue (https://github.com/TjemeFE/element/pull/16956)
-    const headerTrTjm = headerWrapper
+    // fix issue (https://github.com/ElemeFE/element/pull/16956)
+    const headerTrElm = headerWrapper
       ? headerWrapper.querySelector('.tj-table__header tr')
       : null
-    const noneHeader = this.headerDisplayNone(headerTrTjm as HTMLElement)
+    const noneHeader = this.headerDisplayNone(headerTrElm as HTMLElement)
 
     const headerHeight = (this.headerHeight.value = !this.showHeader
       ? 0
@@ -145,7 +145,7 @@ class TableLayout {
       (this.table.store.states.columns.value || []).length > 0 &&
       headerHeight < 2
     ) {
-      return nextTick(() => this.updateTjsHeight())
+      return nextTick(() => this.updateElsHeight())
     }
     const tableHeight = (this.tableHeight.value = this.table.vnode.el.clientHeight)
     const footerHeight = (this.footerHeight.value = footerWrapper
@@ -276,7 +276,6 @@ class TableLayout {
     }
 
     this.notifyObservers('columns')
-    this.updateTjsHeight()
   }
 
   addObserver(observer: TableHeader) {

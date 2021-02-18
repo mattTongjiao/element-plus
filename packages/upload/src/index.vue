@@ -10,7 +10,7 @@ import {
   onBeforeUnmount,
 } from 'vue'
 import { NOOP } from '@vue/shared'
-import { elFormKey } from '@tongjiaoui-plus/form'
+import { tjFormKey } from '@tongjiaoui-plus/form'
 
 import ajax from './ajax'
 import UploadList from './upload-list.vue'
@@ -134,10 +134,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const elForm = inject(elFormKey, {} as TjFormContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
 
     const uploadDisabled = computed(() => {
-      return props.disabled || elForm.disabled
+      return props.disabled || tjForm.disabled
     })
 
     const {

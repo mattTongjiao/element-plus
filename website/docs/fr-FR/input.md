@@ -375,9 +375,9 @@ Vous pouvez obtenir de l'aide ou des suggestions basées sur ce que vous entrez.
       const loadAll = () => {
         return [
           { value: 'vue', link: 'https://github.com/vuejs/vue' },
-          { value: 'element', link: 'https://github.com/TjemeFE/element' },
-          { value: 'cooking', link: 'https://github.com/TjemeFE/cooking' },
-          { value: 'mint-ui', link: 'https://github.com/TjemeFE/mint-ui' },
+          { value: 'element', link: 'https://github.com/ElemeFE/element' },
+          { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+          { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
           { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
           { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
           { value: 'babel', link: 'https://github.com/babel/babel' },
@@ -470,9 +470,9 @@ Vous pouvez personnaliser la manière dont les suggestions sont affichées.
       const loadAll = () => {
         return [
           { value: 'vue', link: 'https://github.com/vuejs/vue' },
-          { value: 'element', link: 'https://github.com/TjemeFE/element' },
-          { value: 'cooking', link: 'https://github.com/TjemeFE/cooking' },
-          { value: 'mint-ui', link: 'https://github.com/TjemeFE/mint-ui' },
+          { value: 'element', link: 'https://github.com/ElemeFE/element' },
+          { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+          { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
           { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
           { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
           { value: 'babel', link: 'https://github.com/babel/babel' },
@@ -528,9 +528,9 @@ Vous pouvez aller chercher des infos de suggestions sur un serveur distant.
       const loadAll = () => {
         return [
           { value: 'vue', link: 'https://github.com/vuejs/vue' },
-          { value: 'element', link: 'https://github.com/TjemeFE/element' },
-          { value: 'cooking', link: 'https://github.com/TjemeFE/cooking' },
-          { value: 'mint-ui', link: 'https://github.com/TjemeFE/mint-ui' },
+          { value: 'element', link: 'https://github.com/ElemeFE/element' },
+          { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+          { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
           { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
           { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
           { value: 'babel', link: 'https://github.com/babel/babel' },

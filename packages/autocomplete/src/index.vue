@@ -25,7 +25,7 @@
         <tj-input
           ref="inputRef"
           v-bind="attrs"
-          :modtj-value="modelValue"
+          :model-value="modelValue"
           @input="handleInput"
           @change="handleChange"
           @focus="handleFocus"

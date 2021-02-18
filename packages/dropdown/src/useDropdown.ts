@@ -6,25 +6,25 @@ import { ITjDropdownInstance } from './dropdown'
 
 export const useDropdown = () => {
   const ELEMENT = useGlobalConfig()
-  const elDropdown = inject<ITjDropdownInstance>('elDropdown', {})
-  const _elDropdownSize = computed(() => elDropdown?.dropdownSize)
+  const tjDropdown = inject<ITjDropdownInstance>('tjDropdown', {})
+  const _tjDropdownSize = computed(() => tjDropdown?.dropdownSize)
 
   return {
     ELEMENT,
-    elDropdown,
-    _elDropdownSize,
+    tjDropdown,
+    _tjDropdownSize,
   }
 }
 
-export const initDropdownDomEvent = (dropdownChildren, triggerTjm, _instance) => {
+export const initDropdownDomEvent = (dropdownChildren, triggerElm, _instance) => {
   const menuItems = ref<Nullable<HTMLButtonElement[]>>(null)
   const menuItemsArray = ref<Nullable<HTMLElement[]>>(null)
-  const dropdownTjm = ref<Nullable<HTMLElement>>(null)
+  const dropdownElm = ref<Nullable<HTMLElement>>(null)
   const listId = ref(`dropdown-menu-${generateId()}`)
-  dropdownTjm.value = dropdownChildren?.subTree.el
+  dropdownElm.value = dropdownChildren?.subTree.el
 
   function removeTabindex() {
-    triggerTjm.setAttribute('tabindex', '-1')
+    triggerElm.setAttribute('tabindex', '-1')
     menuItemsArray.value?.forEach(item => {
       item.setAttribute('tabindex', '-1')
     })
@@ -68,43 +68,43 @@ export const initDropdownDomEvent = (dropdownChildren, triggerTjm, _instance) =>
       ev.preventDefault()
       ev.stopPropagation()
     } else if (code === EVENT_CODE.enter) {
-      triggerTjmFocus()
+      triggerElmFocus()
       target.click()
       if (_instance.props.hideOnClick) {
         _instance.hide()
       }
     } else if ([EVENT_CODE.tab, EVENT_CODE.esc].includes(code)) {
       _instance.hide()
-      triggerTjmFocus()
+      triggerElmFocus()
     }
   }
 
   function initAria() {
-    dropdownTjm.value.setAttribute('id', listId.value)
-    triggerTjm.setAttribute('aria-haspopup', 'list')
-    triggerTjm.setAttribute('aria-controls', listId.value)
+    dropdownElm.value.setAttribute('id', listId.value)
+    triggerElm.setAttribute('aria-haspopup', 'list')
+    triggerElm.setAttribute('aria-controls', listId.value)
     if (!_instance.props.splitButton) {
-      triggerTjm.setAttribute('role', 'button')
-      triggerTjm.setAttribute('tabindex', _instance.props.tabindex)
-      addClass(triggerTjm, 'tj-dropdown-selfdefine')
+      triggerElm.setAttribute('role', 'button')
+      triggerElm.setAttribute('tabindex', _instance.props.tabindex)
+      addClass(triggerElm, 'tj-dropdown-selfdefine')
     }
   }
 
   function initEvent() {
-    on(triggerTjm, 'keydown', handleTriggerKeyDown)
-    on(dropdownTjm.value, 'keydown', handleItemKeyDown, true)
+    on(triggerElm, 'keydown', handleTriggerKeyDown)
+    on(dropdownElm.value, 'keydown', handleItemKeyDown, true)
   }
 
   function initDomOperation() {
-    menuItems.value = dropdownTjm.value.querySelectorAll("[tabindex='-1']") as unknown as HTMLButtonElement[]
+    menuItems.value = dropdownElm.value.querySelectorAll("[tabindex='-1']") as unknown as HTMLButtonElement[]
     menuItemsArray.value = [].slice.call(menuItems.value)
 
     initEvent()
     initAria()
   }
 
-  function triggerTjmFocus() {
-    triggerTjm.focus()
+  function triggerElmFocus() {
+    triggerElm.focus()
   }
 
   initDomOperation()

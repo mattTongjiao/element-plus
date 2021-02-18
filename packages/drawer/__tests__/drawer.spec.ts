@@ -33,12 +33,12 @@ describe('Drawer', () => {
     await nextTick()
     await rAF()
     await nextTick()
-    const wrapperTj = wrapper.find('.tj-overlay').element as HTMLDivElement
-    const headerTj = wrapper.find('.tj-drawer__header').element
+    const wrapperEl = wrapper.find('.tj-overlay').element as HTMLDivElement
+    const headerEl = wrapper.find('.tj-drawer__header').element
 
     await nextTick()
-    expect(wrapperTj.style.display).not.toEqual('none')
-    expect(headerTj.textContent).toEqual(title)
+    expect(wrapperEl.style.display).not.toEqual('none')
+    expect(headerEl.textContent).toEqual(title)
   })
 
   test('render correct content', async () => {
@@ -115,13 +115,13 @@ describe('Drawer', () => {
     await nextTick()
     expect(onOpened).not.toHaveBeenCalled()
 
-    const drawerTj = wrapper.find('.tj-overlay').element as HTMLDivElement
-    expect(drawerTj.style.display).toEqual('none')
+    const drawerEl = wrapper.find('.tj-overlay').element as HTMLDivElement
+    expect(drawerEl.style.display).toEqual('none')
 
     vm.visible = true
     await nextTick()
     await rAF()
-    expect(drawerTj.style.display).not.toEqual('none')
+    expect(drawerEl.style.display).not.toEqual('none')
     expect(onOpened).toHaveBeenCalled()
 
     // vm.visible = false
@@ -351,13 +351,13 @@ describe('Drawer', () => {
       )
 
     test('should effect height when drawer is vertical', async () => {
-      const drawerTj = renderer('50%', true).find('.tj-drawer').element as HTMLDivElement
-      expect(drawerTj.style.width).toEqual('50%')
+      const drawerEl = renderer('50%', true).find('.tj-drawer').element as HTMLDivElement
+      expect(drawerEl.style.width).toEqual('50%')
     })
 
     test('should effect width when drawer is horizontal', async () => {
-      const drawerTj = renderer('50%', false).find('.tj-drawer').element as HTMLDivElement
-      expect(drawerTj.style.height).toEqual('50%')
+      const drawerEl = renderer('50%', false).find('.tj-drawer').element as HTMLDivElement
+      expect(drawerEl.style.height).toEqual('50%')
     })
   })
 })

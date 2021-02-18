@@ -51,12 +51,12 @@
     "description": "provide unified space between each components"
   },
   "tj-radio": {
-    "attributes": ["modtj-value", "label", "disabled", "border", "size", "name", "update:modtj-value", "change"],
+    "attributes": ["model-value", "label", "disabled", "border", "size", "name", "update:model-value", "change"],
     "defaults": ["label"],
     "description": "Single selection among multiple options."
   },
   "tj-radio-group": {
-    "attributes": ["modtj-value", "size", "disabled", "text-color", "fill", "update:modtj-value", "change"],
+    "attributes": ["model-value", "size", "disabled", "text-color", "fill", "update:model-value", "change"],
     "defaults": ["v-model"],
     "subtags": ["tj-radio", "tj-radio-button"]
   },
@@ -65,12 +65,12 @@
     "defaults": ["label"]
   },
   "tj-checkbox": {
-    "attributes": ["modtj-value", "label", "true-label", "false-label", "border", "size", "name", "checked", "indeterminate", "disabled", "update:modtj-value", "change"],
+    "attributes": ["model-value", "label", "true-label", "false-label", "border", "size", "name", "checked", "indeterminate", "disabled", "update:model-value", "change"],
     "defaults": ["label"],
     "description": "A group of options for multiple choices."
   },
   "tj-checkbox-group": {
-    "attributes": ["modtj-value", "size", "fill", "text-color", "min", "max", "disabled", "update:modtj-value", "change"],
+    "attributes": ["model-value", "size", "fill", "text-color", "min", "max", "disabled", "update:model-value", "change"],
     "defaults": ["v-model"],
     "subtags": ["tj-checkbox", "tj-checkbox-button"]
   },
@@ -79,20 +79,20 @@
     "defaults": ["label"]
   },
   "tj-input": {
-    "attributes": ["type", "modtj-value", "maxlength", "minlength", "show-word-limit", "placeholder", "show-password", "disabled", "size", "prefix-icon", "suffix-icon", "rows", "autosize", "autocomplete", "name", "readonly", "max", "min", "step", "resize", "autofocus", "form", "label", "tabindex", "validate-event", "clearable", "update:modtj-value", "blur", "focus", "change", "input", "clear"],
+    "attributes": ["type", "model-value", "maxlength", "minlength", "show-word-limit", "placeholder", "show-password", "disabled", "size", "prefix-icon", "suffix-icon", "rows", "autosize", "autocomplete", "name", "readonly", "max", "min", "step", "resize", "autofocus", "form", "label", "tabindex", "validate-event", "clearable", "update:model-value", "blur", "focus", "change", "input", "clear"],
     "defaults": ["v-model", "placeholder"],
     "description": "Input data using mouse or keyboard."
   },
   "tj-autocomplete": {
-    "attributes": ["modtj-value", "value-key", "debounce", "placement", "placeholder", "clearable", "disabled", "fetch-suggestions", "popper-class", "trigger-on-focus", "on-icon-click", "select-when-unmatched", "label", "name", "prefix-icon", "suffix-icon", "hide-loading", "popper-append-to-body", "highlight-first-item", "update:modtj-value", "blur", "focus", "change", "input", "clear", "select"],
+    "attributes": ["model-value", "value-key", "debounce", "placement", "placeholder", "clearable", "disabled", "fetch-suggestions", "popper-class", "trigger-on-focus", "on-icon-click", "select-when-unmatched", "label", "name", "prefix-icon", "suffix-icon", "hide-loading", "popper-append-to-body", "highlight-first-item", "update:model-value", "blur", "focus", "change", "input", "clear", "select"],
     "defaults": ["v-model", "placeholder"]
   },
   "tj-input-number": {
-    "attributes": ["modtj-value", "min", "max", "step", "step-strictly", "precision", "size", "disabled", "controls-position", "controls", "name", "label", "placeholder", "update:modtj-value", "change", "input", "blur", "focus"],
+    "attributes": ["model-value", "min", "max", "step", "step-strictly", "precision", "size", "disabled", "controls-position", "controls", "name", "label", "placeholder", "update:model-value", "change", "input", "blur", "focus"],
     "defaults": ["v-model", "placeholder"]
   },
   "tj-select": {
-    "attributes": ["modtj-value", "multiple", "disabled", "value-key", "size", "clearable", "collapse-tags", "multiple-limit", "name", "autocomplete", "placeholder", "filterable", "allow-create", "filter-method", "remote", "remote-method", "loading", "loading-text", "no-match-text", "no-data-text", "popper-class", "reserve-keyword", "default-first-option", "popper-append-to-body", "automatic-dropdown", "clear-icon", "update:modtj-value", "change", "visible-change", "remove-tag", "clear", "blur", "focus"],
+    "attributes": ["model-value", "multiple", "disabled", "value-key", "size", "clearable", "collapse-tags", "multiple-limit", "name", "autocomplete", "placeholder", "filterable", "allow-create", "filter-method", "remote", "remote-method", "loading", "loading-text", "no-match-text", "no-data-text", "popper-class", "reserve-keyword", "default-first-option", "popper-append-to-body", "automatic-dropdown", "clear-icon", "update:model-value", "change", "visible-change", "remove-tag", "clear", "blur", "focus"],
     "defaults": ["v-model", "placeholder"],
     "subtags": ["tj-option"],
     "description": "When there are plenty of options, use a drop-down menu to display and select desired ones."
@@ -107,36 +107,36 @@
     "defaults": ["v-for", ":key"]
   },
   "tj-cascader": {
-    "attributes": ["modtj-value", "options", "props", "size", "placeholder", "disabled", "clearable", "show-all-levels", "collapse-tags", "separator", "filterable", "filter-method", "debounce", "before-filter", "popper-class", "update:modtj-value", "change", "expand-change", "blur", "focus", "visible-change", "remove-tag"],
+    "attributes": ["model-value", "options", "props", "size", "placeholder", "disabled", "clearable", "show-all-levels", "collapse-tags", "separator", "filterable", "filter-method", "debounce", "before-filter", "popper-class", "update:model-value", "change", "expand-change", "blur", "focus", "visible-change", "remove-tag"],
     "defaults": [":options", "v-model"],
     "description": "If the options have a clear hierarchical structure, Cascader can be used to view and select them."
   },
   "tj-cascader-panel": {
-    "attributes": ["modtj-value", "options", "props", "update:modtj-value", "change", "close", "expand-change"],
+    "attributes": ["model-value", "options", "props", "update:model-value", "change", "close", "expand-change"],
     "description": "CascaderPanel is the core component of Cascader which has various of features such as single selection, multiple selection, dynamic loading and so on."
   },
   "tj-switch": {
-    "attributes": ["modtj-value", "disabled", "loading", "width", "active-icon-class", "inactive-icon-class", "active-text", "inactive-text", "active-value", "inactive-value", "active-color", "inactive-color", "name", "validate-event", "update:modtj-value", "change", "input"],
+    "attributes": ["model-value", "disabled", "loading", "width", "active-icon-class", "inactive-icon-class", "active-text", "inactive-text", "active-value", "inactive-value", "active-color", "inactive-color", "name", "validate-event", "update:model-value", "change", "input"],
     "defaults": ["v-model"],
     "description": "Switch is used for switching between two opposing states."
   },
   "tj-slider": {
-    "attributes": ["modtj-value", "min", "max", "disabled", "step", "show-input", "show-input-controls", "input-size", "show-stops", "show-tooltip", "format-tooltip", "range", "vertical", "height", "label", "debounce", "tooltip-class", "marks", "update:modtj-value", "change"],
+    "attributes": ["model-value", "min", "max", "disabled", "step", "show-input", "show-input-controls", "input-size", "show-stops", "show-tooltip", "format-tooltip", "range", "vertical", "height", "label", "debounce", "tooltip-class", "marks", "update:model-value", "change"],
     "defaults": ["v-model"],
     "description": "Drag the slider within a fixed range."
   },
   "tj-time-picker": {
-    "attributes": ["modtj-value", "readonly", "disabled", "editable", "clearable", "size", "placeholder", "start-placeholder", "end-placeholder", "is-range", "arrow-control", "align", "popper-class", "range-separator", "default-value", "name", "prefix-icon", "clear-icon", "disabled-hours", "disabled-minutes", "disabled-seconds", "format", "update:modtj-value", "change", "blur", "focus"],
+    "attributes": ["model-value", "readonly", "disabled", "editable", "clearable", "size", "placeholder", "start-placeholder", "end-placeholder", "is-range", "arrow-control", "align", "popper-class", "range-separator", "default-value", "name", "prefix-icon", "clear-icon", "disabled-hours", "disabled-minutes", "disabled-seconds", "format", "update:model-value", "change", "blur", "focus"],
     "defaults": ["v-model", "placeholder"],
     "description": "Use Time Picker for time input"
   },
   "tj-time-select": {
-    "attributes": ["modtj-value", "editable", "clearable", "size", "placeholder", "name", "prefix-icon", "clear-icon", "start", "end", "step", "min-time", "max-time", "update:modtj-value", "change", "blur", "focus"],
+    "attributes": ["model-value", "editable", "clearable", "size", "placeholder", "name", "prefix-icon", "clear-icon", "start", "end", "step", "min-time", "max-time", "update:model-value", "change", "blur", "focus"],
     "defaults": ["v-model", "placeholder"],
     "description": "Use Time Select for time input"
   },
   "tj-date-picker": {
-    "attributes": ["modtj-value", "type", "readonly", "disabled", "editable", "clearable", "size", "placeholder", "start-placeholder", "end-placeholder", "is-range", "arrow-control", "align", "popper-class", "range-separator", "default-value", "default-time", "name", "prefix-icon", "clear-icon", "format", "validate-event", "disabled-date", "shortcuts", "time-arrow-control", "unlink-panels", "cell-class-name", "update:modtj-value", "change", "blur", "focus"],
+    "attributes": ["model-value", "type", "readonly", "disabled", "editable", "clearable", "size", "placeholder", "start-placeholder", "end-placeholder", "is-range", "arrow-control", "align", "popper-class", "range-separator", "default-value", "default-time", "name", "prefix-icon", "clear-icon", "format", "validate-event", "disabled-date", "shortcuts", "time-arrow-control", "unlink-panels", "cell-class-name", "update:model-value", "change", "blur", "focus"],
     "defaults": ["v-model", "placeholder"],
     "description": "Use Date Picker for date input"
   },
@@ -147,17 +147,17 @@
     "description": "Upload files by clicking or drag-and-drop"
   },
   "tj-rate": {
-    "attributes": ["modtj-value", "max", "disabled", "allow-half", "low-threshold", "high-threshold", "colors", "void-color", "disabled-void-color", "icon-classes", "void-icon-class", "disabled-void-icon-class", "show-text", "show-score", "text-color", "texts", "score-template", "update:modtj-value", "change"],
+    "attributes": ["model-value", "max", "disabled", "allow-half", "low-threshold", "high-threshold", "colors", "void-color", "disabled-void-color", "icon-classes", "void-icon-class", "disabled-void-icon-class", "show-text", "show-score", "text-color", "texts", "score-template", "update:model-value", "change"],
     "defaults": ["v-model"],
     "description": "Used for rating"
   },
   "tj-color-picker": {
-    "attributes": ["modtj-value", "disabled", "size", "show-alpha", "color-format", "popper-class", "predefine", "update:modtj-value", "change", "active-change"],
+    "attributes": ["model-value", "disabled", "size", "show-alpha", "color-format", "popper-class", "predefine", "update:model-value", "change", "active-change"],
     "defaults": ["v-model"],
     "description": "Use Color Picker for color input"
   },
   "tj-transfer": {
-    "attributes": ["modtj-value", "data", "filterable", "filter-placeholder", "filter-method", "target-order", "titles", "button-texts", "render-content", "format", "props", "left-default-checked", "right-default-checked", "update:modtj-value", "change", "left-check-change", "right-check-change"],
+    "attributes": ["model-value", "data", "filterable", "filter-placeholder", "filter-method", "target-order", "titles", "button-texts", "render-content", "format", "props", "left-default-checked", "right-default-checked", "update:model-value", "change", "left-check-change", "right-check-change"],
     "defaults": ["v-model", ":data"]
   },
   "tj-form": {
@@ -244,7 +244,7 @@
     "defaults": ["index"]
   },
   "tj-tabs": {
-    "attributes": ["modtj-value", "type", "closable", "addable", "editable", "tab-position", "stretch", "before-leave", "update:modtj-value", "tab-click", "tab-remove", "tab-add", "edit", "input"],
+    "attributes": ["model-value", "type", "closable", "addable", "editable", "tab-position", "stretch", "before-leave", "update:model-value", "tab-click", "tab-remove", "tab-add", "edit", "input"],
     "subtags": ["tj-tab-pane"],
     "defaults": ["v-model"],
     "description": "Divide data collections which are related yet belong to different types."
@@ -286,12 +286,12 @@
     "defaults": ["title"]
   },
   "tj-dialog": {
-    "attributes": ["modtj-value", "title", "top", "width", "fullscreen", "modal", "append-to-body", "lock-scroll", "custom-class", "open-delay", "close-delay", "close-on-click-modal", "close-on-press-escape", "show-close", "before-close", "center", "destroy-on-close", "modal-class", "z-index", "update:modtj-value", "close", "closed", "open", "opened"],
+    "attributes": ["model-value", "title", "top", "width", "fullscreen", "modal", "append-to-body", "lock-scroll", "custom-class", "open-delay", "close-delay", "close-on-click-modal", "close-on-press-escape", "show-close", "before-close", "center", "destroy-on-close", "modal-class", "z-index", "update:model-value", "close", "closed", "open", "opened"],
     "defaults": ["v-model", "title"],
     "description": "Informs users while preserving the current page state."
   },
   "tj-tooltip": {
-    "attributes": ["modtj-value", "effect", "content", "placement", "disabled", "offset", "transition", "visible-arrow", "popper-options", "open-delay", "manual", "popper-class", "enterable", "hide-after", "tabindex", "append-to-body", "update:modtj-value"],
+    "attributes": ["model-value", "effect", "content", "placement", "disabled", "offset", "transition", "visible-arrow", "popper-options", "open-delay", "manual", "popper-class", "enterable", "hide-after", "tabindex", "append-to-body", "update:model-value"],
     "defaults": ["content", "placement"],
     "description": "Display prompt information for mouse hover."
   },
@@ -300,7 +300,7 @@
     "defaults": ["placement"]
   },
   "tj-popconfirm": {
-    "attributes": ["title", "confirm-button-text", "canctj-button-text", "confirm-button-type", "canctj-button-type", "icon", "icon-color", "hide-icon", "confirm", "cancel"],
+    "attributes": ["title", "confirm-button-text", "cancel-button-text", "confirm-button-type", "cancel-button-type", "icon", "icon-color", "hide-icon", "confirm", "cancel"],
     "description": "A simple confirmation dialog of an element click action"
   },
   "tj-card": {
@@ -316,7 +316,7 @@
     "attributes": ["name", "label"]
   },
   "tj-collapse": {
-    "attributes": ["modtj-value", "accordion", "update:modtj-value", "change"],
+    "attributes": ["model-value", "accordion", "update:model-value", "change"],
     "subtags": ["tj-collapse-item"],
     "defaults": ["v-model"],
     "description": "Use Collapse to store contents."
@@ -337,7 +337,7 @@
     "description": "The dividing line that separates the content"
   },
   "tj-calendar": {
-    "attributes": ["modtj-value", "range", "update:modtj-value", "input"],
+    "attributes": ["model-value", "range", "update:model-value", "input"],
     "defaults": ["v-model"]
   },
   "tj-image": {
@@ -356,7 +356,7 @@
     "description": "Avatars can be used to represent people or objects. It supports images, Icons, or characters"
   },
   "tj-drawer": {
-    "attributes": ["modtj-value", "append-to-body", "before-close", "close-on-press-escape", "custom-class", "destroy-on-close", "modal", "direction", "show-close", "size", "title", "with-header", "z-index", "update:modtj-value", "open", "opened", "close", "closed"],
+    "attributes": ["model-value", "append-to-body", "before-close", "close-on-press-escape", "custom-class", "destroy-on-close", "modal", "direction", "show-close", "size", "title", "with-header", "z-index", "update:model-value", "open", "opened", "close", "closed"],
     "defaults": ["v-model"]
   },
   "tj-scrollbar": {

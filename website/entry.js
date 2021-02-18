@@ -21,7 +21,6 @@ import App from './app.vue'
 import TongjiaoUIPlus from 'tongjiaoui-plus'
 import '../packages/theme-chalk/src/index.scss'
 import '../packages/theme-chalk/src/display.scss'
-import '../lib/theme-chalk/index.css'
 
 const app = createApp(App)
 

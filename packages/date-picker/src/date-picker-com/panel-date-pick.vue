@@ -26,7 +26,7 @@
           <span class="tj-date-picker__editor-wrap">
             <tj-input
               :placeholder="t('el.datepicker.selectDate')"
-              :modtj-value="visibleDate"
+              :model-value="visibleDate"
               size="small"
               @input="val => (userInputDate = val)"
               @change="handleVisibleDateChange"
@@ -38,7 +38,7 @@
           >
             <tj-input
               :placeholder="t('el.datepicker.selectTime')"
-              :modtj-value="visibleTime"
+              :model-value="visibleTime"
               size="small"
               @focus="onTimePickerInputFocus"
               @input="val => (userInputTime = val)"
@@ -251,6 +251,7 @@ export default defineComponent({
       userInputTime.value = null
     }
     const handleDatePick = (value: Dayjs) => {
+      console.log(value)
       if (selectionMode.value === 'day') {
         let newDate = props.parsedValue
           ? (props.parsedValue as Dayjs)
@@ -496,7 +497,6 @@ export default defineComponent({
       return (
         date_.isValid() && (disabledDate ? !disabledDate(date_.toDate()) : true)
       )
-      return false
     }
 
     const formatToString = value => {

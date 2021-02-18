@@ -35,7 +35,7 @@
 import { defineComponent, ref, computed } from 'vue'
 import TjButton from '@tongjiaoui-plus/button'
 import TjPopper from '@tongjiaoui-plus/popper'
-import { t } from '../../locale'
+import { t } from '@tongjiaoui-plus/locale'
 
 export default defineComponent({
   name: 'TjPopconfirm',

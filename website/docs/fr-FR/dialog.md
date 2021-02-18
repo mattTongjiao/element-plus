@@ -289,7 +289,7 @@ When using `modal` = false, please make sure that `append-to-body` was set to **
 
 | Attribut              | Description                                                                               | Type                                                    | Valeurs acceptées | Défaut |
 | --------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------- | ----------------- | ------ |
-| modtj-value / v-model | Visibilité du Dialog                                                                      | boolean                                                 | —                 | —      |
+| model-value / v-model | Visibilité du Dialog                                                                      | boolean                                                 | —                 | —      |
 | title                 | Titre du Dialog. Peut aussi être passé via un slot (voir la table suivante).              | string                                                  | —                 | —      |
 | width                 | Largeur du Dialog.                                                                        | string / number                                         | —                 | 50%    |
 | fullscreen            | Si le Dialog doit être en plein écran.                                                    | boolean                                                 | —                 | false  |

@@ -14,7 +14,14 @@
     :gpu-acceleration="false"
   >
     <template #default>
-      <slot name="dropdown"></slot>
+      <tj-scrollbar
+        ref="scrollbar"
+        tag="ul"
+        :wrap-style="wrapStyle"
+        view-class="tj-dropdown__list"
+      >
+        <slot name="dropdown"></slot>
+      </tj-scrollbar>
     </template>
     <template #trigger>
       <div
@@ -60,14 +67,17 @@ import {
 import { on, addClass, removeClass } from '@tongjiaoui-plus/utils/dom'
 import TjButton from '@tongjiaoui-plus/button'
 import TjButtonGroup from '@tongjiaoui-plus/button-group'
+import TjScrollbar from '@tongjiaoui-plus/scrollbar'
 import TjPopper from '@tongjiaoui-plus/popper'
 import { useDropdown } from './useDropdown'
+import { addUnit } from '@tongjiaoui-plus/utils/util'
 
 export default defineComponent({
   name: 'TjDropdown',
   components: {
     TjButton,
     TjButtonGroup,
+    TjScrollbar,
     TjPopper,
   },
   props: {
@@ -105,6 +115,10 @@ export default defineComponent({
       type: String,
       default: 'light',
     },
+    maxHeight: {
+      type: [Number, String],
+      default: '',
+    },
   },
   emits: ['visible-change', 'click', 'command'],
   setup(props, { emit }) {
@@ -114,11 +128,14 @@ export default defineComponent({
     const timeout = ref<Nullable<number>>(null)
 
     const visible = ref(false)
+    const scrollbar = ref(null)
+    const wrapStyle = computed(() => `max-height: ${addUnit(props.maxHeight)}`)
+
     watch(
       () => visible.value,
       val => {
-        if (val) triggerTjmFocus()
-        if (!val) triggerTjmBlur()
+        if (val) triggerElmFocus()
+        if (!val) triggerElmBlur()
         emit('visible-change', val)
       },
     )
@@ -127,7 +144,7 @@ export default defineComponent({
     watch(
       () => focusing.value,
       val => {
-        const selfDefine = triggerTjm.value
+        const selfDefine = triggerElm.value
         if (selfDefine) {
           if (val) {
             addClass(selfDefine, 'focusing')
@@ -139,14 +156,14 @@ export default defineComponent({
     )
 
     const triggerVnode = ref<Nullable<ComponentPublicInstance>>(null)
-    const triggerTjm = computed<Nullable<HTMLButtonElement>>(() => {
+    const triggerElm = computed<Nullable<HTMLButtonElement>>(() => {
       const _: any =
         (triggerVnode.value?.$refs.triggerRef as HTMLElement)?.children[0] ?? {}
       return !props.splitButton ? _ : _.children?.[1]
     })
 
     function handleClick() {
-      if (triggerTjm.value?.disabled) return
+      if (triggerElm.value?.disabled) return
       if (visible.value) {
         hide()
       } else {
@@ -155,7 +172,7 @@ export default defineComponent({
     }
 
     function show() {
-      if (triggerTjm.value?.disabled) return
+      if (triggerElm.value?.disabled) return
       timeout.value && clearTimeout(timeout.value)
       timeout.value = window.setTimeout(
         () => {
@@ -168,10 +185,10 @@ export default defineComponent({
     }
 
     function hide() {
-      if (triggerTjm.value?.disabled) return
+      if (triggerElm.value?.disabled) return
       removeTabindex()
       if (props.tabindex >= 0) {
-        resetTabindex(triggerTjm.value)
+        resetTabindex(triggerElm.value)
       }
       clearTimeout(timeout.value)
       timeout.value = window.setTimeout(
@@ -185,7 +202,7 @@ export default defineComponent({
     }
 
     function removeTabindex() {
-      triggerTjm.value?.setAttribute('tabindex', '-1')
+      triggerElm.value?.setAttribute('tabindex', '-1')
     }
 
     function resetTabindex(ele) {
@@ -193,11 +210,11 @@ export default defineComponent({
       ele?.setAttribute('tabindex', '0')
     }
 
-    function triggerTjmFocus() {
-      triggerTjm.value?.focus?.()
+    function triggerElmFocus() {
+      triggerElm.value?.focus?.()
     }
-    function triggerTjmBlur() {
-      triggerTjm.value?.blur?.()
+    function triggerElmBlur() {
+      triggerElm.value?.blur?.()
     }
 
     const dropdownSize = computed(() => props.size || ELEMENT.size)
@@ -205,7 +222,7 @@ export default defineComponent({
       emit('command', ...args)
     }
 
-    provide('elDropdown', {
+    provide('tjDropdown', {
       instance: _instance,
       dropdownSize,
       visible,
@@ -215,28 +232,28 @@ export default defineComponent({
       hide,
       trigger: computed(() => props.trigger),
       hideOnClick: computed(() => props.hideOnClick),
-      triggerTjm,
+      triggerElm,
     })
 
     onMounted(() => {
       if (!props.splitButton) {
-        on(triggerTjm.value, 'focus', () => {
+        on(triggerElm.value, 'focus', () => {
           focusing.value = true
         })
-        on(triggerTjm.value, 'blur', () => {
+        on(triggerElm.value, 'blur', () => {
           focusing.value = false
         })
-        on(triggerTjm.value, 'click', () => {
+        on(triggerElm.value, 'click', () => {
           focusing.value = false
         })
       }
       if (props.trigger === 'hover') {
-        on(triggerTjm.value, 'mouseenter', show)
-        on(triggerTjm.value, 'mouseleave', hide)
+        on(triggerElm.value, 'mouseenter', show)
+        on(triggerElm.value, 'mouseleave', hide)
       } else if (props.trigger === 'click') {
-        on(triggerTjm.value, 'click', handleClick)
+        on(triggerElm.value, 'click', handleClick)
       } else if (props.trigger === 'contextmenu') {
-        on(triggerTjm.value, 'contextmenu', e => {
+        on(triggerElm.value, 'contextmenu', e => {
           e.preventDefault()
           handleClick()
         })
@@ -256,6 +273,8 @@ export default defineComponent({
 
     return {
       visible,
+      scrollbar,
+      wrapStyle,
       dropdownSize,
       handlerMainButtonClick,
       triggerVnode,

@@ -1,7 +1,7 @@
 <template>
   <span class="tj-pagination__sizes">
     <tj-select
-      :modtj-value="innerPageSize"
+      :model-value="innerPageSize"
       :disabled="disabled"
       :popper-class="popperClass"
       size="mini"

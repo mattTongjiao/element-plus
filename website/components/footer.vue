@@ -15,7 +15,7 @@
           target="_blank"
           >{{ langConfig.changelog }}</a
         >
-        <a
+        <!-- <a
           href="https://github.com/tongjiaoui-plus/tongjiaoui-plus/blob/dev/FAQ.md"
           class="footer-main-link"
           target="_blank"
@@ -40,26 +40,26 @@
           >Element-React</a
         >
         <a
-          href="https://github.com/TjemeFE/element-angular"
+          href="https://github.com/ElemeFE/element-angular"
           class="footer-main-link"
           target="_blank"
           >Element-Angular</a
-        >
+        > -->
       </div>
-      <div class="footer-main">
+      <!-- <div class="footer-main">
         <h4>{{ langConfig.community }}</h4>
         <a :href="gitterLink" class="footer-main-link" target="_blank">{{
           langConfig.gitter
         }}</a>
         <a
-          href="https://github.com/TjemeFE/element/issues"
+          href="https://github.com/ElemeFE/element/issues"
           class="footer-main-link"
           target="_blank"
           >{{ langConfig.feedback }}</a
         >
         <a
           :href="
-            `https://github.com/TjemeFE/element/blob/master/.github/CONTRIBUTING.${lang}.md`
+            `https://github.com/ElemeFE/element/blob/master/.github/CONTRIBUTING.${lang}.md`
           "
           class="footer-main-link"
           target="_blank"
@@ -77,9 +77,9 @@
           target="_blank"
           >Awesome Element</a
         >
-      </div>
+      </div> -->
       <div class="footer-social">
-        <p class="footer-social-title">Element Team</p>
+        <p class="footer-social-title">Tongjiao Team</p>
         <tj-popover
           ref="weixin"
           v-model:visible="footerVisible"
@@ -91,15 +91,16 @@
           <template #reference>
             <i class="doc-icon-weixin elementdoc"></i>
           </template>
-          <template #default>
+          <!-- <template #default>
             <div class="footer-popover-title">{{ langConfig.eleme }} UED</div>
             <img src="../assets/images/qrcode.png" alt="" />
-          </template>
+          </template> -->
         </tj-popover>
-        <a
+        <!-- <a
           href="https://github.com/tongjiaoui-plus/tongjiaoui-plus"
           target="_blank"
-        >
+        > -->
+        <a href="#" target="_blank">
           <i class="doc-icon-github elementdoc"></i>
         </a>
       </div>

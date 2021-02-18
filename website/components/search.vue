@@ -134,9 +134,9 @@ export default {
                   '<span class="algolia-highlight">',
                 )
                 if (highlightStart > -1) {
-                  const startTjlipsis = highlightStart - 15 > 0
+                  const startEllipsis = highlightStart - 15 > 0
                   content =
-                    (startTjlipsis ? '...' : '') +
+                    (startEllipsis ? '...' : '') +
                     content.slice(
                       Math.max(0, highlightStart - 15),
                       content.length,

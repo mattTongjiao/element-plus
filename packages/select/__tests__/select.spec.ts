@@ -614,7 +614,7 @@ describe('Select', () => {
 
   test('emptyText error show', async () => {
     const wrapper = _mount(`
-    <tj-select :modtj-value="value" filterable placeholder="Select">
+    <tj-select :model-value="value" filterable placeholder="Select">
       <tj-option
         v-for="item in options"
         :key="item.value"

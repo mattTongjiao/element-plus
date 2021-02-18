@@ -2,7 +2,7 @@
   <div class="tj-form-item" :class="formItemClass">
     <LabelWrap
       :is-auto-width="labelStyle.width === 'auto'"
-      :update-all="elForm.labelWidth === 'auto'"
+      :update-all="tjForm.labelWidth === 'auto'"
     >
       <label
         v-if="label || $slots.label"
@@ -10,7 +10,7 @@
         class="tj-form-item__label"
         :style="labelStyle"
       >
-        <slot name="label">{{ label + elForm.labelSuffix }}</slot>
+        <slot name="label">{{ label + tjForm.labelSuffix }}</slot>
       </label>
     </LabelWrap>
     <div class="tj-form-item__content" :style="contentStyle">
@@ -23,7 +23,7 @@
               'tj-form-item__error--inline':
                 typeof inlineMessage === 'boolean'
                   ? inlineMessage
-                  : elForm.inlineMessage || false,
+                  : tjForm.inlineMessage || false,
             }"
           >
             {{ validateMessage }}
@@ -56,7 +56,7 @@ import LabelWrap from './label-wrap'
 import { getPropByPath, useGlobalConfig } from '@tongjiaoui-plus/utils/util'
 import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
 import mitt from 'mitt'
-import { elFormKey, elFormItemKey, elFormEvents } from './token'
+import { tjFormKey, tjFormItemKey, tjFormEvents } from './token'
 
 import type { PropType } from 'vue'
 import type { TjFormContext, ValidateFieldCallback } from './token'
@@ -96,7 +96,7 @@ export default defineComponent({
     const formItemMitt = mitt()
     const $ELEMENT = useGlobalConfig()
 
-    const elForm = inject(elFormKey, {} as TjFormContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
     const validateState = ref('')
     const validateMessage = ref('')
     const validateDisabled = ref(false)
@@ -136,8 +136,8 @@ export default defineComponent({
 
     const labelFor = computed(() => props.for || props.prop)
     const labelStyle = computed(() => {
-      if (elForm.labelPosition === 'top') return {}
-      const labelWidth = props.labelWidth || elForm.labelWidth
+      if (tjForm.labelPosition === 'top') return {}
+      const labelWidth = props.labelWidth || tjForm.labelWidth
       if (labelWidth) {
         return {
           width: labelWidth,
@@ -146,19 +146,19 @@ export default defineComponent({
       return {}
     })
     const contentStyle = computed(() => {
-      if (elForm.labelPosition === 'top' || elForm.inline) {
+      if (tjForm.labelPosition === 'top' || tjForm.inline) {
         return {}
       }
       if (!props.label && !props.labelWidth && isNested.value) {
         return {}
       }
-      const labelWidth = props.labelWidth || elForm.labelWidth
+      const labelWidth = props.labelWidth || tjForm.labelWidth
       const ret: Partial<CSSStyleDeclaration> = {}
       if (labelWidth === 'auto') {
         if (props.labelWidth === 'auto') {
           ret.marginLeft = computedLabelWidth.value
-        } else if (elForm.labelWidth === 'auto') {
-          ret.marginLeft = elForm.autoLabelWidth
+        } else if (tjForm.labelWidth === 'auto') {
+          ret.marginLeft = tjForm.autoLabelWidth
         }
       } else {
         ret.marginLeft = labelWidth
@@ -166,7 +166,7 @@ export default defineComponent({
       return ret
     })
     const fieldValue = computed(() => {
-      const model = elForm.model
+      const model = tjForm.model
       if (!model || !props.prop) {
         return
       }
@@ -193,9 +193,9 @@ export default defineComponent({
       }
       return required
     })
-    const elFormItemSize = computed(() => props.size || elForm.size)
+    const tjFormItemSize = computed(() => props.size || tjForm.size)
     const sizeClass = computed(() => {
-      return elFormItemSize.value || $ELEMENT.size
+      return tjFormItemSize.value || $ELEMENT.size
     })
 
     const validate = (trigger: string, callback: ValidateFieldCallback = NOOP) => {
@@ -223,7 +223,7 @@ export default defineComponent({
           validateState.value = !errors ? 'success' : 'error'
           validateMessage.value = errors ? errors[0].message : ''
           callback(validateMessage.value, invalidFields)
-          elForm.emit?.(
+          tjForm.emit?.(
             'validate',
             props.prop,
             !errors,
@@ -241,7 +241,7 @@ export default defineComponent({
     const resetField = () => {
       validateState.value = ''
       validateMessage.value = ''
-      let model = elForm.model
+      let model = tjForm.model
       let value = fieldValue.value
       let path = props.prop
       if (path.indexOf(':') !== -1) {
@@ -261,7 +261,7 @@ export default defineComponent({
     }
 
     const getRules = () => {
-      const formRules = elForm.rules
+      const formRules = tjForm.rules
       const selfRules = props.rules
       const requiredRule =
         props.required !== undefined ? { required: !!props.required } : []
@@ -317,7 +317,7 @@ export default defineComponent({
       formItemMitt.off('el.form.change', onFieldChange)
     }
 
-    const elFormItem = reactive({
+    const tjFormItem = reactive({
       ...toRefs(props),
       size: sizeClass,
       validateState,
@@ -332,7 +332,7 @@ export default defineComponent({
 
     onMounted(() => {
       if (props.prop) {
-        elForm.formMitt?.emit(elFormEvents.addField, elFormItem)
+        tjForm.formMitt?.emit(tjFormEvents.addField, tjFormItem)
 
         let value = fieldValue.value
         initialValue = Array.isArray(value)
@@ -342,31 +342,31 @@ export default defineComponent({
       }
     })
     onBeforeUnmount(() => {
-      elForm.formMitt?.emit(elFormEvents.removeField, elFormItem)
+      tjForm.formMitt?.emit(tjFormEvents.removeField, tjFormItem)
     })
 
-    provide(elFormItemKey, elFormItem)
+    provide(tjFormItemKey, tjFormItem)
 
     const formItemClass = computed(() => [
       {
-        'tj-form-item--feedback': elForm.statusIcon,
+        'tj-form-item--feedback': tjForm.statusIcon,
         'is-error': validateState.value === 'error',
         'is-validating': validateState.value === 'validating',
         'is-success': validateState.value === 'success',
         'is-required': isRequired.value || props.required,
-        'is-no-asterisk': elForm.hideRequiredAsterisk,
+        'is-no-asterisk': tjForm.hideRequiredAsterisk,
       },
       sizeClass.value ? 'tj-form-item--' + sizeClass.value : '',
     ])
 
     const shouldShowError = computed(() => {
-      return validateState.value === 'error' && props.showMessage && elForm.showMessage
+      return validateState.value === 'error' && props.showMessage && tjForm.showMessage
     })
 
     return {
       formItemClass,
       shouldShowError,
-      elForm,
+      tjForm,
       labelStyle,
       contentStyle,
       validateMessage,

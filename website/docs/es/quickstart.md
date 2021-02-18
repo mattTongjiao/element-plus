@@ -8,7 +8,7 @@ Proporcionamos un [plugin de Element](https://github.com/tongjiaoui-plus/vue-cli
 
 ### Usa la plantilla de Kit de inicio
 
-Proveemos una plantilla general [project template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter), and also a Vite [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-vite-starter). Para los usuarios de Laravel, también tenemos [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-in-laravtj-starter). Puedes descargarlas y agregarlas directamente también.
+Proveemos una plantilla general [project template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter), and also a Vite [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-vite-starter). Para los usuarios de Laravel, también tenemos [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-in-laravel-starter). Puedes descargarlas y agregarlas directamente también.
 
 Si prefiere no utilizarlas, lee las siguientes secciones de este documento.
 

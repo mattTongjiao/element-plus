@@ -46,8 +46,8 @@ export default defineComponent({
   emits: [UPDATE_MODEL_EVENT, 'change'],
 
   setup(props, ctx) {
-    const { elFormItem, elFormItemSize, ELEMENT } = useCheckboxGroup()
-    const checkboxGroupSize = computed(() => props.size || elFormItemSize.value || ELEMENT.size)
+    const { tjFormItem, tjFormItemSize, ELEMENT } = useCheckboxGroup()
+    const checkboxGroupSize = computed(() => props.size || tjFormItemSize.value || ELEMENT.size)
 
     const changeEvent = value => {
       ctx.emit(UPDATE_MODEL_EVENT, value)
@@ -74,7 +74,7 @@ export default defineComponent({
     })
 
     watch(() => props.modelValue, val => {
-      elFormItem.formItemMitt?.emit('el.form.change', [val])
+      tjFormItem.formItemMitt?.emit('el.form.change', [val])
     })
   },
 })

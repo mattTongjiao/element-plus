@@ -8,7 +8,7 @@ Nous fournissons un [plugin Element](https://github.com/tongjiaoui-plus/vue-cli-
 
 ### Utiliser le Starter Kit
 
-Nous fournissons un [template de projet](https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter) pour débuter rapidement, and also a Vite [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-vite-starter). Pour les utilisateurs Laravel, il est aussi possible d'utiliser ce [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-in-laravtj-starter). VOus pouvez les télécharger directement.
+Nous fournissons un [template de projet](https://github.com/tongjiaoui-plus/tongjiaoui-plus-starter) pour débuter rapidement, and also a Vite [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-vite-starter). Pour les utilisateurs Laravel, il est aussi possible d'utiliser ce [template](https://github.com/tongjiaoui-plus/tongjiaoui-plus-in-laravel-starter). VOus pouvez les télécharger directement.
 
 Si vous préférer vous passer de template, voyez la section suivante.
 

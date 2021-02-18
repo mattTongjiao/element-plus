@@ -22,19 +22,29 @@ const getAsyncComponent = func => {
 
 const LOAD_MAP = {
   [Language.CN]: name => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "zh-CN" */ `./pages/${name}.vue`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "zh-CN" */ `./pages/${name}.vue`),
+    )
   },
   [Language.EN]: name => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "en-US" */ `./pages/${name}.vue`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "en-US" */ `./pages/${name}.vue`),
+    )
   },
   [Language.ES]: name => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "es" */ `./pages/${name}.vue`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "es" */ `./pages/${name}.vue`),
+    )
   },
   [Language.FR]: name => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "fr-FR" */ `./pages/${name}.vue`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "fr-FR" */ `./pages/${name}.vue`),
+    )
   },
   [Language.JP]: name => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "jp" */ `./pages/${name}.vue`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "jp" */ `./pages/${name}.vue`),
+    )
   },
 }
 
@@ -44,19 +54,29 @@ const load = function(lang, path) {
 
 const LOAD_DOCS_MAP = {
   [Language.CN]: path => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "DOCS zh-CN" */ `./docs/zh-CN${path}.md`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "DOCS zh-CN" */ `./docs/zh-CN${path}.md`),
+    )
   },
   [Language.EN]: path => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "DOCS en-US" */ `./docs/en-US${path}.md`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "DOCS en-US" */ `./docs/en-US${path}.md`),
+    )
   },
   [Language.ES]: path => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "DOCS es" */ `./docs/es${path}.md`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "DOCS es" */ `./docs/es${path}.md`),
+    )
   },
   [Language.FR]: path => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/fr-FR${path}.md`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/fr-FR${path}.md`),
+    )
   },
   [Language.JP]: path => {
-    return getAsyncComponent(() => import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/jp${path}.md`))
+    return getAsyncComponent(() =>
+      import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/jp${path}.md`),
+    )
   },
 }
 
@@ -69,8 +89,8 @@ const registerRoute = navConfig => {
   Object.keys(navConfig).forEach((lang, index) => {
     let navs = navConfig[lang]
     route.push({
-      path: `/${ lang }/component`,
-      redirect: `/${ lang }/component/installation`,
+      path: `/${lang}/component`,
+      redirect: `/${lang}/component/installation`,
       component: load(lang, 'component'),
       children: [],
     })
@@ -92,9 +112,10 @@ const registerRoute = navConfig => {
     })
   })
   function addRoute(page, lang, index) {
-    const component = page.path === '/changelog'
-      ? load(lang, 'changelog')
-      : loadDocs(lang, page.path)
+    const component =
+      page.path === '/changelog'
+        ? load(lang, 'changelog')
+        : loadDocs(lang, page.path)
     let child = {
       path: page.path.slice(1),
       meta: {
@@ -115,31 +136,34 @@ let route = registerRoute(navConfig)
 
 const generateMiscRoutes = function(lang) {
   let guideRoute = {
-    path: `/${ lang }/guide`, // 指南
-    redirect: `/${ lang }/guide/design`,
+    path: `/${lang}/guide`, // 指南
+    redirect: `/${lang}/guide/design`,
     component: load(lang, 'guide'),
-    children: [{
-      path: 'design', // 设计原则
-      name: 'guide-design' + lang,
-      meta: { lang },
-      component: load(lang, 'design'),
-    }, {
-      path: 'nav', // 导航
-      name: 'guide-nav' + lang,
-      meta: { lang },
-      component: load(lang, 'nav'),
-    }],
+    children: [
+      {
+        path: 'design', // 设计原则
+        name: 'guide-design' + lang,
+        meta: { lang },
+        component: load(lang, 'design'),
+      },
+      {
+        path: 'nav', // 导航
+        name: 'guide-nav' + lang,
+        meta: { lang },
+        component: load(lang, 'nav'),
+      },
+    ],
   }
 
   let resourceRoute = {
-    path: `/${ lang }/resource`, // 资源
+    path: `/${lang}/resource`, // 资源
     meta: { lang },
     name: 'resource' + lang,
     component: load(lang, 'resource'),
   }
 
   let indexRoute = {
-    path: `/${ lang }`, // 首页
+    path: `/${lang}`, // 首页
     meta: { lang },
     name: 'home' + lang,
     component: load(lang, 'index'),
@@ -152,7 +176,10 @@ langs.forEach(lang => {
   route = route.concat(generateMiscRoutes(lang.lang))
 })
 
-let userLanguage = localStorage.getItem('ELEMENT_LANGUAGE') || window.navigator.language || Language.EN
+let userLanguage =
+  localStorage.getItem('ELEMENT_LANGUAGE') ||
+  window.navigator.language ||
+  Language.EN
 let defaultPath = Language.EN
 if (userLanguage.indexOf('zh-') !== -1) {
   defaultPath = Language.CN
@@ -164,12 +191,15 @@ if (userLanguage.indexOf('zh-') !== -1) {
   defaultPath = Language.JP
 }
 
-route = route.concat([{
-  path: '/',
-  redirect: { path: `/${defaultPath}` },
-}, {
-  path: '/*',
-  redirect: { path: `/${defaultPath}` },
-}])
+route = route.concat([
+  {
+    path: '/',
+    redirect: { path: `/${defaultPath}` },
+  },
+  {
+    path: '/*',
+    redirect: { path: `/${defaultPath}` },
+  },
+])
 
 export default route

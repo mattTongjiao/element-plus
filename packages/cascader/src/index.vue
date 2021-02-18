@@ -153,7 +153,7 @@ import isServer from '@tongjiaoui-plus/utils/isServer'
 import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
 import { addResizeListener, removeResizeListener } from '@tongjiaoui-plus/utils/resize-event'
 import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
-import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormKey, tjFormItemKey } from '@tongjiaoui-plus/form'
 import { CommonProps } from '@tongjiaoui-plus/cascader-panel'
 
 import type { ComputedRef, PropType } from 'vue'
@@ -254,8 +254,8 @@ export default defineComponent({
     let pressDeleteCount = 0
 
     const $ELEMENT = useGlobalConfig()
-    const elForm = inject(elFormKey, {} as TjFormContext)
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
     const popper = ref(null)
     const input = ref(null)
@@ -270,8 +270,8 @@ export default defineComponent({
     const presentTags: Ref<Tag[]> = ref([])
     const suggestions: Ref<CascaderNode[]> = ref([])
 
-    const isDisabled = computed(() => props.disabled || elForm.disabled)
-    const realSize: ComputedRef<string> = computed(() => props.size || elFormItem.size || $ELEMENT.size)
+    const isDisabled = computed(() => props.disabled || tjForm.disabled)
+    const realSize: ComputedRef<string> = computed(() => props.size || tjFormItem.size || $ELEMENT.size)
     const tagSize = computed(() => ['small', 'mini'].includes(realSize.value) ? 'mini' : 'small')
     const multiple = computed(() => !!props.props.multiple)
     const readonly = computed(() => !props.filterable || multiple.value)
@@ -302,7 +302,7 @@ export default defineComponent({
       set (val) {
         emit(UPDATE_MODEL_EVENT, val)
         emit(CHANGE_EVENT, val)
-        elFormItem.formItemMitt?.emit('el.form.change', [val])
+        tjFormItem.formItemMitt?.emit('el.form.change', [val])
       },
     })
 
@@ -423,18 +423,18 @@ export default defineComponent({
 
     const updateStyle = () => {
       const inputInner = input.value.input
-      const tagWrapperTj = tagWrapper.value
-      const suggestionPanelTj = suggestionPanel.value?.$el
+      const tagWrapperEl = tagWrapper.value
+      const suggestionPanelEl = suggestionPanel.value?.$el
 
       if (isServer || !inputInner) return
 
-      if (suggestionPanelTj) {
-        const suggestionList = suggestionPanelTj.querySelector('.tj-cascader__suggestion-list')
+      if (suggestionPanelEl) {
+        const suggestionList = suggestionPanelEl.querySelector('.tj-cascader__suggestion-list')
         suggestionList.style.minWidth = inputInner.offsetWidth + 'px'
       }
 
-      if (tagWrapperTj) {
-        const { offsetHeight } = tagWrapperTj
+      if (tagWrapperEl) {
+        const { offsetHeight } = tagWrapperEl
         const height = Math.max(offsetHeight + 6, inputInitialHeight) + 'px'
         inputInner.style.height = height
         updatePopperPosition()
@@ -534,9 +534,9 @@ export default defineComponent({
     )
 
     onMounted(() => {
-      const inputTj = input.value.$el
-      inputInitialHeight = inputTj?.offsetHeight || INPUT_HEIGHT_MAP[realSize.value] || DEFAULT_INPUT_HEIGHT
-      addResizeListener(inputTj, updateStyle)
+      const inputEl = input.value.$el
+      inputInitialHeight = inputEl?.offsetHeight || INPUT_HEIGHT_MAP[realSize.value] || DEFAULT_INPUT_HEIGHT
+      addResizeListener(inputEl, updateStyle)
     })
 
     onBeforeUnmount(() => {

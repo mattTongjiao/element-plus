@@ -30,7 +30,7 @@
                 :disabled="rangeState.selecting"
                 :placeholder="t('el.datepicker.startDate')"
                 class="tj-date-range-picker__editor"
-                :modtj-value="minVisibleDate"
+                :model-value="minVisibleDate"
                 @input="val => handleDateInput(val, 'min')"
                 @change="val => handleDateChange(val, 'min')"
               />
@@ -44,7 +44,7 @@
                 class="tj-date-range-picker__editor"
                 :disabled="rangeState.selecting"
                 :placeholder="t('el.datepicker.startTime')"
-                :modtj-value="minVisibleTime"
+                :model-value="minVisibleTime"
                 @focus="minTimePickerVisible = true"
                 @input="val => handleTimeInput(val, 'min')"
                 @change="val => handleTimeChange(val, 'min')"
@@ -67,7 +67,7 @@
                 class="tj-date-range-picker__editor"
                 :disabled="rangeState.selecting"
                 :placeholder="t('el.datepicker.endDate')"
-                :modtj-value="maxVisibleDate"
+                :model-value="maxVisibleDate"
                 :readonly="!minDate"
                 @input="val => handleDateInput(val, 'max')"
                 @change="val => handleDateChange(val, 'max')"
@@ -82,7 +82,7 @@
                 class="tj-date-range-picker__editor"
                 :disabled="rangeState.selecting"
                 :placeholder="t('el.datepicker.endTime')"
-                :modtj-value="maxVisibleTime"
+                :model-value="maxVisibleTime"
                 :readonly="!minDate"
                 @focus="minDate && (maxTimePickerVisible = true)"
                 @input="val => handleTimeInput(val, 'max')"
@@ -614,7 +614,15 @@ export default defineComponent({
     }
 
     const formatToString = value => {
-      return value.map(_ => _.format(format))
+      return Array.isArray(value)
+        ? value.map(_ => _.format(format))
+        : value.format(format)
+    }
+
+    const parseUserInput = value => {
+      return Array.isArray(value)
+        ? value.map(_ => dayjs(_, format))
+        : dayjs(value, format)
     }
 
     const getDefaultValue = () => {
@@ -634,7 +642,8 @@ export default defineComponent({
       return [start, start.add(1, 'month')]
     }
 
-    // pickerBase.hub.emit('SetPickerOption', ['isValidValue', isValidValue])
+    ctx.emit('set-picker-option', ['isValidValue', isValidValue])
+    ctx.emit('set-picker-option', ['parseUserInput', parseUserInput])
     ctx.emit('set-picker-option', ['formatToString', formatToString])
     ctx.emit('set-picker-option', ['handleClear', handleClear])
 

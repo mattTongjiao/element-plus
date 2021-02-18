@@ -2535,7 +2535,7 @@ Puede personalizar el contenido del nodo de cascada.
 
 | Atributo              | Descripción                                                                                                                                                            | Tipo                    | Valores aceptados     | Por defecto |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------------------- | ----------- |
-| modtj-value / v-model | valor ligado                                                                                                                                                           | -                       | —                     | —           |
+| model-value / v-model | valor ligado                                                                                                                                                           | -                       | —                     | —           |
 | options               | datos de las opciones，las claves `value` y `label` pueden ser personalizadas por `Props`.                                                                             | array                   | —                     | —           |
 | props                 | opciones de configuración, consulte la siguiente tabla.                                                                                                                | object                  | —                     | —           |
 | size                  | tamaño del input                                                                                                                                                       | string                  | medium / small / mini | —           |
@@ -2579,7 +2579,7 @@ Puede personalizar el contenido del nodo de cascada.
 
 | Atributos             | Descripción                                                                                | Tipo   | Valores aceptados | Por defecto |
 | --------------------- | ------------------------------------------------------------------------------------------ | ------ | ----------------- | ----------- |
-| modtj-value / v-model | valor ligado                                                                               | -      | —                 | —           |
+| model-value / v-model | valor ligado                                                                               | -      | —                 | —           |
 | options               | datos de las opciones，las claves `value` y `label` pueden ser personalizadas por `Props`. | array  | —                 | —           |
 | props                 | opciones de configuración, consulte la siguiente tabla.                                    | object | —                 | —           |
 

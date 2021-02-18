@@ -107,7 +107,7 @@ import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
 import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
 import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
 import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
-import { elFormItemKey, elFormKey } from '@tongjiaoui-plus/form'
+import { tjFormItemKey, tjFormKey } from '@tongjiaoui-plus/form'
 import debounce from 'lodash/debounce'
 
 interface IUseOptions {
@@ -149,8 +149,8 @@ export default defineComponent({
   emits: ['change', 'active-change', UPDATE_MODEL_EVENT],
   setup(props, { emit }) {
     const ELEMENT = useGlobalConfig()
-    const elForm = inject(elFormKey, {} as TjFormContext)
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
     const hue = ref(null)
     const svPanel = ref(null)
@@ -172,10 +172,10 @@ export default defineComponent({
       return displayedRgb(color, props.showAlpha)
     })
     const colorSize = computed(() => {
-      return props.size || elFormItem.size || ELEMENT.size
+      return props.size || tjFormItem.size || ELEMENT.size
     })
     const colorDisabled = computed(() => {
-      return props.disabled || elForm.disabled
+      return props.disabled || tjForm.disabled
     })
 
     const currentColor = computed(() => {
@@ -247,7 +247,7 @@ export default defineComponent({
       const value = color.value
       emit(UPDATE_MODEL_EVENT, value)
       emit('change', value)
-      elFormItem.formItemMitt?.emit('el.form.change', value)
+      tjFormItem.formItemMitt?.emit('el.form.change', value)
       debounceSetShowPicker(false)
       // check if modelValue change, if not change, then reset color.
       nextTick(() => {
@@ -267,7 +267,7 @@ export default defineComponent({
       emit(UPDATE_MODEL_EVENT, null)
       emit('change', null)
       if (props.modelValue !== null) {
-        elFormItem.formItemMitt?.emit('el.form.change', null)
+        tjFormItem.formItemMitt?.emit('el.form.change', null)
       }
       resetColor()
     }

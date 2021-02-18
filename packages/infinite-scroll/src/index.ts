@@ -33,10 +33,10 @@ const attributes = {
 type Attrs = typeof attributes
 type ScrollOptions = { [K in keyof Attrs]: Attrs[K]['default'] }
 type InfiniteScrollCallback = () => void
-type InfiniteScrollTj = HTMLElement & {
+type InfiniteScrollEl = HTMLElement & {
   [SCOPE]: {
     container: HTMLElement | Window
-    containerTj: HTMLElement
+    containerEl: HTMLElement
     instance: ComponentPublicInstance
     delay: number // export for test
     lastScrollTop: number
@@ -59,7 +59,7 @@ const getScrollOptions = (el: HTMLElement, instance: ComponentPublicInstance): S
     }, {} as ScrollOptions)
 }
 
-const destroyObserver = (el: InfiniteScrollTj) => {
+const destroyObserver = (el: InfiniteScrollEl) => {
   const { observer } = el[SCOPE]
 
   if (observer) {
@@ -68,14 +68,14 @@ const destroyObserver = (el: InfiniteScrollTj) => {
   }
 }
 
-const handleScroll = (el: InfiniteScrollTj, cb: InfiniteScrollCallback) => {
+const handleScroll = (el: InfiniteScrollEl, cb: InfiniteScrollCallback) => {
   const {
-    container, containerTj,
+    container, containerEl,
     instance, observer,
     lastScrollTop,
   } = el[SCOPE]
   const { disabled, distance } = getScrollOptions(el, instance)
-  const { clientHeight, scrollHeight, scrollTop } = containerTj
+  const { clientHeight, scrollHeight, scrollTop } = containerEl
   const delta = scrollTop - lastScrollTop
 
   el[SCOPE].lastScrollTop = scrollTop
@@ -90,7 +90,7 @@ const handleScroll = (el: InfiniteScrollTj, cb: InfiniteScrollCallback) => {
   } else {
     // get the scrollHeight since el might be visible overflow
     const { clientTop, scrollHeight: height } = el
-    const offsetTop = getOffsetTopDistance(el, containerTj)
+    const offsetTop = getOffsetTopDistance(el, containerEl)
     shouldTrigger = scrollTop + clientHeight >= offsetTop + clientTop + height - distance
   }
 
@@ -99,20 +99,20 @@ const handleScroll = (el: InfiniteScrollTj, cb: InfiniteScrollCallback) => {
   }
 }
 
-function checkFull(el: InfiniteScrollTj, cb: InfiniteScrollCallback) {
-  const { containerTj, instance } = el[SCOPE]
+function checkFull(el: InfiniteScrollEl, cb: InfiniteScrollCallback) {
+  const { containerEl, instance } = el[SCOPE]
   const { disabled } = getScrollOptions(el, instance)
 
   if (disabled) return
 
-  if (containerTj.scrollHeight <= containerTj.clientHeight) {
+  if (containerEl.scrollHeight <= containerEl.clientHeight) {
     cb.call(instance)
   } else {
     destroyObserver(el)
   }
 }
 
-const InfiniteScroll: ObjectDirective<InfiniteScrollTj, InfiniteScrollCallback> = {
+const InfiniteScroll: ObjectDirective<InfiniteScrollEl, InfiniteScrollCallback> = {
   async mounted(el, binding) {
     const { instance, value: cb } = binding
 
@@ -125,15 +125,15 @@ const InfiniteScroll: ObjectDirective<InfiniteScrollTj, InfiniteScrollCallback> 
 
     const { delay, immediate } = getScrollOptions(el, instance)
     const container = getScrollContainer(el, true)
-    const containerTj = container === window ? document.documentElement : (container as HTMLElement)
+    const containerEl = container === window ? document.documentElement : (container as HTMLElement)
     const onScroll = throttle(handleScroll.bind(null, el, cb), delay)
 
     if (!container) return
 
     el[SCOPE] = {
-      instance, container, containerTj,
+      instance, container, containerEl,
       delay, cb, onScroll,
-      lastScrollTop: containerTj.scrollTop,
+      lastScrollTop: containerEl.scrollTop,
     }
 
     if (immediate) {

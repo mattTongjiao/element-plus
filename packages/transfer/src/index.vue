@@ -66,7 +66,7 @@ import { useCheckedChange } from './useCheckedChange'
 import { useMove } from './useMove'
 
 import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
-import { elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormItemKey } from '@tongjiaoui-plus/form'
 
 import { LEFT_CHECK_CHANGE_EVENT, RIGHT_CHECK_CHANGE_EVENT } from './useCheckedChange'
 
@@ -151,7 +151,7 @@ export default defineComponent({
   ],
 
   setup(props, { emit, slots }) {
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
     const checkedState = reactive({
       leftChecked: [],
@@ -194,7 +194,7 @@ export default defineComponent({
     const panelFilterPlaceholder = computed(() => props.filterPlaceholder || t('el.transfer.filterPlaceholder'))
 
     watch(() => props.modelValue, val => {
-      elFormItem.formItemMitt?.emit('el.form.change', val)
+      tjFormItem.formItemMitt?.emit('el.form.change', val)
     })
 
     const optionRender = computed(() => option => {

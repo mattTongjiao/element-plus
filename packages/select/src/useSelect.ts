@@ -20,7 +20,7 @@ import {
   isEdge,
   useGlobalConfig,
 } from '@tongjiaoui-plus/utils/util'
-import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormKey, tjFormItemKey } from '@tongjiaoui-plus/form'
 import isEqual from 'lodash/isEqual'
 import { isObject, toRawType } from '@vue/shared'
 
@@ -70,12 +70,12 @@ export const useSelect = (props, states: States, ctx) => {
   const hoverOption = ref(-1)
 
   // inject
-  const elForm = inject(elFormKey, {} as TjFormContext)
-  const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+  const tjForm = inject(tjFormKey, {} as TjFormContext)
+  const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
   const readonly = computed(() => !props.filterable || props.multiple || (!isIE() && !isEdge() && !states.visible))
 
-  const selectDisabled = computed(() => props.disabled || elForm.disabled)
+  const selectDisabled = computed(() => props.disabled || tjForm.disabled)
 
   const showClose = computed(() => {
     const hasValue = props.multiple
@@ -117,7 +117,7 @@ export const useSelect = (props, states: States, ctx) => {
     return props.filterable && props.allowCreate && states.query !== '' && !hasExistingOption
   })
 
-  const selectSize = computed(() => props.size || elFormItem.size || ELEMENT.size)
+  const selectSize = computed(() => props.size || tjFormItem.size || ELEMENT.size)
 
   const collapseTagSize = computed(() => ['small', 'mini'].indexOf(selectSize.value) > -1 ? 'mini' : 'small')
 
@@ -152,7 +152,7 @@ export const useSelect = (props, states: States, ctx) => {
       states.inputLength = 20
     }
     if (!isEqual(val, oldVal)) {
-      elFormItem.formItemMitt?.emit('el.form.change', val)
+      tjFormItem.formItemMitt?.emit('el.form.change', val)
     }
   }, {
     flush: 'post',
@@ -520,7 +520,7 @@ export const useSelect = (props, states: States, ctx) => {
     }
   }
 
-  const getTj = option => {
+  const getEl = option => {
     const options = states.options.filter(item => item.value === option.value)
     if (options.length > 0) {
       return options[0].$el
@@ -528,7 +528,7 @@ export const useSelect = (props, states: States, ctx) => {
   }
 
   const scrollToOption = option => {
-    const target = Array.isArray(option) ? getTj(option[0]) : getTj(option)
+    const target = Array.isArray(option) ? getEl(option[0]) : getEl(option)
     if (popper.value && target) {
       const menu = popper.value?.popperRef?.querySelector?.('.tj-select-dropdown__wrap')
       if (menu) {
@@ -608,7 +608,7 @@ export const useSelect = (props, states: States, ctx) => {
   }
 
   const handleBlur = (event: Event) => {
-    // https://github.com/TjemeFE/element/pull/10822
+    // https://github.com/ElemeFE/element/pull/10822
     nextTick(() => {
       if (states.isSilentBlur) {
         states.isSilentBlur = false

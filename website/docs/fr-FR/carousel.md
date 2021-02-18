@@ -220,7 +220,7 @@ Par défaut, `direction` est `horizontal`. Vous pouvez faire en sorte que le dé
 | prev          | Défile vers la slide précédente.    | —                                                                                                 |
 | next          | Défile vers la slide suivante.      | —                                                                                                 |
 
-### Attributs du Carroustj-Item
+### Attributs du Carrousel-Item
 
 | Attribut | Description                                            | Type   | Valeurs acceptées | Défaut |
 | -------- | ------------------------------------------------------ | ------ | ----------------- | ------ |

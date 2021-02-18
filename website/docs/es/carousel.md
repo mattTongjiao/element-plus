@@ -220,7 +220,7 @@ Por defecto, `direction` es `horizontal`. Tj carousel puede ser mostrado de form
 | prev          | Cambia al slider anterior  | —                                                                                                             |
 | next          | Cambia al slider siguiente | —                                                                                                             |
 
-### Atributos de Caroustj-Item
+### Atributos de Carousel-Item
 
 | Atributo | Descripción                                                         | Tipo   | Valores aceptados | Por defecto |
 | -------- | ------------------------------------------------------------------- | ------ | ----------------- | ----------- |

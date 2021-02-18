@@ -2,6 +2,7 @@ import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
 import { off, on } from '@tongjiaoui-plus/utils/dom'
 import { computed, ComputedRef, inject, nextTick, ref, watch } from 'vue'
 import { ISliderButtonInitData, ISliderButtonProps, ISliderProvider } from './slider.type'
+import debounce from 'lodash/debounce'
 
 
 const useTooltip = (props: ISliderButtonProps, formatTooltip: ComputedRef<(value: number) => number | string>, showTooltip: ComputedRef<boolean>) => {
@@ -18,13 +19,13 @@ const useTooltip = (props: ISliderButtonProps, formatTooltip: ComputedRef<(value
     return enableFormat.value && formatTooltip.value(props.modelValue) || props.modelValue
   })
 
-  const displayTooltip = () => {
+  const displayTooltip = debounce(() => {
     showTooltip.value && (tooltipVisible.value = true)
-  }
+  }, 50)
 
-  const hideTooltip = () => {
+  const hideTooltip = debounce(() => {
     showTooltip.value && (tooltipVisible.value = false)
-  }
+  }, 50)
 
   return {
     tooltip,
@@ -60,7 +61,7 @@ export const useSliderButton = (props: ISliderButtonProps, initData: ISliderButt
   } = useTooltip(props, formatTooltip, showTooltip)
 
   const currentPosition = computed(() => {
-    return `${ (props.modelValue - min.value) / (max.value - min.value) * 100 }%`
+    return `${(props.modelValue - min.value) / (max.value - min.value) * 100}%`
   })
 
   const wrapperStyle = computed(() => {
@@ -75,7 +76,9 @@ export const useSliderButton = (props: ISliderButtonProps, initData: ISliderButt
 
   const handleMouseLeave = () => {
     initData.hovering = false
-    hideTooltip()
+    if (!initData.dragging) {
+      hideTooltip()
+    }
   }
 
   const onButtonDown = (event: MouseEvent | TouchEvent) => {
@@ -165,7 +168,9 @@ export const useSliderButton = (props: ISliderButtonProps, initData: ISliderButt
          */
       setTimeout(() => {
         initData.dragging = false
-        hideTooltip()
+        if (!initData.hovering) {
+          hideTooltip()
+        }
         if (!initData.isClick) {
           setPosition(initData.newPosition)
           emitChange()

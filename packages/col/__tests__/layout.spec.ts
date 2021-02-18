@@ -40,9 +40,9 @@ describe('Col', () => {
       },
     }
     const wrapper = mount(TestComponent)
-    const colTjm = wrapper.findComponent({ ref: 'col' }).element as HTMLElement
-    expect(colTjm.style.paddingLeft === '10px').toBe(true)
-    expect(colTjm.style.paddingRight === '10px').toBe(true)
+    const colElm = wrapper.findComponent({ ref: 'col' }).element as HTMLElement
+    expect(colElm.style.paddingLeft === '10px').toBe(true)
+    expect(colElm.style.paddingRight === '10px').toBe(true)
   })
   it('responsive', () => {
     const TestComponent = {
@@ -56,13 +56,13 @@ describe('Col', () => {
       },
     }
     const wrapper = mount(TestComponent)
-    const colTjmClass = wrapper.findComponent({ ref: 'col' }).classes()
-    expect(colTjmClass.includes('tj-col-sm-4')).toBe(true)
-    expect(colTjmClass.includes('tj-col-sm-4')).toBe(true)
-    expect(colTjmClass.includes('tj-col-sm-offset-2')).toBe(true)
-    expect(colTjmClass.includes('tj-col-lg-6')).toBe(true)
-    expect(colTjmClass.includes('tj-col-lg-offset-3')).toBe(true)
-    expect(colTjmClass.includes('tj-col-md-8')).toBe(true)
+    const colElmClass = wrapper.findComponent({ ref: 'col' }).classes()
+    expect(colElmClass.includes('tj-col-sm-4')).toBe(true)
+    expect(colElmClass.includes('tj-col-sm-4')).toBe(true)
+    expect(colElmClass.includes('tj-col-sm-offset-2')).toBe(true)
+    expect(colElmClass.includes('tj-col-lg-6')).toBe(true)
+    expect(colElmClass.includes('tj-col-lg-offset-3')).toBe(true)
+    expect(colElmClass.includes('tj-col-md-8')).toBe(true)
   })
 })
 
@@ -76,9 +76,9 @@ describe('Row', () => {
     const wrapper = mount(Row, {
       props: { gutter: 20 },
     })
-    const rowTjm = wrapper.element as HTMLElement
-    expect(rowTjm.style.marginLeft).toEqual('-10px')
-    expect(rowTjm.style.marginRight).toEqual('-10px')
+    const rowElm = wrapper.element as HTMLElement
+    expect(rowElm.style.marginLeft).toEqual('-10px')
+    expect(rowElm.style.marginRight).toEqual('-10px')
   })
   test('type', () => {
     const wrapper = mount(Row, {

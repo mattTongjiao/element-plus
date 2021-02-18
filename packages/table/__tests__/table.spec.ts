@@ -2008,8 +2008,8 @@ describe('Table.vue', () => {
       `,
     })
     await nextTick()
-    const emptyBlockTj = wrapper.find('.tj-table__empty-block')
-    expect(emptyBlockTj.attributes('style')).toContain('height: 100%')
+    const emptyBlockEl = wrapper.find('.tj-table__empty-block')
+    expect(emptyBlockEl.attributes('style')).toContain('height: 100%')
     wrapper.unmount()
   })
 
@@ -2054,7 +2054,7 @@ describe('Table.vue', () => {
       await nextTick()
       const rows = wrapper.findAll('.tj-table__row')
       expect(rows.length).toEqual(7)
-      const childRows = wrapper.findAll('.tj-table__row--levtj-1')
+      const childRows = wrapper.findAll('.tj-table__row--level-1')
       expect(childRows.length).toEqual(2)
       childRows.forEach(item => {
         expect(item.attributes('style')).toContain('display: none')
@@ -2178,7 +2178,7 @@ describe('Table.vue', () => {
         },
       })
       await nextTick()
-      const childRows = wrapper.findAll('.tj-table__row--levtj-1')
+      const childRows = wrapper.findAll('.tj-table__row--level-1')
       childRows.forEach(item => {
         expect(item.attributes('style')).toBeUndefined
       })
@@ -2240,7 +2240,7 @@ describe('Table.vue', () => {
         },
       })
       await nextTick()
-      const childRows = wrapper.findAll('.tj-table__row--levtj-1')
+      const childRows = wrapper.findAll('.tj-table__row--level-1')
       childRows.forEach(item => {
         expect(item.attributes('style')).toBeUndefined
       })

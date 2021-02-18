@@ -2535,7 +2535,7 @@ You can customize the content of cascader node.
 
 | Attribute             | Description                                                                                                                                                                      | Type                    | Accepted Values       | Default |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------------------- | ------- |
-| modtj-value / v-model | binding value                                                                                                                                                                    | -                       | —                     | —       |
+| model-value / v-model | binding value                                                                                                                                                                    | -                       | —                     | —       |
 | options               | data of the options，the key of `value` and `label` can be customize by `Props`.                                                                                                 | array                   | —                     | —       |
 | props                 | configuration options, see the following table.                                                                                                                                  | object                  | —                     | —       |
 | size                  | size of input                                                                                                                                                                    | string                  | medium / small / mini | —       |
@@ -2579,7 +2579,7 @@ You can customize the content of cascader node.
 
 | Attribute             | Description                                                                      | Type   | Accepted Values | Default |
 | --------------------- | -------------------------------------------------------------------------------- | ------ | --------------- | ------- |
-| modtj-value / v-model | binding value                                                                    | -      | —               | —       |
+| model-value / v-model | binding value                                                                    | -      | —               | —       |
 | options               | data of the options，the key of `value` and `label` can be customize by `Props`. | array  | —               | —       |
 | props                 | configuration options, see the following table.                                  | object | —               | —       |
 

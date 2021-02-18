@@ -36,13 +36,13 @@ function useEvent(props: TableHeaderProps, emit) {
 
       const table = parent
       emit('set-drag-visible', true)
-      const tableTj = table.vnode.el
-      const tableLeft = tableTj.getBoundingClientRect().left
-      const columnTj = instance.vnode.el.querySelector(`th.${column.id}`)
-      const columnRect = columnTj.getBoundingClientRect()
+      const tableEl = table.vnode.el
+      const tableLeft = tableEl.getBoundingClientRect().left
+      const columnEl = instance.vnode.el.querySelector(`th.${column.id}`)
+      const columnRect = columnEl.getBoundingClientRect()
       const minLeft = columnRect.left - tableLeft + 30
 
-      addClass(columnTj, 'noclick')
+      addClass(columnEl, 'noclick')
 
       dragState.value = {
         startMouseLeft: event.clientX,
@@ -96,7 +96,7 @@ function useEvent(props: TableHeaderProps, emit) {
         document.ondragstart = null
 
         setTimeout(function () {
-          removeClass(columnTj, 'noclick')
+          removeClass(columnEl, 'noclick')
         }, 0)
       }
 

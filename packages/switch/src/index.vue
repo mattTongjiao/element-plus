@@ -35,7 +35,7 @@
     <span
       ref="core"
       class="tj-switch__core"
-      :style="{ width: coreWidth + 'px' }"
+      :style="{ width: (width || 40) + 'px' }"
     >
       <div class="tj-switch__action">
         <i v-if="loading" class="tj-icon-loading"></i>
@@ -58,7 +58,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, onMounted, ref, inject, nextTick, watch } from 'vue'
-import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormKey, tjFormItemKey } from '@tongjiaoui-plus/form'
 
 import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 
@@ -151,10 +151,9 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'change', 'input'],
   setup(props: ISwitchProps, ctx) {
-    const elForm = inject(elFormKey, {} as TjFormContext)
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
-    const coreWidth = ref(props.width)
     const isModelValue = ref(props.modelValue !== false)
     const input = ref(null)
     const core = ref(null)
@@ -189,12 +188,12 @@ export default defineComponent({
       }
 
       if (props.validateEvent) {
-        elFormItem.formItemMitt?.emit('el.form.change', [actualValue.value])
+        tjFormItem.formItemMitt?.emit('el.form.change', [actualValue.value])
       }
     })
 
     const switchDisabled = computed((): boolean => {
-      return props.disabled || props.loading ||(elForm || {}).disabled
+      return props.disabled || props.loading ||(tjForm || {}).disabled
     })
 
     const handleChange = (): void => {
@@ -213,15 +212,13 @@ export default defineComponent({
 
     const setBackgroundColor = (): void => {
       const newColor = checked.value ? props.activeColor : props.inactiveColor
-      const coreTj = core.value
-      coreTj.style.borderColor = newColor
-      coreTj.style.backgroundColor = newColor
-      coreTj.children[0].style.color = newColor
+      const coreEl = core.value
+      coreEl.style.borderColor = newColor
+      coreEl.style.backgroundColor = newColor
+      coreEl.children[0].style.color = newColor
     }
 
     onMounted(() => {
-      coreWidth.value = coreWidth.value || 40
-
       if (props.activeValue || props.inactiveValue) {
         setBackgroundColor()
       }
@@ -232,7 +229,6 @@ export default defineComponent({
     return {
       input,
       core,
-      coreWidth,
       switchDisabled,
       checked,
       handleChange,

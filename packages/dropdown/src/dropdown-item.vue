@@ -29,14 +29,14 @@ export default defineComponent({
     icon: String,
   },
   setup(props) {
-    const { elDropdown } = useDropdown()
+    const { tjDropdown } = useDropdown()
     const _instance = getCurrentInstance()
 
     function handleClick(e: UIEvent) {
-      if (elDropdown.hideOnClick.value) {
-        elDropdown.handleClick?.()
+      if (tjDropdown.hideOnClick.value) {
+        tjDropdown.handleClick?.()
       }
-      elDropdown.commandHandler?.(props.command, _instance, e)
+      tjDropdown.commandHandler?.(props.command, _instance, e)
     }
 
     return {

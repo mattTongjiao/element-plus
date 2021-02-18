@@ -1,13 +1,13 @@
 import { computed, inject, nextTick, ref } from 'vue'
 import { CHANGE_EVENT } from '@tongjiaoui-plus/utils/constants'
-import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormKey, tjFormItemKey } from '@tongjiaoui-plus/form'
 import { ButtonRefs, ISliderInitData, ISliderProps } from './slider.type'
 
 import type { TjFormContext, TjFormItemContext } from '@tongjiaoui-plus/form'
 
 export const useSlide = (props: ISliderProps, initData: ISliderInitData, emit) => {
-  const elForm = inject(elFormKey, {} as TjFormContext)
-  const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+  const tjForm = inject(tjFormKey, {} as TjFormContext)
+  const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
   const slider = ref<Nullable<HTMLElement>>(null)
 
@@ -21,7 +21,7 @@ export const useSlide = (props: ISliderProps, initData: ISliderInitData, emit) =
   }
 
   const sliderDisabled = computed(() => {
-    return props.disabled || (elForm.disabled || false)
+    return props.disabled || (tjForm.disabled || false)
   })
 
   const minValue = computed(() => {
@@ -99,7 +99,7 @@ export const useSlide = (props: ISliderProps, initData: ISliderInitData, emit) =
   }
 
   return {
-    elFormItem,
+    tjFormItem,
     slider,
     firstButton,
     secondButton,

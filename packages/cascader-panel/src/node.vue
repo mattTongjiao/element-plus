@@ -21,18 +21,18 @@
     <!-- prefix -->
     <tj-checkbox
       v-if="multiple"
-      :modtj-value="node.checked"
+      :model-value="node.checked"
       :indeterminate="node.indeterminate"
       :disabled="isDisabled"
       @click.stop
-      @update:modtj-value="handleCheck"
+      @update:model-value="handleCheck"
     />
     <tj-radio
       v-else-if="checkStrictly"
-      :modtj-value="checkedNodeId"
+      :model-value="checkedNodeId"
       :label="node.uid"
       :disabled="isDisabled"
-      @update:modtj-value="handleCheck"
+      @update:model-value="handleCheck"
       @click.stop
     >
       <!--

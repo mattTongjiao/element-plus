@@ -1,7 +1,10 @@
 {
   "name": "tongjiaoui-plus",
-  "private": true,
-  "version": "0.0.0-development",
+  "private": false,
+  "version": "1.0.2",
+  "keywords": [
+    "tongjiao"
+  ],
   "scripts": {
     "cz": "npx git-cz",
     "test": "jest",

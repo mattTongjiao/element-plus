@@ -189,7 +189,28 @@ Progress 组件可通过 `type` 属性来指定使用环形进度条，在环形
 ```
 
 :::
+### 自定义内容
 
+:::demo 通过默认插槽添加自定义内容。
+
+```html
+<tj-progress :percentage="50">
+  <tj-button type="text">自定义内容</tj-button>
+</tj-progress>
+<tj-progress :text-inside="true" :stroke-width="20" :percentage="50" status="exception">
+  <span>自定义内容</span>
+</tj-progress>
+<tj-progress type="circle" :percentage="100" status="success">
+  <tj-button type="success" icon="tj-icon-check" circle></tj-button>
+</tj-progress>
+<tj-progress type="dashboard" :percentage="80">
+  <template #default="{ percentage }">
+    <span class="percentage-value">{{ percentage }}%</span>
+    <span class="percentage-label">当前进度</span>
+  </template>
+</tj-progress>
+```
+:::
 ### Attributes
 
 | 参数           | 说明                                                          | 类型                  | 可选值                    | 默认值 |
@@ -204,3 +225,8 @@ Progress 组件可通过 `type` 属性来指定使用环形进度条，在环形
 | show-text      | 是否显示进度条文字内容                                        | boolean               | —                         | true   |
 | stroke-linecap | circle/dashboard 类型路径两端的形状                           | string                | butt/round/square         | round  |
 | format         | 指定进度条文字内容                                            | function(percentage)  | —                         | —      |
+
+### Slot
+| name | 说明 |
+|------|--------|
+| default | 自定义内容，参数为 { percentage } |

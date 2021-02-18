@@ -193,7 +193,7 @@ export default defineComponent({
     })
 
     const {
-      elFormItem,
+      tjFormItem,
       slider,
       firstButton,
       secondButton,
@@ -214,7 +214,7 @@ export default defineComponent({
 
     const markList = useMarks(props)
 
-    useWatch(props, initData, minValue, maxValue, emit, elFormItem)
+    useWatch(props, initData, minValue, maxValue, emit, tjFormItem)
 
     const precision = computed(() => {
       let precisions = [props.min, props.max, props.step].map(item => {
@@ -273,7 +273,7 @@ export default defineComponent({
   },
 })
 
-const useWatch = (props, initData, minValue, maxValue, emit, elFormItem) => {
+const useWatch = (props, initData, minValue, maxValue, emit, tjFormItem) => {
 
   const _emit = (val: number | number[]) => {
     emit(UPDATE_MODEL_EVENT, val)
@@ -307,7 +307,7 @@ const useWatch = (props, initData, minValue, maxValue, emit, elFormItem) => {
         initData.firstValue = val[0]
         initData.secondValue = val[1]
         if (valueChanged()) {
-          elFormItem.formItemMitt?.emit('el.form.change', [minValue.value, maxValue.value])
+          tjFormItem.formItemMitt?.emit('el.form.change', [minValue.value, maxValue.value])
           initData.oldValue = val.slice()
         }
       }
@@ -319,7 +319,7 @@ const useWatch = (props, initData, minValue, maxValue, emit, elFormItem) => {
       } else {
         initData.firstValue = val
         if (valueChanged()) {
-          elFormItem.formItemMitt?.emit('el.form.change', val)
+          tjFormItem.formItemMitt?.emit('el.form.change', val)
           initData.oldValue = val
         }
       }

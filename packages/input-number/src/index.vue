@@ -63,7 +63,7 @@ import { RepeatClick } from '@tongjiaoui-plus/directives'
 import TjInput from '@tongjiaoui-plus/input'
 import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
 import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
-import { elFormKey, elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormKey, tjFormItemKey } from '@tongjiaoui-plus/form'
 import { toRawType } from '@vue/shared'
 
 import type { PropType } from 'vue'
@@ -132,8 +132,8 @@ export default defineComponent({
   emits: ['update:modelValue', 'change', 'input', 'blur', 'focus'],
   setup(props, { emit }) {
     const ELEMENT = useGlobalConfig()
-    const elForm = inject(elFormKey, {} as TjFormContext)
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjForm = inject(tjFormKey, {} as TjFormContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
     const input = ref(null)
     const data = reactive<IData>({
@@ -164,10 +164,10 @@ export default defineComponent({
       return props.controls && props.controlsPosition === 'right'
     })
     const inputNumberSize = computed(() => {
-      return props.size || elFormItem.size || ELEMENT.size
+      return props.size || tjFormItem.size || ELEMENT.size
     })
     const inputNumberDisabled = computed(() => {
-      return props.disabled || elForm.disabled
+      return props.disabled || tjForm.disabled
     })
     const displayValue = computed(() => {
       if (data.userInput !== null) {

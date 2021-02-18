@@ -23,9 +23,9 @@ import {
 } from 'vue'
 import mitt from 'mitt'
 import {
-  elFormKey,
+  tjFormKey,
   TjFormItemContext as FormItemCtx,
-  elFormEvents,
+  tjFormEvents,
   ValidateFieldCallback,
 } from './token'
 import { FieldErrorList } from 'async-validator'
@@ -119,13 +119,13 @@ export default defineComponent({
       },
     )
 
-    formMitt.on<FormItemCtx>(elFormEvents.addField, field => {
+    formMitt.on<FormItemCtx>(tjFormEvents.addField, field => {
       if (field) {
         fields.push(field)
       }
     })
 
-    formMitt.on<FormItemCtx>(elFormEvents.removeField, field => {
+    formMitt.on<FormItemCtx>(tjFormEvents.removeField, field => {
       if (field.prop) {
         fields.splice(fields.indexOf(field), 1)
       }
@@ -212,7 +212,7 @@ export default defineComponent({
       })
     }
 
-    const elForm = reactive({
+    const tjForm = reactive({
       formMitt,
       ...toRefs(props),
       resetFields,
@@ -222,7 +222,7 @@ export default defineComponent({
       ...useFormLabelWidth(),
     })
 
-    provide(elFormKey, elForm)
+    provide(tjFormKey, tjForm)
 
     return {
       validate, // export

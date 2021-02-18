@@ -1,6 +1,6 @@
 <template>
   <ul
-    v-clickOutside:[triggerTjm]="innerHide"
+    v-clickOutside:[triggerElm]="innerHide"
     :class="[size && `tj-dropdown-menu--${size}`]"
     class="tj-dropdown-menu"
     @mouseenter.stop="show"
@@ -20,26 +20,26 @@ export default defineComponent({
     ClickOutside,
   },
   setup() {
-    const { _elDropdownSize, elDropdown } = useDropdown()
-    const size = _elDropdownSize.value
+    const { _tjDropdownSize, tjDropdown } = useDropdown()
+    const size = _tjDropdownSize.value
 
     function show() {
-      elDropdown.show?.()
+      tjDropdown.show?.()
     }
     function hide() {
-      if (['click', 'contextmenu'].includes(elDropdown.trigger.value)) return
+      if (['click', 'contextmenu'].includes(tjDropdown.trigger.value)) return
       _hide()
     }
     function _hide() {
-      elDropdown.hide?.()
+      tjDropdown.hide?.()
     }
 
     onMounted(() => {
       const dropdownMenu = getCurrentInstance()
       initDropdownDomEvent(
         dropdownMenu,
-        elDropdown.triggerTjm.value,
-        elDropdown.instance,
+        tjDropdown.triggerElm.value,
+        tjDropdown.instance,
       )
     })
 
@@ -48,7 +48,7 @@ export default defineComponent({
       show,
       hide,
       innerHide: _hide,
-      triggerTjm: elDropdown.triggerTjm,
+      triggerElm: tjDropdown.triggerElm,
     }
   },
 })

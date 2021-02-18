@@ -56,19 +56,19 @@ describe('DatePicker', () => {
     input.trigger('focus')
     await nextTick()
     const spans = document.querySelectorAll('.tj-date-picker__header-label')
-    const arrowLeftTjm = document.querySelector('.tj-date-picker__prev-btn.tj-icon-arrow-left') as HTMLElement
-    const arrowRightTjm = document.querySelector('.tj-date-picker__next-btn.tj-icon-arrow-right') as HTMLElement
+    const arrowLeftElm = document.querySelector('.tj-date-picker__prev-btn.tj-icon-arrow-left') as HTMLElement
+    const arrowRightElm = document.querySelector('.tj-date-picker__next-btn.tj-icon-arrow-right') as HTMLElement
     expect(spans[0].textContent).toContain(date.year())
     expect(spans[1].textContent).toContain(date.format('MMMM'))
-    const arrowLeftYeayTjm = document.querySelector('.tj-date-picker__prev-btn.tj-icon-d-arrow-left') as HTMLElement
-    arrowLeftYeayTjm.click()
+    const arrowLeftYeayElm = document.querySelector('.tj-date-picker__prev-btn.tj-icon-d-arrow-left') as HTMLElement
+    arrowLeftYeayElm.click()
     let count = 20
     while (--count) {
-      arrowLeftTjm.click()
+      arrowLeftElm.click()
     }
     count = 20
     while (--count) {
-      arrowRightTjm.click()
+      arrowRightElm.click()
     }
     await nextTick()
     expect(spans[0].textContent).toContain(date.add(-1, 'year').year())

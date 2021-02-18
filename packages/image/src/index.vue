@@ -48,7 +48,7 @@ import ImageViewer from '@tongjiaoui-plus/image-viewer'
 import type { PropType } from 'vue'
 
 const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined
-const isHtmlTje = e => e && e.nodeType === 1
+const isHtmlEle = e => e && e.nodeType === 1
 
 const ObjectFit = {
   NONE: 'none',
@@ -218,7 +218,7 @@ export default defineComponent({
       if (isServer) return
 
       const { scrollContainer } = props
-      if (isHtmlTje(scrollContainer)) {
+      if (isHtmlEle(scrollContainer)) {
         _scrollContainer = scrollContainer
       } else if (isString(scrollContainer) && scrollContainer !== '') {
         _scrollContainer = document.querySelector(scrollContainer)

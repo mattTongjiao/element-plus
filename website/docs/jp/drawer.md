@@ -13,7 +13,7 @@ Since v-model is natively supported for all components, `visible.sync` has been 
 
 一時的に Drawer を多方向から呼び出す
 
-:::demo `Drawer` には `Dialog` のように `modtj-value` を設定して `Drawer` 自体の表示を制御する必要があります。`title` は名前付きスロットで、タイトルは `title` という属性を使って設定することもできます。デフォルトでは、`Drawer`はブラウザウィンドウの**30%**の大きさの**右隅から**左隅に向かって展開します。このデフォルトの動作を変更するには、`direction` と `size` 属性を設定します。このショーケースでは `before-close` API の使い方も紹介しました。さらに詳しく知りたい場合は Attributes セクションもご覧ください。
+:::demo `Drawer` には `Dialog` のように `model-value` を設定して `Drawer` 自体の表示を制御する必要があります。`title` は名前付きスロットで、タイトルは `title` という属性を使って設定することもできます。デフォルトでは、`Drawer`はブラウザウィンドウの**30%**の大きさの**右隅から**左隅に向かって展開します。このデフォルトの動作を変更するには、`direction` と `size` 属性を設定します。このショーケースでは `before-close` API の使い方も紹介しました。さらに詳しく知りたい場合は Attributes セクションもご覧ください。
 
 ```html
 <tj-radio-group v-model="direction">
@@ -294,7 +294,7 @@ Drawer は `destroyOnClose` という API を提供しています。これは�
 | show-close            | Drawer の右上に閉じるボタンを表示するようにした                                                                                                                                                                                                       | boolean                                                                                                                                               | —                     | true     |
 | size                  | Drawer のサイズ, ドローワが水平モードの場合は幅プロパティ, そうでない場合は高さプロパティ, サイズが `number` 型の場合はピクセル単位でサイズを記述します; サイズが `string` 型の場合は `x%` 記法を用います, それ以外の場合はピクセル単位で解釈されます | number / string                                                                                                                                       | -                     | '30%'    |
 | title                 | Drawer のタイトルは、スロットの名前を指定して設定することもできます。                                                                                                                                                                                 | string                                                                                                                                                | —                     | —        |
-| modtj-value / v-model | Drawer を表示する場合は、                                                                                                                                                                                                                             | boolean                                                                                                                                               | —                     | false    |
+| model-value / v-model | Drawer を表示する場合は、                                                                                                                                                                                                                             | boolean                                                                                                                                               | —                     | false    |
 | withHeader            | デフォルトは true で、withHeader が false に設定されている場合は `title attribute` と `title slot` の両方が動作しません。                                                                                                                             | boolean                                                                                                                                               | -                     | true     |
 
 ### Drawer スロット

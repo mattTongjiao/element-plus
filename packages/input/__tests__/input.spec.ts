@@ -21,7 +21,7 @@ describe('Input.vue', () => {
           :maxlength="5"
           placeholder="请输入内容"
           @focus="handleFocus"
-          :modtj-value="input">
+          :model-value="input">
         </tj-input>
       `,
       setup() {
@@ -34,13 +34,13 @@ describe('Input.vue', () => {
       },
     })
 
-    const inputTjm = wrapper.find('input')
+    const inputElm = wrapper.find('input')
     const vm = wrapper.vm as any
-    const nativeInput = inputTjm.element
+    const nativeInput = inputElm.element
 
-    await inputTjm.trigger('focus')
+    await inputElm.trigger('focus')
 
-    expect(inputTjm.exists()).toBe(true)
+    expect(inputElm.exists()).toBe(true)
     expect(handleFocus).toHaveBeenCalled()
     expect(nativeInput.placeholder).toBe('请输入内容')
     expect(nativeInput.value).toBe('input')
@@ -49,23 +49,23 @@ describe('Input.vue', () => {
 
     vm.input = 'text'
     await sleep()
-    expect(inputTjm.element.value).toBe('text')
+    expect(inputElm.element.value).toBe('text')
   })
 
   test('default to empty', () => {
     const wrapper = _mount({
       template: '<tj-input />',
     })
-    const inputTjm = wrapper.find('input')
-    expect(inputTjm.element.value).toBe('')
+    const inputElm = wrapper.find('input')
+    expect(inputElm.element.value).toBe('')
   })
 
   test('disabled', () => {
     const wrapper = _mount({
       template: `<tj-input disabled />`,
     })
-    const inputTjm = wrapper.find('input')
-    expect(inputTjm.element.disabled).not.toBeNull()
+    const inputElm = wrapper.find('input')
+    expect(inputElm.element.disabled).not.toBeNull()
   })
 
   test('suffixIcon', () => {
@@ -221,24 +221,24 @@ describe('Input.vue', () => {
       },
     })
 
-    const inputTjm1 = wrapper.vm.$el.querySelector('.test-text')
-    const inputTjm2 = wrapper.vm.$el.querySelector('.test-textarea')
-    const inputTjm3 = wrapper.vm.$el.querySelector('.test-password')
-    const inputTjm4 = wrapper.vm.$el.querySelector('.test-initial-exceed')
+    const inputElm1 = wrapper.vm.$el.querySelector('.test-text')
+    const inputElm2 = wrapper.vm.$el.querySelector('.test-textarea')
+    const inputElm3 = wrapper.vm.$el.querySelector('.test-password')
+    const inputElm4 = wrapper.vm.$el.querySelector('.test-initial-exceed')
 
-    expect(inputTjm1.querySelectorAll('.tj-input__count').length).toEqual(0)
-    expect(inputTjm2.querySelectorAll('.tj-input__count').length).toEqual(1)
-    expect(inputTjm3.querySelectorAll('.tj-input__count').length).toEqual(0)
-    expect(inputTjm4.classList.contains('is-exceed')).toBe(true)
+    expect(inputElm1.querySelectorAll('.tj-input__count').length).toEqual(0)
+    expect(inputElm2.querySelectorAll('.tj-input__count').length).toEqual(1)
+    expect(inputElm3.querySelectorAll('.tj-input__count').length).toEqual(0)
+    expect(inputElm4.classList.contains('is-exceed')).toBe(true)
 
     const vm = wrapper.vm as any
     vm.show = true
     await sleep()
-    expect(inputTjm1.querySelectorAll('.tj-input__count').length).toEqual(1)
+    expect(inputElm1.querySelectorAll('.tj-input__count').length).toEqual(1)
 
     vm.input4 = '1'
     await sleep()
-    expect(inputTjm4.classList.contains('is-exceed')).toBe(false)
+    expect(inputElm4.classList.contains('is-exceed')).toBe(false)
   })
 
   describe('Input Methods', () => {
@@ -302,7 +302,7 @@ describe('Input.vue', () => {
       const wrapper = _mount({
         template: `<tj-input
           placeholder="请输入内容"
-          :modtj-value="input"
+          :model-value="input"
           @focus="handleFocus"
           @blur="handleBlur"
         />`,
@@ -332,7 +332,7 @@ describe('Input.vue', () => {
         template: `
           <tj-input
             placeholder="请输入内容"
-            :modtj-value="input"
+            :model-value="input"
             @change="handleChange"
           />
         `,
@@ -404,7 +404,7 @@ describe('Input.vue', () => {
           <tj-input
             placeholder="请输入内容"
             clearable
-            :modtj-value="input"
+            :model-value="input"
             @input="handleInput"
           />
         `,

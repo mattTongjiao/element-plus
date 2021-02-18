@@ -14,5 +14,5 @@ export interface ITjDropdownInstance {
   hide?:  () => void
   trigger?: ComputedRef<string>
   hideOnClick?: ComputedRef<boolean>
-  triggerTjm?: ComputedRef<Nullable<HTMLButtonElement>>
+  triggerElm?: ComputedRef<Nullable<HTMLButtonElement>>
 }

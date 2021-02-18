@@ -64,8 +64,8 @@ describe('TimePicker', () => {
     input.trigger('focus')
     await nextTick()
     const list = document.querySelectorAll('.tj-time-spinner__list')
-    const hoursTj = list[0]
-    const items = hoursTj.querySelectorAll('.tj-time-spinner__item')
+    const hoursEl = list[0]
+    const items = hoursEl.querySelectorAll('.tj-time-spinner__item')
     expect(items[0].textContent).toBe('12 AM') // am pm
     expect(items[1].textContent).toBe('01 AM')
     expect(items[12].textContent).toBe('12 PM')
@@ -87,24 +87,24 @@ describe('TimePicker', () => {
     input.trigger('focus')
     await nextTick()
     const list = document.querySelectorAll('.tj-time-spinner__list')
-    const hoursTj = list[0]
-    const minutesTj = list[1]
-    const secondsTj = list[2]
-    const hourTj = hoursTj.querySelectorAll('.tj-time-spinner__item')[4] as any
-    const minuteTj = minutesTj.querySelectorAll('.tj-time-spinner__item')[36]  as any
-    const secondTj = secondsTj.querySelectorAll('.tj-time-spinner__item')[20]  as any
+    const hoursEl = list[0]
+    const minutesEl = list[1]
+    const secondsEl = list[2]
+    const hourEl = hoursEl.querySelectorAll('.tj-time-spinner__item')[4] as any
+    const minuteEl = minutesEl.querySelectorAll('.tj-time-spinner__item')[36]  as any
+    const secondEl = secondsEl.querySelectorAll('.tj-time-spinner__item')[20]  as any
     // click hour, minute, second one at a time.
-    hourTj.click()
+    hourEl.click()
     await nextTick()
-    minuteTj.click()
+    minuteEl.click()
     await nextTick()
-    secondTj.click()
+    secondEl.click()
     await nextTick()
     const vm = wrapper.vm as any
     const date = vm.value
-    expect(hourTj.classList.contains('active')).toBeTruthy()
-    expect(minuteTj.classList.contains('active')).toBeTruthy()
-    expect(secondTj.classList.contains('active')).toBeTruthy()
+    expect(hourEl.classList.contains('active')).toBeTruthy()
+    expect(minuteEl.classList.contains('active')).toBeTruthy()
+    expect(secondEl.classList.contains('active')).toBeTruthy()
     expect(date.getHours()).toBe(4)
     expect(date.getMinutes()).toBe(36)
     expect(date.getSeconds()).toBe(20)
@@ -172,9 +172,9 @@ describe('TimePicker', () => {
     await nextTick()
     expect(focusHandler).toHaveBeenCalledTimes(1)
     const list = document.querySelectorAll('.tj-time-spinner__list')
-    const hoursTj = list[0]
-    const hourTj = hoursTj.querySelectorAll('.tj-time-spinner__item')[4] as any
-    hourTj.click()
+    const hoursEl = list[0]
+    const hourEl = hoursEl.querySelectorAll('.tj-time-spinner__item')[4] as any
+    hourEl.click()
     await nextTick()
     expect(changeHandler).toHaveBeenCalledTimes(1);
     (document.querySelector('.tj-time-panel__btn.cancel') as any).click()
@@ -228,21 +228,21 @@ describe('TimePicker', () => {
     await nextTick()
 
     const list = document.querySelectorAll('.tj-time-spinner__list')
-    const hoursTj = list[0]
-    const minutesTj = list[1]
-    const secondsTj = list[2]
-    const disabledHours = getSpinnerTextAsArray(hoursTj, '.disabled')
+    const hoursEl = list[0]
+    const minutesEl = list[1]
+    const secondsEl = list[2]
+    const disabledHours = getSpinnerTextAsArray(hoursEl, '.disabled')
     expect(disabledHours).toEqual(disabledHoursArr)
-    const hourSpinners = hoursTj.querySelectorAll('.tj-time-spinner__item');
+    const hourSpinners = hoursEl.querySelectorAll('.tj-time-spinner__item');
     (hourSpinners[18] as any).click()
     await nextTick()
-    const disabledMinutes = getSpinnerTextAsArray(minutesTj, '.disabled')
+    const disabledMinutes = getSpinnerTextAsArray(minutesEl, '.disabled')
     expect(disabledMinutes.every(t => t > 30 && t < 50)).toBeTruthy()
     expect(disabledMinutes.length).toEqual(19);
     (hourSpinners[22] as any).click()
     await nextTick()
-    const enabledMinutes = getSpinnerTextAsArray(minutesTj, ':not(.disabled)')
-    const enabledSeconds = getSpinnerTextAsArray(secondsTj, ':not(.disabled)')
+    const enabledMinutes = getSpinnerTextAsArray(minutesEl, ':not(.disabled)')
+    const enabledSeconds = getSpinnerTextAsArray(secondsEl, ':not(.disabled)')
     expect(enabledMinutes).toEqual([0])
     expect(enabledSeconds).toEqual([0])
   })
@@ -333,15 +333,15 @@ describe('TimePicker(range)', () => {
     await nextTick()
 
     const list = document.querySelectorAll('.tj-time-spinner__list')
-    const leftHoursTj = list[0]
-    const leftEndbledHours = getSpinnerTextAsArray(leftHoursTj, ':not(.disabled)')
+    const leftHoursEl = list[0]
+    const leftEndbledHours = getSpinnerTextAsArray(leftHoursEl, ':not(.disabled)')
     expect(leftEndbledHours).toEqual([ 8, 9, 10, 11, 12 ])
-    const rightHoursTj = list[3]
-    const rightEndbledHours = getSpinnerTextAsArray(rightHoursTj, ':not(.disabled)')
+    const rightHoursEl = list[3]
+    const rightEndbledHours = getSpinnerTextAsArray(rightHoursEl, ':not(.disabled)')
     expect(rightEndbledHours).toEqual([ 11, 12, 13, 14, 15, 16 ]);
-    (leftHoursTj.querySelectorAll('.tj-time-spinner__item')[12] as any).click()
+    (leftHoursEl.querySelectorAll('.tj-time-spinner__item')[12] as any).click()
     await nextTick()
-    const NextRightEndbledHours = getSpinnerTextAsArray(rightHoursTj, ':not(.disabled)')
+    const NextRightEndbledHours = getSpinnerTextAsArray(rightHoursEl, ':not(.disabled)')
     expect(NextRightEndbledHours).toEqual([ 12, 13, 14, 15, 16 ])
   })
 

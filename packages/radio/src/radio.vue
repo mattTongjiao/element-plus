@@ -87,10 +87,10 @@ export default defineComponent({
     const {
       isGroup,
       radioGroup,
-      elFormItemSize,
+      tjFormItemSize,
       ELEMENT,
       focus,
-      elForm,
+      tjForm,
     } = useRadio()
 
     const radioRef = ref<HTMLInputElement>()
@@ -114,12 +114,12 @@ export default defineComponent({
     } = useRadioAttrs(props, {
       isGroup,
       radioGroup: radioGroup,
-      elForm,
+      tjForm,
       model,
     })
 
     const radioSize = computed(() => {
-      const temRadioSize = props.size || elFormItemSize.value || ELEMENT.size
+      const temRadioSize = props.size || tjFormItemSize.value || ELEMENT.size
       return isGroup.value
         ? radioGroup.radioGroupSize || temRadioSize
         : temRadioSize

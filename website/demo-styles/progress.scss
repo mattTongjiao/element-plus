@@ -6,4 +6,16 @@
   .#{$namespace}-progress--circle {
     margin-right: 15px;
   }
+
+  .percentage-value {
+    display: block;
+    margin-top: 10px;
+    font-size: 28px;
+  }
+
+  .percentage-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+  }
 }

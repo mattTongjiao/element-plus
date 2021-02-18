@@ -252,7 +252,7 @@ export default defineComponent({
       confirmButtonDisabled: false,
       confirmButtonText: props.confirmButtonText,
       editorErrorMessage: '',
-      // refer to: https://github.com/TjemeFE/element/commit/2999279ae34ef10c373ca795c87b020ed6753eed
+      // refer to: https://github.com/ElemeFE/element/commit/2999279ae34ef10c373ca795c87b020ed6753eed
       // seemed ok for now without this state.
       // isOnComposition: false, // temporary remove
       validateError: false,

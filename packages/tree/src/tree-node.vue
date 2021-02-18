@@ -42,7 +42,7 @@
       </span>
       <tj-checkbox
         v-if="showCheckbox"
-        :modtj-value="node.checked"
+        :model-value="node.checked"
         :indeterminate="node.indeterminate"
         :disabled="!!node.disabled"
         @click.stop

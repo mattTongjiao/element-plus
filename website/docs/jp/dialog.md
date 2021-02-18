@@ -288,7 +288,7 @@ When using `modal` = false, please make sure that `append-to-body` was set to **
 
 | Attribute             | Description                                                                                                                 | Type                                             | Accepted Values | Default |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | --------------- | ------- |
-| modtj-value / v-model | dialog の可視性                                                                                                             | boolean                                          | —               | —       |
+| model-value / v-model | dialog の可視性                                                                                                             | boolean                                          | —               | —       |
 | title                 | dialog のタイトルを指定します。名前付きスロットで渡すこともできます (次のテーブルを参照してください)。                      | string                                           | —               | —       |
 | width                 | dialog の幅                                                                                                                 | string / number                                  | —               | 50%     |
 | fullscreen            | dialog が全画面を占めるかどうか                                                                                             | boolean                                          | —               | false   |

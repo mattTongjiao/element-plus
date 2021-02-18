@@ -41,11 +41,11 @@ export interface TjFormItemContext {
 }
 
 // TODO: change it to symbol
-export const elFormKey: InjectionKey<TjFormContext> = 'elForm' as any
+export const tjFormKey: InjectionKey<TjFormContext> = 'tjForm' as any
 
-export const elFormItemKey: InjectionKey<TjFormItemContext> = 'elFormItem' as any
+export const tjFormItemKey: InjectionKey<TjFormItemContext> = 'tjFormItem' as any
 
-export const elFormEvents = {
+export const tjFormEvents = {
   addField: 'el.form.addField',
   removeField: 'el.form.removeField',
 } as const

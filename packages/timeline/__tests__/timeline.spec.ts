@@ -133,8 +133,8 @@ describe('TimeLine.vue', () => {
       `,
     })
     const vm = wrapper.vm
-    const nodeTjm = vm.$el.querySelector('.tj-timeline-item__node')
-    expect(nodeTjm.style.backgroundColor).toEqual('rgb(255, 0, 0)')
+    const nodeElm = vm.$el.querySelector('.tj-timeline-item__node')
+    expect(nodeElm.style.backgroundColor).toEqual('rgb(255, 0, 0)')
   })
 
   test('type', () => {

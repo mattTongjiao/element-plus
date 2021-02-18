@@ -59,14 +59,14 @@ export default defineComponent({
     const {
       isGroup,
       radioGroup,
-      elFormItemSize,
+      tjFormItemSize,
       ELEMENT,
       focus,
-      elForm,
+      tjForm,
     } = useRadio()
 
     const size = computed(() => {
-      return radioGroup.radioGroupSize || elFormItemSize.value || ELEMENT.size
+      return radioGroup.radioGroupSize || tjFormItemSize.value || ELEMENT.size
     })
 
     const value = computed<boolean | string | number>({
@@ -80,7 +80,7 @@ export default defineComponent({
 
     const { isDisabled, tabIndex } = useRadioAttrs(props, {
       model: value,
-      elForm,
+      tjForm,
       radioGroup: radioGroup,
       isGroup,
     })

@@ -2540,7 +2540,7 @@ Vous pouvez personnaliser le contenu du noeud cascader.
 
 | Attribut              | Description                                                                                                                                                                  | Type                    | Valeurs acceptées     | Défaut |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------------------- | ------ |
-| modtj-value / v-model | Valeur de liaison                                                                                                                                                            | -                       | —                     | —      |
+| model-value / v-model | Valeur de liaison                                                                                                                                                            | -                       | —                     | —      |
 | options               | Les données des options，la clé de `value` et `label` peuvent être personnalisées par `Props`.                                                                               | array                   | —                     | —      |
 | props                 | Options de configuration, voir le tableau suivant.                                                                                                                           | object                  | —                     | —      |
 | size                  | Taille de l'entrée                                                                                                                                                           | string                  | medium / small / mini | —      |
@@ -2584,7 +2584,7 @@ Vous pouvez personnaliser le contenu du noeud cascader.
 
 | Attribut              | Description                                                                                    | Type   | Valeurs acceptées | Défaut |
 | --------------------- | ---------------------------------------------------------------------------------------------- | ------ | ----------------- | ------ |
-| modtj-value / v-model | Baleur de liaison                                                                              | -      | —                 | —      |
+| model-value / v-model | Baleur de liaison                                                                              | -      | —                 | —      |
 | options               | Les données des options, la clé de `value` et `label` peuvent être personnalisées par `Props`. | array  | —                 | —      |
 | props                 | Options de configuration, voir le tableau suivant.                                             | object | —                 | —      |
 

@@ -23,7 +23,7 @@
         <!-- nav -->
         <ul class="nav">
           <li v-show="isComponentPage" class="nav-item nav-algolia-search">
-            <algolia-search />
+            <!-- <algolia-search /> -->
           </li>
           <li class="nav-item">
             <router-link active-class="active" :to="`/${lang}/guide`">
@@ -128,10 +128,10 @@ export default {
       langDropdownVisible: true,
       langs: {
         [Language.CN]: '中文',
-        [Language.EN]: 'English',
-        [Language.ES]: 'Español',
-        [Language.FR]: 'Français',
-        [Language.JP]: '日本語',
+        // [Language.EN]: 'English',
+        // [Language.ES]: 'Español',
+        // [Language.FR]: 'Français',
+        // [Language.JP]: '日本語',
       },
     }
   },

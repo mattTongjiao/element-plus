@@ -209,7 +209,7 @@ export default defineComponent({
           activeIndex.value = oldActiveIndex
           if (error) {
             // vue-router 3.1.0+ push/replace cause NavigationDuplicated error
-            // https://github.com/TjemeFE/element/issues/17044
+            // https://github.com/ElemeFE/element/issues/17044
             if (error.name === 'NavigationDuplicated') return
             console.error(error)
           }

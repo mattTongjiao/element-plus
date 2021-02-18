@@ -12,7 +12,6 @@ import {
   TableLayout,
   Store,
   TableColumnCtx,
-  fn,
 } from '../table.type'
 import { useGlobalConfig } from '@tongjiaoui-plus/utils/util'
 
@@ -21,7 +20,6 @@ function useStyle(
   layout: TableLayout,
   store: Store,
   table: Table,
-  doLayout: fn,
 ) {
   const $TjEMENT = useGlobalConfig()
   const isHidden = ref(false)
@@ -81,6 +79,16 @@ function useStyle(
       store.states.rightFixedColumns.value.length > 0
     )
   })
+
+  const doLayout = () => {
+    if (shouldUpdateHeight.value) {
+      layout.updateElsHeight()
+    }
+    layout.updateColumnsWidth()
+    syncPostion()
+  }
+
+
   onMounted(() => {
     setScrollClass('is-scrolling-left')
     bindEvents()
@@ -104,7 +112,7 @@ function useStyle(
     })
     table.$ready = true
   })
-  const setScrollClassByTj = (el: HTMLElement, className: string) => {
+  const setScrollClassByEl = (el: HTMLElement, className: string) => {
     if (!el) return
     const classList = Array.from(el.classList).filter(
       item => !item.startsWith('is-scrolling-'),
@@ -114,7 +122,7 @@ function useStyle(
   }
   const setScrollClass = (className: string) => {
     const { bodyWrapper } = table.refs
-    setScrollClassByTj(bodyWrapper, className)
+    setScrollClassByEl(bodyWrapper, className)
   }
   const syncPostion = throttle(function() {
     const {
@@ -319,6 +327,7 @@ function useStyle(
     resizeProxyVisible,
     bodyWidth,
     resizeState,
+    doLayout,
   }
 }
 

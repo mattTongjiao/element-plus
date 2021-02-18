@@ -45,7 +45,7 @@ function createDocumentHandler(
     const mouseDownTarget = mousedown.target as Node
     const isBound = !binding || !binding.instance
     const isTargetExists = !mouseUpTarget || !mouseDownTarget
-    const isContainedByTj = el.contains(mouseUpTarget) || el.contains(mouseDownTarget)
+    const isContainedByEl = el.contains(mouseUpTarget) || el.contains(mouseDownTarget)
     const isSelf = el === mouseUpTarget
 
     const isTargetExcluded =
@@ -64,7 +64,7 @@ function createDocumentHandler(
     if (
       isBound ||
       isTargetExists ||
-      isContainedByTj ||
+      isContainedByEl ||
       isSelf ||
       isTargetExcluded ||
       isContainedByPopper

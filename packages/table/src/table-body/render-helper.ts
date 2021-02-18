@@ -47,7 +47,7 @@ function useRender(props: TableBodyProps) {
     const rowClasses = getRowClass(row, $index)
     let display = true
     if (treeRowData) {
-      rowClasses.push('tj-table__row--levtj-' + treeRowData.level)
+      rowClasses.push('tj-table__row--level-' + treeRowData.level)
       display = treeRowData.display
     }
     const displayStyle = display

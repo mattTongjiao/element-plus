@@ -280,7 +280,7 @@ Dialog 的内容是懒渲染的，即在第一次被打开之前，传入的默�
 
 | 参数                  | 说明                                                                         | 类型                                 | 可选值 | 默认值 |
 | --------------------- | ---------------------------------------------------------------------------- | ------------------------------------ | ------ | ------ |
-| modtj-value / v-model | 是否显示 Dialog                                                              | boolean                              | —      | —      |
+| model-value / v-model | 是否显示 Dialog                                                              | boolean                              | —      | —      |
 | title                 | Dialog 的标题，也可通过具名 slot （见下表）传入                              | string                               | —      | —      |
 | width                 | Dialog 的宽度                                                                | string / number                      | —      | 50%    |
 | fullscreen            | 是否为全屏 Dialog                                                            | boolean                              | —      | false  |

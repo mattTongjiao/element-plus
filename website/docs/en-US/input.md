@@ -372,9 +372,9 @@ You can get some recommended tips based on the current input.
       const loadAll = () => {
         return [
           { value: 'vue', link: 'https://github.com/vuejs/vue' },
-          { value: 'element', link: 'https://github.com/TjemeFE/element' },
-          { value: 'cooking', link: 'https://github.com/TjemeFE/cooking' },
-          { value: 'mint-ui', link: 'https://github.com/TjemeFE/mint-ui' },
+          { value: 'element', link: 'https://github.com/ElemeFE/element' },
+          { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+          { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
           { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
           { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
           { value: 'babel', link: 'https://github.com/babel/babel' },
@@ -468,9 +468,9 @@ Customize how suggestions are displayed.
       const loadAll = () => {
         return [
           { value: 'vue', link: 'https://github.com/vuejs/vue' },
-          { value: 'element', link: 'https://github.com/TjemeFE/element' },
-          { value: 'cooking', link: 'https://github.com/TjemeFE/cooking' },
-          { value: 'mint-ui', link: 'https://github.com/TjemeFE/mint-ui' },
+          { value: 'element', link: 'https://github.com/ElemeFE/element' },
+          { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+          { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
           { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
           { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
           { value: 'babel', link: 'https://github.com/babel/babel' },
@@ -525,9 +525,9 @@ Search data from server-side.
       const loadAll = () => {
         return [
           { value: 'vue', link: 'https://github.com/vuejs/vue' },
-          { value: 'element', link: 'https://github.com/TjemeFE/element' },
-          { value: 'cooking', link: 'https://github.com/TjemeFE/cooking' },
-          { value: 'mint-ui', link: 'https://github.com/TjemeFE/mint-ui' },
+          { value: 'element', link: 'https://github.com/ElemeFE/element' },
+          { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+          { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
           { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
           { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
           { value: 'babel', link: 'https://github.com/babel/babel' },
@@ -631,7 +631,6 @@ Search data from server-side.
 | rows            | number of rows of textarea, only works when `type` is 'textarea'                                                                     | number           | —                                                                                                                                     | 2       |
 | autosize        | whether textarea has an adaptive height, only works when `type` is 'textarea'. Can accept an object, e.g. { minRows: 2, maxRows: 6 } | boolean / object | —                                                                                                                                     | false   |
 | autocomplete    | same as `autocomplete` in native input                                                                                               | string           | on/off                                                                                                                                | off     |
-| auto-complete   | @DEPRECATED in next major version                                                                                                    | string           | on/off                                                                                                                                | off     |
 | name            | same as `name` in native input                                                                                                       | string           | —                                                                                                                                     | —       |
 | readonly        | same as `readonly` in native input                                                                                                   | boolean          | —                                                                                                                                     | false   |
 | max             | same as `max` in native input                                                                                                        | —                | —                                                                                                                                     | —       |

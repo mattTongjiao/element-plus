@@ -206,6 +206,7 @@
 | type               | 走马灯的类型                          | string  | card                | —          |
 | loop               | 是否循环显示                          | boolean | -                   | true       |
 | direction          | 走马灯展示的方向                      | string  | horizontal/vertical | horizontal |
+| pause-on-hover     | 鼠标悬浮时暂停自动切换                | boolean | -                   | true       |
 
 ### Carousel Events
 
@@ -221,7 +222,7 @@
 | prev          | 切换至上一张幻灯片 | —                                                                             |
 | next          | 切换至下一张幻灯片 | —                                                                             |
 
-### Caroustj-Item Attributes
+### Carousel-Item Attributes
 
 | 参数  | 说明                                        | 类型   | 可选值 | 默认值 |
 | ----- | ------------------------------------------- | ------ | ------ | ------ |

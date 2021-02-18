@@ -25,7 +25,7 @@ import {
 import { EVENT_CODE } from '@tongjiaoui-plus/utils/aria'
 import { UPDATE_MODEL_EVENT } from '@tongjiaoui-plus/utils/constants'
 import { isValidComponentSize } from '@tongjiaoui-plus/utils/validators'
-import { elFormItemKey } from '@tongjiaoui-plus/form'
+import { tjFormItemKey } from '@tongjiaoui-plus/form'
 import radioGroupKey from './token'
 
 import type { PropType } from 'vue'
@@ -61,10 +61,10 @@ export default defineComponent({
   setup(props, ctx) {
     const radioGroup = ref(null)
 
-    const elFormItem = inject(elFormItemKey, {} as TjFormItemContext)
+    const tjFormItem = inject(tjFormItemKey, {} as TjFormItemContext)
 
     const radioGroupSize = computed<ComponentSize>(() => {
-      return props.size || elFormItem.size
+      return props.size || tjFormItem.size
     })
 
     // methods
@@ -83,7 +83,7 @@ export default defineComponent({
     }))
 
     watch(() => props.modelValue, val => {
-      elFormItem.formItemMitt?.emit('el.form.change', [val])
+      tjFormItem.formItemMitt?.emit('el.form.change', [val])
     })
 
     const handleKeydown = e => { // 左右上下按键 可以在radio组内切换不同选项
