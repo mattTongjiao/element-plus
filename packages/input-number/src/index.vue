@@ -31,7 +31,7 @@
     </span>
     <tj-input
       ref="input"
-      :modtj-value="displayValue"
+      :model-value="displayValue"
       :placeholder="placeholder"
       :disabled="inputNumberDisabled"
       :size="inputNumberSize"
